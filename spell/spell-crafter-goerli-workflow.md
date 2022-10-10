@@ -76,7 +76,7 @@ Repo: https://github.com/makerdao/spells-goerli
   * [ ] Add New ChainLog Value Tests
   * [ ] Add New Ilk Registry Value Tests
   * [ ] Add Specific Tests (DAI/MKR Streams/Payments, Lerps, ...)
-* [ ] Add new Chaingelog Address in `addresses_goerli.sol` (e.g. Collateral Onboarding)
+* [ ] Add new ChainLog Address in `addresses_goerli.sol` (e.g. Collateral Onboarding)
 * [ ] Run Tests `make test` or `make test match=<test_name>` to inspect debug traces
   * [ ] Make sure to use latest `dapptools`
     * [ ] `dapp --version`
