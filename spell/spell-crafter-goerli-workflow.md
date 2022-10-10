@@ -89,7 +89,7 @@ Repo: https://github.com/makerdao/spells-goerli
 * [ ] Open Draft PR on `spells-goerli` titled "PE-<ticket number>: YYYY-MM-DD Executive"
 * [ ] Assign to yourself
 * [ ] Open PR & Add Reviewers
-* [ ] Iterate till Polls are Ended and Exec Copy is Merged
+* [ ] Iterate till Polls are Ended and Exec Doc is Confirmed
 * [ ] Make sure CI PASS
 * [ ] Wait for at Least Two Approvals with Local Tests to Deploy
 * [ ] Pre-Deploy Checks
