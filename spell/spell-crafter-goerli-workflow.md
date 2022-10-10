@@ -108,8 +108,8 @@ Repo: https://github.com/makerdao/spells-goerli
 * [ ] Commit & Push for Review
 * [ ] Wait for CI to PASS
 * [ ] Wait for Approval
-* [ ] Cast Spell via `make cast-spell` (ONLY ON GOERLI)
 * [ ] Archive Spell via `make archive-spell` for current date (or `date="YYYY-MM-DD" make archive-spell`)
 * [ ] Wait for Merge Approval
 * [ ] Squash & Merge
+* [ ] Cast Spell via `make cast-spell` (ONLY ON GOERLI)
 * [ ] Port Changes to `spells-mainnet`
