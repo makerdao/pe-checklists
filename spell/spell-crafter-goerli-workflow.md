@@ -112,4 +112,3 @@ Repo: https://github.com/makerdao/spells-goerli
 * [ ] Wait for Merge Approval
 * [ ] Squash & Merge
 * [ ] Cast Spell via `make cast-spell` (ONLY ON GOERLI)
-* [ ] Port Changes to `spells-mainnet`
