@@ -124,7 +124,6 @@ Repo: https://github.com/makerdao/spells-mainnet
 * [ ] Fill Spell Crafter Related Boxes in the Main Exec Doc Sheet
 
 ## Next Steps
-* [ ] Open Changelog PR ([Deprecated](https://changelog.makerdao.com/) in favour of [chainlog-ui](https://github.com/makerdao/chainlog-ui))
 * [ ] MegaPoker Updates (handed over to Oracle Core Unit (OCU))
   * [ ] Inform Oracle Core Unit of Any Change Affecting the MegaPoker:
     * [ ] Collateral Onboardings
