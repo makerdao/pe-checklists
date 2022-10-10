@@ -62,7 +62,7 @@ Repo: https://github.com/makerdao/spells-goerli
       * [ ] Note: Automatically Verified on Etherscan
     * [ ] Check with Oracle CU
       * [ ] Check IF Oracle Deployment is Required (eg. univ3-lp-oracle, new ilk pip, ...)
-  * [ ] Add New Addresses in the Changelog
+  * [ ] Add New Addresses in the ChainLog
   * [ ] Bump ChainLog, accordingly with spec (`major`, `minor`, `patch`)
     * [ ] MAJOR -> New Vat
     * [ ] MINOR -> Core Module (DSS) Update (e.g. Flapper)
@@ -73,7 +73,7 @@ Repo: https://github.com/makerdao/spells-goerli
 * [ ] Adjust Sytem Values, Collateral Values in `config.sol` ([diffcheck](https://www.diffchecker.com/) with `spells-mainnet`)
 * [ ] Add Specific Tests in `Goerli-DssSpell.t.sol` ([diffcheck](https://www.diffchecker.com/) with `spells-mainnet`)
   * [ ] Add New Collateral Tests
-  * [ ] Add New Changelog Value Tests
+  * [ ] Add New ChainLog Value Tests
   * [ ] Add New Ilk Registry Value Tests
   * [ ] Add Specific Tests (DAI/MKR Streams/Payments, Lerps, ...)
 * [ ] Add new Chaingelog Address in `addresses_goerli.sol` (e.g. Collateral Onboarding)

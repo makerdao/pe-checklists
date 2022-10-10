@@ -64,7 +64,7 @@ Repo: https://github.com/makerdao/spells-mainnet
     * [ ] Check with Oracle CU
       * [ ] Check IF Oracle Deployment is Required (eg. univ3-lp-oracle, new ilk pip, ...)
       * [ ] Note: Oracle Should Be Deployed On Mainnet Before Friday (Usually Wed-Thu)
-  * [ ] Add New Addresses in the Changelog
+  * [ ] Add New Addresses in the ChainLog
   * [ ] Bump ChainLog, accordingly with spec (`major`, `minor`, `patch`)
     * [ ] MAJOR -> New Vat
     * [ ] MINOR -> Core Module (DSS) Update (e.g. Flapper)
@@ -75,10 +75,10 @@ Repo: https://github.com/makerdao/spells-mainnet
 * [ ] Adjust Sytem Values, Collateral Values in `config.sol` ([diffcheck](https://www.diffchecker.com/) with `spells-goerli`)
 * [ ] Add Specific Tests in `DssSpell.t.sol` ([diffcheck](https://www.diffchecker.com/) with `spells-goerli`)
   * [ ] Add New Collateral Tests
-  * [ ] Add New Changelog Value Tests
+  * [ ] Add New ChainLog Value Tests
   * [ ] Add New Ilk Registry Value Tests
   * [ ] Add Specific Tests (DAI/MKR Streams/Payments, Lerps, ...)
-* [ ] Add new Chaingelog Address in `addresses_mainnet.sol` (e.g. Collateral Onboarding)
+* [ ] Add new ChainLog Address in `addresses_mainnet.sol` (e.g. Collateral Onboarding)
 * [ ] Run Tests `make test` or `make test match=<test_name>` to inspect debug traces
   * [ ] Make sure to use latest `dapptools`
     * [ ] `dapp --version`
