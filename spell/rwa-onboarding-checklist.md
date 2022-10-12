@@ -1,18 +1,13 @@
 * [ ] RWA Onboarding
   * [ ] Deployed Contracts
     * [ ] `RwaToken` (Token Used as Collateral In Adapter)
-      * [ ] contract is verified on etherscan
-        * [ ] ensure `0.6.12` solc version is used
-        * [ ] ensure optimization are off
-        * [ ] ensure license is specified
-        * [ ] ensure source match github code and it's consistent with previous RWA onboarding
-      * [ ] constructor args are correct
-        * [ ] `name` is in `RWA-XXX` format
-        * [ ] `symbol` is in `RWAXXX` format
-        * [ ] `totalSupply` is `1000000000000000000` (`WAD`)
       * [ ] deployed via `RwaTokenFactory`
         * [ ] Fab match [chainlog](https://chainlog.makerdao.com/)
         * [ ] Rwa Token Transferred to MCD Pause Proxy
+      * [ ] `createRwaToken` parameters are correct
+        * [ ] `name` is in `RWA-XXX` format
+        * [ ] `symbol` is in `RWAXXX` format
+        * [ ] `recipient` match MCD Pause Proxy
     * [ ] `AuthGemJoin` (Join Adapter)
       * [ ] contract is verified on etherscan
         * [ ] ensure `0.5.12` solc version is used
