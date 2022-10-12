@@ -47,7 +47,7 @@ Spell Actions:
   * [ ] Constructor args ok (e.g. `vat`, `dai`, `dog`, ...)
     * [ ] Match [ChainLog](https://chainlog.makerdao.com/)
   * [ ] Wards ok (pause proxy relied, deployer denied)
-  * [ ] Matches github `master` source code (via [diffchecker](https://www.diffchecker.com/))
+  * [ ] Matches corresponding github source code (i.e. diffchecked using [diffchecker](https://www.diffchecker.com/))
 * [ ] External Contracts Calls (e.g. Starknet)
   * [ ]  Target Contract Don't Block Spell Execution
   * [ ]  External Call is NOT Delegate Call
