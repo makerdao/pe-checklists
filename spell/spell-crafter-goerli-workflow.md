@@ -9,9 +9,9 @@ Repo: https://github.com/makerdao/spells-goerli
 ![](https://ipfs.io/ipfs/QmUqCvy7c8Qmzn7yZ6D3353wTqCZ3VDAwQKYB37pJ2BjXb)
 
 ### Steps:
-* [ ] Create Branch `PE-<kanban ticket issue number>`
+* [ ] Create Branch on GitHub `PE-<kanban ticket issue number>`
   * [ ] Note: for now current consensus is to use the same ticket issue number as per `spells-mainnet` (this could be revised)
-* [ ] Pull Locally and Checkout Branch
+* [ ] Pull `master` Locally and Checkout Branch
 * [ ] Cleanup Previous Spell's Actions in `Goerli-DssSpell.sol`
   * [ ] Check Previous Spells in the `archive` Folder for Cleanup Patterns
   * [ ] Check Template in `template` (Ensure it's up to date, checking against latest spells)
