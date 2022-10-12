@@ -4,29 +4,20 @@
       * [ ] deployed via `RwaTokenFactory`
         * [ ] Fab match [chainlog](https://chainlog.makerdao.com/)
         * [ ] Rwa Token Transferred to MCD Pause Proxy
-      * [ ] `createRwaToken` parameters are correct
-        * [ ] `name` is in `RWA-XXX` format
-        * [ ] `symbol` is in `RWAXXX` format
-        * [ ] `recipient` match MCD Pause Proxy
+        * [ ] `createRwaToken` parameters are correct
+         * [ ] `name` is in `RWA-XXX` format
+         * [ ] `symbol` is in `RWAXXX` format
+         * [ ] `recipient` match MCD Pause Proxy
     * [ ] `AuthGemJoin` (Join Adapter)
-      * [ ] contract is verified on etherscan
-        * [ ] ensure `0.5.12` solc version is used
-        * [ ] ensure optimization are off
-        * [ ] ensure source match github code and it's consistent with previous RWA onboarding
-      * [ ] constructor args are correct and match [chainlog](https://chainlog.makerdao.com/)
-        * [ ] `vat`
-        * [ ] `ilk` is the `bytes32` representation of "RWAXXX-A"
-          * [ ] `seth --to-ascii <bytes32>` Match ASCII Ilk
-          * [ ] `seth --to-bytes32 $(seth --from-ascii "RWAXXX-A")` Match `bytes32`
-        * [ ] `gem` match `RwaToken` contract deployed
       * [ ] deployed via `JoinFab`
         * [ ] Fab match [chainlog](https://chainlog.makerdao.com/)
         * [ ] Fab is denied, MCD Pause Proxy is relied (`wards`)
-        * [ ] Source is AutoVerified
-      * [ ] check `wards`
-        * [ ] `MCD_PAUSE_PROXY` is relied
-        * [ ] deployer is denied
-        * [ ] no other address has been relied  
+        * [ ] `newAuthGemJoin` parameters are correct
+          * [ ] `owner` match MCD Pause Proxy
+          * [ ] `ilk` is the `bytes32` representation of "RWAXXX-A"
+            * [ ] `seth --to-ascii <bytes32>` Match ASCII Ilk
+            * [ ] `seth --to-bytes32 $(seth --from-ascii "RWAXXX-A")` Match `bytes32`
+          * [ ] `gem` match `RwaToken` deployed contract
     * [ ] `RwaUrn2`
       * [ ] contract is verified on etherscan
         * [ ] ensure `0.6.12` solc version is used
