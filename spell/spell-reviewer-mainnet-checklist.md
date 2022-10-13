@@ -53,14 +53,14 @@ Spell Actions:
   * [ ] Wards ok (pause proxy relied, deployer denied)
   * [ ] Matches corresponding github source code (i.e. diffchecked using [diffchecker](https://www.diffchecker.com/))
 * [ ] External Contracts Calls (e.g. Starknet)
-  * [ ]  Target Contract Don't Block Spell Execution
-  * [ ]  External Call is NOT Delegate Call
-  * [ ]  Target Contract Doesn't Have Permissions on the Vat
-  * [ ]  Target Contract Doens't Do Anything Untoward (e.g. interacting with unsafe contracts)
-  * [ ]  Pause Proxy Doesn't Give Any Approvals
-  * [ ]  All Possible Actions Of The Target Contract Are Documented
-  * [ ]  Target Contract is Included in the ChainLog
-  * [ ]  Test Coverage is Comprehensive
+  * [ ]  Target Contract don't block spell execution
+  * [ ]  External call is NOT delegate call
+  * [ ]  Target Contract doesn't have permissions on the Vat
+  * [ ]  Target Contract doens't do anything untoward (e.g. interacting with unsafe contracts)
+  * [ ]  MCD Pause Proxy doesn't give any approvals
+  * [ ]  All possible actions of the Target Contract are documented
+  * [ ]  Target Contract is included in the ChainLog
+  * [ ]  Test Coverage is comprehensive
 * [ ] Onboarding
   * [ ] [Collateral Onboarding](./collateral-onboarding-checklist.md)
   * [ ] [RWA Onboarding](./rwa-onboarding-checklist.md)
