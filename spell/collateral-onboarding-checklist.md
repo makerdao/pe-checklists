@@ -29,7 +29,6 @@
         * [ ] `gem` matches `RwaToken` contract deployed
       * [ ] deployed via [JoinFab](https://github.com/brianmcmichael/JoinFab/blob/master/src/JoinFab.sol)
         * [ ] Fab matches [chainlog](https://chainlog.makerdao.com/)
-        * [ ] Fab is denied, `MCD_PAUSE_PROXY` is relied (`wards`)
         * [ ] Source is AutoVerified
       * [ ] check `wards`
         * [ ] `MCD_PAUSE_PROXY` is relied
@@ -48,7 +47,6 @@
         * [ ] `gemJoin`
       * [ ] deployed via [ClipFab](https://github.com/makerdao/dss-deploy/blob/master/src/DssDeploy.sol)
         * [ ] Fab matches [chainlog](https://chainlog.makerdao.com/)
-        * [ ] Fab is denied, `MCD_PAUSE_PROXY` is relied (`wards`)
         * [ ] Source is AutoVerified
       * [ ] check `wards`
         * [ ] `MCD_PAUSE_PROXY` is relied
@@ -63,7 +61,6 @@
       * [ ] no constructor arguments
       * [ ] deployed via [ClipFab](https://github.com/makerdao/dss-deploy/blob/master/src/DssDeploy.sol)
         * [ ] Fab matches [chainlog](https://chainlog.makerdao.com/)
-        * [ ] Fab is denied, `MCD_PAUSE_PROXY` is relied (`wards`)
         * [ ] Source is AutoVerified
       * [ ] check `wards`
         * [ ] `MCD_PAUSE_PROXY` is relied

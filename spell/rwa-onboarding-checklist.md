@@ -11,7 +11,6 @@
     * [ ] `AuthGemJoin` (Join Adapter)
       * [ ] deployed via `JoinFab`
         * [ ] Fab matches [chainlog](https://chainlog.makerdao.com/)
-        * [ ] Fab is denied, MCD Pause Proxy is relied (`wards`)
         * [ ] `newAuthGemJoin` parameters are correct
           * [ ] `owner` matches MCD Pause Proxy
           * [ ] `ilk` is the `bytes32` representation of "RWAXXX-A"
