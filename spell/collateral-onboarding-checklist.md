@@ -2,15 +2,15 @@
   * [ ] Deployed Contracts
     * [ ] `PIP` (Oracle)
       * [ ] contract is verified on etherscan
-        * [ ] ensure solc version match source
-        * [ ] ensure optimization match source
+        * [ ] ensure solc version matches source
+        * [ ] ensure optimization matches source
         * [ ] ensure license `AGPLv3` is specified
-        * [ ] ensure source match github code
+        * [ ] ensure source matches github code
       * [ ] constructor args are correct
         * [ ] `src`
         * [ ] `wat`, `orb0`, `orb1` or `orbs` (LPs)
       * [ ] deployed via Factory
-        * [ ] Fab match [chainlog](https://chainlog.makerdao.com/)
+        * [ ] Fab matches [chainlog](https://chainlog.makerdao.com/)
       * [ ] check `wards`
         * [ ] `MCD_PAUSE_PROXY` is relied
         * [ ] deployer is denied
@@ -20,15 +20,15 @@
         * [ ] ensure `0.5.12` solc version is used
         * [ ] ensure optimization are off
         * [ ] ensure license `AGPLv3` is specified
-        * [ ] ensure source match github code
+        * [ ] ensure source matches github code
       * [ ] constructor args are correct and match [chainlog](https://chainlog.makerdao.com/)
         * [ ] `vat`
         * [ ] `ilk` is the `bytes32` representation of "RWAXXX-A"
-          * [ ] `seth --to-ascii <bytes32>` Match ASCII Ilk
-          * [ ] `seth --to-bytes32 $(seth --from-ascii "RWAXXX-A")` Match `bytes32`
-        * [ ] `gem` match `RwaToken` contract deployed
+          * [ ] `seth --to-ascii <bytes32>` matches ASCII Ilk
+          * [ ] `seth --to-bytes32 $(seth --from-ascii "RWAXXX-A")` matches `bytes32`
+        * [ ] `gem` matches `RwaToken` contract deployed
       * [ ] deployed via [JoinFab](https://github.com/brianmcmichael/JoinFab/blob/master/src/JoinFab.sol)
-        * [ ] Fab match [chainlog](https://chainlog.makerdao.com/)
+        * [ ] Fab matches [chainlog](https://chainlog.makerdao.com/)
         * [ ] Fab is denied, `MCD_PAUSE_PROXY` is relied (`wards`)
         * [ ] Source is AutoVerified
       * [ ] check `wards`
@@ -40,14 +40,14 @@
         * [ ] ensure `0.6.12` solc version is used
         * [ ] ensure optimization are off
         * [ ] ensure license `AGPLv3` is specified
-        * [ ] ensure source match github code
+        * [ ] ensure source matches github code
       * [ ] constructor args are correct and match [chainlog](https://chainlog.makerdao.com/)
         * [ ] `vat`
         * [ ] `spotter`
         * [ ] `dog`
         * [ ] `gemJoin`
       * [ ] deployed via [ClipFab](https://github.com/makerdao/dss-deploy/blob/master/src/DssDeploy.sol)
-        * [ ] Fab match [chainlog](https://chainlog.makerdao.com/)
+        * [ ] Fab matches [chainlog](https://chainlog.makerdao.com/)
         * [ ] Fab is denied, `MCD_PAUSE_PROXY` is relied (`wards`)
         * [ ] Source is AutoVerified
       * [ ] check `wards`
@@ -59,10 +59,10 @@
         * [ ] ensure `0.6.12` solc version is used
         * [ ] ensure optimization are off
         * [ ] ensure license `AGPLv3` is specified
-        * [ ] ensure source match github dss `abaci` code
+        * [ ] ensure source matches github dss `abaci` code
       * [ ] no constructor arguments
       * [ ] deployed via [ClipFab](https://github.com/makerdao/dss-deploy/blob/master/src/DssDeploy.sol)
-        * [ ] Fab match [chainlog](https://chainlog.makerdao.com/)
+        * [ ] Fab matches [chainlog](https://chainlog.makerdao.com/)
         * [ ] Fab is denied, `MCD_PAUSE_PROXY` is relied (`wards`)
         * [ ] Source is AutoVerified
       * [ ] check `wards`

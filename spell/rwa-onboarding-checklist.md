@@ -2,28 +2,28 @@
   * [ ] Deployed Contracts
     * [ ] `RwaToken` (Token Used as Collateral In Adapter)
       * [ ] deployed via `RwaTokenFactory`
-        * [ ] Fab match [chainlog](https://chainlog.makerdao.com/)
+        * [ ] Fab matches [chainlog](https://chainlog.makerdao.com/)
         * [ ] Rwa Token Transferred to MCD Pause Proxy
         * [ ] `createRwaToken` parameters are correct
          * [ ] `name` is in `RWA-XXX` format
          * [ ] `symbol` is in `RWAXXX` format
-         * [ ] `recipient` match MCD Pause Proxy
+         * [ ] `recipient` matches MCD Pause Proxy
     * [ ] `AuthGemJoin` (Join Adapter)
       * [ ] deployed via `JoinFab`
-        * [ ] Fab match [chainlog](https://chainlog.makerdao.com/)
+        * [ ] Fab matches [chainlog](https://chainlog.makerdao.com/)
         * [ ] Fab is denied, MCD Pause Proxy is relied (`wards`)
         * [ ] `newAuthGemJoin` parameters are correct
-          * [ ] `owner` match MCD Pause Proxy
+          * [ ] `owner` matches MCD Pause Proxy
           * [ ] `ilk` is the `bytes32` representation of "RWAXXX-A"
-            * [ ] `seth --to-ascii <bytes32>` Match ASCII Ilk
-            * [ ] `seth --to-bytes32 $(seth --from-ascii "RWAXXX-A")` Match `bytes32`
-          * [ ] `gem` match `RwaToken` deployed contract
+            * [ ] `seth --to-ascii <bytes32>` matches ASCII Ilk
+            * [ ] `seth --to-bytes32 $(seth --from-ascii "RWAXXX-A")` matches `bytes32`
+          * [ ] `gem` matches `RwaToken` deployed contract
     * [ ] `RwaUrn2`
       * [ ] contract is verified on etherscan
         * [ ] ensure `0.6.12` solc version is used
         * [ ] ensure optimization are off
         * [ ] ensure license is specified
-        * [ ] ensure source match github code and it's consistent with previous RWA onboarding
+        * [ ] ensure source matches github code and it's consistent with previous RWA onboarding
       * [ ] constructor args are correct and match [chainlog](https://chainlog.makerdao.com/)
         * [ ] `vat`
         * [ ] `jug`
@@ -39,7 +39,7 @@
         * [ ] ensure `0.6.12` solc version is used
         * [ ] ensure optimization are off
         * [ ] ensure license is specified
-        * [ ] ensure source match github code and it's consistent with previous RWA onboarding
+        * [ ] ensure source matches github code and it's consistent with previous RWA onboarding
       * [ ] constructor arg matches [chainlog](https://chainlog.makerdao.com/)
         * [ ] `chainlog`
       * [ ] no `wards`
@@ -48,7 +48,7 @@
         * [ ] ensure `0.6.12` solc version is used
         * [ ] ensure optimization are off
         * [ ] ensure license is specified
-        * [ ] ensure source match github code and it's consistent with previous RWA onboarding
+        * [ ] ensure source matches github code and it's consistent with previous RWA onboarding
       * [ ] constructor args are correctc and match [chainlog](https://chainlog.makerdao.com/)
         * [ ] `dai`
         * [ ] `to` (`RwaUrn`, `RwaJar`)
@@ -63,7 +63,7 @@
         * [ ] ensure `0.6.12` solc version is used
         * [ ] ensure optimization are off
         * [ ] ensure license is specified
-        * [ ] ensure source match github code and it's consistent with previous RWA onboarding
+        * [ ] ensure source matches github code and it's consistent with previous RWA onboarding
       * [ ] constructor args are correct and match [chainlog](https://chainlog.makerdao.com/)
         * [ ] `dai`
         * [ ] `gov` (`v1`)
@@ -80,7 +80,7 @@
       * [ ] `tau` (pre-agreed remediation period)
       * [ ] `doc` (IPFS Hash)
     * [ ] Onboarding Actions
-      * [ ] `ilk` match the format `RWAXXX-A`
+      * [ ] `ilk` matches the format `RWAXXX-A`
       * [ ] Sanity Checks (constructor args, public vars, ... via `require` condition)
       * [ ] `oracle.init`
       * [ ] `vat.init.ilk`
@@ -109,7 +109,7 @@
       * [ ] Add Ilk to `IlkRegistry` 
         * [ ] `put` is used
         * [ ] `class` is 3
-        * [ ] `name` match forum post (e.g. "RWA007-A: Monetalis Clydesdale")
+        * [ ] `name` matches forum post (e.g. "RWA007-A: Monetalis Clydesdale")
       * [ ] Ensure `DssExecLib` is used for the Onboarding (e.g. `DssExecLib.vat`)
       * [ ] Test Coverage (Follow Previous Test Patterns)
         * [ ] `testNewChainlogValues`
