@@ -46,7 +46,7 @@ Spell Actions:
     * [ ] Make sure they match with [config](https://github.com/makerdao/spells-mainnet/blob/master/src/test/config.sol)
 * [ ] Deployed Contracts
   * [ ] Verified on etherscan
-  * [ ] Optimizations Match Repo
+  * [ ] Optimizations match Repo
   * [ ] `GNU AGPLv3` license
   * [ ] Constructor args ok (e.g. `vat`, `dai`, `dog`, ...)
     * [ ] Match [ChainLog](https://chainlog.makerdao.com/)
@@ -102,32 +102,32 @@ Spell Actions:
   * [ ] Streams (`DssVest`)
     * [ ] `DssVest` Interface is correct
     * [ ] Ensure that `cap` > max new vest `tot`/`tau` otherwise file cap as well
-    * [ ] Timestampts Match Doc (`bgn`, `fin`)
-    * [ ] CUs Addresses Match Doc (`usr`)
+    * [ ] Timestampts match Doc (`bgn`, `fin`)
+    * [ ] CUs Addresses match Doc (`usr`)
     * [ ] Amount matches Doc (`tot`, if decimals are present consider using `ether`)
     * [ ] Vesting Duration matches Doc (`tau`)
     * [ ] Cliff Duration matches Doc (`eta`)
     * [ ] Restricted (by default)
     * [ ] Manager matches Doc (`mgr`, set to zero in Dai Streams by default)
   * [ ] CUs MKR Transfers
-    * [ ] Amounts and Addresses Match Doc
-    * [ ] MKR `DssVestTransferrable` Allowance Match Total Transfer Amounts
+    * [ ] Amounts and Addresses match Doc
+    * [ ] MKR `DssVestTransferrable` Allowance match Total Transfer Amounts
     * [ ] Follows Previous Patterns
   * [ ] Direct SB DAI Payment
-    * [ ] Amounts and Addresses Match Doc
+    * [ ] Amounts and Addresses match Doc
     * [ ] Follow Previous Patterns
 * [ ] ChainLog
   * [ ] Bump ChainLog, accordingly with spec (major, minor, patch)
     * [ ] MAJOR -> New Vat
     * [ ] MINOR -> Core Module (DSS) Update (e.g. Flapper)
     * [ ] PATCH -> Collateral addition or addition/modification
-* [ ] `addresses_mainnet.sol` Matches
+* [ ] `addresses_mainnet.sol` matches
 * [ ] Spell Actions Look Good
 * [ ] Tests Look Good
 * [ ] Deployed Spell Verified
   * [ ] Optimization Enabled: No
   * [ ] Other Settings: default evmVersion, GNU AGPLv3 license
-* [ ] Deployed Spell Code Matches GitHub
+* [ ] Deployed Spell Code matches GitHub
   * [diffcheker](diffchecker) agaist spell pr (ethescan code matches pr)
 * [ ] Dss-Exec-Lib [Latest Release](https://github.com/makerdao/dss-exec-lib/releases/latest)
   * submoudule matches [dss-exec-lib](https://github.com/makerdao/dss-exec-lib) tag commit
