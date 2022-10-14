@@ -3,7 +3,7 @@
     * [ ] `RwaToken` (Token Used as Collateral In Adapter)
       * [ ] deployed via `RwaTokenFactory`
         * [ ] Fab matches [chainlog](https://chainlog.makerdao.com/)
-        * [ ] Rwa Token Transferred to MCD Pause Proxy
+        * [ ] Rwa Token transferred to MCD Pause Proxy
         * [ ] `createRwaToken` parameters are correct
          * [ ] `name` is in `RWA-XXX` format
          * [ ] `symbol` is in `RWAXXX` format

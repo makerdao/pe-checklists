@@ -13,71 +13,71 @@ Repo: https://github.com/makerdao/spells-mainnet
   * [ ] Note: for now current consensus is to use the same ticket issue number as per `spells-goerli` (this could be revised)
 * [ ] Pull `master` Locally and Checkout Branch
 * [ ] Cleanup Previous Spell's Actions in `DssSpell.sol` (diffcheck with Goerli)
-  * [ ] Check Previous Spells in the `archive` Folder for Cleanup Patterns
+  * [ ] Check previous spells in the `archive` folder for cleanup patterns
 * [ ] Clenaup Previous Spell's Onboarding Actions in `DssSpellCollateral.sol`
-  * [ ] Check Previous Spells in the `archive` Folder for Cleanup Patterns
+  * [ ] Check previous spells in the `archive` folder for cleanup patterns
 * [ ] Cleanup Base Tests in `config.sol` (under `test` folder in `src`)
   * [ ] Set `deployed_spell` to `address(0)`
   * [ ] Set `deployed_spell_created` to `0`
   * [ ] Consider to add `previous_spell` address if it haven't been executed yet
 * [ ] Cleanup Specific Tests in `DssSpell.t.sol`
-  * [ ] Check Previous Spells in the `archive` Folder for Cleanup Patterns
-  * [ ] Disable Specific Tests IF Not Used (eg. `testCollateralIntegrations`, `testNewChainlogValues`, `testNewIlkRegistryValues`, ...)
-    * [ ] Remove Specific Part
-    * [ ] Keep Setup
+  * [ ] Check previous spells in the `archive` folder for cleanup patterns
+  * [ ] Disable specific tests IF Not Used (eg. `testCollateralIntegrations`, `testNewChainlogValues`, `testNewIlkRegistryValues`, ...)
+    * [ ] Remove specific part
+    * [ ] Keep setup
     * [ ] Disable by setting visibility to `private`
-    * [ ] Add Commented Notes
+    * [ ] Add commented notes
       * [ ] eg. `// Insert new collateral integration tests here`
-    * [ ] Keep Commented Tests (eg. `testOSMs`, `testMedianizers`)
+    * [ ] Keep commented tests (eg. `testOSMs`, `testMedianizers`)
 * [ ] Add Spell Actions as per GovAlpha Spell Content Sheet - [Polls](https://vote.makerdao.com/polling?network=mainnet)
-  * [ ] Polls Starts on Monday and Ends on Thursday
-    * [ ] Check Polls Details and Links (Forum Posts, MIPs Portal, ...)
+  * [ ] Polls starts on Monday and ends on Thursday
+    * [ ] Check polls details and links (forum posts, MIPs portal, ...)
   * [ ] Check on `new-spells` discord channel when Exec Doc is ready
   * [ ] Pragma
-    * [ ] Current Solc Version `0.6.12`
+    * [ ] Current solc version `0.6.12`
     * [ ] Collateral Onboarding
       * [ ] Add `pragma experimental ABIEncoderV2;` (Only IF `DssExecLib.addNewCollateral` is used)
   * [ ] Interfaces
-    * [ ] Avoid `dss-interfaces` Multi-Import Layout (see [issue #69](https://github.com/makerdao/dss-interfaces/issues/69))
-    * [ ] Prefer Single Import Layout
+    * [ ] Avoid `dss-interfaces` multi-import layout (see [issue #69](https://github.com/makerdao/dss-interfaces/issues/69))
+    * [ ] Prefer single import layout
       * [ ] `import { VatAbstract } from "dss-interfaces/dss/VatAbstract.sol";`
-    * [ ] Consider Static Interfaces
+    * [ ] Consider static interfaces
       * [ ] IF not present in `dss-interfaces`
       * [ ] IF present in `dss-interfaces` but TOFIX
       * [ ] IF only few function interfaces are needed
   * [ ] Consider Turn Office Hours On
-    * [ ] Check Spell Actions (eg. Onboarding, Liquidation Adjustments, New DSS Modules, ...)
-    * [ ] Note: Office Hours are On by default
+    * [ ] Check spell actions (eg. Onboarding, Liquidation Adjustments, New DSS Modules, ...)
+    * [ ] Note: office hours are on by default if the modifier `officeHours` is not overridden
   * [ ] Deploy New Join, Clip and Calc (Onboarding)
     * [ ] `Join` (check which one is required)
-      * [ ] Use [JoinFab](https://github.com/brianmcmichael/JoinFab) to Deploy
+      * [ ] Use [JoinFab](https://github.com/brianmcmichael/JoinFab) to deploy
       * [ ] Etherscan Verification
         * [ ] Make sure AGPLv3 is specified and used
-        * [ ] IF Flatten, Consider Removing HEVM Interface Artifacts
+        * [ ] IF Flatten, consider removing `HEVM` interface artifacts
     * [ ] `Clip`
-      * [ ] Use [ClipFab](https://github.com/makerdao/dss-deploy) to Deploy
+      * [ ] Use [ClipFab](https://github.com/makerdao/dss-deploy) to deploy
       * [ ] Etherscan Verification
         * [ ] Make sure AGPLv3 is specified and used
     * [ ] `Calc` (check which one is required)
-      * [ ] Use [CalcFab](https://github.com/makerdao/dss-deploy) to Deploy
-      * [ ] Note: Automatically Verified on Etherscan
+      * [ ] Use [CalcFab](https://github.com/makerdao/dss-deploy) to deploy
+      * [ ] Note: automatically verified on etherscan
     * [ ] Check with Oracle CU
-      * [ ] Check IF Oracle Deployment is Required (eg. univ3-lp-oracle, new ilk pip, ...)
-      * [ ] Note: Oracle Should Be Deployed On Mainnet Before Friday (Usually Wed-Thu)
+      * [ ] Check IF oracle deployment is required (eg. univ3-lp-oracle, new ilk pip, ...)
+      * [ ] Note: oracle should be deployed on mainnet before Friday (usually Wed-Thu)
   * [ ] Add New Addresses in the ChainLog
   * [ ] Bump ChainLog, accordingly with spec (`major`, `minor`, `patch`)
     * [ ] MAJOR -> New Vat
     * [ ] MINOR -> Core Module (DSS) Update (e.g. Flapper)
     * [ ] PATCH -> Collateral addition or addition/modification
   * [ ] Use DssExecLib Functions
-    * [ ] Check DssExecLib Address Used in Spell (`DssExecLib.address`) Matches `dss-exec-lib` [Latest Release Tag](https://github.com/makerdao/dss-exec-lib/releases/latest)
-    * [ ] Check Previous Spells for Common Patterns
+    * [ ] Ensure `DssExecLib` address used in current spell (`DssExecLib.address`) matches `dss-exec-lib` [Latest Release Tag](https://github.com/makerdao/dss-exec-lib/releases/latest)
+    * [ ] Check previous spells for common patterns
 * [ ] Adjust Sytem Values, Collateral Values in `config.sol` ([diffcheck](https://www.diffchecker.com/) with `spells-goerli`)
 * [ ] Add Specific Tests in `DssSpell.t.sol` ([diffcheck](https://www.diffchecker.com/) with `spells-goerli`)
-  * [ ] Add New Collateral Tests
-  * [ ] Add New ChainLog Value Tests
-  * [ ] Add New Ilk Registry Value Tests
-  * [ ] Add Specific Tests (DAI/MKR Streams/Payments, Lerps, ...)
+  * [ ] Add new collateral tests
+  * [ ] Add new chainLog value tests
+  * [ ] Add new ilk registry value tests
+  * [ ] Add specific tests (DAI/MKR Streams/Payments, Lerps, ...)
 * [ ] Add new ChainLog Address in `addresses_mainnet.sol` (e.g. Collateral Onboarding)
 * [ ] Run Tests `make test` or `make test match=<test_name>` to inspect debug traces
   * [ ] Make sure to use latest `dapptools`
@@ -98,20 +98,33 @@ Repo: https://github.com/makerdao/spells-mainnet
   * [ ] Check when Copy is Merged
   * [ ] Reference either Latest Change or Merge Commit
 * [ ] Wait for at Least Two Approvals with Local Tests to Deploy
-* [ ] Pre-Deploy Checks
-  * [ ] Set Local Env
-  * [ ] Check Local Env
-  * [ ] Run `make estimate` and adjust `ETH_GAS` accordingly
-  * [ ] Check Current Gas Price and Set `ETH_GAS_PRICE` accordingly
-    * [ ] Consider Adding Margin to Account for Spikes (eg. current gas price 25 `gwei`, 50 `gwei` could be set)
-  * [ ] Check Current Gas Priority Fee and Set `ETH_PRIO_FEE` accordingly
-  * [ ] Check Env Chain `seth chain`
+* [ ] Pre-Deploy Setup and Checks
+  * [ ] Set local env (`.sethrc`)
+    * [ ] Deployer
+      * [ ] `export ETH_PASSWORD=~/.env/password.txt`
+      * [ ] `export ETH_KEYSTORE=~/.ethereum/keystore`
+      * [ ] `export ETH_FROM=<address>`
+    * [ ] Mainnet EIP1559
+      * [ ] `export ETH_GAS=X`
+        * [ ] Run `make estimate` and adjust `ETH_GAS` accordingly
+      * [ ] `export ETH_GAS_PRICE=$(seth --to-wei X gwei)`
+        * [ ] Check Current Gas Price and Set `ETH_GAS_PRICE` accordingly
+          * [ ] Consider adding margin to account for spikes (eg. current gas price 25 `gwei`, 50 `gwei` could be set)
+      * [ ] `export ETH_PRIO_FEE=$(seth --to-wei X gwei)`
+        * [ ] Check current gas priority fee and set `ETH_PRIO_FEE` accordingly
+    * [ ] Mainnet RPC URL
+      * [ ] `export ETH_RPC_URL=<url>`
+    * [ ] Etherscan API KEY
+      * [ ] `export ETHERSCAN_API_KEY=<key>`
+    * [ ] Ensure to `source` the `.sethrc` file to make env vars available
+  * [ ] Check local env
+    * [ ] `seth ls`
+    * [ ] `seth chain`
 * [ ] Deploy Spell on Mainnet via `make deploy` (this should also verify the Spell on Etherscan)
 * [ ] Add Deployed Spell Address & Timestamp to Base Tests
   * [ ] `deployed_spell: address(<deployed_spell_address>)`
-    `// populate with deployed spell if deployed`
   * [ ] `deployed_spell_created: <timestamp>`
-    `// use get-created-timestamp.sh if deployed`
+    * [ ] Run `seth block <block_number> timestamp` or `make deploy-stamp tx=<tx_hash>`
 * [ ] Run Tests Locally with deployed spell address
 * [ ] Commit & Push for Review
 * [ ] Wait for CI to PASS
@@ -124,21 +137,21 @@ Repo: https://github.com/makerdao/spells-mainnet
 * [ ] Fill Spell Crafter Related Boxes in the Main Exec Doc Sheet
 
 ## Next Steps
-* [ ] MegaPoker Updates (handed over to Oracle Core Unit (OCU))
-  * [ ] Inform Oracle Core Unit of Any Change Affecting the MegaPoker:
+* [ ] `MegaPoker` Contract Updates (handed over to Oracle Core Unit (OCU))
+  * [ ] Inform oracle core unit of any change affecting the `MegaPoker`:
     * [ ] Collateral Onboardings
-      * [ ] Including New Ilk Types (e.g. `ETH-B`)
+      * [ ] Including new ilk types (e.g. `ETH-B`)
     * [ ] Collateral Offboardings
-    * [ ] Oracle Replacements
+    * [ ] Oracle replacements
     * [ ] ...
   * [ ] Sanity Checks
-    * [ ] Coordinate with Oracle CU and TechOps
-    * [ ] Previous Code Patterns are Followed
-    * [ ] MegaPoker Changes are Reviewed & Approved by OCU
-    * [ ] CI & Local Tests PASS
-    * [ ] New MegaPoker is Deployed
-    * [ ] New Deployed MegaPoker Contract Address is Handed to TechOps
-    * [ ] New Deployed Megapoker Contract Address is Updated in the README
+    * [ ] Coordinate with oracle CU and TechOps
+    * [ ] Previous code patterns are followed
+    * [ ] MegaPoker changes are reviewed & approved by OCU
+    * [ ] CI & local tests PASS
+    * [ ] New `MegaPoker` is deployed
+    * [ ] New deployed `MegaPoker` contract address is handed to TechOps
+    * [ ] New deployed `Megapoker` contract address is updated in the README
 * [ ] Keeper Support for New Onboarded Collateral
 * [ ] Keeper Support for New Lerps (to call `tall` daily) via [dss-cron](https://github.com/makerdao/dss-cron)
-  * [ ] IF New Offboardings via Lerp (in current spell)
+  * [ ] IF new offboardings via lerp (in current spell)
