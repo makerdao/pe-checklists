@@ -15,7 +15,7 @@ Repo: https://github.com/makerdao/spells-goerli
 * [ ] Cleanup Previous Spell's Actions in `Goerli-DssSpell.sol`
   * [ ] Check previous spells in the `archive` folder for cleanup patterns
   * [ ] Check template in `template` (ensure it's up to date, checking against latest spells)
-* [ ] Clenaup Previous Spell's Onboarding Actions in `Goerli-DssSpellCollateral.sol`
+* [ ] Cleanup Previous Spell's Onboarding Actions in `Goerli-DssSpellCollateral.sol`
   * [ ] Check previous spells in the `archive` folder for cleanup patterns
   * [ ] Check template in `template` (ensure it's up to date, checking against latest spells)
 * [ ] Cleanup Base Tests in `config.sol` (under `test` folder in `src`)
@@ -45,7 +45,7 @@ Repo: https://github.com/makerdao/spells-goerli
     * [ ] Consider static interfaces
       * [ ] IF not present in `dss-interfaces`
       * [ ] IF present in `dss-interfaces` but TOFIX
-      * [ ] IF only few function interfaces are needed
+      * [ ] IF only a few function interfaces are needed
   * [ ] Office Hours (OFF by Default on Goerli)
     * [ ] Ensure `officeHours` modifier is overriden to return `false`
   * [ ] Deploy New Join, Clip and Calc (Onboarding)
@@ -71,7 +71,7 @@ Repo: https://github.com/makerdao/spells-goerli
   * [ ] Use DssExecLib Functions
     * [ ] Ensure `DssExecLib` address used in current spell (`DssExecLib.address`) matches `dss-exec-lib` [Latest Release Tag](https://github.com/makerdao/dss-exec-lib/releases/latest)
     * [ ] Check previous spells for common patterns
-* [ ] Adjust Sytem Values, Collateral Values in `config.sol` ([diffcheck](https://www.diffchecker.com/) with `spells-mainnet`)
+* [ ] Adjust System Values, Collateral Values in `config.sol` ([diffcheck](https://www.diffchecker.com/) with `spells-mainnet`)
 * [ ] Add Specific Tests in `Goerli-DssSpell.t.sol` ([diffcheck](https://www.diffchecker.com/) with `spells-mainnet`)
   * [ ] Add new collateral tests
   * [ ] Add new chainLog value tests
