@@ -50,7 +50,7 @@ Repo: https://github.com/makerdao/spells-goerli
     * [ ] Ensure `officeHours` modifier is overriden to return `false`
   * [ ] Deploy New Join, Clip and Calc (Onboarding)
     * [ ] `Join` (check which one is required)
-      * [ ] Use [JoinFab](https://github.com/brianmcmichael/JoinFab) to deploy
+      * [ ] Use [JoinFab](https://github.com/makerdao/JoinFab) to deploy
       * [ ] Etherscan Verification
         * [ ] Make sure AGPLv3 is specified and used
         * [ ] IF Flatten, consider removing `HEVM` interface artifacts

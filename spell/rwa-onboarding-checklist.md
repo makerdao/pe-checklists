@@ -9,7 +9,7 @@
          * [ ] `symbol` is in `RWAXXX` format
          * [ ] `recipient` matches MCD Pause Proxy
     * [ ] `AuthGemJoin` (Join Adapter)
-      * [ ] deployed via `JoinFab`
+      * [ ] deployed via [JoinFab](https://github.com/makerdao/JoinFab/blob/master/src/JoinFab.sol)
         * [ ] Fab matches [chainlog](https://chainlog.makerdao.com/)
         * [ ] `newAuthGemJoin` parameters are correct
           * [ ] `owner` matches MCD Pause Proxy

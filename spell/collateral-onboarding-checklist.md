@@ -27,7 +27,7 @@
           * [ ] `seth --to-ascii <bytes32>` matches ASCII Ilk
           * [ ] `seth --to-bytes32 $(seth --from-ascii "RWAXXX-A")` matches `bytes32`
         * [ ] `gem` matches `RwaToken` contract deployed
-      * [ ] deployed via [JoinFab](https://github.com/brianmcmichael/JoinFab/blob/master/src/JoinFab.sol)
+      * [ ] deployed via [JoinFab](https://github.com/makerdao/JoinFab/blob/master/src/JoinFab.sol)
         * [ ] Fab matches [chainlog](https://chainlog.makerdao.com/)
         * [ ] Source is AutoVerified
       * [ ] check `wards`
