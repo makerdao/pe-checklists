@@ -11,7 +11,8 @@ Repo: https://github.com/makerdao/spells-mainnet
 ### Steps:
 * [ ] Create Branch on GitHub `PE-<kanban ticket issue number>`
   * [ ] Note: for now current consensus is to use the same ticket issue number as per `spells-goerli` (this could be revised)
-* [ ] Pull `master` Locally and Checkout Branch
+* [ ] Pull `master` Locally and Checkout Branch (IF Branch is created via GitHub)
+* [ ] Pull `master` Locally, Create and Checkout Branch (IF Branch was not created via GitHub)
 * [ ] Cleanup Previous Spell's Actions in `DssSpell.sol` (diffcheck with Goerli)
   * [ ] Check previous spells in the `archive` folder for cleanup patterns
 * [ ] Clenaup Previous Spell's Onboarding Actions in `DssSpellCollateral.sol`
