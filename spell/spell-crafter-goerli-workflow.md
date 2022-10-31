@@ -14,10 +14,10 @@ Repo: https://github.com/makerdao/spells-goerli
 * [ ] Pull `master` Locally and Checkout Branch
 * [ ] Cleanup Previous Spell's Actions in `Goerli-DssSpell.sol`
   * [ ] Check previous spells in the `archive` folder for cleanup patterns
-  * [ ] Check template in `template` (ensure it's up to date, checking against latest spells)
+  * [ ] Check template in `template` (**ensure it's up to date**, checking against latest spells)
 * [ ] Cleanup Previous Spell's Onboarding Actions in `Goerli-DssSpellCollateral.sol`
   * [ ] Check previous spells in the `archive` folder for cleanup patterns
-  * [ ] Check template in `template` (ensure it's up to date, checking against latest spells)
+  * [ ] Check template in `template` (**ensure it's up to date**, checking against latest spells)
 * [ ] Cleanup Base Tests in `config.sol` (under `test` folder in `src`)
   * [ ] Set `deployed_spell` to `address(0)`
   * [ ] Set `deployed_spell_created` to `0`
