@@ -79,11 +79,7 @@ Repo: https://github.com/makerdao/spells-goerli
   * [ ] Add specific tests (DAI/MKR Streams/Payments, Lerps, ...)
 * [ ] Add new ChainLog Address in `addresses_goerli.sol` (e.g. Collateral Onboarding)
 * [ ] Run Tests `make test` or `make test match=<test_name>` to inspect debug traces
-  * [ ] Make sure to use latest `dapptools`
-    * [ ] `dapp --version`
-    * [ ] `duppgrade <latest release>` (eg. `duppgrade hevm/0.49.0`)
-* [ ] Debug via `make test-forge` or `make test-forge match=<test_name>` to inspect debut traces (for quicker testing)
-  * [ ] Make sure to use latest `foundry`
+  * [ ] Ensure to use latest `foundry` stable version
     * [ ] Run `foundryup`
 * [ ] Test PASS via `make test` (Ensure Good Coverage)
 * [ ] Commit & Push
