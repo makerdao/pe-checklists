@@ -16,7 +16,7 @@ Repo: https://github.com/makerdao/spells-mainnet
   * [ ] Check previous spells in the `archive` folder for cleanup patterns
 * [ ] Clenaup Previous Spell's Onboarding Actions in `DssSpellCollateral.sol`
   * [ ] Check previous spells in the `archive` folder for cleanup patterns
-* [ ] Cleanup Base Tests in `config.sol` (under `test` folder in `src`)
+* [ ] Cleanup `config.sol` (under `test` folder in `src`)
   * [ ] Set `deployed_spell` to `address(0)`
   * [ ] Set `deployed_spell_created` to `0`
   * [ ] Consider to add `previous_spell` address if it haven't been executed yet
