@@ -129,7 +129,7 @@
         * [ ] `ilk` follows the ilk format `TOKEN-A`
         * [ ] `line`in DAI (e.g. 10 * MILLION)
         * [ ] `gap` in DAI (e.g. 1 * MILLION)
-        * [ ] `ttl` in seconds (8 hours)
+        * [ ] `ttl` in seconds (e.g. 8 hours)
     * [ ] New Chainlog Entries
         * [ ] `TOKEN`
         * [ ] `PIP_TOKEN`
