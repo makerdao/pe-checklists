@@ -68,10 +68,7 @@
         * [ ] no other address has been relied
     * [ ] Risk Parameters
       * [ ] `vat.ilk.line` ([setIlkDebtCeiling](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L611))
-        * [ ] Autoline Enabled?
-          * [ ] `vat.ilk.line` should be set to DC-IAM `gap` value
       * [ ] `dog.ilk.hole` ([setIlkMaxLiquidationAmount](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L699))
-      * [ ] `ilk.hole` >= `ilk.dust` invariant satisfied
       * [ ] `vat.ilk.dust`([setIlkMinVaultAmount](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L676))
       * [ ] `dog.ilk.chop` ([liquidationPenalty](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L689))
       * [ ] `jug.ilk.duty` ([setIlkStabilityFee](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L792))
@@ -94,6 +91,53 @@
       * [ ] `line`
       * [ ] `gap`
       * [ ] `ttl`
+    * [ ] Onboarding Actions
+      * [ ] ensure `ABIEncoderV2` is enabled
+          * [ ] `pragma experimental ABIEncoderV2;`
+      * [ ] ensure `DssExecLib.addNewCollateral` is used (in `onboardCollaterals`, `DssSpellCollateral.sol`)
+      * [ ] ensure `CollateralOpts` is used
+        * [ ] `ilk` follows the ilk format `TOKEN-A`
+        * [ ] `gem` matches token address
+        * [ ] `join` matches token join address
+        * [ ] `clip` matches token clip address
+        * [ ] `calc` matches token calc address
+        * [ ] `pip` matches token pip address
+        * [ ] `isLiquidatable` set to true if liquidation are on
+        * [ ] `isOSM` set to true IF `pip` is `OSM`
+        * [ ] `whitelistOSM` set to true IF median is `src` in `OSM`
+        * [ ] `ilkDebtCeiling` (`vat.ilk.line`) in DAI (e.g. 1 * MILLION)
+          * [ ] IF autoline is enabled, `vat.ilk.line` should be set to DC-IAM `gap` value
+        * [ ] `minVaultAmount` (`vat.ilk.dust`) in DAI (e.g. 15_000)
+        * [ ] `maxLiquidationAmount` (`dog.ilk.hole`) in DAI (e.g. 5 * MILLION)
+          * [ ] ensure `dog.ilk.hole` >= `ilk.dust` invariant holds
+        * [ ] `liquidationPenalty` (`dog.ilk.chop`) in basis points (e.g. 13% = 13_00)
+        * [ ] `ilkStabilityFee` (`jug.ilk.duty`) set via script or IPFS rates table (e.g. 1000000000031693947650284507)
+        * [ ] `startingPriceFactor` (`clip.buf`) in basis points (e.g. 110% = 110_00)
+        * [ ] `breakerTolerance` (`clipperMom.clip.tolerance`) in basis points (e.g. 50% = 50_00)
+        * [ ] `auctionDuration` (`clip.tail`) in seconds (e.g. 220 minutes)
+        * [ ] `permittedDrop` (`clip.cusp`) in basis points (e.g. 45% = 45_00)
+        * [ ] `liquidationRatio` (`spotter.ilk.mat`) in basis points (e.g. 170% = 170_00)
+        * [ ] `kprFlatReward` (`clip.tip`) in DAI (e.g. 250)
+        * [ ] `kprPctReward` (`clip.chip`) in basis points (e.g. 0.1% = 10)
+      * [ ] set Calc parameters
+        * [ ] `LinearDecrease`
+          * [ ] `calc.tau` in seconds (e.g. 250 days = 21_600_000)
+        * [ ] `StairstepExponentialDecrease`
+          * [ ] `calc.cut` in seconds (e.g. 120 seconds)
+          * [ ] `calc.step` in basis points (e.g. 99% = 99_00)
+      * [ ] set Ilk Autoline Parameters (IF Autoline is enabled)
+        * [ ] `ilk` follows the ilk format `TOKEN-A`
+        * [ ] `line`in DAI (e.g. 10 * MILLION)
+        * [ ] `gap` in DAI (e.g. 1 * MILLION)
+        * [ ] `ttl` in seconds (8 hours)
+    * [ ] New Chainlog Entries
+        * [ ] `TOKEN`
+        * [ ] `PIP_TOKEN`
+        * [ ] `MCD_JOIN_TOKEN_A`
+        * [ ] `MCD_CLIP_TOKEN_A`
+        * [ ] `MCD_CLIP_CALC_TOKEN_A`
+    * [ ] Chainlog Bump
+      * [ ] Patch `x.x.1`
     * [ ] Test Coverage (Follow Previous Test Patterns)
       * [ ] `testCollateralIntegrations`
       * [ ] `testNewChainlogValues`
