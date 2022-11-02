@@ -3,8 +3,8 @@
 ## Rationale
 >The following checklists are meant to be used as a co-pilot for protocol engineers to ensure consistency throughout the development workflow.  
 >They emerged during reviews and crafting as a way to avoid pitfalls and allow protocol engineers to focus on more in-depth reviews and workflow improvements that will be reflected ideally in these checklists.  
->These checklists are a work in progress, continuing evelolving and refined on the go, and not meant to be comprehensive or intended as a  developer guide (for that please refers to [developerguides](https://github.com/makerdao/developerguides) and [Maker Protocol 101](https://docs.makerdao.com/getting-started/maker-protocol-101)).
-
+## Disclaimer
+>*These checklists are a work in progress, continuing evolving and refined on the go, and not meant to be comprehensive and exaustive or intended as a developer guide (for that please refers to [developerguides](https://github.com/makerdao/developerguides) and [Maker Protocol 101](https://docs.makerdao.com/getting-started/maker-protocol-101)).*
 ## Checklists
 
 ### Spells
