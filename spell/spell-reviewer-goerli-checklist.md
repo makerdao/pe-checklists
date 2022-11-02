@@ -48,6 +48,7 @@ Spell Actions:
     * [ ] Match [ChainLog](https://chainlog.makerdao.com/)
   * [ ] Wards ok (pause proxy relied, deployer denied)
   * [ ] Matches corresponding github source code (i.e. diffchecked using [diffchecker](https://www.diffchecker.com/))
+  * [ ] Ensure deployer address is inlcuded into `addresses_deployers.sol` (**to keep up to date**)
 * [ ] External Contracts Calls (e.g. Starknet)
   * [ ]  Target Contract don't block spell execution
   * [ ]  External call is NOT delegate call
