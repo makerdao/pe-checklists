@@ -125,7 +125,7 @@ Spell Actions:
   * [ ] Optimization Enabled: No
   * [ ] Other Settings: default evmVersion, GNU AGPLv3 license
 * [ ] Deployed Spell Code matches GitHub
-  * [diffcheker](diffchecker) agaist spell pr (ethescan code matches pr)
+  * [diffchecker](diffchecker) against spell pr (etherscan code matches pr)
 * [ ] Dss-Exec-Lib [Latest Release](https://github.com/makerdao/dss-exec-lib/releases/latest)
   * submoudule matches [dss-exec-lib](https://github.com/makerdao/dss-exec-lib) tag commit
 * [ ] Archive match `src`
