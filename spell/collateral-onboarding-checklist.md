@@ -1,27 +1,30 @@
 * [ ] Collateral Onboarding
   * [ ] Deployed Contracts
     * [ ] `PIP` (Oracle)
-      * [ ] contract is verified on etherscan
-        * [ ] ensure solc version matches source
-        * [ ] ensure optimization matches source
-        * [ ] ensure license `AGPLv3` is specified
-        * [ ] ensure source matches github code
-      * [ ] constructor args are correct
-        * [ ] `src`
-        * [ ] `wat`, `orb0`, `orb1` or `orbs` (LPs)
+      * [ ] deployed via deployer (OSM)
+        * [ ] contract is verified on etherscan
+          * [ ] ensure solc version matches source
+          * [ ] ensure optimization matches source
+          * [ ] ensure license `AGPLv3` is specified
+          * [ ] ensure source matches github code (i.e. diffchecked using [diffchecker](https://www.diffchecker.com/))
+        * [ ] constructor args are correct
+          * [ ] `src` (medianizer)
+        * [ ] check `wards`
+          * [ ] `MCD_PAUSE_PROXY` is relied
+          * [ ] deployer is denied
+          * [ ] no other address has been relied
       * [ ] deployed via Factory (LPs)
         * [ ] Fab matches
           * [ ] [univ2-lp-oracle](https://github.com/makerdao/univ2-lp-oracle)
           * [ ] [univ3-lp-oracle](https://github.com/makerdao/univ3-lp-oracle)
           * [ ] [curve-lp-oracle](https://github.com/makerdao/curve-lp-oracle)
-      * [ ] check `wards`
-        * [ ] `MCD_PAUSE_PROXY` is relied
-        * [ ] deployer is denied
-        * [ ] no other address has been relied
     * [ ] `Join` (Join Adapter)
       * [ ] deployed via [JoinFab](https://github.com/makerdao/JoinFab/blob/master/src/JoinFab.sol)
         * [ ] Fab matches [chainlog](https://chainlog.makerdao.com/)
-        * [ ] `newGemJoin` parameters are correct
+        * [ ] `newGemJoin` (Standard ERC-20 Join Adapter)
+        * [ ] `newGemJoin5` (Custom Adapter for Tokens with lower precision than 18)
+        * [ ] `AuthGemJoin` (Custom Adapter for Tokens that needs authed `join` access)
+        * [ ] parameters are correct
           * [ ] `owner` matches MCD Pause Proxy
           * [ ] `ilk` is the `bytes32` representation of "TOKEN-A"
             * [ ] `seth --to-ascii <bytes32>` matches ASCII Ilk
@@ -41,7 +44,10 @@
     * [ ] `Calc`
       * [ ] deployed via [CalcFab](https://github.com/makerdao/dss-deploy/blob/master/src/DssDeploy.sol)
         * [ ] Fab matches [chainlog](https://chainlog.makerdao.com/)
-        * [ ] `newStairstepExponentialDecrease` parameters are correct
+        * [ ] `newStairstepExponentialDecrease`
+        * [ ] `newLinearDecrease`
+        * [ ] `newExponentialDecrease`
+        * [ ] parameters are correct
           * [ ] `owner` matches MCD Pause Proxy
     * [ ] Risk Parameters
       * [ ] `vat.ilk.line` ([setIlkDebtCeiling](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L611))
