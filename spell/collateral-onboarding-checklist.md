@@ -119,5 +119,5 @@
       * [ ] `testCollateralIntegrations`
       * [ ] `testNewChainlogValues`
       * [ ] `testNewIlkRegistryValues`
-      * [ ] `addresses_<mainnet, goerli>.sol`
+      * [ ] ensure new chainlog entries are included in `addresses_<mainnet, goerli>.sol`
       * [ ] `config.sol`
