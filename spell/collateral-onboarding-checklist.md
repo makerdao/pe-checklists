@@ -9,63 +9,40 @@
       * [ ] constructor args are correct
         * [ ] `src`
         * [ ] `wat`, `orb0`, `orb1` or `orbs` (LPs)
-      * [ ] deployed via Factory
-        * [ ] Fab matches [chainlog](https://chainlog.makerdao.com/)
+      * [ ] deployed via Factory (LPs)
+        * [ ] Fab matches
+          * [ ] [univ2-lp-oracle](https://github.com/makerdao/univ2-lp-oracle)
+          * [ ] [univ3-lp-oracle](https://github.com/makerdao/univ3-lp-oracle)
+          * [ ] [curve-lp-oracle](https://github.com/makerdao/curve-lp-oracle)
       * [ ] check `wards`
         * [ ] `MCD_PAUSE_PROXY` is relied
         * [ ] deployer is denied
         * [ ] no other address has been relied
     * [ ] `Join` (Join Adapter)
-      * [ ] contract is verified on etherscan
-        * [ ] ensure `0.5.12` solc version is used
-        * [ ] ensure optimization are off
-        * [ ] ensure license `AGPLv3` is specified
-        * [ ] ensure source matches github code
-      * [ ] constructor args are correct and match [chainlog](https://chainlog.makerdao.com/)
-        * [ ] `vat`
-        * [ ] `ilk` is the `bytes32` representation of "RWAXXX-A"
-          * [ ] `seth --to-ascii <bytes32>` matches ASCII Ilk
-          * [ ] `seth --to-bytes32 $(seth --from-ascii "RWAXXX-A")` matches `bytes32`
-        * [ ] `gem` matches `RwaToken` contract deployed
       * [ ] deployed via [JoinFab](https://github.com/makerdao/JoinFab/blob/master/src/JoinFab.sol)
         * [ ] Fab matches [chainlog](https://chainlog.makerdao.com/)
-        * [ ] Source is AutoVerified
-      * [ ] check `wards`
-        * [ ] `MCD_PAUSE_PROXY` is relied
-        * [ ] deployer is denied
-        * [ ] no other address has been relied
+        * [ ] `newGemJoin` parameters are correct
+          * [ ] `owner` matches MCD Pause Proxy
+          * [ ] `ilk` is the `bytes32` representation of "TOKEN-A"
+            * [ ] `seth --to-ascii <bytes32>` matches ASCII Ilk
+            * [ ] `seth --to-bytes32 $(seth --from-ascii "TOKEN-A")` matches `bytes32`
+          * [ ] `gem` matches token contract
     * [ ] `Clip`
-      * [ ] contract is verified on etherscan
-        * [ ] ensure `0.6.12` solc version is used
-        * [ ] ensure optimization are off
-        * [ ] ensure license `AGPLv3` is specified
-        * [ ] ensure source matches github code
-      * [ ] constructor args are correct and match [chainlog](https://chainlog.makerdao.com/)
-        * [ ] `vat`
-        * [ ] `spotter`
-        * [ ] `dog`
-        * [ ] `gemJoin`
       * [ ] deployed via [ClipFab](https://github.com/makerdao/dss-deploy/blob/master/src/DssDeploy.sol)
         * [ ] Fab matches [chainlog](https://chainlog.makerdao.com/)
-        * [ ] Source is AutoVerified
-      * [ ] check `wards`
-        * [ ] `MCD_PAUSE_PROXY` is relied
-        * [ ] deployer is denied
-        * [ ] no other address has been relied
+        * [ ] `newClip` parameters are correct
+          * [ ] `owner` matches MCD Pause Proxy
+          * [ ] `vat` matches chainlog
+          * [ ] `spotter` matches chainlog
+          * [ ] `dog` matches chainlog
+          * [ ] `ilk` is the `bytes32` representation of "TOKEN-A"
+            * [ ] `seth --to-ascii <bytes32>` matches ASCII Ilk
+            * [ ] `seth --to-bytes32 $(seth --from-ascii "TOKEN-A")` matches `bytes32`
     * [ ] `Calc`
-      * [ ] contract is verified on etherscan
-        * [ ] ensure `0.6.12` solc version is used
-        * [ ] ensure optimization are off
-        * [ ] ensure license `AGPLv3` is specified
-        * [ ] ensure source matches github dss `abaci` code
-      * [ ] no constructor arguments
-      * [ ] deployed via [ClipFab](https://github.com/makerdao/dss-deploy/blob/master/src/DssDeploy.sol)
+      * [ ] deployed via [CalcFab](https://github.com/makerdao/dss-deploy/blob/master/src/DssDeploy.sol)
         * [ ] Fab matches [chainlog](https://chainlog.makerdao.com/)
-        * [ ] Source is AutoVerified
-      * [ ] check `wards`
-        * [ ] `MCD_PAUSE_PROXY` is relied
-        * [ ] deployer is denied
-        * [ ] no other address has been relied
+        * [ ] `newStairstepExponentialDecrease` parameters are correct
+          * [ ] `owner` matches MCD Pause Proxy
     * [ ] Risk Parameters
       * [ ] `vat.ilk.line` ([setIlkDebtCeiling](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L611))
       * [ ] `dog.ilk.hole` ([setIlkMaxLiquidationAmount](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L699))
