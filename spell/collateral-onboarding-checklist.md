@@ -126,4 +126,5 @@
       * [ ] `testNewChainlogValues`
       * [ ] `testNewIlkRegistryValues`
       * [ ] ensure new chainlog entries are included in `addresses_<mainnet, goerli>.sol`
+      * [ ] ensure deployer addresses are inlcuded into `addresses_deployers.sol` (**to keep up to date**)
       * [ ] `config.sol`
