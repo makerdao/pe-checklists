@@ -1,10 +1,11 @@
 # Protocol Engineering Checklists
 
 ## Rationale
->The following checklists are meant to be used as a co-pilot for protocol engineers to ensure consistency throughout the development workflow.  
->They emerged during reviews and crafting as a way to avoid pitfalls and allow protocol engineers to focus on more in-depth reviews and workflow improvements that will be reflected ideally in these checklists.  
+>The following checklists act as a copilot for protocol engineers, ensuring consistency in spell crafting and spell reviewing workflows.  
+>These checklists emerged during the review and crafting processes as ways to avoid pitfalls;  allowing protocol engineers to focus on more in-depth reviews. Future workflow improvements will be reflected in these checklists.
 ## Disclaimer
->*These checklists are a work in progress, continuing evolving and refined on the go, and not meant to be comprehensive and exaustive or intended as a developer guide (for that please refers to [developerguides](https://github.com/makerdao/developerguides) and [Maker Protocol 101](https://docs.makerdao.com/getting-started/maker-protocol-101)).*
+>*These checklists are a work in progress, continuously evolving and being refined; they are not meant to be exhaustive or intended used as a developer guide. For developer guides please refer to [developerguides](https://github.com/makerdao/developerguides) and [Maker Protocol 101](https://docs.makerdao.com/getting-started/maker-protocol-101).*
+
 ## Checklists
 
 ### Spells

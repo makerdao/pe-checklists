@@ -1,7 +1,7 @@
 # Goerli Executive Spell Review Checklist [PE-TODO]
 
 PR: https://github.com/makerdao/spells-goerli/pull/TODO
-
+Exec date: YYYY-MM-DD
 Spell Crafter: 
 Reviewers:
 
@@ -26,8 +26,8 @@ Spell Actions:
   * [ ] cleanup previous ones
   * [ ] if dapp upgrade changes are present make sure dss-exec-lib is synced as well
 * [ ] Rates OK
-  * [ ] [IPFS](https://ipfs.io/ipfs/QmVp4mhhbwWGTfbh2BzwQB9eiBrQBKiqcPRZCaAxNUaar6)
-  * [ ] `bc -l <<< 'scale=27; e( l(1.0X)/(60 * 60 * 24 * 365) )'` (replace X with %, e.g. 1 = 1%)
+  * [ ] Compare against [IPFS](https://ipfs.io/ipfs/QmVp4mhhbwWGTfbh2BzwQB9eiBrQBKiqcPRZCaAxNUaar6)
+  * [ ] Calculate manually using  `bc -l <<< 'scale=27; e( l(1.0X)/(60 * 60 * 24 * 365) )'` (replace X with %, e.g. 1 = 1%)
 * [ ] Math OK
   * [ ] Internal Precision
     * [ ] `WAD = 10**18`
@@ -84,11 +84,11 @@ Spell Actions:
 * [ ] RWA Updates
   * [ ] `doc`
     * [ ] `init` the `RwaLiquidationOracle` to reset the `doc`
-    * [ ] Sanity Check `pip` must be set (different than zero address)
+    * [ ] Sanity Check `pip` must be set (not the zero address)
     * [ ] `ilk` follows format "RWAXXX-A"
     * [ ] `val` price ignored (`0`) if `init` has already been called
     * [ ] `doc` new legal document (IPFS HASH) matches Doc (or Forum Post)
-    * [ ] `tau` old `tau` value
+    * [ ] `tau` parameter used is the old `tau` value
   * [ ] Debt Ceiling (`line`) + Liquidation Oracle Price Bump
     * [ ] Increase Ilk Debt Ceiling (set DC + increase Global DC)
     * [ ] `bump` `RwaLiquidationOracle` with new computed increased price (`val`)
@@ -105,7 +105,7 @@ Spell Actions:
     * [ ] Vesting Duration matches Doc (`tau`)
     * [ ] Cliff Duration matches Doc (`eta`)
     * [ ] Restricted (by default)
-    * [ ] Manager match Doc (`mgr`, set to zero in Dai Streams by default)
+    * [ ] Manager match doc (`mgr`, set to zero for DAI streams by default)
   * [ ] CUs MKR Transfers
     * [ ] Amounts and Addresses match Doc
     * [ ] MKR `DssVestTransferrable` Allowance matches Total Transfer Amounts
@@ -121,7 +121,7 @@ Spell Actions:
 * [ ] `addresses_goerli.sol` matches
 * [ ] Spell Actions Look Good
 * [ ] Tests Look Good
-* [ ] Deployed Spell Verified
+* [ ] Deployed spell is verified
   * [ ] Optimization Enabled: No
   * [ ] Other Settings: default evmVersion, GNU AGPLv3 license
 * [ ] Deployed Spell Code matches GitHub

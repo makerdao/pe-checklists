@@ -2,7 +2,7 @@
 
 ## Goerli
 
-Repo: https://github.com/makerdao/spells-goerli
+PR: https://github.com/makerdao/spells-goerli/pull/TODO
 
 ### [Governance Cadence Improvement](https://forum.makerdao.com/t/governance-cadence-improvement/14972)
 
@@ -19,7 +19,7 @@ Repo: https://github.com/makerdao/spells-goerli
 * [ ] Cleanup Previous Spell's Onboarding Actions in `Goerli-DssSpellCollateral.sol`
   * [ ] Check previous spells in the `archive` folder for cleanup patterns
   * [ ] Check template in `template` (**ensure it's up to date**, checking against latest spells)
-* [ ] Cleanup `config.sol` (under `test` folder in `src`)
+* [ ] Cleanup `src/test/config.sol` 
   * [ ] Set `deployed_spell` to `address(0)`
   * [ ] Set `deployed_spell_created` to `0`
 * [ ] Cleanup Specific Tests in `Goerli-DssSpell.t.sol`
@@ -87,9 +87,9 @@ Repo: https://github.com/makerdao/spells-goerli
 * [ ] Open Draft PR on `spells-goerli` titled "PE-<ticket number>: YYYY-MM-DD Executive"
 * [ ] Assign to yourself
 * [ ] Open PR & Add Reviewers
-* [ ] Iterate till Polls are Ended and Exec Doc is Confirmed
+* [ ] Iterate until polls are ended and exec doc is confirmed
 * [ ] Make sure CI PASS
-* [ ] Wait for at Least Two Approvals with Local Tests to Deploy
+* [ ] Wait for at least two approvals with local tests to deploy
 * [ ] Pre-Deploy Setup and Checks
   * [ ] Set local env (`.sethrc`)
     * [ ] Deployer
@@ -100,9 +100,9 @@ Repo: https://github.com/makerdao/spells-goerli
       * [ ] `export ETH_GAS=X`
         * [ ] Run `make estimate` and adjust `ETH_GAS` accordingly (e.g. 6000000)
       * [ ] `export ETH_GAS_PRICE=$(seth --to-wei X gwei)`
-        * [ ] Check Current Gas Price and Set `ETH_GAS_PRICE` accordingly (e.g. 10 gwei)
+        * [ ] Check current gas price using `seth gas-price` and Set `ETH_GAS_PRICE` accordingly (e.g. 40 gwei)
       * [ ] `export ETH_PRIO_FEE=$(seth --to-wei X gwei)`
-        * [ ] Check current gas priority fee and set `ETH_PRIO_FEE` accordingly (e.g. 3 gwei)
+        * [ ] Check [current gas priority fee](https://etherscan.io/gastracker) and set `ETH_PRIO_FEE` accordingly (e.g. 2 gwei)
     * [ ] Mainnet RPC URL
       * [ ] `export ETH_RPC_URL=<url>`
     * [ ] Etherscan API KEY
@@ -111,16 +111,16 @@ Repo: https://github.com/makerdao/spells-goerli
   * [ ] Check local env
     * [ ] `seth ls`
     * [ ] `seth chain`
-* [ ] Deploy Spell on Goerli via `make deploy` (this should also verify the Spell on Etherscan)
-* [ ] Add Deployed Spell Address & Timestamp to Base Tests
+* [ ] Deploy spell on Goerli via `make deploy` (this will also verify the spell on Etherscan)
+* [ ] Add deployed spell address & timestamp to `config.sol`
   * [ ] `deployed_spell: address(<deployed_spell_address>)`
   * [ ] `deployed_spell_created: <timestamp>`
     * [ ] Run `seth block <block_number> timestamp` or `make deploy-stamp tx=<tx_hash>`
-* [ ] Run Tests Locally with deployed spell address
+* [ ] Ensure local tests pass
 * [ ] Commit & Push for Review
 * [ ] Wait for CI to PASS
 * [ ] Wait for at Least Two Approvals
-* [ ] Archive Spell via `make archive-spell` for current date (or `date="YYYY-MM-DD" make archive-spell`)
+* [ ] Archive spell via `date="YYYY-MM-DD" make archive-spell` (date as per the exec doc)
 * [ ] Wait for Merge Approval
 * [ ] Squash & Merge
 * [ ] Cast Spell via `make cast-spell` (ONLY ON GOERLI)

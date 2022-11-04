@@ -85,7 +85,7 @@
         * [ ] `clip` matches token clip address
         * [ ] `calc` matches token calc address
         * [ ] `pip` matches token pip address
-        * [ ] `isLiquidatable` set to true if liquidation are on
+        * [ ] `isLiquidatable` set to true if liquidations are on
         * [ ] `isOSM` set to true IF `pip` is `OSM`
         * [ ] `whitelistOSM` set to true IF median is `src` in `OSM`
         * [ ] `ilkDebtCeiling` (`vat.ilk.line`) in DAI (e.g. 1 * MILLION)
