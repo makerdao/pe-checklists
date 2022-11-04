@@ -1,9 +1,11 @@
 # Goerli Executive Spell Review Checklist [PE-TODO]
 
 PR: https://github.com/makerdao/spells-goerli/pull/TODO
-Exec date: YYYY-MM-DD
+
 Spell Crafter: 
 Reviewers:
+
+Exec date: YYYY-MM-DD
 
 Spell Actions:
 
@@ -21,25 +23,28 @@ Spell Actions:
   * [ ] Collateral Onboarding
     * [ ] `pragma experimental ABIEncoderV2;` (Only IF `DssExecLib.addNewCollateral` is used)
 * [ ] dss-interfaces
-  * [ ] submodule matches github master commit
+  * [ ] git submodule hash matches github master commit
   * [ ] used in the current spell
   * [ ] cleanup previous ones
-  * [ ] if dapp upgrade changes are present make sure dss-exec-lib is synced as well
+  * [ ] if submodule upgrades are present make sure `dss-exec-lib` is synced as well
 * [ ] Rates OK
   * [ ] Compare against [IPFS](https://ipfs.io/ipfs/QmVp4mhhbwWGTfbh2BzwQB9eiBrQBKiqcPRZCaAxNUaar6)
-  * [ ] Calculate manually using  `bc -l <<< 'scale=27; e( l(1.0X)/(60 * 60 * 24 * 365) )'` (replace X with %, e.g. 1 = 1%)
+  * [ ] Calculate manually using `bc -l <<< 'scale=27; e( l(1.0X)/(60 * 60 * 24 * 365) )'` (replace X with %, e.g. 1 = 1%)
+  * [ ] Variable visibility declared as internal
 * [ ] Math OK
   * [ ] Internal Precision
     * [ ] `WAD = 10**18`
     * [ ] `RAY = 10**27`
     * [ ] `RAD = 10**45`
-    * [ ] Make sure they match with [ds-math](https://github.com/dapphub/ds-math/blob/master/src/math.sol) and the [Numerical Ranges](https://github.com/makerdao/dss/wiki/Numerical-Ranges#notation)
+    * [ ] Ensure they match with [ds-math](https://github.com/dapphub/ds-math/blob/master/src/math.sol) and the [Numerical Ranges](https://github.com/makerdao/dss/wiki/Numerical-Ranges#notation)
+    * [ ] Variable visibility declared as internal
   * [ ] Units
     * [ ] `HUNDRED  = 10**2`
     * [ ] `THOUSAND = 10**3`
     * [ ] `MILLION  = 10**6`
     * [ ] `BILLION  = 10**9`
-    * [ ] Make sure they match with [config](https://github.com/makerdao/spells-mainnet/blob/master/src/test/config.sol)
+    * [ ] Ensure they match with [config](https://github.com/makerdao/spells-mainnet/blob/master/src/test/config.sol)
+    * [ ] Variable visibility declared as internal
 * [ ] Deployed Contracts
   * [ ] Verified on etherscan
   * [ ] Optimizations match Repo
@@ -56,6 +61,7 @@ Spell Actions:
   * [ ]  Target Contract doens't do anything untoward (e.g. interacting with unsafe contracts)
   * [ ]  MCD Pause Proxy doesn't give any approvals
   * [ ]  All possible actions of the Target Contract are documented
+  * [ ]  Target contract is not upgradable
   * [ ]  Target Contract is included in the ChainLog
   * [ ]  Test Coverage is comprehensive
 * [ ] Onboarding
@@ -105,28 +111,36 @@ Spell Actions:
     * [ ] Vesting Duration matches Doc (`tau`)
     * [ ] Cliff Duration matches Doc (`eta`)
     * [ ] Restricted (by default)
-    * [ ] Manager match doc (`mgr`, set to zero for DAI streams by default)
+    * [ ] Manager match Doc (`mgr`, set to zero for DAI streams by default)
   * [ ] CUs MKR Transfers
-    * [ ] Amounts and Addresses match Doc
+    * [ ] Receipient Addresses match Doc
+    * [ ] Transfers Amounts match Doc
     * [ ] MKR `DssVestTransferrable` Allowance matches Total Transfer Amounts
     * [ ] Follows Previous Patterns
   * [ ] Direct SB DAI Payment
-    * [ ] Amounts and Addresses match Doc
+    * [ ] Recipient Addresses match Doc
+    * [ ] Payment Amounts match Doc
     * [ ] Follow Previous Patterns
+  * [ ] Ensure Recipient Addresses match `addresses_wallets.sol`
 * [ ] ChainLog
   * [ ] Bump ChainLog, accordingly with spec (major, minor, patch)
     * [ ] MAJOR -> New Vat
     * [ ] MINOR -> Core Module (DSS) Update (e.g. Flapper)
     * [ ] PATCH -> Collateral addition or addition/modification
-* [ ] `addresses_goerli.sol` matches
-* [ ] Spell Actions Look Good
-* [ ] Tests Look Good
-* [ ] Deployed spell is verified
+* [ ] `addresses_goerli.sol` matches spell code
+* [ ] Spell Actions Match Doc
+* [ ] Tests PASS
+  * [ ] Ensure Good Coverage
+* [ ] Local Tests and CI PASS
+* [ ] Deployed Spell is Verified
   * [ ] Optimization Enabled: No
   * [ ] Other Settings: default evmVersion, GNU AGPLv3 license
 * [ ] Deployed Spell Code matches GitHub
-  * [diffchecker](diffchecker) against spell pr (etherscan code matches pr)
-* [ ] Dss-Exec-Lib [Latest Release](https://github.com/makerdao/dss-exec-lib/releases/latest)
-  * submoudule matches [dss-exec-lib](https://github.com/makerdao/dss-exec-lib) tag commit
-* [ ] Archive match `src`
+  * [diffcheck](diffchecker) ethercan source against spell PR
+* [ ] Ensure Etherscan `Libraries Used` matches DssExecLib [Latest Release](https://github.com/makerdao/dss-exec-lib/releases/latest)
+  * git submoudule hash matches [dss-exec-lib](https://github.com/makerdao/dss-exec-lib) latest release's tag commit
+* [ ] Local Tests and CI PASS
+* [ ] Spell is Cast (**only on Goerli**)
+  * [ ] Ensure no revert are present that block execution
+* [ ] Archive matches `src`
   * `make diff-archive-spell`
