@@ -5,7 +5,8 @@
 
 ## Rationale
 >The following checklists act as a copilot for protocol engineers, ensuring consistency in crafting and reviewing workflows.  
->These checklists emerged during the review and crafting processes as ways to avoid pitfalls, allowing protocol engineers to focus on more in-depth reviews. Future workflow improvements will be reflected in these checklists.
+>These checklists emerged during the review and crafting processes as ways to avoid pitfalls, allowing protocol engineers to focus on more in-depth reviews.  
+>Future workflow improvements will be reflected in these checklists.
 
 ## Checklists
 
