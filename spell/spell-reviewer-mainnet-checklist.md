@@ -144,7 +144,5 @@ Spell Actions:
 * [ ] Ensure Etherscan `Libraries Used` matches DssExecLib [Latest Release](https://github.com/makerdao/dss-exec-lib/releases/latest)
   * git submoudule hash matches [dss-exec-lib](https://github.com/makerdao/dss-exec-lib) latest release's tag commit
 * [ ] Local Tests and CI PASS
-* [ ] Spell is Cast (**only on Goerli**)
-  * [ ] Ensure no revert are present that block execution
 * [ ] Archive matches `src`
   * `make diff-archive-spell`
