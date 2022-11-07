@@ -17,22 +17,35 @@ Repo: https://github.com/makerdao/spells-mainnet
   * [ ] Check previous spells in the `archive` folder for cleanup patterns
 * [ ] Clenaup Previous Spell's Onboarding Actions in `DssSpellCollateral.sol`
   * [ ] Check previous spells in the `archive` folder for cleanup patterns
-* [ ] Cleanup `config.sol` (under `test` folder in `src`)
+* [ ] Cleanup `src/test/config.sol`
   * [ ] Set `deployed_spell` to `address(0)`
   * [ ] Set `deployed_spell_created` to `0`
   * [ ] Consider to add `previous_spell` address if it haven't been executed yet
 * [ ] Cleanup Specific Tests in `DssSpell.t.sol`
   * [ ] Check previous spells in the `archive` folder for cleanup patterns
   * [ ] Disable specific tests IF Not Used (eg. `testCollateralIntegrations`, `testNewChainlogValues`, `testNewIlkRegistryValues`, ...)
-    * [ ] Remove specific part
+    * [ ] Remove spell-specific part
     * [ ] Keep setup
     * [ ] Disable by setting visibility to `private`
     * [ ] Add commented notes
       * [ ] eg. `// Insert new collateral integration tests here`
     * [ ] Keep commented tests (eg. `testOSMs`, `testMedianizers`)
+* [ ] Run Tests `make test` or `make test match=<test_name>` to inspect debug traces
+  * [ ] Ensure to use latest `foundry` stable version
+    * [ ] Run `foundryup`
+* [ ] Tests PASS via `make test`
+* [ ] Commit & Push `Base spell`
+* [ ] CI Tests PASS
+* [ ] Open Draft PR on `spells-mainnet` titled "PE-<ticket number>: YYYY-MM-DD Executive"
+* [ ] Assign to yourself
 * [ ] Add Spell Actions as per GovAlpha Spell Content Sheet - [Polls](https://vote.makerdao.com/polling?network=mainnet)
   * [ ] Polls starts on Monday and ends on Thursday
-    * [ ] Check polls details and links (forum posts, MIPs portal, ...)
+    * [ ] Ensure spell actions match polls details and links (forum posts, MIPs portal, ...)
+    * [ ] Check spell copy is merged in [community](https://github.com/makerdao/community/blob/master/governance/votes) repo
+    * [ ] Add a comment for the polling detail URL
+          `// https://vote.makerdao.com/polling/<hash>`
+    * [ ] Add a comment for the forum post URL
+          `// https://forum.makerdao.com/t/<title>/<number>`
   * [ ] Check on `new-spells` discord channel when Exec Doc is ready
   * [ ] Pragma
     * [ ] Current solc version `0.6.12`
@@ -45,7 +58,7 @@ Repo: https://github.com/makerdao/spells-mainnet
     * [ ] Consider static interfaces
       * [ ] IF not present in `dss-interfaces`
       * [ ] IF present in `dss-interfaces` but TOFIX
-      * [ ] IF only few function interfaces are needed
+      * [ ] IF only a few function interfaces are needed
   * [ ] Consider Turn Office Hours On
     * [ ] Check spell actions (eg. Onboarding, Liquidation Adjustments, New DSS Modules, ...)
     * [ ] Note: office hours are on by default if the modifier `officeHours` is not overridden
@@ -73,7 +86,7 @@ Repo: https://github.com/makerdao/spells-mainnet
   * [ ] Use DssExecLib Functions
     * [ ] Ensure `DssExecLib` address used in current spell (`DssExecLib.address`) matches `dss-exec-lib` [Latest Release Tag](https://github.com/makerdao/dss-exec-lib/releases/latest)
     * [ ] Check previous spells for common patterns
-* [ ] Adjust Sytem Values, Collateral Values in `config.sol` ([diffcheck](https://www.diffchecker.com/) with `spells-goerli`)
+* [ ] Adjust System Values, Collateral Values in `config.sol` ([diffcheck](https://www.diffchecker.com/) with `spells-goerli`)
 * [ ] Add Specific Tests in `DssSpell.t.sol` ([diffcheck](https://www.diffchecker.com/) with `spells-goerli`)
   * [ ] Add new collateral tests
   * [ ] Add new chainLog value tests
@@ -81,21 +94,17 @@ Repo: https://github.com/makerdao/spells-mainnet
   * [ ] Add specific tests (DAI/MKR Streams/Payments, Lerps, ...)
 * [ ] Add new ChainLog Address in `addresses_mainnet.sol` (e.g. Collateral Onboarding)
 * [ ] Run Tests `make test` or `make test match=<test_name>` to inspect debug traces
-  * [ ] Ensure to use latest `foundry` stable version
-    * [ ] Run `foundryup`
-* [ ] Test PASS via `make test` (Ensure Good Coverage)
-* [ ] Commit & Push
-* [ ] Open Draft PR on `spells-mainnet` titled "PE-<ticket number>: YYYY-MM-DD Executive"
-* [ ] Assign to yourself
+  * [ ] Ensure Good Coverage
+  * [ ] Tests PASS via `make test`
 * [ ] Open PR & Add Reviewers
-* [ ] Iterate till Polls are Ended and Exec Copy is Merged
+* [ ] Iterate until polls are ended and exec doc is confirmed
 * [ ] Confirm Exec Doc Actions
 * [ ] Make sure CI PASS
 * [ ] Add Exec Hash
-  * [ ] Check when Copy is Merged
-  * [ ] Reference either Latest Change or Merge Commit
-* [ ] Wait for at Least Two Approvals with Local Tests to Deploy
-* [ ] Pre-Deploy Setup and Checks
+  * [ ] Ensure exec copy is merged
+  * [ ] Reference either latest change or merge commit
+* [ ] Wait for at Least Two Approvals with local tests to deploy
+* [ ] Pre-Deploy Setup and Checks (currenlty via `dapptools`)
   * [ ] Set local env (`.sethrc`)
     * [ ] Deployer
       * [ ] `export ETH_PASSWORD=~/.env/password.txt`
@@ -103,12 +112,12 @@ Repo: https://github.com/makerdao/spells-mainnet
       * [ ] `export ETH_FROM=<address>`
     * [ ] Mainnet EIP1559
       * [ ] `export ETH_GAS=X`
-        * [ ] Run `make estimate` and adjust `ETH_GAS` accordingly
+        * [ ] Run `make estimate` and adjust `ETH_GAS` accordingly (e.g. 6000000)
       * [ ] `export ETH_GAS_PRICE=$(seth --to-wei X gwei)`
-        * [ ] Check Current Gas Price and Set `ETH_GAS_PRICE` accordingly
+        * [ ] Check current gas price using `seth gas-price` and Set `ETH_GAS_PRICE` accordingly (e.g. 50 gwei)
           * [ ] Consider adding margin to account for spikes (eg. current gas price 25 `gwei`, 50 `gwei` could be set)
       * [ ] `export ETH_PRIO_FEE=$(seth --to-wei X gwei)`
-        * [ ] Check current gas priority fee and set `ETH_PRIO_FEE` accordingly
+        * [ ] Check [current gas priority fee](https://etherscan.io/gastracker) and set `ETH_PRIO_FEE` accordingly (e.g. 2 gwei)
     * [ ] Mainnet RPC URL
       * [ ] `export ETH_RPC_URL=<url>`
     * [ ] Etherscan API KEY
@@ -117,8 +126,9 @@ Repo: https://github.com/makerdao/spells-mainnet
   * [ ] Check local env
     * [ ] `seth ls`
     * [ ] `seth chain`
-* [ ] Deploy Spell on Mainnet via `make deploy` (this should also verify the Spell on Etherscan)
-* [ ] Add Deployed Spell Address & Timestamp to Base Tests
+* [ ] Deploy spell on Goerli via `make deploy`
+  * [ ] Ensure spell is verified on etherscan
+* [ ] Add deployed spell address & timestamp to `config.sol`
   * [ ] `deployed_spell: address(<deployed_spell_address>)`
   * [ ] `deployed_spell_created: <timestamp>`
     * [ ] Run `seth block <block_number> timestamp` or `make deploy-stamp tx=<tx_hash>`

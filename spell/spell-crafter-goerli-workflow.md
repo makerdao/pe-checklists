@@ -25,15 +25,27 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
 * [ ] Cleanup Specific Tests in `Goerli-DssSpell.t.sol`
   * [ ] Check previous spells in the `archive` folder for cleanup patterns
   * [ ] Disable specific tests IF Not Used (eg. `testCollateralIntegrations`, `testNewChainlogValues`, `testNewIlkRegistryValues`, ...)
-    * [ ] Remove specific part
+    * [ ] Remove spell-specific part
     * [ ] Keep setup
     * [ ] Disable by setting visibility to `private`
     * [ ] Add commented notes
       * [ ] eg. `// Insert new collateral integration tests here`
     * [ ] Keep commented tests (eg. `testOSMs`, `testMedianizers`)
+* [ ] Run Tests `make test` or `make test match=<test_name>` to inspect debug traces
+  * [ ] Ensure to use latest `foundry` stable version
+    * [ ] Run `foundryup`
+* [ ] Tests PASS via `make test`
+* [ ] Commit & Push `Base spell`
+* [ ] CI Tests PASS
+* [ ] Open Draft PR on `spells-goerli` titled "PE-<ticket number>: YYYY-MM-DD Executive"
+* [ ] Assign to yourself
 * [ ] Add Spell Actions as per GovAlpha Spell Content Sheet - [Polls](https://vote.makerdao.com/polling?network=mainnet)
   * [ ] Polls starts on Monday and ends on Thursday
-    * [ ] Check polls details and links (forum posts, MIPs portal, ...)
+    * [ ] Ensure spell actions match polls details and links (forum posts, MIPs portal, ...)
+    * [ ] Add a comment for the polling detail URL
+          `// https://vote.makerdao.com/polling/<hash>`
+    * [ ] Add a comment for the forum post URL
+          `// https://forum.makerdao.com/t/<title>/<number>`
   * [ ] Check on `new-spells` discord channel when Exec Doc is ready
   * [ ] Pragma
     * [ ] Current solc version `0.6.12`
@@ -80,17 +92,13 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
   * [ ] Add specific tests (DAI/MKR Streams/Payments, Lerps, ...)
 * [ ] Add new ChainLog Address in `addresses_goerli.sol` (e.g. Collateral Onboarding)
 * [ ] Run Tests `make test` or `make test match=<test_name>` to inspect debug traces
-  * [ ] Ensure to use latest `foundry` stable version
-    * [ ] Run `foundryup`
-* [ ] Test PASS via `make test` (Ensure Good Coverage)
-* [ ] Commit & Push
-* [ ] Open Draft PR on `spells-goerli` titled "PE-<ticket number>: YYYY-MM-DD Executive"
-* [ ] Assign to yourself
+  * [ ] Ensure Good Coverage
+  * [ ] Tests PASS via `make test`
 * [ ] Open PR & Add Reviewers
 * [ ] Iterate until polls are ended and exec doc is confirmed
 * [ ] Make sure CI PASS
-* [ ] Wait for at least two approvals with local tests to deploy
-* [ ] Pre-Deploy Setup and Checks
+* [ ] Wait for at Least Two Approvals with local tests to deploy
+* [ ] Pre-Deploy Setup and Checks (currenlty via `dapptools`)
   * [ ] Set local env (`.sethrc`)
     * [ ] Deployer
       * [ ] `export ETH_PASSWORD=~/.env/password.txt`
@@ -111,7 +119,8 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
   * [ ] Check local env
     * [ ] `seth ls`
     * [ ] `seth chain`
-* [ ] Deploy spell on Goerli via `make deploy` (this will also verify the spell on Etherscan)
+* [ ] Deploy spell on Goerli via `make deploy`
+  * [ ] Ensure spell is verified on etherscan
 * [ ] Add deployed spell address & timestamp to `config.sol`
   * [ ] `deployed_spell: address(<deployed_spell_address>)`
   * [ ] `deployed_spell_created: <timestamp>`
