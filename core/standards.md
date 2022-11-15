@@ -41,7 +41,9 @@ We align variables with extra whitespacing. You will get PR comments if you are 
 
 We prefer to try to have Daiwanese naming patterns (3 or 4 letter variables and functions).
 
-In addition to this, if we are avoiding variable shadowing, we add a `_` to the end of the variable names.
+If we are avoiding variable shadowing, we add a `_` to the end of the variable names.
+
+If we are dealing with internal variables or functions we add the `_` to the front of the name.
 
 If we need to interact with external contracts, we prefer to have a small interface using the naming convention of `<ContractName>Like`.
 
