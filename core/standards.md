@@ -4,10 +4,11 @@
 
 A core contract is one that:
 
-1. will have ward status on or other privileged access to any other core contract (i.e. `Vat.rely(<new contract address>)`)
-2. will rely on the Pause Proxy as a permissioned actor. If the pause proxy has to directly interact with this contract then there is additional security and process work that needs to be done
-3. will be included in the chainlog as a canonical “Maker Contract”. Even if the contract does not have elevated permissions in the system, a failure of a contract in the chainlog could result in cost (bug bounties) or reputation damage for the protocol.
-4. If a contract is put forward to a business partner of the DAO, by DAO members, close consideration should be given to whether it would be perceived as core Maker brand by those partners.
+1. Any contract that is part of the [dss repo](https://github.com/makerdao/dss)
+2. will have ward status on or other privileged access to any other core contract (i.e. `Vat.rely(<new contract address>)`)
+3. will rely on the Pause Proxy as a permissioned actor. If the pause proxy has to directly interact with this contract then there is additional security and process work that needs to be done.
+4. will be included in the chainlog as a canonical “Maker Contract”. Even if the contract does not have elevated permissions in the system, a failure of a contract in the chainlog could result in cost (bug bounties) or reputation damage for the protocol.
+5. If a contract is put forward to a business partner of the DAO, by DAO members, close consideration should be given to whether it would be perceived as core Maker brand by those partners.
 
 ## Protocol Engineering Review Process for Core Contracts
 
