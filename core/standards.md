@@ -44,7 +44,7 @@ We align variables with extra whitespacing. You will get PR comments if you are 
 
 ### Naming
 
-We prefer to try to have Daiwanese naming patterns (3 or 4 letter variables and functions).
+We prefer to try to have **Daiwanese** naming patterns (3 or 4 letter variables and functions).
 
 If we are avoiding variable shadowing, we add a `_` to the end of the variable names.
 
