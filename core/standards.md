@@ -24,10 +24,9 @@ In order to limit contract complexity, we also tend to stay away from inheritanc
 
 We believe that upgradeable proxies are an antipattern.  If you need upgradeability, it should be handled with modular design and permission given to the Pause Proxy.
 
-None exhaustive lists of our standards include:
+This repo attempts to document our standards, other sources include (non-exhaustive list):
 
 - https://github.com/makerdao/mips-best-practices
-- https://github.com/makerdao/pe-checklists (see spells and core)
 
 ## Coding standards we expect to see in core contracts
 
