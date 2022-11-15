@@ -20,10 +20,6 @@ Core contracts should follow established coding patterns including repo and cont
 
 Whenever possible, utilize an existing solution instead of building a new contract. MakerDAO is a very complex project and each new contract or derivation increases the cognitive and maintenance overhead of the entire protocol. By limiting the number of moving parts we reduce the risk of unexpected behavior.
 
-In order to limit contract complexity, we also tend to stay away from inheritance patterns.
-
-We believe that upgradeable proxies are an antipattern.  If you need upgradeability, it should be handled with modular design and permission given to the Pause Proxy.
-
 This repo attempts to document our standards, other sources include (non-exhaustive list):
 
 - https://github.com/makerdao/mips-best-practices
@@ -55,3 +51,9 @@ If we need to interact with external contracts, we prefer to have a small interf
 ### Dependencies
 
 We try to keep our repos relatively dependency free.  We do not rely on external contract libraries (i.e. Open Zeppelin) and try on only import submodules that are absolutely necessary as this keeps the cascading updates to a minimum.
+
+### Antipatterns
+
+In order to limit contract complexity, we also tend to stay away from inheritance patterns.
+
+We believe that upgradeable proxies are an antipattern.  If you need upgradeability, it should be handled with modular design and permission given to the Pause Proxy.
