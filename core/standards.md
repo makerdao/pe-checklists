@@ -32,7 +32,15 @@ Permissioning in the contract should be handled by `wards` and the `wards` mappi
 
 ### Contract ordering
 
-We loosely follow: [Solidity Order of layout recommendations](https://docs.soliditylang.org/en/stable/style-guide.html#order-of-layout)
+Following and expanding on [Solidity Order of layout recommendations](https://docs.soliditylang.org/en/stable/style-guide.html#order-of-layout) our contracts are generally laid out in this way:
+
+1. Wards variables, events and functions
+2. Other State variables (non-math)
+3. Other Events
+4. Modifiers
+5. Internal Math variables and functions
+6. Other Internal Functions
+7. External Funcitons
 
 ### Spacing
 
