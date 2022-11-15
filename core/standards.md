@@ -34,7 +34,7 @@ We loosely follow: [Solidity Order of layout recommendations](https://docs.solid
 
 ### Spacing
 
-We align variables with extra whitespacing. You will get PR comments if you are off by even one  space.
+We align variables with extra whitespacing. You will get PR comments if you are off by even one space.
 
 ### Naming
 
