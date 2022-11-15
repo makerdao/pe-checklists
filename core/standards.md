@@ -18,6 +18,12 @@ Our review process at a minimum requires two team member reviews and approvals. 
 
 Core contracts should follow established coding patterns including repo and contract structures, variable naming patterns (yes Daiwanese is a standard for our team) and auth patterns.
 
+Whenever possible, utilize an existing solution instead of building a new contract. MakerDAO is a very complex project and each new contract or derivation increases the cognitive and maintenance overhead of the entire protocol. By limiting the number of moving parts we reduce the risk of unexpected behavior.
+
+In order to limit contract complexity, we also tend to stay away from inheritance patterns.
+
+We believe that upgradeable proxies are an antipattern.  If you need upgradeability, it should be handled with modular design and permission given to the Pause Proxy.
+
 None exhaustive lists of our standards include:
 
 - https://github.com/makerdao/mips-best-practices
