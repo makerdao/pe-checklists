@@ -91,6 +91,7 @@
         * [ ] `ilkDebtCeiling` (`vat.ilk.line`) in DAI (e.g. 1 * MILLION)
           * [ ] IF autoline is enabled, `vat.ilk.line` should be set to DC-IAM `gap` value
         * [ ] `minVaultAmount` (`vat.ilk.dust`) in DAI (e.g. 15_000)
+          * [ ] ensure `clip.tip` is adjusted proportionally to `vat.ilk.dust` (e.g. lower the `dust` lower the `tip`)
         * [ ] `maxLiquidationAmount` (`dog.ilk.hole`) in DAI (e.g. 5 * MILLION)
           * [ ] ensure `dog.ilk.hole` >= `ilk.dust` invariant holds
         * [ ] `liquidationPenalty` (`dog.ilk.chop`) in basis points (e.g. 13% = 13_00)
