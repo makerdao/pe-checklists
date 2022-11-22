@@ -131,7 +131,7 @@ Spell Actions:
     * [ ] PATCH -> Collateral addition or addition/modification
 * [ ] `addresses_goerli.sol` matches spell code
 * [ ] Ensure every spell variable declared as public/internal
-* [ ] Spell Actions Match [GovAlpha Spell Content Sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw/edit#gid=0)
+* [ ] Spell Actions Match [GovAlpha Spell Content Sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw)
 * [ ] Tests PASS
   * [ ] Ensure Good Coverage
   * [ ] Ensure every test function declared as public if enabled or private if disabled

@@ -135,7 +135,7 @@ Spell Actions:
     * [ ] PATCH -> Collateral addition or addition/modification
 * [ ] `addresses_mainnet.sol` matches spell code
 * [ ] Ensure every spell variable declared as public/internal
-* [ ] Spell Action Match [GovAlpha Spell Content Sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw/edit#gid=0) and Exec Hashed Copy
+* [ ] Spell Action Match [GovAlpha Spell Content Sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw) and Exec Hashed Copy
 * [ ] Tests PASS
   * [ ] Ensure Good Coverage
   * [ ] Ensure every test function declared as public if enabled or private if not

@@ -39,7 +39,7 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
 * [ ] CI Tests PASS
 * [ ] Open Draft PR on `spells-goerli` titled "PE-<ticket number>: YYYY-MM-DD Executive"
 * [ ] Assign to yourself
-* [ ] Add Spell Actions as per [GovAlpha Spell Content Sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw/edit#gid=0) - [Polls](https://vote.makerdao.com/polling?network=mainnet)
+* [ ] Add Spell Actions as per [GovAlpha Spell Content Sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw) - [Polls](https://vote.makerdao.com/polling?network=mainnet)
   * [ ] Polls starts on Monday and ends on Thursday
     * [ ] Ensure spell actions match polls details and links (forum posts, MIPs portal, ...)
     * [ ] Add a comment for the polling detail URL
