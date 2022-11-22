@@ -128,7 +128,7 @@ Spell Actions:
     * [ ] MINOR -> Core Module (DSS) Update (e.g. Flapper)
     * [ ] PATCH -> Collateral addition or addition/modification
 * [ ] `addresses_goerli.sol` matches spell code
-* [ ] Spell Actions Match Doc
+* [ ] Spell Actions Match [GovAlpha Spell Content Sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw/edit#gid=0)
 * [ ] Tests PASS
   * [ ] Ensure Good Coverage
 * [ ] Local Tests and CI PASS
