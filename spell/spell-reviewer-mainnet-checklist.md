@@ -134,11 +134,11 @@ Spell Actions:
     * [ ] MINOR -> Core Module (DSS) Update (e.g. Flapper)
     * [ ] PATCH -> Collateral addition or addition/modification
 * [ ] `addresses_mainnet.sol` matches spell code
-* [ ] Ensure every spell variable declared as public/internal
-* [ ] Spell Action Match [GovAlpha Spell Content Sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw) and Exec Hashed Copy
+* [ ] Ensure every spell variable is declared as public/internal
+* [ ] Spell actions match [GovAlpha Spell Content Sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw) and hashed exec doc
 * [ ] Tests PASS
   * [ ] Ensure Good Coverage
-  * [ ] Ensure every test function declared as public if enabled or private if not
+  * [ ] Ensure every test function is declared as public if enabled or private if disabled
 * [ ] Local Tests and CI PASS
 * [ ] Deployed Spell is Verified
   * [ ] Optimization Enabled: No

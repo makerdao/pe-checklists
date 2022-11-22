@@ -130,11 +130,11 @@ Spell Actions:
     * [ ] MINOR -> Core Module (DSS) Update (e.g. Flapper)
     * [ ] PATCH -> Collateral addition or addition/modification
 * [ ] `addresses_goerli.sol` matches spell code
-* [ ] Ensure every spell variable declared as public/internal
-* [ ] Spell Actions Match [GovAlpha Spell Content Sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw)
+* [ ] Ensure every spell variable is declared as public/internal
+* [ ] Spell actions match [GovAlpha Spell Content Sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw)
 * [ ] Tests PASS
   * [ ] Ensure Good Coverage
-  * [ ] Ensure every test function declared as public if enabled or private if disabled
+  * [ ] Ensure every test function is declared as public if enabled or private if disabled
 * [ ] Local Tests and CI PASS
 * [ ] Deployed Spell is Verified
   * [ ] Optimization Enabled: No
@@ -146,8 +146,8 @@ Spell Actions:
 * [ ] Local Tests and CI PASS
 * [ ] Spell is Cast (**only on Goerli**)
   * [ ] Check Cast Trace (via [EthTx](https://ethtx.info/))
-    * [ ] Ensure no reverts are present that blocks execution
+    * [ ] Ensure no reverts are present that block execution
       * [ ] Inspect low level call reverts if expected
-    * [ ] Ensure all actions are executed and not out-of-gas errors are present
+    * [ ] Ensure all actions are executed and no out-of-gas errors are present
 * [ ] Archive matches `src`
   * `make diff-archive-spell`

@@ -76,7 +76,7 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
       * [ ] Note: automatically verified on etherscan
     * [ ] Check with Oracle CU
       * [ ] Check IF oracle deployment is required (eg. univ3-lp-oracle, new ilk pip, ...)
-  * [ ] Ensure every spell variable declared as public/internal
+  * [ ] Ensure every spell variable is declared as public/internal
   * [ ] Add New Addresses in the ChainLog
   * [ ] Bump ChainLog, accordingly with spec (`major`, `minor`, `patch`)
     * [ ] MAJOR -> New Vat
@@ -94,7 +94,7 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
 * [ ] Add new ChainLog Address in `addresses_goerli.sol` (e.g. Collateral Onboarding)
 * [ ] Run Tests `make test` or `make test match=<test_name>` to inspect debug traces
   * [ ] Ensure Good Coverage
-  * [ ] Ensure every test function declared as public if enabled or private if not
+  * [ ] Ensure every test function is declared as public if enabled or private if not
   * [ ] Tests PASS via `make test`
 * [ ] Open PR & Add Reviewers
 * [ ] Iterate until polls are ended and exec doc is confirmed
@@ -135,7 +135,7 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
 * [ ] Wait for Merge Approval
 * [ ] Squash & Merge
 * [ ] Cast Spell via `make cast-spell` (ONLY ON GOERLI)
-* [ ] Check Cast Trace (via [EthTx](https://ethtx.info/))
-  * [ ] Ensure no reverts are present that blocks execution
+* [ ] Check `cast()` trace (via [EthTx](https://ethtx.info/))
+  * [ ] Ensure no reverts are present that block execution
     * [ ] Inspect low level call reverts if expected
   * [ ] Ensure all actions are executed and not out-of-gas errors are present
