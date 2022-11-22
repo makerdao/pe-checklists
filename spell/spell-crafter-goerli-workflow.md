@@ -133,3 +133,7 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
 * [ ] Wait for Merge Approval
 * [ ] Squash & Merge
 * [ ] Cast Spell via `make cast-spell` (ONLY ON GOERLI)
+* [ ] Check Cast Trace (via [EthTx](https://ethtx.info/))
+  * [ ] Ensure no reverts are present that blocks execution
+    * [ ] Inspect low level call reverts if expected
+  * [ ] Ensure all actions are executed and not out-of-gas errors are present

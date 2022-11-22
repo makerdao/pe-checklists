@@ -141,6 +141,9 @@ Spell Actions:
   * git submoudule hash matches [dss-exec-lib](https://github.com/makerdao/dss-exec-lib) latest release's tag commit
 * [ ] Local Tests and CI PASS
 * [ ] Spell is Cast (**only on Goerli**)
-  * [ ] Ensure no revert are present that block execution
+  * [ ] Check Cast Trace (via [EthTx](https://ethtx.info/))
+    * [ ] Ensure no reverts are present that blocks execution
+      * [ ] Inspect low level call reverts if expected
+    * [ ] Ensure all actions are executed and not out-of-gas errors are present
 * [ ] Archive matches `src`
   * `make diff-archive-spell`
