@@ -99,9 +99,18 @@ Spell Actions:
     * [ ] `val` price ignored (`0`) if `init` has already been called
     * [ ] `doc` new legal document (IPFS HASH) matches Doc (or Forum Post)
     * [ ] `tau` parameter used is the old `tau` value
-  * [ ] Autoline Enabled
-    * [ ] Set or Bump Oracle Price to Autoline Max Debt Ceiling (accordingly with `duty` rate and interest computation)
-  * [ ] Debt Ceiling (`line`) + Liquidation Oracle Price Bump
+  * [ ] Autoline (`line`) + Liquidation Oracle Price Bump (`val`)
+    * [ ] Enable Autoline
+      * [ ] `ilk` follows format "RWAXXX-A"
+      * [ ] `line` (max debt ceiling)
+      * [ ] `gap`
+      * [ ] `ttl`
+    * [ ] `bump` `RwaLiquidationOracle` with new computed increased price (`val`)
+      * [ ] ensure `val` is set accordingly with autoline max debt ceiling (`line`)
+      * [ ] `val` should enable DAI to be drawn over the loan period while taking into
+            account the configured `ink` amount, interest rate and liquidation ratio
+    * [ ] Poke `spotter` to pull in the new price
+  * [ ] Debt Ceiling (`line`) + Liquidation Oracle Price Bump (`val`)
     * [ ] Increase Ilk Debt Ceiling (set DC + increase Global DC)
     * [ ] `bump` `RwaLiquidationOracle` with new computed increased price (`val`)
       * [ ] `val` should enable DAI to be drawn over the loan period while taking into
