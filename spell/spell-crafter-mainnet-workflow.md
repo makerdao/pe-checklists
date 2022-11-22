@@ -78,6 +78,7 @@ Repo: https://github.com/makerdao/spells-mainnet
     * [ ] Check with Oracle CU
       * [ ] Check IF oracle deployment is required (eg. univ3-lp-oracle, new ilk pip, ...)
       * [ ] Note: oracle should be deployed on mainnet before Friday (usually Wed-Thu)
+  * [ ] Ensure every spell variable declared as public/internal
   * [ ] Add New Addresses in the ChainLog
   * [ ] Bump ChainLog, accordingly with spec (`major`, `minor`, `patch`)
     * [ ] MAJOR -> New Vat
@@ -95,6 +96,7 @@ Repo: https://github.com/makerdao/spells-mainnet
 * [ ] Add new ChainLog Address in `addresses_mainnet.sol` (e.g. Collateral Onboarding)
 * [ ] Run Tests `make test` or `make test match=<test_name>` to inspect debug traces
   * [ ] Ensure Good Coverage
+  * [ ] Ensure every test function declared as public if enabled or private if disabled
   * [ ] Tests PASS via `make test`
 * [ ] Open PR & Add Reviewers
 * [ ] Iterate until polls are ended and exec doc is confirmed
