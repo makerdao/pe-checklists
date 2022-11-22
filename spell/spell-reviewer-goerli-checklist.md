@@ -95,6 +95,8 @@ Spell Actions:
     * [ ] `val` price ignored (`0`) if `init` has already been called
     * [ ] `doc` new legal document (IPFS HASH) matches Doc (or Forum Post)
     * [ ] `tau` parameter used is the old `tau` value
+  * [ ] Autoline Enabled
+    * [ ] Set or Bump Oracle Price to Autoline Max Debt Ceiling (accordingly with `duty` rate and interest computation)
   * [ ] Debt Ceiling (`line`) + Liquidation Oracle Price Bump
     * [ ] Increase Ilk Debt Ceiling (set DC + increase Global DC)
     * [ ] `bump` `RwaLiquidationOracle` with new computed increased price (`val`)
