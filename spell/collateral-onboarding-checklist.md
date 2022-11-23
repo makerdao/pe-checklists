@@ -6,7 +6,7 @@
           * [ ] ensure solc version matches source
           * [ ] ensure optimization matches source
           * [ ] ensure license `AGPLv3` is specified
-          * [ ] ensure source matches github code (i.e. diffchecked using [diffchecker](https://www.diffchecker.com/))
+          * [ ] ensure source matches github code (i.e. diffcheck via vscode `code --diff etherscan.sol github.sol`)
         * [ ] constructor args are correct
           * [ ] `src` (medianizer)
         * [ ] check `wards`
