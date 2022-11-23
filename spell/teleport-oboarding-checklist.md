@@ -13,6 +13,22 @@
           * [ ] `l2TeleportGateway`
           * [ ] `l1Escrow`
           * [ ] `l1TeleportRouter`
+    * [ ] `L2DaiTeleportGateway`
+      * [ ] deployed via deployer
+        * [ ] contract is verified on etherscan
+          * [ ] ensure solc version matches source
+          * [ ] ensure optimization matches source
+          * [ ] ensure license `AGPLv3` is specified
+          * [ ] ensure source matches github code (i.e. diffchecked using [diffchecker](https://www.diffchecker.com/))
+        * [ ] constructor args are correct
+          * [ ] `l2CrossDomainMessenger`
+          * [ ] `l2Token`
+          * [ ] `l1TeleportGateway`
+          * [ ] `<domain>` (bytes32)
+        * [ ] check `wards`
+          * [ ] `L2GovernanceRelay` is relied
+          * [ ] deployer is denied
+          * [ ] no other address has been relied
     * [ ] `TeleportLinearFee` (Domain Teleport Linear Fee)
      * [ ] deployed via deployer
         * [ ] contract is verified on etherscan
