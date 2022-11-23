@@ -1,0 +1,9 @@
+matrix:
+- name: Markdown
+  aspell:
+    lang: en
+  dictionary:
+    encoding: utf-8
+  sources:
+  - '**/*.md'
+  default_encoding: utf-8
