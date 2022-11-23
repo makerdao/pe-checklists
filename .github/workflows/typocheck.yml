@@ -1,0 +1,10 @@
+name: Typo CI
+
+on: [push, pull_request]
+
+jobs:
+  typocheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: TypoCheck
+        uses: typoci/spellcheck-action@master
