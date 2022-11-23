@@ -11,3 +11,7 @@ jobs:
 
       - name: TypoCheck
         uses: rojopolis/spellcheck-github-actions@0.28.0
+      with:
+        source_files: README.md spell/*.md
+        task_name: Markdown
+        output_file: out.txt
