@@ -6,7 +6,7 @@
           * [ ] ensure solc version matches source
           * [ ] ensure optimization matches source
           * [ ] ensure license `AGPLv3` is specified
-          * [ ] ensure source matches github code (i.e. diffchecked using [diffchecker](https://www.diffchecker.com/))
+          * [ ] ensure source matches github code (i.e. diffcheck via vscode `code --diff etherscan.sol github.sol`)
         * [ ] constructor args are correct
           * [ ] `<domain>` (e.g. Starknet address)
           * [ ] `l1Token`
@@ -19,7 +19,7 @@
           * [ ] ensure solc version matches source
           * [ ] ensure optimization matches source
           * [ ] ensure license `AGPLv3` is specified
-          * [ ] ensure source matches github code (i.e. diffchecked using [diffchecker](https://www.diffchecker.com/))
+          * [ ] ensure source matches github code (i.e. diffcheck via vscode `code --diff etherscan.sol github.sol`)
         * [ ] constructor args are correct
           * [ ] `l2CrossDomainMessenger`
           * [ ] `l2Token`
@@ -35,7 +35,7 @@
           * [ ] ensure solc version matches source
           * [ ] ensure optimization matches source
           * [ ] ensure license `AGPLv3` is specified
-          * [ ] ensure source matches github code (i.e. diffchecked using [diffchecker](https://www.diffchecker.com/))
+          * [ ] ensure source matches github code (i.e. diffcheck via vscode `code --diff etherscan.sol github.sol`)
         * [ ] constructor args are correct
           * [ ] `fee` (Fee percentage in WAD (e.g 1% fee = 0.01 * WAD))
           * [ ] `ttl` (Time in seconds to finalize flush (not teleport))
