@@ -12,6 +12,7 @@ MIPs
 Pragma
 solc
 Onboarding
+Onboardings
 Onboarded
 TOFIX
 Calc
@@ -82,3 +83,4 @@ LinearDecrease
 setLinearDecrease
 StairstepExponentialDecrease
 setStairstepExponentialDecrease
+cron
