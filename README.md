@@ -21,5 +21,5 @@
 
 - [Spell Reviewer Goerli Checklist](./spell/spell-reviewer-goerli-checklist.md)
 - [Spell Reviewer Mainnet Checklist](./spell/spell-reviewer-mainnet-checklist.md)
-- [Spell Reviewer RWA Onboarding Checklist](./spell/rwa-onboarding-checklist.md)
 - [Spell Reviewer Collateral Onboarding Checklist](./spell/collateral-onboarding-checklist.md)
+- [Spell Reviewer RWA Onboarding Checklist](./spell/rwa-onboarding-checklist.md)
