@@ -60,7 +60,7 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
       * [ ] IF present in `dss-interfaces` but TOFIX
       * [ ] IF only a few function interfaces are needed
   * [ ] Office Hours (OFF by Default on Goerli)
-    * [ ] Ensure `officeHours` modifier is overriden to return `false`
+    * [ ] Ensure `officeHours` modifier is overridden to return `false`
   * [ ] Deploy New Join, Clip and Calc (Onboarding)
     * [ ] `Join` (check which one is required)
       * [ ] Use [JoinFab](https://github.com/makerdao/JoinFab) to deploy
@@ -98,7 +98,7 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
 * [ ] Iterate until polls are ended and exec doc is confirmed
 * [ ] Make sure CI PASS
 * [ ] Wait for at Least Two Approvals with local tests to deploy
-* [ ] Pre-Deploy Setup and Checks (currenlty via `dapptools`)
+* [ ] Pre-Deploy Setup and Checks (currently via `dapptools`)
   * [ ] Set local env (`.sethrc`)
     * [ ] Deployer
       * [ ] `export ETH_PASSWORD=~/.env/password.txt`

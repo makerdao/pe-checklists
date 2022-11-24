@@ -15,7 +15,7 @@ Repo: https://github.com/makerdao/spells-mainnet
 * [ ] Pull `master` Locally, Create and Checkout Branch (IF Branch was not created via GitHub)
 * [ ] Cleanup Previous Spell's Actions in `DssSpell.sol` (diffcheck with Goerli)
   * [ ] Check previous spells in the `archive` folder for cleanup patterns
-* [ ] Clenaup Previous Spell's Onboarding Actions in `DssSpellCollateral.sol`
+* [ ] Cleanup Previous Spell's Onboarding Actions in `DssSpellCollateral.sol`
   * [ ] Check previous spells in the `archive` folder for cleanup patterns
 * [ ] Cleanup `src/test/config.sol`
   * [ ] Set `deployed_spell` to `address(0)`
@@ -104,7 +104,7 @@ Repo: https://github.com/makerdao/spells-mainnet
   * [ ] Ensure exec copy is merged
   * [ ] Reference either latest change or merge commit
 * [ ] Wait for at Least Two Approvals with local tests to deploy
-* [ ] Pre-Deploy Setup and Checks (currenlty via `dapptools`)
+* [ ] Pre-Deploy Setup and Checks (currently via `dapptools`)
   * [ ] Set local env (`.sethrc`)
     * [ ] Deployer
       * [ ] `export ETH_PASSWORD=~/.env/password.txt`
