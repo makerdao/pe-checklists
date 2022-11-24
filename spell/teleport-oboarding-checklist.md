@@ -46,6 +46,7 @@
   * [ ] File
     * [ ] `fee` domain linear fee contract address
     * [ ] `line` domain debt ceiling (in `WAD` internal precision unit)
+      * [ ] Ensure it matches with the ilk debt ceiling increase amount
 * [ ] Configure TeleportRouter
   * [ ] File
     * [ ] `gateway` domain gateway contract address
