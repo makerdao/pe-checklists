@@ -29,7 +29,7 @@
           * [ ] `L2GovernanceRelay` is relied
           * [ ] deployer is denied
           * [ ] no other address has been relied
-    * [ ] `TeleportLinearFee` (Domain Teleport Linear Fee)
+    * [ ] `TeleportLinearFee` (Domain Teleport Linear Fee or diffent fee contract)
       * [ ] deployed via deployer
         * [ ] contract is verified on etherscan
           * [ ] ensure solc version matches source
