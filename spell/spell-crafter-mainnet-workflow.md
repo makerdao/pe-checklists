@@ -23,13 +23,13 @@ Repo: https://github.com/makerdao/spells-mainnet
   * [ ] Consider to add `previous_spell` address if it haven't been executed yet
 * [ ] Cleanup Specific Tests in `DssSpell.t.sol`
   * [ ] Check previous spells in the `archive` folder for cleanup patterns
-  * [ ] Disable specific tests IF Not Used (eg. `testCollateralIntegrations`, `testNewChainlogValues`, `testNewIlkRegistryValues`, ...)
+  * [ ] Disable specific tests IF Not Used (e.g. `testCollateralIntegrations`, `testNewChainlogValues`, `testNewIlkRegistryValues`, ...)
     * [ ] Remove spell-specific part
     * [ ] Keep setup
     * [ ] Disable by setting visibility to `private`
     * [ ] Add commented notes
-      * [ ] eg. `// Insert new collateral integration tests here`
-    * [ ] Keep commented tests (eg. `testOSMs`, `testMedianizers`)
+      * [ ] e.g. `// Insert new collateral integration tests here`
+    * [ ] Keep commented tests (e.g. `testOSMs`, `testMedianizers`)
 * [ ] Run Tests `make test` or `make test match=<test_name>` to inspect debug traces
   * [ ] Ensure to use latest `foundry` stable version
     * [ ] Run `foundryup`
@@ -60,7 +60,7 @@ Repo: https://github.com/makerdao/spells-mainnet
       * [ ] IF present in `dss-interfaces` but TOFIX
       * [ ] IF only a few function interfaces are needed
   * [ ] Consider Turn Office Hours On
-    * [ ] Check spell actions (eg. Onboarding, Liquidation Adjustments, New DSS Modules, ...)
+    * [ ] Check spell actions (e.g. Onboarding, Liquidation Adjustments, New DSS Modules, ...)
     * [ ] Note: office hours are on by default if the modifier `officeHours` is not overridden
   * [ ] Deploy New Join, Clip and Calc (Onboarding)
     * [ ] `Join` (check which one is required)
@@ -76,7 +76,7 @@ Repo: https://github.com/makerdao/spells-mainnet
       * [ ] Use [CalcFab](https://github.com/makerdao/dss-deploy) to deploy
       * [ ] Note: automatically verified on etherscan
     * [ ] Check with Oracle CU
-      * [ ] Check IF oracle deployment is required (eg. univ3-lp-oracle, new ilk pip, ...)
+      * [ ] Check IF oracle deployment is required (e.g. univ3-lp-oracle, new ilk pip, ...)
       * [ ] Note: oracle should be deployed on mainnet before Friday (usually Wed-Thu)
   * [ ] Add New Addresses in the ChainLog
   * [ ] Bump ChainLog, accordingly with spec (`major`, `minor`, `patch`)
@@ -115,7 +115,7 @@ Repo: https://github.com/makerdao/spells-mainnet
         * [ ] Run `make estimate` and adjust `ETH_GAS` accordingly (e.g. 6000000)
       * [ ] `export ETH_GAS_PRICE=$(seth --to-wei X gwei)`
         * [ ] Check current gas price using `seth gas-price` and Set `ETH_GAS_PRICE` accordingly (e.g. 50 gwei)
-          * [ ] Consider adding margin to account for spikes (eg. current gas price 25 `gwei`, 50 `gwei` could be set)
+          * [ ] Consider adding margin to account for spikes (e.g. current gas price 25 `gwei`, 50 `gwei` could be set)
       * [ ] `export ETH_PRIO_FEE=$(seth --to-wei X gwei)`
         * [ ] Check [current gas priority fee](https://etherscan.io/gastracker) and set `ETH_PRIO_FEE` accordingly (e.g. 2 gwei)
     * [ ] Mainnet RPC URL

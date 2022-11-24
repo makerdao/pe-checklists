@@ -24,13 +24,13 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
   * [ ] Set `deployed_spell_created` to `0`
 * [ ] Cleanup Specific Tests in `Goerli-DssSpell.t.sol`
   * [ ] Check previous spells in the `archive` folder for cleanup patterns
-  * [ ] Disable specific tests IF Not Used (eg. `testCollateralIntegrations`, `testNewChainlogValues`, `testNewIlkRegistryValues`, ...)
+  * [ ] Disable specific tests IF Not Used (e.g. `testCollateralIntegrations`, `testNewChainlogValues`, `testNewIlkRegistryValues`, ...)
     * [ ] Remove spell-specific part
     * [ ] Keep setup
     * [ ] Disable by setting visibility to `private`
     * [ ] Add commented notes
-      * [ ] eg. `// Insert new collateral integration tests here`
-    * [ ] Keep commented tests (eg. `testOSMs`, `testMedianizers`)
+      * [ ] e.g. `// Insert new collateral integration tests here`
+    * [ ] Keep commented tests (e.g. `testOSMs`, `testMedianizers`)
 * [ ] Run Tests `make test` or `make test match=<test_name>` to inspect debug traces
   * [ ] Ensure to use latest `foundry` stable version
     * [ ] Run `foundryup`
@@ -75,7 +75,7 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
       * [ ] Use [CalcFab](https://github.com/makerdao/dss-deploy) to deploy
       * [ ] Note: automatically verified on etherscan
     * [ ] Check with Oracle CU
-      * [ ] Check IF oracle deployment is required (eg. univ3-lp-oracle, new ilk pip, ...)
+      * [ ] Check IF oracle deployment is required (e.g. univ3-lp-oracle, new ilk pip, ...)
   * [ ] Add New Addresses in the ChainLog
   * [ ] Bump ChainLog, accordingly with spec (`major`, `minor`, `patch`)
     * [ ] MAJOR -> New Vat
