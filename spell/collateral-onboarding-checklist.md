@@ -1,4 +1,4 @@
-* [ ] Collateral Onboarding
+# Collateral Onboarding Checklist
   * [ ] Deployed Contracts
     * [ ] `PIP` (Oracle)
       * [ ] deployed via deployer (OSM)

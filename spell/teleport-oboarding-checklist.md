@@ -1,4 +1,4 @@
-* [ ] Teleport Onboarding
+# Teleport Onboarding Checklist
 * [ ] Deployed Contracts
     * [ ] `L1DAITeleportGateway` (Domain Teleport Bridge)
       * [ ] deployed via deployer
