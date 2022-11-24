@@ -117,7 +117,7 @@ Spell Actions:
     * [ ] Restricted (by default)
     * [ ] Manager match Doc (`mgr`, set to zero for DAI streams by default)
   * [ ] CUs MKR Transfers
-    * [ ] Receipient Addresses match Doc
+    * [ ] Recipient Addresses match Doc
     * [ ] Transfers Amounts match Doc
     * [ ] MKR `DssVestTransferrable` Allowance matches Total Transfer Amounts
     * [ ] Follows Previous Patterns
@@ -142,7 +142,7 @@ Spell Actions:
 * [ ] Deployed Spell Code matches GitHub
   * [diffcheck](diffchecker) etherscan source against spell PR
 * [ ] Ensure Etherscan `Libraries Used` matches DssExecLib [Latest Release](https://github.com/makerdao/dss-exec-lib/releases/latest)
-  * git submoudule hash matches [dss-exec-lib](https://github.com/makerdao/dss-exec-lib) latest release's tag commit
+  * git submodule hash matches [dss-exec-lib](https://github.com/makerdao/dss-exec-lib) latest release's tag commit
 * [ ] Local Tests and CI PASS
 * [ ] Archive matches `src`
   * `make diff-archive-spell`
