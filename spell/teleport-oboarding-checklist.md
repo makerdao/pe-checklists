@@ -8,11 +8,11 @@
           * [ ] ensure license `AGPLv3` is specified
           * [ ] ensure source matches github code (i.e. diffcheck via vscode `code --diff etherscan.sol github.sol`)
         * [ ] constructor args are correct
-          * [ ] `<domain>` (e.g. Starknet address)
           * [ ] `l1Token`
           * [ ] `l2TeleportGateway`
           * [ ] `l1Escrow`
           * [ ] `l1TeleportRouter`
+          * [ ] others (L2 dependant)
     * [ ] `L2DaiTeleportGateway`
       * [ ] deployed via deployer
         * [ ] contract is verified on etherscan
