@@ -21,10 +21,10 @@
           * [ ] ensure license `AGPLv3` is specified
           * [ ] ensure source matches github code (i.e. diffcheck via vscode `code --diff etherscan.sol github.sol`)
         * [ ] constructor args are correct
-          * [ ] `l2CrossDomainMessenger`
           * [ ] `l2Token`
           * [ ] `l1TeleportGateway`
           * [ ] `<domain>` (bytes32)
+          * [ ] others (L2 dependant)
         * [ ] check `wards`
           * [ ] `L2GovernanceRelay` is relied
           * [ ] deployer is denied
