@@ -136,8 +136,7 @@ Spell Actions:
   * [ ] Optimization Enabled: No
   * [ ] Other Settings: default evmVersion, GNU AGPLv3 license
 * [ ] Deployed Spell Code matches GitHub
-  * [diffcheck](
-￼diffchecker) etherscan source against spell PR
+  * [diffcheck](diffchecker) etherscan source against spell PR
 * [ ] Ensure Etherscan `Libraries Used` matches DssExecLib [Latest Release](https://github.com/makerdao/dss-exec-lib/releases/latest)
   * git submodule hash matches [dss-exec-lib](https://github.com/makerdao/dss-exec-lib) latest release's tag commit
 * [ ] Local Tests and CI PASS
