@@ -30,7 +30,7 @@
           * [ ] deployer is denied
           * [ ] no other address has been relied
     * [ ] `TeleportLinearFee` (Domain Teleport Linear Fee)
-     * [ ] deployed via deployer
+      * [ ] deployed via deployer
         * [ ] contract is verified on etherscan
           * [ ] ensure solc version matches source
           * [ ] ensure optimization matches source
