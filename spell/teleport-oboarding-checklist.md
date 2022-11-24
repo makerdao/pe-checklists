@@ -45,7 +45,7 @@
 * [ ] Configure TeleportJoin
   * [ ] File
     * [ ] `fee` domain linear fee contract address
-    * [ ] `line` domain debt ceiling (whole dai units, e.g. 100_000 DAI)
+    * [ ] `line` domain debt ceiling (in `WAD` internal precision unit)
 * [ ] Configure TeleportRouter
   * [ ] File
     * [ ] `gateway` domain gateway contract address
