@@ -41,8 +41,6 @@
           * [ ] `ttl` (Time in seconds to finalize flush (not teleport))
     * [ ] Ensure sanity checks are present in the spell action to match expected deployed contract constructor values
 * [ ] Increase System Debt Ceilings
-  * [ ] Set Ilk Debt Ceiling (`ilk.line`)
-  * [ ] Increase Global Debt Ceiling (`Line`)
   * [ ] Use DssExecLib `increaseIlkDebtCeiling` with global debt ceiling flag on (e.g. `true`)
 * [ ] Configure TeleportJoin
   * [ ] File
