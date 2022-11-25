@@ -1,9 +1,8 @@
 # Goerli Executive Spell Review Checklist [PE-TODO]
 
-PR: https://github.com/makerdao/spells-goerli/pull/TODO
+## Goerli
 
-Spell Crafter: 
-Reviewers:
+PR: https://github.com/makerdao/spells-goerli/pull/TODO
 
 Exec date: YYYY-MM-DD
 
