@@ -1,4 +1,4 @@
-* [ ] RWA Onboarding
+# RWA Onboarding Checklist
   * [ ] Deployed Contracts
     * [ ] `RwaToken` (Token Used as Collateral In Adapter)
       * [ ] deployed via `RwaTokenFactory`

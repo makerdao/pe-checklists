@@ -1,9 +1,8 @@
 # Mainnet Exec Spell Review Checklist [PE-TODO]
 
-PR: https://github.com/makerdao/spells-mainnet/pull/TODO
+## Mainnet
 
-Spell Crafter: 
-Reviewers:
+PR: https://github.com/makerdao/spells-mainnet/pull/TODO
 
 Exec date: YYYY-MM-DD
 
