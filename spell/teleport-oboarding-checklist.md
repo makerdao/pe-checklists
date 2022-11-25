@@ -29,7 +29,7 @@
           * [ ] `L2GovernanceRelay` is relied
           * [ ] deployer is denied
           * [ ] no other address has been relied
-    * [ ] `TeleportLinearFee` (Domain Teleport Linear Fee or diffent fee contract)
+    * [ ] `TeleportLinearFee` (Domain Teleport Linear Fee or different fee contract)
       * [ ] deployed via deployer
         * [ ] contract is verified on etherscan
           * [ ] ensure solc version matches source
@@ -60,5 +60,5 @@
 * [ ] Test Coverage (Follow Previous Test Patterns)
   * [ ] `testTeleportFW`
   * [ ] ensure new chainlog entries are included in `addresses_<mainnet, goerli>.sol`
-  * [ ] ensure deployer addresses are inlcuded into `addresses_deployers.sol` (**to keep up to date**)
+  * [ ] ensure deployer addresses are included into `addresses_deployers.sol` (**to keep up to date**)
   * [ ] `config.sol`

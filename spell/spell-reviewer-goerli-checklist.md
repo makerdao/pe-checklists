@@ -52,12 +52,12 @@ Spell Actions:
     * [ ] Match [ChainLog](https://chainlog.makerdao.com/)
   * [ ] Wards ok (pause proxy relied, deployer denied)
   * [ ] Matches corresponding github source code (i.e. diffcheck via vscode `code --diff etherscan.sol github.sol`)
-  * [ ] Ensure deployer address is inlcuded into `addresses_deployers.sol` (**to keep up to date**)
+  * [ ] Ensure deployer address is included into `addresses_deployers.sol` (**to keep up to date**)
 * [ ] External Contracts Calls (e.g. Starknet)
   * [ ]  Target Contract don't block spell execution
   * [ ]  External call is NOT delegate call
   * [ ]  Target Contract doesn't have permissions on the Vat
-  * [ ]  Target Contract doens't do anything untoward (e.g. interacting with unsafe contracts)
+  * [ ]  Target Contract doesn't do anything untoward (e.g. interacting with unsafe contracts)
   * [ ]  MCD Pause Proxy doesn't give any approvals
   * [ ]  All possible actions of the Target Contract are documented
   * [ ]  Target contract is not upgradable
@@ -122,7 +122,7 @@ Spell Actions:
     * [ ] Restricted (by default)
     * [ ] Manager match Doc (`mgr`, set to zero for DAI streams by default)
   * [ ] CUs MKR Transfers
-    * [ ] Receipient Addresses match Doc
+    * [ ] Recipient Addresses match Doc
     * [ ] Transfers Amounts match Doc
     * [ ] MKR `DssVestTransferrable` Allowance matches Total Transfer Amounts
     * [ ] Follows Previous Patterns
@@ -147,9 +147,9 @@ Spell Actions:
   * [ ] Optimization Enabled: No
   * [ ] Other Settings: default evmVersion, GNU AGPLv3 license
 * [ ] Deployed Spell Code matches GitHub
-  * diffcheck ethercan source against spell PR (i.e. via vscode `code --diff etherscan.sol github.sol`)
+  * diffcheck etherscan source against spell PR (i.e. via vscode `code --diff etherscan.sol github.sol`)
 * [ ] Ensure Etherscan `Libraries Used` matches DssExecLib [Latest Release](https://github.com/makerdao/dss-exec-lib/releases/latest)
-  * git submoudule hash matches [dss-exec-lib](https://github.com/makerdao/dss-exec-lib) latest release's tag commit
+  * git submodule hash matches [dss-exec-lib](https://github.com/makerdao/dss-exec-lib) latest release's tag commit
 * [ ] Local Tests and CI PASS
 * [ ] Spell is Cast (**only on Goerli**)
   * [ ] Check Cast Trace (via [EthTx](https://ethtx.info/))

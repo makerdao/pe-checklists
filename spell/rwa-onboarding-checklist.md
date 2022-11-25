@@ -48,7 +48,7 @@
         * [ ] ensure optimization are off
         * [ ] ensure license is specified
         * [ ] ensure source matches github code and it's consistent with previous RWA onboarding
-      * [ ] constructor args are correctc and match [chainlog](https://chainlog.makerdao.com/)
+      * [ ] constructor args are correct and match [chainlog](https://chainlog.makerdao.com/)
         * [ ] `dai`
         * [ ] `to` (`RwaUrn`, `RwaJar`)
         * [ ] `gov` (`v1`)
