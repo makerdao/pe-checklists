@@ -105,7 +105,9 @@ TeleportRouter
 TeleportGateway
 uint
 antipattern
+Antipatterns
 upgradability
 Daiwanese
 permissioned
 permissioning
+whitespace
