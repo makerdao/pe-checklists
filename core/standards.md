@@ -54,7 +54,7 @@ If we are avoiding variable shadowing, we add a `_` to the end of the variable n
 
 If we are dealing with internal variables or functions we add the `_` to the front of the name.
 
-If we need to interact with external contracts, we prefer to have a minimal interface using the naming convention of `<ContractName>Like`.
+If we need to interact with external contracts, we prefer to have a minimal interface using the naming convention of `<ContractName>Like`. (These should be declared at the top of the contract file.)
 
 ### Dependencies
 
