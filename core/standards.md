@@ -40,13 +40,13 @@ Following and expanding on [Solidity Order of layout recommendations](https://do
 2. Events
 3. Modifiers
 4. Internal Math variables and functions
-5. Other Internal Functions
+5. Other Internal functions
 6. Wards functions
-7. External Funcitons
+7. External functions
 
 ### Spacing
 
-We align variables with extra whitespacing. You will get PR comments if you are off by even one space.
+We align variables with extra whitespace. You will get PR comments if you are off by even one space.
 
 ### Naming
 
@@ -66,4 +66,4 @@ We try to keep our repos relatively dependency free.  We do not rely on external
 
 In order to limit contract complexity, we also tend to stay away from inheritance patterns.
 
-We believe that upgradeable proxies are an antipattern.  If you need upgradeability, it should be handled with modular design and permission given to the Pause Proxy. There are rare excpetions to this such as where there is a user storage mapping and high chance of needing to upgrade (e.g. cropper or charter).
+We believe that upgradable proxies are an antipattern.  If you need upgradability, it should be handled with modular design and permission given to the Pause Proxy. There are rare exceptions to this such as where there is a user storage mapping and high chance of needing to upgrade (e.g. cropper or charter).
