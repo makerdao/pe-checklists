@@ -64,4 +64,4 @@ We try to keep our repos relatively dependency free.  We do not rely on external
 
 In order to limit contract complexity, we also tend to stay away from inheritance patterns.
 
-We believe that upgradeable proxies are an antipattern.  If you need upgradeability, it should be handled with modular design and permission given to the Pause Proxy.
+We believe that upgradeable proxies are an antipattern.  If you need upgradeability, it should be handled with modular design and permission given to the Pause Proxy. There are rare excpetions to this such as where there is a user storage mapping and high chance of needing to upgrade (e.g. cropper or charter).
