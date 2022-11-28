@@ -1,9 +1,8 @@
 # Mainnet Exec Spell Review Checklist [PE-TODO]
 
-PR: https://github.com/makerdao/spells-mainnet/pull/TODO
+## Mainnet
 
-Spell Crafter: 
-Reviewers:
+PR: https://github.com/makerdao/spells-mainnet/pull/TODO
 
 Exec date: YYYY-MM-DD
 
@@ -56,13 +55,13 @@ Spell Actions:
   * [ ] Constructor args ok (e.g. `vat`, `dai`, `dog`, ...)
     * [ ] Match [ChainLog](https://chainlog.makerdao.com/)
   * [ ] Wards ok (pause proxy relied, deployer denied)
-  * [ ] Matches corresponding github source code (i.e. diffchecked using [diffchecker](https://www.diffchecker.com/))
-  * [ ] Ensure deployer address is inlcuded into `addresses_deployers.sol` (**to keep up to date**)
+  * [ ] Matches corresponding github source code (i.e. diffcheck via vscode `code --diff etherscan.sol github.sol`)
+  * [ ] Ensure deployer address is included into `addresses_deployers.sol` (**to keep up to date**)
 * [ ] External Contracts Calls (e.g. Starknet)
   * [ ]  Target Contract don't block spell execution
   * [ ]  External call is NOT delegate call
   * [ ]  Target Contract doesn't have permissions on the Vat
-  * [ ]  Target Contract doens't do anything untoward (e.g. interacting with unsafe contracts)
+  * [ ]  Target Contract doesn't do anything untoward (e.g. interacting with unsafe contracts)
   * [ ]  MCD Pause Proxy doesn't give any approvals
   * [ ]  All possible actions of the Target Contract are documented
   * [ ]  Target contract is not upgradable
@@ -99,7 +98,18 @@ Spell Actions:
     * [ ] `val` price ignored (`0`) if `init` has already been called
     * [ ] `doc` new legal document (IPFS HASH) matches Doc (or Forum Post)
     * [ ] `tau` parameter used is the old `tau` value
-  * [ ] Debt Ceiling (`line`) + Liquidation Oracle Price Bump
+  * [ ] Autoline (`line`) + Liquidation Oracle Price Bump (`val`)
+    * [ ] Enable Autoline
+      * [ ] `ilk` follows format "RWAXXX-A"
+      * [ ] `line` (max debt ceiling)
+      * [ ] `gap`
+      * [ ] `ttl`
+    * [ ] `bump` `RwaLiquidationOracle` with new computed increased price (`val`)
+      * [ ] ensure `val` is set accordingly with autoline max debt ceiling (`line`)
+      * [ ] `val` should enable DAI to be drawn over the loan period while taking into
+            account the configured `ink` amount, interest rate and liquidation ratio
+    * [ ] Poke `spotter` to pull in the new price
+  * [ ] Debt Ceiling (`line`) + Liquidation Oracle Price Bump (`val`)
     * [ ] Increase Ilk Debt Ceiling (set DC + increase Global DC)
     * [ ] `bump` `RwaLiquidationOracle` with new computed increased price (`val`)
       * [ ] `val` should enable DAI to be drawn over the loan period while taking into
@@ -117,7 +127,7 @@ Spell Actions:
     * [ ] Restricted (by default)
     * [ ] Manager match Doc (`mgr`, set to zero for DAI streams by default)
   * [ ] CUs MKR Transfers
-    * [ ] Receipient Addresses match Doc
+    * [ ] Recipient Addresses match Doc
     * [ ] Transfers Amounts match Doc
     * [ ] MKR `DssVestTransferrable` Allowance matches Total Transfer Amounts
     * [ ] Follows Previous Patterns
@@ -132,17 +142,19 @@ Spell Actions:
     * [ ] MINOR -> Core Module (DSS) Update (e.g. Flapper)
     * [ ] PATCH -> Collateral addition or addition/modification
 * [ ] `addresses_mainnet.sol` matches spell code
-* [ ] Spell Actions Match Doc
+* [ ] Ensure every spell variable is declared as public/internal
+* [ ] Spell actions match [GovAlpha Spell Content Sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw) and hashed exec doc
 * [ ] Tests PASS
   * [ ] Ensure Good Coverage
+  * [ ] Ensure every test function is declared as public if enabled or private if disabled
 * [ ] Local Tests and CI PASS
 * [ ] Deployed Spell is Verified
   * [ ] Optimization Enabled: No
   * [ ] Other Settings: default evmVersion, GNU AGPLv3 license
 * [ ] Deployed Spell Code matches GitHub
-  * [diffcheck](diffchecker) ethercan source against spell PR
+  * diffcheck etherscan source against spell PR (i.e. via vscode `code --diff etherscan.sol github.sol`)
 * [ ] Ensure Etherscan `Libraries Used` matches DssExecLib [Latest Release](https://github.com/makerdao/dss-exec-lib/releases/latest)
-  * git submoudule hash matches [dss-exec-lib](https://github.com/makerdao/dss-exec-lib) latest release's tag commit
+  * git submodule hash matches [dss-exec-lib](https://github.com/makerdao/dss-exec-lib) latest release's tag commit
 * [ ] Local Tests and CI PASS
 * [ ] Archive matches `src`
   * `make diff-archive-spell`

@@ -1,0 +1,15 @@
+name: Typo CI
+
+on: [push, pull_request]
+
+jobs:
+  typocheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository and submodules
+        uses: actions/checkout@v3
+
+      - name: TypoCheck
+        uses: rojopolis/spellcheck-github-actions@0.28.0
+        with:
+          config_path: .github/workflows/.spellcheck.yml

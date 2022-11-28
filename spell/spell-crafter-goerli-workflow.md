@@ -24,13 +24,13 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
   * [ ] Set `deployed_spell_created` to `0`
 * [ ] Cleanup Specific Tests in `Goerli-DssSpell.t.sol`
   * [ ] Check previous spells in the `archive` folder for cleanup patterns
-  * [ ] Disable specific tests IF Not Used (eg. `testCollateralIntegrations`, `testNewChainlogValues`, `testNewIlkRegistryValues`, ...)
+  * [ ] Disable specific tests IF Not Used (e.g. `testCollateralIntegrations`, `testNewChainlogValues`, `testNewIlkRegistryValues`, ...)
     * [ ] Remove spell-specific part
     * [ ] Keep setup
     * [ ] Disable by setting visibility to `private`
     * [ ] Add commented notes
-      * [ ] eg. `// Insert new collateral integration tests here`
-    * [ ] Keep commented tests (eg. `testOSMs`, `testMedianizers`)
+      * [ ] e.g. `// Insert new collateral integration tests here`
+    * [ ] Keep commented tests (e.g. `testOSMs`, `testMedianizers`)
 * [ ] Run Tests `make test` or `make test match=<test_name>` to inspect debug traces
   * [ ] Ensure to use latest `foundry` stable version
     * [ ] Run `foundryup`
@@ -39,7 +39,7 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
 * [ ] CI Tests PASS
 * [ ] Open Draft PR on `spells-goerli` titled "PE-<ticket number>: YYYY-MM-DD Executive"
 * [ ] Assign to yourself
-* [ ] Add Spell Actions as per GovAlpha Spell Content Sheet - [Polls](https://vote.makerdao.com/polling?network=mainnet)
+* [ ] Add Spell Actions as per [GovAlpha Spell Content Sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw) - [Polls](https://vote.makerdao.com/polling?network=mainnet)
   * [ ] Polls starts on Monday and ends on Thursday
     * [ ] Ensure spell actions match polls details and links (forum posts, MIPs portal, ...)
     * [ ] Add a comment for the polling detail URL
@@ -60,7 +60,7 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
       * [ ] IF present in `dss-interfaces` but TOFIX
       * [ ] IF only a few function interfaces are needed
   * [ ] Office Hours (OFF by Default on Goerli)
-    * [ ] Ensure `officeHours` modifier is overriden to return `false`
+    * [ ] Ensure `officeHours` modifier is overridden to return `false`
   * [ ] Deploy New Join, Clip and Calc (Onboarding)
     * [ ] `Join` (check which one is required)
       * [ ] Use [JoinFab](https://github.com/makerdao/JoinFab) to deploy
@@ -75,7 +75,8 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
       * [ ] Use [CalcFab](https://github.com/makerdao/dss-deploy) to deploy
       * [ ] Note: automatically verified on etherscan
     * [ ] Check with Oracle CU
-      * [ ] Check IF oracle deployment is required (eg. univ3-lp-oracle, new ilk pip, ...)
+      * [ ] Check IF oracle deployment is required (e.g. univ3-lp-oracle, new ilk pip, ...)
+  * [ ] Ensure every spell variable is declared as public/internal
   * [ ] Add New Addresses in the ChainLog
   * [ ] Bump ChainLog, accordingly with spec (`major`, `minor`, `patch`)
     * [ ] MAJOR -> New Vat
@@ -84,8 +85,8 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
   * [ ] Use DssExecLib Functions
     * [ ] Ensure `DssExecLib` address used in current spell (`DssExecLib.address`) matches `dss-exec-lib` [Latest Release Tag](https://github.com/makerdao/dss-exec-lib/releases/latest)
     * [ ] Check previous spells for common patterns
-* [ ] Adjust System Values, Collateral Values in `config.sol` ([diffcheck](https://www.diffchecker.com/) with `spells-mainnet`)
-* [ ] Add Specific Tests in `Goerli-DssSpell.t.sol` ([diffcheck](https://www.diffchecker.com/) with `spells-mainnet`)
+* [ ] Adjust System Values, Collateral Values in `config.sol` (i.e. diffcheck via vscode `code --diff config1.sol config2.sol`) with `spells-mainnet`)
+* [ ] Add Specific Tests in `Goerli-DssSpell.t.sol` (i.e. diffcheck via vscode `code --diff source1.sol source2.sol`) with `spells-mainnet`)
   * [ ] Add new collateral tests
   * [ ] Add new chainLog value tests
   * [ ] Add new ilk registry value tests
@@ -93,12 +94,13 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
 * [ ] Add new ChainLog Address in `addresses_goerli.sol` (e.g. Collateral Onboarding)
 * [ ] Run Tests `make test` or `make test match=<test_name>` to inspect debug traces
   * [ ] Ensure Good Coverage
+  * [ ] Ensure every test function is declared as public if enabled or private if not
   * [ ] Tests PASS via `make test`
 * [ ] Open PR & Add Reviewers
 * [ ] Iterate until polls are ended and exec doc is confirmed
 * [ ] Make sure CI PASS
 * [ ] Wait for at Least Two Approvals with local tests to deploy
-* [ ] Pre-Deploy Setup and Checks (currenlty via `dapptools`)
+* [ ] Pre-Deploy Setup and Checks (currently via `dapptools`)
   * [ ] Set local env (`.sethrc`)
     * [ ] Deployer
       * [ ] `export ETH_PASSWORD=~/.env/password.txt`
@@ -133,3 +135,7 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
 * [ ] Wait for Merge Approval
 * [ ] Squash & Merge
 * [ ] Cast Spell via `make cast-spell` (ONLY ON GOERLI)
+* [ ] Check `cast()` trace (via [EthTx](https://ethtx.info/))
+  * [ ] Ensure no reverts are present that block execution
+    * [ ] Inspect low level call reverts if expected
+  * [ ] Ensure all actions are executed and not out-of-gas errors are present

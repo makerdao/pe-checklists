@@ -1,4 +1,4 @@
-* [ ] Collateral Onboarding
+# Collateral Onboarding Checklist
   * [ ] Deployed Contracts
     * [ ] `PIP` (Oracle)
       * [ ] deployed via deployer (OSM)
@@ -6,7 +6,7 @@
           * [ ] ensure solc version matches source
           * [ ] ensure optimization matches source
           * [ ] ensure license `AGPLv3` is specified
-          * [ ] ensure source matches github code (i.e. diffchecked using [diffchecker](https://www.diffchecker.com/))
+          * [ ] ensure source matches github code (i.e. diffcheck via vscode `code --diff etherscan.sol github.sol`)
         * [ ] constructor args are correct
           * [ ] `src` (medianizer)
         * [ ] check `wards`
@@ -91,6 +91,7 @@
         * [ ] `ilkDebtCeiling` (`vat.ilk.line`) in DAI (e.g. 1 * MILLION)
           * [ ] IF autoline is enabled, `vat.ilk.line` should be set to DC-IAM `gap` value
         * [ ] `minVaultAmount` (`vat.ilk.dust`) in DAI (e.g. 15_000)
+          * [ ] ensure `clip.tip` is adjusted proportionally to `vat.ilk.dust` (e.g. lower the `dust` lower the `tip`)
         * [ ] `maxLiquidationAmount` (`dog.ilk.hole`) in DAI (e.g. 5 * MILLION)
           * [ ] ensure `dog.ilk.hole` >= `ilk.dust` invariant holds
         * [ ] `liquidationPenalty` (`dog.ilk.chop`) in basis points (e.g. 13% = 13_00)
@@ -126,5 +127,5 @@
       * [ ] `testNewChainlogValues`
       * [ ] `testNewIlkRegistryValues`
       * [ ] ensure new chainlog entries are included in `addresses_<mainnet, goerli>.sol`
-      * [ ] ensure deployer addresses are inlcuded into `addresses_deployers.sol` (**to keep up to date**)
+      * [ ] ensure deployer addresses are included into `addresses_deployers.sol` (**to keep up to date**)
       * [ ] `config.sol`
