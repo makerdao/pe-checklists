@@ -111,4 +111,5 @@ Daiwanese
 permissioned
 permissioning
 whitespace
-immutable*
+immutable
+immutables
