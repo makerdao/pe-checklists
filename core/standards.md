@@ -22,7 +22,7 @@ Whenever possible, utilize an existing solution instead of building a new contra
 
 This repo attempts to document our standards, other sources include (non-exhaustive list):
 
-- https://github.com/makerdao/mips-best-practices
+- [MIPS best practices](https://github.com/makerdao/mips-best-practices)
 
 ## Coding standards we expect to see in core contracts
 
