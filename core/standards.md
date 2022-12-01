@@ -43,7 +43,7 @@ Following and expanding on [Solidity Order of layout recommendations](https://do
 3. Modifiers
 4. Internal Math variables and functions
 5. Wards functions (i.e. `rely`/`deny`)
-6. File functions
+6. Fileable functions
 7. Other Internal functions
 8. Other External functions
 
