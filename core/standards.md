@@ -36,7 +36,9 @@ Following and expanding on [Solidity Order of layout recommendations](https://do
 
 1. State variables (including wards and math)
 
-    a. **note:** wards should be memory slot `0x0`
+    a. constants then immutables then memory variables
+
+    b. wards should be memory slot `0x0`
 2. Events
 3. Modifiers
 4. Internal Math variables and functions
