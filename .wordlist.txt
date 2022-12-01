@@ -111,3 +111,4 @@ Daiwanese
 permissioned
 permissioning
 whitespace
+immutable*
