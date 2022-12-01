@@ -40,12 +40,13 @@ Following and expanding on [Solidity Order of layout recommendations](https://do
 
     b. wards should be storage slot `0x0`
 2. Events
-3. Modifiers
-4. Internal Math variables and functions
-5. Wards functions (i.e. `rely`/`deny`)
-6. Fileable functions
-7. Other Internal functions
-8. Other External functions
+3. Constructor
+4. Modifiers
+5. Internal Math variables and functions
+6. Wards functions (i.e. `rely`/`deny`)
+7. Fileable functions
+8. Other Internal functions
+9. Other External functions
 
 ### Spacing
 
