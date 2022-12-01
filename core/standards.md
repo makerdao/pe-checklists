@@ -28,7 +28,7 @@ This repo attempts to document our standards, other sources include (non-exhaust
 
 ### Permissions
 
-Permissioning in the contract should be handled by `wards` and the `wards` mapping should occupy memory slot `0x0`
+Permissioning in the contract should be handled by `wards` and the `wards` mapping should occupy storage slot `0x0`
 
 ### Contract ordering
 
@@ -36,9 +36,9 @@ Following and expanding on [Solidity Order of layout recommendations](https://do
 
 1. State variables (including wards and math)
 
-    a. constants then immutables then memory variables
+    a. constants then immutables then storage variables
 
-    b. wards should be memory slot `0x0`
+    b. wards should be storage slot `0x0`
 2. Events
 3. Modifiers
 4. Internal Math variables and functions
