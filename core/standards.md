@@ -14,7 +14,7 @@ A core contract is one that:
 
 All Core contracts need to go through a risk adjusted review process.  Risk should be evaluated at the beginning of the project and continue to be re-evaluated through the engineering process.
 
-Our review process at a minimum requires two team member reviews and approvals.  However for higher risk contracts may also involve team Red Team reviews and audits by external auditors.
+Our review process at a minimum requires two team member reviews and approvals.  However for higher risk contracts may also involve Red Team reviews and audits by external auditors.
 
 Core contracts should follow established coding patterns including repo and contract structures, variable naming patterns (yes Daiwanese is a standard for our team) and auth patterns.
 
