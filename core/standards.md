@@ -75,6 +75,6 @@ In order to limit contract complexity, we also tend to stay away from inheritanc
 
 We believe that upgradable proxies are an antipattern.  If you need upgradability, it should be handled with modular design and permission given to the Pause Proxy. There are rare exceptions to this such as where there is a user storage mapping and high chance of needing to upgrade (e.g. cropper or charter).
 
-### Documenation
+### Documentation
 
 Repositories should have a README file that outline the purpose, functionality and how to use the contract.  In addition to this external/public functions should have [NatSpec comments](https://docs.soliditylang.org/en/latest/style-guide.html#natspec).

@@ -114,3 +114,5 @@ whitespace
 immutable
 immutables
 Fileable
+structs
+NatSpec
