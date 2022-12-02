@@ -48,7 +48,7 @@ Following and expanding on [Solidity Order of layout recommendations](https://do
 6. Internal Math variables and functions
 7. Wards functions (i.e. `rely`/`deny`)
 8. Fileable functions
-9.  Other Internal functions
+9. Other Internal functions
 10. Other External functions
 
 ### Spacing

@@ -116,3 +116,4 @@ immutables
 Fileable
 structs
 NatSpec
+Getter
