@@ -40,13 +40,16 @@ Following and expanding on [Solidity Order of layout recommendations](https://do
 
     b. wards should be storage slot `0x0`
 2. Events
-3. Constructor
-4. Modifiers
-5. Internal Math variables and functions
-6. Wards functions (i.e. `rely`/`deny`)
-7. Fileable functions
-8. Other Internal functions
-9. Other External functions
+3. Getter functions (i.e. to make reading structs easier)
+
+    a. these may be placed at the end of the file if they are extensive to improve readability
+4. Constructor
+5. Modifiers
+6. Internal Math variables and functions
+7. Wards functions (i.e. `rely`/`deny`)
+8. Fileable functions
+9.  Other Internal functions
+10. Other External functions
 
 ### Spacing
 
@@ -71,3 +74,7 @@ We try to keep our repos relatively dependency free.  We do not rely on external
 In order to limit contract complexity, we also tend to stay away from inheritance patterns.
 
 We believe that upgradable proxies are an antipattern.  If you need upgradability, it should be handled with modular design and permission given to the Pause Proxy. There are rare exceptions to this such as where there is a user storage mapping and high chance of needing to upgrade (e.g. cropper or charter).
+
+### Documenation
+
+Repositories should have a README file that outline the purpose, functionality and how to use the contract.  In addition to this external/public functions should have [NatSpec comments](https://docs.soliditylang.org/en/latest/style-guide.html#natspec).
