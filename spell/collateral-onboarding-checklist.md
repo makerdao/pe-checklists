@@ -107,8 +107,8 @@
         * [ ] `LinearDecrease`
           * [ ] `calc.tau` in seconds (e.g. 250 days = 21_600_000)
         * [ ] `StairstepExponentialDecrease`
-          * [ ] `calc.cut` in seconds (e.g. 120 seconds)
-          * [ ] `calc.step` in basis points (e.g. 99% = 99_00)
+          * [ ] `calc.step` in seconds (e.g. 120 seconds)
+          * [ ] `calc.cut` in basis points (e.g. 99% = 99_00)
       * [ ] set Ilk Autoline Parameters (IF Autoline is enabled)
         * [ ] `ilk` follows the ilk format `TOKEN-A`
         * [ ] `line`in DAI (e.g. 10 * MILLION)
