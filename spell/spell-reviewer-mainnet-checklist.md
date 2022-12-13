@@ -66,6 +66,7 @@ Spell Actions:
 * [ ] Onboarding
   * [ ] [Collateral Onboarding](./collateral-onboarding-checklist.md)
   * [ ] [RWA Onboarding](./rwa-onboarding-checklist.md)
+  * [ ] [Teleport Onboarding](./teleport-oboarding-checklist.md)
 * [ ] Offboarding (Lerp `mat`)
   * [ ] 1st Stage Spell Actions
     * [ ] Remove Ilk from Autoline
