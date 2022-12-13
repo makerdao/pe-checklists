@@ -150,7 +150,7 @@ Spell Actions:
   * [ ] Optimization Enabled: No
   * [ ] Other Settings: default evmVersion, GNU AGPLv3 license
 * [ ] Deployed Spell Code matches GitHub
-  * [ ] Diffcheck etherscan source against spell PR (i.e. via vscode `code --diff etherscan.sol github.sol`)
+  * [ ] diffcheck etherscan source against spell PR (i.e. via vscode `code --diff etherscan.sol github.sol`)
 * [ ] Deploy Timestamp Match
   * [ ] Ensure `make deploy-stamp tx=<tx>` matches [config](https://github.com/makerdao/spells-mainnet/blob/master/src/test/config.sol) `deployed_spell_created` timestamp
 * [ ] Ensure Etherscan `Libraries Used` matches DssExecLib [Latest Release](https://github.com/makerdao/dss-exec-lib/releases/latest)

@@ -93,6 +93,7 @@ Spell Actions:
     * [ ] `tau` parameter used is the old `tau` value
   * [ ] Autoline (`line`) + Liquidation Oracle Price Bump (`val`)
     * [ ] Enable Autoline
+      * [ ] `ilk` follows format "RWAXXX-A"
       * [ ] `line` (max debt ceiling)
       * [ ] `gap`
       * [ ] `ttl`
