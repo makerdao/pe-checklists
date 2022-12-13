@@ -2,10 +2,6 @@
 
 ## Goerli
 
-PR: https://github.com/makerdao/spells-goerli/pull/TODO
-
-Exec date: YYYY-MM-DD
-
 Spell Actions:
 
 * TODO

@@ -2,10 +2,6 @@
 
 ## Mainnet
 
-PR: https://github.com/makerdao/spells-mainnet/pull/TODO
-
-Exec date: YYYY-MM-DD
-
 Spell Actions:
 
 * TODO
