@@ -121,10 +121,11 @@ Spell Actions:
     * [ ] Cliff Duration matches Doc (`eta`)
     * [ ] Restricted (by default)
     * [ ] Manager match Doc (`mgr`, set to zero for DAI streams by default)
+    * [ ] IF `DssVestTransferrable` is used
+      * [ ] Ensure `DssVestTransferrable` Allowance matches total transfer amount
   * [ ] CUs MKR Transfers
     * [ ] Recipient Addresses match Doc
     * [ ] Transfers Amounts match Doc
-    * [ ] MKR `DssVestTransferrable` Allowance matches Total Transfer Amounts
     * [ ] Follows Previous Patterns
   * [ ] Direct SB DAI Payment
     * [ ] Recipient Addresses match Doc
