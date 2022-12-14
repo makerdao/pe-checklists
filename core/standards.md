@@ -16,7 +16,7 @@ All Core contracts need to go through a risk adjusted review process.  Risk shou
 
 Our review process at a minimum requires two team member reviews and approvals.  However for higher risk contracts may also involve Red Team reviews and audits by external auditors.
 
-Core contracts should follow established coding patterns including repo and contract structures, variable naming patterns (yes [Daiwanese](https://docs.makerdao.com/other-documentation/system-glossary) is a standard for our team) and auth patterns. For most contracts, compiler version should be fixed at 0.8.n or 0.6.12 and optimizations should be off.  While licensing is considered on a case by case basis, it should always be declared and we tend to default to AGPLv3.
+Core contracts should follow established coding patterns including repo and contract structures, variable naming patterns (yes [Daiwanese](https://docs.makerdao.com/other-documentation/system-glossary) is a standard for our team) and auth patterns. For most contracts, compiler version should be fixed at 0.8.n or 0.6.12 and optimizations should be off.  While licensing is considered on a case by case basis, it should always be declared and we tend to default to AGPLv3. We value security over gas optimizations and simplicity over complexity. As such, low level calls should be used minimally and gas optimization tricks should be used sparingly. 
 
 Whenever possible, utilize an existing solution instead of building a new contract. MakerDAO is a very complex project and each new contract or derivation increases the cognitive and maintenance overhead of the entire protocol. By limiting the number of moving parts we reduce the risk of unexpected behavior.
 
@@ -30,15 +30,24 @@ This repo attempts to document our standards, other sources include (non-exhaust
 
 Permissioning in the contract should be handled by `wards` and the `wards` mapping should occupy storage slot `0x0`
 
+### Contract File
+
+`.sol` files should adhere to the following standards:
+
+- Line break at the end
+- Include a license at the top
+- Declare pragma version after the license
+- In almost all cases there should only be one contract per file 
+
 ### Contract ordering
 
 Following and expanding on [Solidity Order of layout recommendations](https://docs.soliditylang.org/en/stable/style-guide.html#order-of-layout) our contracts are generally laid out in this way:
 
 1. State variables (including wards and math)
 
-    a. constants then immutables then storage variables
+    a. Constants then immutables then storage variables. In most cases constants and immutables can be declared internal.
 
-    b. wards should be storage slot `0x0`
+    b. Wards should be storage slot `0x0`
 2. Events
 3. Getter functions (i.e. to make reading structs easier)
 
@@ -57,7 +66,7 @@ We align variables with extra whitespace. You will get PR comments if you are of
 
 ### Naming
 
-We prefer to try to have **Daiwanese** naming patterns (3 or 4 letter variables and functions).
+We prefer to try to have **Daiwanese** naming patterns (3 or 4 letter variables and functions) such as `guy`, `usr`, or `who` for address parameters and `wad` or `amt` for `uint` or `int` parameters (with care given to `RAY`, `RAD`, and `WAD` precision).
 
 If we are avoiding variable shadowing, we add a `_` to the end of the variable names.
 
@@ -78,3 +87,8 @@ We believe that upgradable proxies are an antipattern.  If you need upgradabilit
 ### Documentation
 
 Repositories should have a README file that outline the purpose, functionality and how to use the contract.  In addition to this external/public functions should have [NatSpec comments](https://docs.soliditylang.org/en/latest/style-guide.html#natspec).
+
+### Deployment
+
+Contracts should be verified on Etherscan with a license and pragma clearly set. Optimizations generally should be turned off.  The verified code should match the main branch of the source repository on Github.
+
