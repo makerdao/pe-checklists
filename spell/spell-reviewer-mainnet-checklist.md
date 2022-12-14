@@ -15,6 +15,7 @@ Spell Actions:
   * [ ] `community` commit is the latest change or merge commit
   * [ ] `community` repo url matches
   * [ ] script matches
+  * [ ] `description` date in `DssSpell.sol` matches exec copy one
 * [ ] 30 Days Expiry
   * [ ] weekly
   * [ ] monthly (discarded)
