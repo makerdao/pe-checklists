@@ -2,7 +2,7 @@
 
 ## Definition of Core
 
-A core contract is one that:
+A core contract is one that meets any one of the following:
 
 1. Any contract that is part of the [dss repo](https://github.com/makerdao/dss)
 2. Will have ward status on or other privileged access to any other core contract (i.e. `Vat.rely(<new contract address>)`)
@@ -16,7 +16,7 @@ All Core contracts need to go through a risk adjusted review process.  Risk shou
 
 Our review process at a minimum requires two team member reviews and approvals.  However for higher risk contracts may also involve Red Team reviews and audits by external auditors.
 
-Core contracts should follow established coding patterns including repo and contract structures, variable naming patterns (yes Daiwanese is a standard for our team) and auth patterns.
+Core contracts should follow established coding patterns including repo and contract structures, variable naming patterns (yes [Daiwanese](https://docs.makerdao.com/other-documentation/system-glossary) is a standard for our team) and auth patterns. For most contracts, compiler version should be fixed at 0.8.n or 0.6.12 and optimizations should be off.  While licensing is considered on a case by case basis, it should always be declared and we tend to default to AGPLv3.
 
 Whenever possible, utilize an existing solution instead of building a new contract. MakerDAO is a very complex project and each new contract or derivation increases the cognitive and maintenance overhead of the entire protocol. By limiting the number of moving parts we reduce the risk of unexpected behavior.
 
