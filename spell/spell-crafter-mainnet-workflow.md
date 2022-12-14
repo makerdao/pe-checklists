@@ -105,6 +105,7 @@ Repo: https://github.com/makerdao/spells-mainnet
 * [ ] Add Exec Hash
   * [ ] Ensure exec copy is merged
   * [ ] Reference either latest change or merge commit
+  * [ ] Ensure `description` date in `DssSpell.sol` matches exec copy one
 * [ ] Wait for at Least Two Approvals with local tests to deploy
 * [ ] Pre-Deploy Setup and Checks (currently via `dapptools`)
   * [ ] Set local env (`.sethrc`)
