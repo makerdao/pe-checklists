@@ -35,10 +35,10 @@ Authorization permissions in the contract should be handled by a `wards` mapping
 
 `.sol` files should adhere to the following standards:
 
-- A single newline at the end of the file
 - The SPDX license identifier is included at the start of the file
 - Pragma declarations immediately follow the license declaration
-- In almost all cases there should only be one contract per file
+- In almost all cases, there should only be one contract per file
+- A single newline at the end of the file
 
 ### Contract ordering
 
@@ -83,9 +83,9 @@ Dependencies should be avoided unless absolutely necessary to minimize cascading
 
 Inheritance patterns should be avoided to avoid unnecessary complexity.
 
-Upgradable proxies are considered an antipattern. 
+Upgradable proxies are considered an antipattern.
 
-Where upgradability is required, it should be handled via a `rely` on the Pause Proxy and modular design. 
+Where upgradability is required, it should be handled via a `rely` on the Pause Proxy and modular design.
 *There are rare exceptions to this such as where there is a user mapping in state and high chance of needing to upgrade (e.g. cropper or charter).*
 
 ### Documentation
