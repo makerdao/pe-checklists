@@ -100,3 +100,4 @@ TeleportJoin
 TeleportRouter
 TeleportGateway
 uint
+DssVestTransferrable
