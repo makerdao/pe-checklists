@@ -9,7 +9,7 @@
 2. The contract has any type of privileged access to any core contract (such as `ward` status via `rely`)
 3. The contract relies on the Pause Proxy as a permissioned actor; if the pause proxy will at any point make an external call to this contract, then the contract is considered core and there is additional security and process work that needs to be done.
 4. The contract is intended for inclusion in the [chainlog](https://chainlog.makerdao.com/).
-5. If a contract is put forward to a business partner of the DAO, by DAO members, close consideration should be given to whether it would be perceived as core Maker brand by those partners.
+5. Through an action of the a DAO, Core Unit, subDAO or Ecosystem Actor member, the code could be reasonably understood to be "MakerDAO Code".  Inversely, outside actors should not construe community code as "core" unless it has gone through the process described here.
 
 ## Protocol Engineering Review Process for Core Contracts
 
@@ -33,13 +33,16 @@ Authorization permissions in the contract should be handled by a `wards` mapping
 
 ### Contract File
 
-`.sol` files should adhere to the following standards:
+Maker has its own idiomatic style for smart contracts.  We have documented the key points below. For any points that are not documented below or do not have an established pattern in the existing code, we recommend following the Solidity [style guide](https://docs.soliditylang.org/en/v0.8.17/style-guide.html) is highly recommended.
+
+As a bare minimum, `.sol` files should adhere to the following standards:
 
 - The SPDX license identifier is included at the start of the file
 - Pragma declarations immediately follow the license declaration
 - In almost all cases, there should only be one contract per file
 - A single newline at the end of the file
-
+- All `.sol` files should contain at most one contract declaration
+- Compilation should not require the use of intermediate representation (`via-ir`)
 ### Contract ordering
 
 Following and expanding on [Solidity Order of layout recommendations](https://docs.soliditylang.org/en/stable/style-guide.html#order-of-layout) our contracts are generally laid out in this way:
@@ -94,4 +97,4 @@ Repositories should have a `README.md` file which outlines the contract's purpos
 
 ### Deployment
 
-Contracts should be verified on Etherscan with a license and pragma clearly set. Optimizations generally should be turned off.  The verified code should match the main branch of the source repository on Github.
+Contracts should be verified on Etherscan with compiler version and license values populated. Optimizations should be turned off, with rare exception. Verified code should match the main branch of the source repository on GitHub.
