@@ -5,6 +5,8 @@ github
 goerli
 https
 makerdao
+DAO
+subDAO
 Onboarding
 YYYY
 GovAlpha
@@ -41,6 +43,7 @@ submodule
 IPFS
 config
 Repo
+repos
 arg
 args
 deployer
@@ -67,6 +70,7 @@ OSM
 medianizer
 LPs
 ERC
+auth
 authed
 setIlkDebtCeiling
 setIlkMaxLiquidationAmount
@@ -87,6 +91,7 @@ setStairstepExponentialDecrease
 setIlkAutoLineParameters
 cron
 submodule
+submodules
 ds
 Integrations
 Monetalis
@@ -100,3 +105,20 @@ TeleportJoin
 TeleportRouter
 TeleportGateway
 uint
+antipattern
+Antipatterns
+upgradability
+Daiwanese
+permissioned
+permissioning
+whitespace
+immutable
+immutables
+Fileable
+structs
+NatSpec
+Getter
+SPDX
+prepended
+OpenZeppelin
+Solmate
