@@ -9,7 +9,9 @@
 2. The contract has any type of privileged access to any core contract (such as `ward` status via `rely`)
 3. The contract relies on the Pause Proxy as a permissioned actor; if the pause proxy will at any point make an external call to this contract, then the contract is considered core and there is additional security and process work that needs to be done.
 4. The contract is intended for inclusion in the [chainlog](https://chainlog.makerdao.com/).
-5. Through an action of the a DAO, Core Unit, subDAO or Ecosystem Actor member, the code could be reasonably understood to be "MakerDAO Code".  Inversely, outside actors should not construe community code as "core" unless it has gone through the process described here.
+5. Through an action of the a DAO, Core Unit, subDAO or Ecosystem Actor member, the code could be reasonably understood to be "MakerDAO Code".
+
+Outside actors should not construe community code as "core" unless it has gone through the process described here.
 
 ## Protocol Engineering Review Process for Core Contracts
 
