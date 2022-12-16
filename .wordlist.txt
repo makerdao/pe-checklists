@@ -6,6 +6,7 @@ goerli
 https
 makerdao
 DAO
+subDAO
 Onboarding
 YYYY
 GovAlpha
@@ -117,3 +118,7 @@ Fileable
 structs
 NatSpec
 Getter
+SPDX
+prepended
+OpenZeppelin
+Solmate
