@@ -90,7 +90,7 @@ Where upgradability is required, it should be handled via a `rely` on the Pause 
 
 ### Documentation
 
-Repositories should have a `README.md` file which outlines the contract's purpose, its functionality and relevant instructions.  Any `external` or `public` functions should have [NatSpec comments](https://docs.soliditylang.org/en/latest/style-guide.html#natspec).
+Repositories should have a `README.md` file which outlines the contract's purpose, its functionality and relevant instructions.  Any `external` or `public` functions should have [NatSpec comments](https://docs.soliditylang.org/en/latest/style-guide.html#natspec). Major changes, such as pragma upgrades, should be documented.
 
 ### Deployment
 
