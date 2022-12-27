@@ -12,4 +12,4 @@ jobs:
       - name: TypoCheck
         uses: rojopolis/spellcheck-github-actions@0.28.0
         with:
-          config_path: .github/workflows/.spellcheck.yml
+          config_path: ./spellcheck.yml
