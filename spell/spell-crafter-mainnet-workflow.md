@@ -130,7 +130,7 @@ Repo: https://github.com/makerdao/spells-mainnet
 * [ ] Add deployed spell address & timestamp to `config.sol`
   * [ ] `deployed_spell: address(<deployed_spell_address>)`
   * [ ] `deployed_spell_created: <timestamp>`
-    * [ ] Run `seth block <block_number> timestamp` or `make deploy-stamp tx=<tx_hash>`
+    * [ ] Run `cast block <block_number> timestamp` or `make deploy-stamp tx=<tx_hash>`
 * [ ] Run Tests Locally with deployed spell address
 * [ ] Commit & Push for Review
 * [ ] Wait for CI to PASS
