@@ -15,10 +15,8 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
 * [ ] Pull `master` Locally, Create and Checkout Branch (IF Branch was not created via GitHub)
 * [ ] Cleanup Previous Spell's Actions in `Goerli-DssSpell.sol`
   * [ ] Check previous spells in the `archive` folder for cleanup patterns
-  * [ ] Check template in `template` (**ensure it's up to date**, checking against latest spells)
 * [ ] Cleanup Previous Spell's Onboarding Actions in `Goerli-DssSpellCollateral.sol`
   * [ ] Check previous spells in the `archive` folder for cleanup patterns
-  * [ ] Check template in `template` (**ensure it's up to date**, checking against latest spells)
 * [ ] Cleanup `src/test/config.sol` 
   * [ ] Set `deployed_spell` to `address(0)`
   * [ ] Set `deployed_spell_created` to `0`
