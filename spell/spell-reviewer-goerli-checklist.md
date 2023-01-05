@@ -14,9 +14,6 @@ Spell Actions:
   * [ ] empty (default)
 * [ ] 30 Days Expiry
   * [ ] weekly (monthly discarded)
-* [ ] Pragma OK
-  * [ ] Collateral Onboarding
-    * [ ] `pragma experimental ABIEncoderV2;` (Only IF `DssExecLib.addNewCollateral` is used)
 * [ ] dss-interfaces
   * [ ] git submodule hash matches github master commit
   * [ ] used in the current spell

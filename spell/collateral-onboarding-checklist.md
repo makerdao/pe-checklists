@@ -75,8 +75,6 @@
       * [ ] `gap`
       * [ ] `ttl`
     * [ ] Onboarding Actions
-      * [ ] ensure `ABIEncoderV2` is enabled
-          * [ ] `pragma experimental ABIEncoderV2;`
       * [ ] ensure `DssExecLib.addNewCollateral` is used (in `onboardCollaterals`, `DssSpellCollateral.sol`)
       * [ ] ensure `CollateralOpts` is used
         * [ ] `ilk` follows the ilk format `TOKEN-A`

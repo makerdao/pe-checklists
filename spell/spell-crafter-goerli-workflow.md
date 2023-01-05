@@ -46,9 +46,7 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
           `// https://forum.makerdao.com/t/<title>/<number>`
   * [ ] Check on `new-spells` discord channel when Exec Doc is ready
   * [ ] Pragma
-    * [ ] Current solc version `0.6.12`
-    * [ ] Collateral Onboarding
-      * [ ] Add `pragma experimental ABIEncoderV2;` (Only IF `DssExecLib.addNewCollateral` is used)
+    * [ ] Current solc version `0.8.16`
   * [ ] Interfaces
     * [ ] Avoid `dss-interfaces` multi-import layout (see [issue #69](https://github.com/makerdao/dss-interfaces/issues/69))
     * [ ] Prefer single import layout
