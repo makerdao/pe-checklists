@@ -75,7 +75,7 @@
       * [ ] `gap`
       * [ ] `ttl`
     * [ ] Onboarding Actions
-      * [ ] ensure `DssExecLib.addNewCollateral` is used (in `onboardCollaterals`, `DssSpellCollateral.sol`)
+      * [ ] ensure `DssExecLib.addNewCollateral` is used
       * [ ] ensure `CollateralOpts` is used
         * [ ] `ilk` follows the ilk format `TOKEN-A`
         * [ ] `gem` matches token address
