@@ -120,13 +120,14 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
 * [ ] Add deployed spell address & timestamp to `config.sol`
   * [ ] `deployed_spell: address(<deployed_spell_address>)`
   * [ ] `deployed_spell_created: <timestamp>`
-    * [ ] Run `seth block <block_number> timestamp` or `make deploy-stamp tx=<tx_hash>`
-* [ ] Ensure local tests pass
+    * [ ] Run `cast block <block_number> timestamp` or `make deploy-stamp tx=<tx_hash>`
+* [ ] Run Tests Locally with deployed spell address
 * [ ] Commit & Push for Review
 * [ ] Wait for CI to PASS
 * [ ] Wait for at Least Two Approvals
 * [ ] Archive spell via `date="YYYY-MM-DD" make archive-spell` (date as per the exec doc)
-* [ ] Wait for Merge Approval
+* [ ] Commit & Push Archive for Review
+* [ ] Wait for Merge Approvals and CI to PASS
 * [ ] Squash & Merge
 * [ ] Cast Spell via `make cast-spell` (ONLY ON GOERLI)
 * [ ] Check `cast()` trace (via [EthTx](https://ethtx.info/))
