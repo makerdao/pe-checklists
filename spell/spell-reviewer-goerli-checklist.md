@@ -9,11 +9,12 @@ Spell Actions:
 
 ## Checklist
 * [ ] Office Hours
-  * [ ] off (default, spell casted after deploying, pause delay 60 sec.)
+  * [ ] Off (default, spell casted after deploying, pause delay 60 sec.)
 * [ ] Exec Hash
   * [ ] empty (default)
 * [ ] 30 Days Expiry
-  * [ ] weekly (monthly discarded)
+  * [ ] weekly
+  * [ ] monthly (discarded)
 * [ ] dss-interfaces
   * [ ] git submodule hash matches github master commit
   * [ ] used in the current spell
