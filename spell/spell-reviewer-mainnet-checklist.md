@@ -17,8 +17,6 @@ Spell Actions:
   * [ ] script matches
   * [ ] `description` date in `DssSpell.sol` matches exec copy
 * [ ] 30 Days Expiry
-  * [ ] weekly
-  * [ ] monthly (discarded)
 * [ ] dss-interfaces
   * [ ] git submodule hash matches github master commit
   * [ ] used in the current spell

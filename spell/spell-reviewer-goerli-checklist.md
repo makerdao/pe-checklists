@@ -13,8 +13,6 @@ Spell Actions:
 * [ ] Exec Hash
   * [ ] empty (default)
 * [ ] 30 Days Expiry
-  * [ ] weekly
-  * [ ] monthly (discarded)
 * [ ] dss-interfaces
   * [ ] git submodule hash matches github master commit
   * [ ] used in the current spell
