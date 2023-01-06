@@ -13,16 +13,12 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
   * [ ] Note: for now current consensus is to use the same ticket issue number as per `spells-mainnet` (this could be revised)
 * [ ] Pull `master` Locally and Checkout Branch (IF Branch is created via GitHub)
 * [ ] Pull `master` Locally, Create and Checkout Branch (IF Branch was not created via GitHub)
-* [ ] Cleanup Previous Spell's Actions in `Goerli-DssSpell.sol`
+* [ ] Cleanup Previous Spell's Actions in `DssSpell.sol`
   * [ ] Check previous spells in the `archive` folder for cleanup patterns
-  * [ ] Check template in `template` (**ensure it's up to date**, checking against latest spells)
-* [ ] Cleanup Previous Spell's Onboarding Actions in `Goerli-DssSpellCollateral.sol`
-  * [ ] Check previous spells in the `archive` folder for cleanup patterns
-  * [ ] Check template in `template` (**ensure it's up to date**, checking against latest spells)
 * [ ] Cleanup `src/test/config.sol` 
   * [ ] Set `deployed_spell` to `address(0)`
   * [ ] Set `deployed_spell_created` to `0`
-* [ ] Cleanup Specific Tests in `Goerli-DssSpell.t.sol`
+* [ ] Cleanup Specific Tests in `DssSpell.t.sol`
   * [ ] Check previous spells in the `archive` folder for cleanup patterns
   * [ ] Disable specific tests IF Not Used (e.g. `testCollateralIntegrations`, `testNewChainlogValues`, `testNewIlkRegistryValues`, ...)
     * [ ] Remove spell-specific part
@@ -48,9 +44,7 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
           `// https://forum.makerdao.com/t/<title>/<number>`
   * [ ] Check on `new-spells` discord channel when Exec Doc is ready
   * [ ] Pragma
-    * [ ] Current solc version `0.6.12`
-    * [ ] Collateral Onboarding
-      * [ ] Add `pragma experimental ABIEncoderV2;` (Only IF `DssExecLib.addNewCollateral` is used)
+    * [ ] Current solc version `0.8.16`
   * [ ] Interfaces
     * [ ] Avoid `dss-interfaces` multi-import layout (see [issue #69](https://github.com/makerdao/dss-interfaces/issues/69))
     * [ ] Prefer single import layout
@@ -86,7 +80,7 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
     * [ ] Ensure `DssExecLib` address used in current spell (`DssExecLib.address`) matches `dss-exec-lib` [Latest Release Tag](https://github.com/makerdao/dss-exec-lib/releases/latest)
     * [ ] Check previous spells for common patterns
 * [ ] Adjust System Values, Collateral Values in `config.sol` (i.e. diffcheck via vscode `code --diff config1.sol config2.sol`) with `spells-mainnet`)
-* [ ] Add Specific Tests in `Goerli-DssSpell.t.sol` (i.e. diffcheck via vscode `code --diff source1.sol source2.sol`) with `spells-mainnet`)
+* [ ] Add Specific Tests in `DssSpell.t.sol` (i.e. diffcheck via vscode `code --diff source1.sol source2.sol`) with `spells-mainnet`)
   * [ ] Add new collateral tests
   * [ ] Add new chainLog value tests
   * [ ] Add new ilk registry value tests

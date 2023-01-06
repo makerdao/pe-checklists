@@ -15,8 +15,6 @@ Repo: https://github.com/makerdao/spells-mainnet
 * [ ] Pull `master` Locally, Create and Checkout Branch (IF Branch was not created via GitHub)
 * [ ] Cleanup Previous Spell's Actions in `DssSpell.sol` (diffcheck with Goerli)
   * [ ] Check previous spells in the `archive` folder for cleanup patterns
-* [ ] Cleanup Previous Spell's Onboarding Actions in `DssSpellCollateral.sol`
-  * [ ] Check previous spells in the `archive` folder for cleanup patterns
 * [ ] Cleanup `src/test/config.sol`
   * [ ] Set `deployed_spell` to `address(0)`
   * [ ] Set `deployed_spell_created` to `0`
@@ -48,9 +46,7 @@ Repo: https://github.com/makerdao/spells-mainnet
           `// https://forum.makerdao.com/t/<title>/<number>`
   * [ ] Check on `new-spells` discord channel when Exec Doc is ready
   * [ ] Pragma
-    * [ ] Current solc version `0.6.12`
-    * [ ] Collateral Onboarding
-      * [ ] Add `pragma experimental ABIEncoderV2;` (Only IF `DssExecLib.addNewCollateral` is used)
+    * [ ] Current solc version `0.8.16`
   * [ ] Interfaces
     * [ ] Avoid `dss-interfaces` multi-import layout (see [issue #69](https://github.com/makerdao/dss-interfaces/issues/69))
     * [ ] Prefer single import layout
@@ -134,7 +130,7 @@ Repo: https://github.com/makerdao/spells-mainnet
 * [ ] Add deployed spell address & timestamp to `config.sol`
   * [ ] `deployed_spell: address(<deployed_spell_address>)`
   * [ ] `deployed_spell_created: <timestamp>`
-    * [ ] Run `seth block <block_number> timestamp` or `make deploy-stamp tx=<tx_hash>`
+    * [ ] Run `cast block <block_number> timestamp` or `make deploy-stamp tx=<tx_hash>`
 * [ ] Run Tests Locally with deployed spell address
 * [ ] Commit & Push for Review
 * [ ] Wait for CI to PASS
