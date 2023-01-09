@@ -27,8 +27,8 @@
         * [ ] parameters are correct
           * [ ] `owner` matches MCD Pause Proxy
           * [ ] `ilk` is the `bytes32` representation of "TOKEN-A"
-            * [ ] `seth --to-ascii <bytes32>` matches ASCII Ilk
-            * [ ] `seth --to-bytes32 $(seth --from-ascii "TOKEN-A")` matches `bytes32`
+            * [ ] `cast --to-ascii <bytes32>` matches ASCII Ilk
+            * [ ] `cast --to-bytes32 $(cast --from-ascii "TOKEN-A")` matches `bytes32`
           * [ ] `gem` matches token contract
     * [ ] `Clip`
       * [ ] deployed via [ClipFab](https://github.com/makerdao/dss-deploy/blob/master/src/DssDeploy.sol)
@@ -39,8 +39,8 @@
           * [ ] `spotter` matches chainlog
           * [ ] `dog` matches chainlog
           * [ ] `ilk` is the `bytes32` representation of "TOKEN-A"
-            * [ ] `seth --to-ascii <bytes32>` matches ASCII Ilk
-            * [ ] `seth --to-bytes32 $(seth --from-ascii "TOKEN-A")` matches `bytes32`
+            * [ ] `cast --to-ascii <bytes32>` matches ASCII Ilk
+            * [ ] `cast --to-bytes32 $(cast --from-ascii "TOKEN-A")` matches `bytes32`
     * [ ] `Calc`
       * [ ] deployed via [CalcFab](https://github.com/makerdao/dss-deploy/blob/master/src/DssDeploy.sol)
         * [ ] Fab matches [chainlog](https://chainlog.makerdao.com/)
@@ -75,9 +75,7 @@
       * [ ] `gap`
       * [ ] `ttl`
     * [ ] Onboarding Actions
-      * [ ] ensure `ABIEncoderV2` is enabled
-          * [ ] `pragma experimental ABIEncoderV2;`
-      * [ ] ensure `DssExecLib.addNewCollateral` is used (in `onboardCollaterals`, `DssSpellCollateral.sol`)
+      * [ ] ensure `DssExecLib.addNewCollateral` is used
       * [ ] ensure `CollateralOpts` is used
         * [ ] `ilk` follows the ilk format `TOKEN-A`
         * [ ] `gem` matches token address

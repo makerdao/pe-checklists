@@ -2,10 +2,6 @@
 
 ## Mainnet
 
-PR: https://github.com/makerdao/spells-mainnet/pull/TODO
-
-Exec date: YYYY-MM-DD
-
 Spell Actions:
 
 * TODO
@@ -19,12 +15,8 @@ Spell Actions:
   * [ ] `community` commit is the latest change or merge commit
   * [ ] `community` repo url matches
   * [ ] script matches
+  * [ ] `description` date in `DssSpell.sol` matches exec copy
 * [ ] 30 Days Expiry
-  * [ ] weekly
-  * [ ] monthly (discarded)
-* [ ] Pragma OK
-  * [ ] Collateral Onboarding
-    * [ ] `pragma experimental ABIEncoderV2;` (Only IF `DssExecLib.addNewCollateral` is used)
 * [ ] dss-interfaces
   * [ ] git submodule hash matches github master commit
   * [ ] used in the current spell
@@ -70,6 +62,7 @@ Spell Actions:
 * [ ] Onboarding
   * [ ] [Collateral Onboarding](./collateral-onboarding-checklist.md)
   * [ ] [RWA Onboarding](./rwa-onboarding-checklist.md)
+  * [ ] [Teleport Onboarding](./teleport-onboarding-checklist.md)
 * [ ] Offboarding (Lerp `mat`)
   * [ ] 1st Stage Spell Actions
     * [ ] Remove Ilk from Autoline
@@ -126,10 +119,11 @@ Spell Actions:
     * [ ] Cliff Duration matches Doc (`eta`)
     * [ ] Restricted (by default)
     * [ ] Manager match Doc (`mgr`, set to zero for DAI streams by default)
+    * [ ] IF [DssVestTransferrable](https://github.com/makerdao/dss-vest/blob/master/src/DssVest.sol#L463) is used
+      * [ ] Ensure `DssVestTransferrable` allowance is increased by new vesting delta (by approving the `transferrable` vest contract to allowance + new total amount streamed)
   * [ ] CUs MKR Transfers
     * [ ] Recipient Addresses match Doc
     * [ ] Transfers Amounts match Doc
-    * [ ] MKR `DssVestTransferrable` Allowance matches Total Transfer Amounts
     * [ ] Follows Previous Patterns
   * [ ] Direct SB DAI Payment
     * [ ] Recipient Addresses match Doc
@@ -152,9 +146,11 @@ Spell Actions:
   * [ ] Optimization Enabled: No
   * [ ] Other Settings: default evmVersion, GNU AGPLv3 license
 * [ ] Deployed Spell Code matches GitHub
-  * diffcheck etherscan source against spell PR (i.e. via vscode `code --diff etherscan.sol github.sol`)
+  * [ ] diffcheck etherscan source against spell PR (i.e. via vscode `code --diff etherscan.sol github.sol`)
+* [ ] Deploy Timestamp Match
+  * [ ] Ensure `make deploy-stamp tx=<tx>` matches [config](https://github.com/makerdao/spells-mainnet/blob/master/src/test/config.sol) `deployed_spell_created` timestamp
 * [ ] Ensure Etherscan `Libraries Used` matches DssExecLib [Latest Release](https://github.com/makerdao/dss-exec-lib/releases/latest)
-  * git submodule hash matches [dss-exec-lib](https://github.com/makerdao/dss-exec-lib) latest release's tag commit
+  * [ ] git submodule hash matches [dss-exec-lib](https://github.com/makerdao/dss-exec-lib) latest release's tag commit
 * [ ] Local Tests and CI PASS
 * [ ] Archive matches `src`
   * `make diff-archive-spell`

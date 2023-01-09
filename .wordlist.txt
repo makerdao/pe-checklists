@@ -105,6 +105,7 @@ TeleportJoin
 TeleportRouter
 TeleportGateway
 uint
+DssVestTransferrable
 antipattern
 Antipatterns
 upgradability

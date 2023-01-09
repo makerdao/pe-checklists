@@ -14,8 +14,8 @@
         * [ ] `newAuthGemJoin` parameters are correct
           * [ ] `owner` matches MCD Pause Proxy
           * [ ] `ilk` is the `bytes32` representation of "RWAXXX-A"
-            * [ ] `seth --to-ascii <bytes32>` matches ASCII Ilk
-            * [ ] `seth --to-bytes32 $(seth --from-ascii "RWAXXX-A")` matches `bytes32`
+            * [ ] `cast --to-ascii <bytes32>` matches ASCII Ilk
+            * [ ] `cast --to-bytes32 $(cast --from-ascii "RWAXXX-A")` matches `bytes32`
           * [ ] `gem` matches `RwaToken` deployed contract
     * [ ] `RwaUrn2`
       * [ ] contract is verified on etherscan
