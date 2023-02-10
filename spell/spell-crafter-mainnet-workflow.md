@@ -18,6 +18,7 @@ Repo: https://github.com/makerdao/spells-mainnet
 * [ ] Cleanup `src/test/config.sol`
   * [ ] Set `deployed_spell` to `address(0)`
   * [ ] Set `deployed_spell_created` to `0`
+  * [ ] Set `deployed_spell_block` to `0`
   * [ ] Consider to add `previous_spell` address if it haven't been executed yet
 * [ ] Cleanup Specific Tests in `DssSpell.t.sol`
   * [ ] Check previous spells in the `archive` folder for cleanup patterns

@@ -18,6 +18,7 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
 * [ ] Cleanup `src/test/config.sol` 
   * [ ] Set `deployed_spell` to `address(0)`
   * [ ] Set `deployed_spell_created` to `0`
+  * [ ] Set `deployed_spell_block` to `0`
 * [ ] Cleanup Specific Tests in `DssSpell.t.sol`
   * [ ] Check previous spells in the `archive` folder for cleanup patterns
   * [ ] Disable specific tests IF Not Used (e.g. `testCollateralIntegrations`, `testNewChainlogValues`, `testNewIlkRegistryValues`, ...)
