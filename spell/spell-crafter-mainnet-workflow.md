@@ -17,8 +17,6 @@ Repo: https://github.com/makerdao/spells-mainnet
   * [ ] Check previous spells in the `archive` folder for cleanup patterns
 * [ ] Cleanup `src/test/config.sol`
   * [ ] Set `deployed_spell` to `address(0)`
-  * [ ] Set `deployed_spell_created` to `0`
-  * [ ] Set `deployed_spell_block` to `0`
   * [ ] Consider to add `previous_spell` address if it haven't been executed yet
 * [ ] Cleanup Specific Tests in `DssSpell.t.sol`
   * [ ] Check previous spells in the `archive` folder for cleanup patterns
@@ -128,11 +126,8 @@ Repo: https://github.com/makerdao/spells-mainnet
     * [ ] `seth chain`
 * [ ] Deploy spell on Goerli via `make deploy`
   * [ ] Ensure spell is verified on etherscan
-* [ ] Add deployed spell address, timestamp and block number to `config.sol`
+* [ ] Add deployed spell address to `config.sol`
   * [ ] `deployed_spell: address(<deployed_spell_address>)`
-  * [ ] `deployed_spell_created: <timestamp>`
-  * [ ] `deployed_spell_block: <block number>`
-    * [ ] Run `make deploy-info tx=<tx_hash>` to get timestamp and block number
 * [ ] Run Tests Locally with deployed spell address
 * [ ] Commit & Push for Review
 * [ ] Wait for CI to PASS
