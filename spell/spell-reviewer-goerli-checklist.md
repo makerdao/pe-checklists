@@ -18,11 +18,15 @@ Spell Actions:
   * [ ] used in the current spell
   * [ ] cleanup previous ones
   * [ ] if submodule upgrades are present make sure `dss-exec-lib` is synced as well
-* [ ] Rates OK
+* [ ] Static Interfaces
+  * [ ] ensure they match `dss-interfaces`
+  * [ ] check on-chain interface of deployed contract via `cast interfaces <contract_address>` to ensure correctness
+  * [ ] interface naming style should match with `Like` suffix (e.g. `VatLike`)
+* [ ] Rates Match
   * [ ] Compare against [IPFS](https://ipfs.io/ipfs/QmVp4mhhbwWGTfbh2BzwQB9eiBrQBKiqcPRZCaAxNUaar6)
   * [ ] Calculate manually using `bc -l <<< 'scale=27; e( l(1.0X)/(60 * 60 * 24 * 365) )'` (replace X with %, e.g. 1 = 1%)
   * [ ] Variable visibility declared as internal
-* [ ] Math OK
+* [ ] Math Match
   * [ ] Internal Precision
     * [ ] `WAD = 10**18`
     * [ ] `RAY = 10**27`
