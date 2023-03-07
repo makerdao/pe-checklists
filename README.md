@@ -8,11 +8,11 @@
 >These checklists emerged during the review and crafting processes as ways to avoid pitfalls, allowing protocol engineers to focus on more in-depth reviews.
 >Future workflow improvements will be reflected in these checklists.
 
-## Core Contracts
+## Checklists
+
+### Core Contracts
 
 - [Standards](core/standards.md)
-
-## Checklists
 
 ### Spells
 
