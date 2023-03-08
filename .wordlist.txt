@@ -123,3 +123,4 @@ SPDX
 prepended
 OpenZeppelin
 Solmate
+setIlkAutoLineDebtCeiling
