@@ -12,6 +12,7 @@ Spell Actions:
   * [ ] Off (default, spell casted after deploying, pause delay 60 sec.)
 * [ ] Exec Hash
   * [ ] empty (default)
+  * [ ] ensure `description` matches `Goerli Spell`
 * [ ] 30 Days Expiry
 * [ ] dss-interfaces
   * [ ] git submodule hash matches github master commit
