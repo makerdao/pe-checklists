@@ -26,6 +26,7 @@ Spell Actions:
   * [ ] ensure they match `dss-interfaces`
   * [ ] check on-chain interface of deployed contract via `cast interfaces <contract_address>` to ensure correctness
   * [ ] interface naming style should match with `Like` suffix (e.g. `VatLike`)
+  * [ ] ensure they only list used functions in spell code
 * [ ] Rates Match
   * [ ] Compare against [IPFS](https://ipfs.io/ipfs/QmVp4mhhbwWGTfbh2BzwQB9eiBrQBKiqcPRZCaAxNUaar6)
   * [ ] Check manually via `make rates pct=<pct>` (e.g. pct=0.75)
