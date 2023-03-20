@@ -12,10 +12,10 @@ Spell Actions:
   * [ ] On (Collateral Onboarding, Keepers, Integrations, ...)
   * [ ] matches exec doc
 * [ ] Exec Hash
-  * [ ] `community` commit is the latest change or merge commit
-  * [ ] `community` repo url matches
+  * [ ] [community](https://github.com/makerdao/community) commit is the latest file change or PR merge commit
+  * [ ] [community](https://github.com/makerdao/community) raw file url matches
   * [ ] script matches
-  * [ ] `description` date in `DssSpell.sol` matches exec copy
+  * [ ] `description` date in `DssSpell.sol` matches exec copy date
 * [ ] 30 Days Expiry
 * [ ] dss-interfaces
   * [ ] git submodule hash matches github master commit
