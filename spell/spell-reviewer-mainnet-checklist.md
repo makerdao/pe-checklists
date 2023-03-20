@@ -30,7 +30,7 @@ Spell Actions:
   * [ ] Compare against [IPFS](https://ipfs.io/ipfs/QmVp4mhhbwWGTfbh2BzwQB9eiBrQBKiqcPRZCaAxNUaar6)
   * [ ] Check manually via `make rates pct=<pct>` (e.g. pct=0.75)
   * [ ] Variable visibility declared as internal
-* [ ] Math Match
+* [ ] Math matches
   * [ ] Internal Precision
     * [ ] `WAD = 10**18`
     * [ ] `RAY = 10**27`
