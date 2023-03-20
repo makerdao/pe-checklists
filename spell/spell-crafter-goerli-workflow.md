@@ -107,8 +107,8 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
       * [ ] `export ETH_GAS_PRICE=$(seth --to-wei X gwei)`
         * [ ] Check current gas price using `seth gas-price` and Set `ETH_GAS_PRICE` accordingly (e.g. 40 gwei)
       * [ ] `export ETH_PRIO_FEE=$(seth --to-wei X gwei)`
-        * [ ] Check [current gas priority fee](https://etherscan.io/gastracker) and set `ETH_PRIO_FEE` accordingly (e.g. 2 gwei)
-    * [ ] Mainnet RPC URL
+        * [ ] Check current gas priority fee and set `ETH_PRIO_FEE` accordingly (e.g. 2 gwei)
+    * [ ] Goerli RPC URL
       * [ ] `export ETH_RPC_URL=<url>`
     * [ ] Etherscan API KEY
       * [ ] `export ETHERSCAN_API_KEY=<key>`
