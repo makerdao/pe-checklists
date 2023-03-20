@@ -28,7 +28,7 @@ Spell Actions:
   * [ ] interface naming style should match with `Like` suffix (e.g. `VatLike`)
 * [ ] Rates Match
   * [ ] Compare against [IPFS](https://ipfs.io/ipfs/QmVp4mhhbwWGTfbh2BzwQB9eiBrQBKiqcPRZCaAxNUaar6)
-  * [ ] Calculate manually using `bc -l <<< 'scale=27; e( l(1.0X)/(60 * 60 * 24 * 365) )'` (replace X with %, e.g. 1 = 1%)
+  * [ ] Check manually via `make rates pct=<pct>` (e.g. pct=0.75)
   * [ ] Variable visibility declared as internal
 * [ ] Math Match
   * [ ] Internal Precision
