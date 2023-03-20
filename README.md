@@ -27,4 +27,4 @@
 - [Spell Reviewer Mainnet Checklist](./spell/spell-reviewer-mainnet-checklist.md)
 - [Spell Reviewer Collateral Onboarding Checklist](./spell/collateral-onboarding-checklist.md)
 - [Spell Reviewer RWA Onboarding Checklist](./spell/rwa-onboarding-checklist.md)
-- [Spell Reviewer Teleport Onboarding Checklist](./spell/teleport-oboarding-checklist.md)
+- [Spell Reviewer Teleport Onboarding Checklist](./spell/teleport-onboarding-checklist.md)
