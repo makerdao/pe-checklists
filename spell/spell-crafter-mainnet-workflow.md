@@ -49,6 +49,7 @@ Repo: https://github.com/makerdao/spells-mainnet
   * [ ] Pragma
     * [ ] Current solc version `0.8.16`
   * [ ] Interfaces
+    * [ ] Consider using DssExecLib actions where possible (to avoid introducing interfaces were not required)
     * [ ] Avoid `dss-interfaces` multi-import layout (see [issue #69](https://github.com/makerdao/dss-interfaces/issues/69))
     * [ ] Prefer single import layout
       * [ ] `import { VatAbstract } from "dss-interfaces/dss/VatAbstract.sol";`
