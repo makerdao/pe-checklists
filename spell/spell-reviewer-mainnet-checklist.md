@@ -185,6 +185,6 @@ Spell Actions:
     * [ ] `deployed_spell_block` block number
 * [ ] Ensure Etherscan `Libraries Used` matches DssExecLib [Latest Release](https://github.com/makerdao/dss-exec-lib/releases/latest)
   * [ ] git submodule hash matches [dss-exec-lib](https://github.com/makerdao/dss-exec-lib) latest release's tag commit
-* [ ] Local Tests and CI PASS
 * [ ] Archive matches `src`
   * `make diff-archive-spell`
+* [ ] Local Tests and CI PASS

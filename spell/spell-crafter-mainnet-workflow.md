@@ -137,15 +137,13 @@ Repo: https://github.com/makerdao/spells-mainnet
   * [ ] `deployed_spell_block: <block number>`
     * [ ] Run `make deploy-info tx=<tx_hash>` to get timestamp and block number
 * [ ] Run Tests Locally with deployed spell address
+* [ ] Archive Spell via `make archive-spell` for current date (or `date="YYYY-MM-DD" make archive-spell`)
 * [ ] Commit & Push for Review
 * [ ] Wait for CI to PASS
 * [ ] Wait for at Least two Approvals to Share for Publishing to GovAlpha
 * [ ] Share Deployed Address in `new-spells`
-* [ ] Archive Spell via `make archive-spell` for current date (or `date="YYYY-MM-DD" make archive-spell`)
-* [ ] Commit & Push Archive for Review
-* [ ] Wait for Merge Approvals and CI to PASS
-* [ ] Squash & Merge
 * [ ] Fill Spell Crafter Related Boxes in the Main Exec Doc Sheet
+* [ ] Squash & Merge
 
 ## Next Steps
 * [ ] `MegaPoker` Contract Updates (handed over to Oracle Core Unit (OCU))

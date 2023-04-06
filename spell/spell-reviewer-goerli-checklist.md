@@ -182,11 +182,11 @@ Spell Actions:
     * [ ] `deployed_spell_block` block number
 * [ ] Ensure Etherscan `Libraries Used` matches DssExecLib [Latest Release](https://github.com/makerdao/dss-exec-lib/releases/latest)
   * [ ] git submodule hash matches [dss-exec-lib](https://github.com/makerdao/dss-exec-lib) latest release's tag commit
+* [ ] Archive matches `src`
+  * `make diff-archive-spell`
 * [ ] Local Tests and CI PASS
 * [ ] Spell is Cast (**only on Goerli**)
   * [ ] Check Cast Trace (via [EthTx](https://ethtx.info/))
     * [ ] Ensure no reverts are present that block execution
       * [ ] Inspect low level call reverts if expected
     * [ ] Ensure all actions are executed and no out-of-gas errors are present
-* [ ] Archive matches `src`
-  * `make diff-archive-spell`
