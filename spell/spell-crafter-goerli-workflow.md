@@ -98,6 +98,7 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
 * [ ] Pre-Deploy Setup and Checks (currently via `dapptools`)
   * [ ] Set local env (`.sethrc`)
     * [ ] Deployer
+      * [ ] Avoid using the same deployer for mainnet and testnet(to avoid deploying contracts with the same address but different sources)
       * [ ] `export ETH_PASSWORD=~/.env/password.txt`
       * [ ] `export ETH_KEYSTORE=~/.ethereum/keystore`
       * [ ] `export ETH_FROM=<address>`
