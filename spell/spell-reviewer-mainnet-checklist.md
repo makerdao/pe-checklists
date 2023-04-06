@@ -52,6 +52,7 @@ Spell Actions:
   * [ ] Constructor args ok (e.g. `vat`, `dai`, `dog`, ...)
     * [ ] Match [ChainLog](https://chainlog.makerdao.com/)
   * [ ] Wards ok (pause proxy relied, deployer denied)
+    * [ ] Check if the contract requires to rely the ESM in the spell (to allow to deny pause proxy during Emergency Shutdown, via `denyProxy`).
   * [ ] Matches corresponding github source code (i.e. diffcheck via vscode `code --diff etherscan.sol github.sol`)
   * [ ] Ensure deployer address is included into `addresses_deployers.sol` (**to keep up to date**)
 * [ ] External Contracts Calls (e.g. Starknet)
