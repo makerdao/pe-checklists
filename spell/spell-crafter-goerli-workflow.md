@@ -73,6 +73,7 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
     * [ ] Check with Oracle CU
       * [ ] Check IF oracle deployment is required (e.g. univ3-lp-oracle, new ilk pip, ...)
   * [ ] Ensure every spell variable is declared as public/internal
+  * [ ] Limit `immutable` visibility when fetching addresses from the `ChainLog` via `DssExecLib.getChangelogAddress` and use `constant` for static addresses
   * [ ] Add New Addresses in the ChainLog
   * [ ] Bump ChainLog, accordingly with spec (`major`, `minor`, `patch`)
     * [ ] MAJOR -> New Vat

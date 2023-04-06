@@ -168,6 +168,7 @@ Spell Actions:
     * [ ] PATCH -> Collateral addition or addition/modification
 * [ ] `addresses_mainnet.sol` matches spell code
 * [ ] Ensure every spell variable is declared as public/internal
+* [ ] Ensure `immutable` visibility is only used when fetching addresses from the `ChainLog` via `DssExecLib.getChangelogAddress` and `constant` is used instead for literal addresses
 * [ ] Spell actions match [GovAlpha Spell Content Sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw) and hashed exec doc
 * [ ] Tests PASS
   * [ ] Ensure Good Coverage
