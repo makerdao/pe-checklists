@@ -10,7 +10,7 @@ Repo: https://github.com/makerdao/spells-mainnet
 
 ### Steps:
 * [ ] Create Branch on GitHub `PE-<kanban ticket issue number>`
-  * [ ] Note: for now current consensus is to use the same ticket issue number as per `spells-goerli` (this could be revised)
+  * [ ] Ensure the same ticket issue number is used as per `spells-goerli` spell
 * [ ] Pull `master` Locally and Checkout Branch (IF Branch is created via GitHub)
 * [ ] Pull `master` Locally, Create and Checkout Branch (IF Branch was not created via GitHub)
 * [ ] Cleanup Previous Spell's Actions in `DssSpell.sol` (diffcheck with Goerli)
@@ -49,7 +49,7 @@ Repo: https://github.com/makerdao/spells-mainnet
   * [ ] Pragma
     * [ ] Current solc version `0.8.16`
   * [ ] Interfaces
-    * [ ] Consider using `DssExecLib` actions where possible (to avoid introducing interfaces were not required)
+    * [ ] Consider using `DssExecLib` actions where possible (to avoid introducing interfaces where not required)
     * [ ] Avoid `dss-interfaces` multi-import layout (see [issue #69](https://github.com/makerdao/dss-interfaces/issues/69))
     * [ ] Prefer single import layout
       * [ ] `import { VatAbstract } from "dss-interfaces/dss/VatAbstract.sol";`
@@ -77,7 +77,7 @@ Repo: https://github.com/makerdao/spells-mainnet
       * [ ] Check IF oracle deployment is required (e.g. univ3-lp-oracle, new ilk pip, ...)
       * [ ] Note: oracle should be deployed on mainnet before Friday (usually Wed-Thu)
   * [ ] Ensure every spell variable is declared as public/internal
-  * [ ] Limit `immutable` visibility when fetching addresses from the `ChainLog` via `DssExecLib.getChangelogAddress` and use `constant` for literal addresses
+  * [ ] Consider `immutable` visibility when fetching addresses from the `ChainLog` via `DssExecLib.getChangelogAddress` and use `constant` for literal addresses
   * [ ] Add New Addresses in the ChainLog
   * [ ] Bump ChainLog, accordingly with spec (`major`, `minor`, `patch`)
     * [ ] MAJOR -> New Vat
@@ -109,7 +109,7 @@ Repo: https://github.com/makerdao/spells-mainnet
 * [ ] Pre-Deploy Setup and Checks (currently via `dapptools`)
   * [ ] Set local env (`.sethrc`)
     * [ ] Deployer
-      * [ ] Avoid using the same deployer for mainnet and testnet(to avoid deploying contracts with the same address but different sources)
+      * [ ] Avoid using the same deployer for mainnet and testnet (to avoid deploying contracts with the same address but different sources)
       * [ ] `export ETH_PASSWORD=~/.env/password.txt`
       * [ ] `export ETH_KEYSTORE=~/.ethereum/keystore`
       * [ ] `export ETH_FROM=<address>`

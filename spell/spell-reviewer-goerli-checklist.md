@@ -12,9 +12,9 @@ Spell Actions:
   * [ ] Off (default, spell casted after deploying, pause delay 60 sec.)
 * [ ] Exec Hash
   * [ ] empty (default)
-  * [ ] ensure `description` matches `Goerli Spell`
+  * [ ] ensure `description` is `Goerli Spell`
 * [ ] 30 Days Expiry
-* [ ] dss-interfaces
+* [ ] `dss-interfaces`
   * [ ] git submodule hash matches github master commit
   * [ ] used in the current spell
   * [ ] cleanup previous ones
@@ -24,9 +24,9 @@ Spell Actions:
   * [ ] check on-chain interface of deployed contract via `cast interfaces <contract_address>` to ensure correctness
   * [ ] interface naming style should match with `Like` suffix (e.g. `VatLike`)
   * [ ] ensure they only list used functions in spell code
-* [ ] Rates matches
+* [ ] Rates match
   * [ ] Compare against [IPFS](https://ipfs.io/ipfs/QmVp4mhhbwWGTfbh2BzwQB9eiBrQBKiqcPRZCaAxNUaar6)
-  * [ ] Check manually via `make rates pct=<pct>` (e.g. pct=0.75)
+  * [ ] Check manually via `make rates pct=<pct>` (e.g. pct=0.75, for 0.75%)
   * [ ] Variable visibility declared as internal
 * [ ] Math matches
   * [ ] Internal Precision
@@ -49,7 +49,7 @@ Spell Actions:
   * [ ] Constructor args ok (e.g. `vat`, `dai`, `dog`, ...)
     * [ ] Match [ChainLog](https://chainlog.makerdao.com/)
   * [ ] Wards ok (pause proxy relied, deployer denied)
-    * [ ] Check if the contract requires to rely the ESM in the spell (to allow to deny pause proxy during Emergency Shutdown, via `denyProxy`).
+    * [ ] Check whether the contract requires to rely the ESM in the spell (in order to allow de-authing the pause proxy during Emergency Shutdown, via `denyProxy`).
   * [ ] Matches corresponding github source code (i.e. diffcheck via vscode `code --diff etherscan.sol github.sol`)
   * [ ] Ensure deployer address is included into `addresses_deployers.sol` (**to keep up to date**)
 * [ ] External Contracts Calls (e.g. Starknet)

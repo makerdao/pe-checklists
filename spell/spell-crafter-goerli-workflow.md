@@ -10,7 +10,7 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
 
 ### Steps:
 * [ ] Create Branch on GitHub `PE-<kanban ticket issue number>`
-  * [ ] Note: for now current consensus is to use the same ticket issue number as per `spells-mainnet` (this could be revised)
+  * [ ] Ensure the same ticket issue number is used for `spells-mainnet` spell
 * [ ] Pull `master` Locally and Checkout Branch (IF Branch is created via GitHub)
 * [ ] Pull `master` Locally, Create and Checkout Branch (IF Branch was not created via GitHub)
 * [ ] Cleanup Previous Spell's Actions in `DssSpell.sol`
@@ -47,7 +47,7 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
   * [ ] Pragma
     * [ ] Current solc version `0.8.16`
   * [ ] Interfaces
-    * [ ] Consider using `DssExecLib` actions where possible (to avoid introducing interfaces were not required)
+    * [ ] Consider using `DssExecLib` actions where possible (to avoid introducing interfaces where not required)
     * [ ] Avoid `dss-interfaces` multi-import layout (see [issue #69](https://github.com/makerdao/dss-interfaces/issues/69))
     * [ ] Prefer single import layout
       * [ ] `import { VatAbstract } from "dss-interfaces/dss/VatAbstract.sol";`
@@ -73,7 +73,7 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
     * [ ] Check with Oracle CU
       * [ ] Check IF oracle deployment is required (e.g. univ3-lp-oracle, new ilk pip, ...)
   * [ ] Ensure every spell variable is declared as public/internal
-  * [ ] Limit `immutable` visibility when fetching addresses from the `ChainLog` via `DssExecLib.getChangelogAddress` and use `constant` for static addresses
+  * [ ] Consider `immutable` visibility when fetching addresses from the `ChainLog` via `DssExecLib.getChangelogAddress` and use `constant` for static addresses
   * [ ] Add New Addresses in the ChainLog
   * [ ] Bump ChainLog, accordingly with spec (`major`, `minor`, `patch`)
     * [ ] MAJOR -> New Vat
@@ -100,7 +100,7 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
 * [ ] Pre-Deploy Setup and Checks (currently via `dapptools`)
   * [ ] Set local env (`.sethrc`)
     * [ ] Deployer
-      * [ ] Avoid using the same deployer for mainnet and testnet(to avoid deploying contracts with the same address but different sources)
+      * [ ] Avoid using the same deployer for mainnet and testnet (to avoid deploying contracts with the same address but different sources)
       * [ ] `export ETH_PASSWORD=~/.env/password.txt`
       * [ ] `export ETH_KEYSTORE=~/.ethereum/keystore`
       * [ ] `export ETH_FROM=<address>`
@@ -127,7 +127,7 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
   * [ ] `deployed_spell_block: <block number>`
     * [ ] Run `make deploy-info tx=<tx_hash>` to get timestamp and block number
 * [ ] Run Tests Locally with deployed spell address
-* [ ] Archive spell via `date="YYYY-MM-DD" make archive-spell` (date as per the exec doc)
+* [ ] Archive spell via `date="YYYY-MM-DD" make archive-spell` (date as per cast timestamp)
 * [ ] Commit & Push for Review
 * [ ] Wait for CI to PASS
 * [ ] Wait for at Least Two Approvals
