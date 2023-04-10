@@ -127,7 +127,7 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
   * [ ] `deployed_spell_block: <block number>`
     * [ ] Run `make deploy-info tx=<tx_hash>` to get timestamp and block number
 * [ ] Run Tests Locally with deployed spell address
-* [ ] Archive spell via `date="YYYY-MM-DD" make archive-spell` (date as per cast timestamp)
+* [ ] Archive Spell via `make archive-spell` for current date or `date="YYYY-MM-DD" make archive-spell` (date as per cast timestamp)
 * [ ] Commit & Push for Review
 * [ ] Wait for CI to PASS
 * [ ] Wait for at Least Two Approvals

@@ -183,7 +183,8 @@ Spell Actions:
 * [ ] Ensure Etherscan `Libraries Used` matches DssExecLib [Latest Release](https://github.com/makerdao/dss-exec-lib/releases/latest)
   * [ ] git submodule hash matches [dss-exec-lib](https://github.com/makerdao/dss-exec-lib) latest release's tag commit
 * [ ] Archive matches `src`
-  * `make diff-archive-spell`
+  * [ ] `make diff-archive-spell` for current date or or `date="YYYY-MM-DD" make diff-archive-spell` (date as per cast timestamp)
+  * [ ] ensure date corresponds to target exec date
 * [ ] Local Tests and CI PASS
 * [ ] Spell is Cast (**only on Goerli**)
   * [ ] Check Cast Trace (via [EthTx](https://ethtx.info/))

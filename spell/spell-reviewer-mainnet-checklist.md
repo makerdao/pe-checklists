@@ -186,5 +186,6 @@ Spell Actions:
 * [ ] Ensure Etherscan `Libraries Used` matches DssExecLib [Latest Release](https://github.com/makerdao/dss-exec-lib/releases/latest)
   * [ ] git submodule hash matches [dss-exec-lib](https://github.com/makerdao/dss-exec-lib) latest release's tag commit
 * [ ] Archive matches `src`
-  * `make diff-archive-spell`
+  * [ ]`make diff-archive-spell` for current date or or `date="YYYY-MM-DD" make diff-archive-spell` (date as per target exec date)
+  * [ ] ensure date corresponds to target exec date
 * [ ] Local Tests and CI PASS
