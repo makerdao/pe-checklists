@@ -130,13 +130,14 @@ Repo: https://github.com/makerdao/spells-mainnet
     * [ ] `seth ls`
     * [ ] `seth chain`
 * [ ] Deploy spell on Goerli via `make deploy`
+  * [ ] Ensure `src/test/config.sol` is edited correctly
+    * [ ] `deployed_spell: address(<deployed_spell_address>)`
+    * [ ] `deployed_spell_created: <timestamp>`
+    * [ ] `deployed_spell_block: <block number>`
+    * [ ] validate the above values via `make deploy-info tx=<tx_hash>`
   * [ ] Ensure spell is verified on etherscan
-* [ ] Add deployed spell address, timestamp and block number to `config.sol`
-  * [ ] `deployed_spell: address(<deployed_spell_address>)`
-  * [ ] `deployed_spell_created: <timestamp>`
-  * [ ] `deployed_spell_block: <block number>`
-    * [ ] Run `make deploy-info tx=<tx_hash>` to get timestamp and block number
-* [ ] Run Tests Locally with deployed spell address
+  * [ ] Ensure local tests PASS against deployed spell run via the deploy script
+  * [ ] Push auto-generated commit
 * [ ] Archive Spell via `make archive-spell` for current date or `date="YYYY-MM-DD" make archive-spell` (date as per target exec date)
 * [ ] Commit & Push for Review
 * [ ] Wait for CI to PASS
