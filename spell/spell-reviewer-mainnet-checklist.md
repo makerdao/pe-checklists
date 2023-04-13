@@ -13,10 +13,10 @@ Spell Actions:
   * [ ] matches exec doc
 * [ ] Exec Hash
   * [ ] Run `make exec-hash` for current date, or `date=YYYY-MM-DD`
-  * [ ] Executive vote file name and date is correct
-  * [ ] [community](https://github.com/makerdao/community) repo commit hash corresponds to latest change
-  * [ ] Raw GitHub URL is correct
-  * [ ] Exec hash is correct
+    * [ ] Executive vote file name and date is correct
+    * [ ] [community](https://github.com/makerdao/community) repo commit hash corresponds to latest change
+    * [ ] Raw GitHub URL is correct
+    * [ ] Exec hash is correct
   * [ ] `description` date in `DssSpell.sol` matches exec copy date
 * [ ] 30 Days Expiry
 * [ ] `dss-interfaces`
