@@ -175,13 +175,22 @@ Spell Actions:
   * [ ] Optimization Enabled: No
   * [ ] Other Settings: default evmVersion, GNU AGPLv3 license
 * [ ] Deployed Spell Code matches GitHub
-  * [ ] diffcheck etherscan source against spell PR (i.e. via vscode `code --diff etherscan.sol github.sol`)
-* [ ] Deploy Timestamp & Block Number Match
-  * [ ] Ensure `make deploy-info tx=<tx>` matches [config](https://github.com/makerdao/spells-mainnet/blob/master/src/test/config.sol)
-    * [ ] `deployed_spell_created` timestamp
-    * [ ] `deployed_spell_block` block number
-* [ ] Ensure Etherscan `Libraries Used` matches DssExecLib [Latest Release](https://github.com/makerdao/dss-exec-lib/releases/latest)
-  * [ ] git submodule hash matches [dss-exec-lib](https://github.com/makerdao/dss-exec-lib) latest release's tag commit
+  * [ ] diffcheck etherscan source against spell PR (via `make diff-deployed-spell`)
+* [ ] Deployed Spell Etherscan Checks
+  * [ ] automated checks via `make check-deployed-spell`
+    * [ ] verified
+    * [ ] license type matches
+    * [ ] solc version matches
+    * [ ] optimizations are disabled
+    * [ ] dss-exec-lib library address matches hardcoded local `DssExecLib.address`
+    * [ ] `deployed_spell_created` matches deployment timestamp
+    * [ ] `deployed_spell_block` matches deployment block number
+  * [ ] manual checks
+      * [ ] Ensure `make deploy-info tx=<tx>` matches [config](https://github.com/makerdao/spells-mainnet/blob/master/src/test/config.sol)
+        * [ ] `deployed_spell_created` timestamp
+        * [ ] `deployed_spell_block` block number
+      * [ ] Ensure Etherscan `Libraries Used` matches DssExecLib [Latest Release](https://github.com/makerdao/dss-exec-lib/releases/latest)
+       * [ ] git submodule hash matches [dss-exec-lib](https://github.com/makerdao/dss-exec-lib/releases/latest) latest release's tag commit and inspect diffs if doesn't match to ensure expected behaviour
 * [ ] Archive matches `src`
   * [ ] `make diff-archive-spell` for current date or or `date="YYYY-MM-DD" make diff-archive-spell` (date as per cast timestamp)
   * [ ] ensure date corresponds to target exec date
