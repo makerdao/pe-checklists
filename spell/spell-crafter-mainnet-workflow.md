@@ -102,8 +102,11 @@ Repo: https://github.com/makerdao/spells-mainnet
 * [ ] Confirm Exec Doc Actions
 * [ ] Make sure CI PASS
 * [ ] Add Exec Hash
-  * [ ] Ensure exec copy is merged in [community](https://github.com/makerdao/community) repo
-  * [ ] Reference either latest file change or PR merge commit
+  * [ ] Run `make exec-hash` for current date, or `date=YYYY-MM-DD` and update spell code accordingly
+    * [ ] Executive vote file name and date is correct
+    * [ ] [community](https://github.com/makerdao/community) repo commit hash corresponds to latest change
+    * [ ] Raw GitHub URL is correct
+    * [ ] Exec hash is correct
   * [ ] Ensure `description` date in `DssSpell.sol` matches exec copy one
 * [ ] Wait for at Least Two Approvals with local tests to deploy
 * [ ] Pre-Deploy Setup and Checks (currently via `dapptools`)
