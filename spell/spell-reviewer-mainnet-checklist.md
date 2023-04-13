@@ -12,9 +12,11 @@ Spell Actions:
   * [ ] On (Collateral Onboarding, Keepers, Integrations, ...)
   * [ ] matches exec doc
 * [ ] Exec Hash
-  * [ ] [community](https://github.com/makerdao/community) commit is the latest file change or PR merge commit
-  * [ ] [community](https://github.com/makerdao/community) raw file url matches
-  * [ ] script matches
+  * [ ] Run `make exec-hash` for current date, or `date=YYYY-MM-DD`
+  * [ ] Executive vote file name and date is correct
+  * [ ] [community](https://github.com/makerdao/community) repo commit hash corresponds to latest change
+  * [ ] Raw GitHub URL is correct
+  * [ ] Exec hash is correct
   * [ ] `description` date in `DssSpell.sol` matches exec copy date
 * [ ] 30 Days Expiry
 * [ ] `dss-interfaces`
