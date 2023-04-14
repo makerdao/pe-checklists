@@ -28,3 +28,4 @@
 - [Spell Reviewer Collateral Onboarding Checklist](./spell/collateral-onboarding-checklist.md)
 - [Spell Reviewer RWA Onboarding Checklist](./spell/rwa-onboarding-checklist.md)
 - [Spell Reviewer Teleport Onboarding Checklist](./spell/teleport-onboarding-checklist.md)
+- [Spell Reviewer Mom Onboarding Checklist](./spell/mom-onboarding-checklist.md)
