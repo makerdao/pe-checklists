@@ -23,7 +23,7 @@
     * [ ] Chainlog Bump
       * [ ] Patch `x.x.1`
       * [ ] via `DssExecLib.setChangelogVersion("1.14.x");`
-    * [ ] Test Coverage (Follow Previous Test Patterns
+    * [ ] Test Coverage (Follow Previous Test Patterns)
       * [ ] `testMom`
       * [ ] ensure new chainlog entries are included in `addresses_<mainnet, goerli>.sol`
       * [ ] ensure deployer addresses are included into `addresses_deployers.sol` (**to keep up to date**)
