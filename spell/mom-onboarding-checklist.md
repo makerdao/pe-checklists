@@ -21,7 +21,7 @@
     * [ ] New Chainlog Entry
         * [ ] via `DssExecLib.setChangelogAddres("MOM", MOM);`
     * [ ] Chainlog Bump
-      * [ ] Patch `x.x.1`
+      * [ ] Patch `x.x.+1`
       * [ ] via `DssExecLib.setChangelogVersion("1.14.x");`
     * [ ] Test Coverage (Follow Previous Test Patterns)
       * [ ] `testMom`
