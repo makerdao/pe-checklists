@@ -5,12 +5,12 @@
         * [ ] ensure different deployer is used for mainnet and testnet to avoid contracts with same address and different sources
         * [ ] contract is verified on etherscan
           * [ ] ensure solc version matches source
-          * [ ] ensure optimization matches source
+          * [ ] ensure optimization are off
           * [ ] ensure license `AGPLv3` is specified
           * [ ] ensure source matches github code (i.e. diffcheck via vscode `code --diff etherscan.sol github.sol`)
         * [ ] constructor args are correct
         * [ ] check `owner`
-          * [ ] `MCD_PAUSE_PROXY` is set as `owner` via `setOwner`
+          * [ ] `MCD_PAUSE_PROXY` is set as `owner` via `setOwner` (that will remove the deployer as `owner`)
         * [ ] ensure deployer is included in `addresses_deployer.sol` if not already present 
     * [ ] Onboarding Actions
       * [ ] authorize `Mom` on the circuit breaker target modules (e.g. `vat.rely(LineMom)`)
