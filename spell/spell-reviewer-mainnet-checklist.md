@@ -19,11 +19,20 @@ Spell Actions:
     * [ ] Exec hash is correct
   * [ ] `description` date in `DssSpell.sol` matches exec copy date
 * [ ] 30 Days Expiry
+* [ ] `lib`
+  * [ ] `dss-exec-lib`
+    * [ ] if submodule upgrades are present make sure `dss-exec-lib` is synced as well
+    * [ ] git submodule hash matches tag latest release version or above
+  * [ ] `dss-test`
+    * [ ] `dss-interfaces`
+      * [ ] git submodule hash matches github master commit
+    * [ ] `forge-std`
+      * [ ] git submodule hash matches github tag latest release version
 * [ ] `dss-interfaces`
-  * [ ] git submodule hash matches github master commit
   * [ ] used in the current spell
   * [ ] cleanup previous ones
-  * [ ] if submodule upgrades are present make sure `dss-exec-lib` is synced as well
+  * [ ] ensure only single import layout is used
+  * [ ] ensure only single import layout is used (e.g. `import "dss-interfaces/dss/VatAbstract.sol";`)
 * [ ] Static Interfaces
   * [ ] ensure they match `dss-interfaces`
   * [ ] check on-chain interface of deployed contract via `cast interfaces <contract_address>` to ensure correctness
