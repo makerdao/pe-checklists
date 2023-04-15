@@ -128,3 +128,5 @@ ESM
 testnet
 authing
 hardcoded
+fileables
+configs
