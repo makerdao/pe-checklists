@@ -31,7 +31,6 @@ Spell Actions:
 * [ ] `dss-interfaces`
   * [ ] used in the current spell
   * [ ] cleanup previous ones
-  * [ ] ensure only single import layout is used
   * [ ] ensure only single import layout is used (e.g. `import "dss-interfaces/dss/VatAbstract.sol";`)
 * [ ] Static Interfaces
   * [ ] ensure they match `dss-interfaces`
