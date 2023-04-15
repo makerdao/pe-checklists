@@ -15,7 +15,7 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
 * [ ] Pull `master` Locally, Create and Checkout Branch (IF Branch was not created via GitHub)
 * [ ] Cleanup Previous Spell's Actions in `DssSpell.sol`
   * [ ] Check previous spells in the `archive` folder for cleanup patterns
-* [ ] Cleanup `src/test/config.sol` 
+* [ ] Cleanup `src/test/config.sol`
   * [ ] Set `deployed_spell` to `address(0)`
   * [ ] Set `deployed_spell_created` to `0`
   * [ ] Set `deployed_spell_block` to `0`
@@ -91,7 +91,7 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
 * [ ] Add new ChainLog Address in `addresses_goerli.sol` (e.g. Collateral Onboarding)
 * [ ] Run Tests `make test` or `make test match=<test_name>` to inspect debug traces
   * [ ] Ensure Good Coverage
-  * [ ] Ensure every test function is declared as public if enabled or private if not
+  * [ ] Ensure every test function is declared as public if enabled or private if disabled
   * [ ] Tests PASS via `make test`
 * [ ] Open PR & Add Reviewers
 * [ ] Iterate until polls are ended and exec doc is confirmed
@@ -120,7 +120,7 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
     * [ ] `seth ls`
     * [ ] `seth chain`
 * [ ] Deploy spell on Goerli via `make deploy`
-  * [ ] Ensure `config.sol` is edited correctly
+  * [ ] Ensure `src/test/config.sol` is edited correctly
     * [ ] `deployed_spell: address(<deployed_spell_address>)`
     * [ ] `deployed_spell_created: <timestamp>`
     * [ ] `deployed_spell_block: <block number>`

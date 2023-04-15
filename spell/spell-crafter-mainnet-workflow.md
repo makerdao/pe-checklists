@@ -77,7 +77,7 @@ Repo: https://github.com/makerdao/spells-mainnet
       * [ ] Check IF oracle deployment is required (e.g. univ3-lp-oracle, new ilk pip, ...)
       * [ ] Note: oracle should be deployed on mainnet before Friday (usually Wed-Thu)
   * [ ] Ensure every spell variable is declared as public/internal
-  * [ ] Consider `immutable` visibility when fetching addresses from the `ChainLog` via `DssExecLib.getChangelogAddress` and use `constant` for literal addresses
+  * [ ] Consider `immutable` visibility when fetching addresses from the `ChainLog` via `DssExecLib.getChangelogAddress` and use `constant` for static addresses
   * [ ] Add New Addresses in the ChainLog
   * [ ] Bump ChainLog, accordingly with spec (`major`, `minor`, `patch`)
     * [ ] MAJOR -> New Vat
