@@ -10,13 +10,15 @@ Repo: https://github.com/makerdao/spells-mainnet
 
 ### Steps:
 * [ ] Create Branch on GitHub `PE-<kanban ticket issue number>`
-  * [ ] Note: for now current consensus is to use the same ticket issue number as per `spells-goerli` (this could be revised)
+  * [ ] Ensure the same ticket issue number is used as per `spells-goerli` spell
 * [ ] Pull `master` Locally and Checkout Branch (IF Branch is created via GitHub)
 * [ ] Pull `master` Locally, Create and Checkout Branch (IF Branch was not created via GitHub)
 * [ ] Cleanup Previous Spell's Actions in `DssSpell.sol` (diffcheck with Goerli)
   * [ ] Check previous spells in the `archive` folder for cleanup patterns
 * [ ] Cleanup `src/test/config.sol`
   * [ ] Set `deployed_spell` to `address(0)`
+  * [ ] Set `deployed_spell_created` to `0`
+  * [ ] Set `deployed_spell_block` to `0`
   * [ ] Consider to add `previous_spell` address if it haven't been executed yet
 * [ ] Cleanup Specific Tests in `DssSpell.t.sol`
   * [ ] Check previous spells in the `archive` folder for cleanup patterns
@@ -47,6 +49,7 @@ Repo: https://github.com/makerdao/spells-mainnet
   * [ ] Pragma
     * [ ] Current solc version `0.8.16`
   * [ ] Interfaces
+    * [ ] Consider using `DssExecLib` actions where possible (to avoid introducing interfaces where not required)
     * [ ] Avoid `dss-interfaces` multi-import layout (see [issue #69](https://github.com/makerdao/dss-interfaces/issues/69))
     * [ ] Prefer single import layout
       * [ ] `import { VatAbstract } from "dss-interfaces/dss/VatAbstract.sol";`
@@ -74,6 +77,7 @@ Repo: https://github.com/makerdao/spells-mainnet
       * [ ] Check IF oracle deployment is required (e.g. univ3-lp-oracle, new ilk pip, ...)
       * [ ] Note: oracle should be deployed on mainnet before Friday (usually Wed-Thu)
   * [ ] Ensure every spell variable is declared as public/internal
+  * [ ] Consider `immutable` visibility when fetching addresses from the `ChainLog` via `DssExecLib.getChangelogAddress` and use `constant` for static addresses
   * [ ] Add New Addresses in the ChainLog
   * [ ] Bump ChainLog, accordingly with spec (`major`, `minor`, `patch`)
     * [ ] MAJOR -> New Vat
@@ -98,13 +102,17 @@ Repo: https://github.com/makerdao/spells-mainnet
 * [ ] Confirm Exec Doc Actions
 * [ ] Make sure CI PASS
 * [ ] Add Exec Hash
-  * [ ] Ensure exec copy is merged
-  * [ ] Reference either latest change or merge commit
+  * [ ] Run `make exec-hash` for current date, or `date=YYYY-MM-DD` and update spell code accordingly
+    * [ ] Executive vote file name and date is correct
+    * [ ] [community](https://github.com/makerdao/community) repo commit hash corresponds to latest change
+    * [ ] Raw GitHub URL is correct
+    * [ ] Exec hash is correct
   * [ ] Ensure `description` date in `DssSpell.sol` matches exec copy one
 * [ ] Wait for at Least Two Approvals with local tests to deploy
 * [ ] Pre-Deploy Setup and Checks (currently via `dapptools`)
   * [ ] Set local env (`.sethrc`)
     * [ ] Deployer
+      * [ ] Avoid using the same deployer for mainnet and testnet (to avoid deploying contracts with the same address but different sources)
       * [ ] `export ETH_PASSWORD=~/.env/password.txt`
       * [ ] `export ETH_KEYSTORE=~/.ethereum/keystore`
       * [ ] `export ETH_FROM=<address>`
@@ -125,19 +133,21 @@ Repo: https://github.com/makerdao/spells-mainnet
     * [ ] `seth ls`
     * [ ] `seth chain`
 * [ ] Deploy spell on Goerli via `make deploy`
+  * [ ] Ensure `src/test/config.sol` is edited correctly
+    * [ ] `deployed_spell: address(<deployed_spell_address>)`
+    * [ ] `deployed_spell_created: <timestamp>`
+    * [ ] `deployed_spell_block: <block number>`
+    * [ ] validate the above values via `make deploy-info tx=<tx_hash>`
   * [ ] Ensure spell is verified on etherscan
-* [ ] Add deployed spell address to `config.sol`
-  * [ ] `deployed_spell: address(<deployed_spell_address>)`
-* [ ] Run Tests Locally with deployed spell address
+  * [ ] Ensure local tests PASS against deployed spell run via the deploy script
+  * [ ] Push auto-generated commit
+* [ ] Archive Spell via `make archive-spell` for current date or `date="YYYY-MM-DD" make archive-spell` (date as per target exec date)
 * [ ] Commit & Push for Review
 * [ ] Wait for CI to PASS
 * [ ] Wait for at Least two Approvals to Share for Publishing to GovAlpha
 * [ ] Share Deployed Address in `new-spells`
-* [ ] Archive Spell via `make archive-spell` for current date (or `date="YYYY-MM-DD" make archive-spell`)
-* [ ] Commit & Push Archive for Review
-* [ ] Wait for Merge Approvals and CI to PASS
-* [ ] Squash & Merge
 * [ ] Fill Spell Crafter Related Boxes in the Main Exec Doc Sheet
+* [ ] Squash & Merge
 
 ## Next Steps
 * [ ] `MegaPoker` Contract Updates (handed over to Oracle Core Unit (OCU))

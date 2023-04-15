@@ -4,7 +4,7 @@
       * [ ] deployed via deployer (OSM)
         * [ ] contract is verified on etherscan
           * [ ] ensure solc version matches source
-          * [ ] ensure optimization matches source
+          * [ ] ensure optimization matches source configs
           * [ ] ensure license `AGPLv3` is specified
           * [ ] ensure source matches github code (i.e. diffcheck via vscode `code --diff etherscan.sol github.sol`)
         * [ ] constructor args are correct

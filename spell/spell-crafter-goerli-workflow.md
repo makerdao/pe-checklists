@@ -10,13 +10,15 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
 
 ### Steps:
 * [ ] Create Branch on GitHub `PE-<kanban ticket issue number>`
-  * [ ] Note: for now current consensus is to use the same ticket issue number as per `spells-mainnet` (this could be revised)
+  * [ ] Ensure the same ticket issue number is used for `spells-mainnet` spell
 * [ ] Pull `master` Locally and Checkout Branch (IF Branch is created via GitHub)
 * [ ] Pull `master` Locally, Create and Checkout Branch (IF Branch was not created via GitHub)
 * [ ] Cleanup Previous Spell's Actions in `DssSpell.sol`
   * [ ] Check previous spells in the `archive` folder for cleanup patterns
-* [ ] Cleanup `src/test/config.sol` 
+* [ ] Cleanup `src/test/config.sol`
   * [ ] Set `deployed_spell` to `address(0)`
+  * [ ] Set `deployed_spell_created` to `0`
+  * [ ] Set `deployed_spell_block` to `0`
 * [ ] Cleanup Specific Tests in `DssSpell.t.sol`
   * [ ] Check previous spells in the `archive` folder for cleanup patterns
   * [ ] Disable specific tests IF Not Used (e.g. `testCollateralIntegrations`, `testNewChainlogValues`, `testNewIlkRegistryValues`, ...)
@@ -45,6 +47,7 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
   * [ ] Pragma
     * [ ] Current solc version `0.8.16`
   * [ ] Interfaces
+    * [ ] Consider using `DssExecLib` actions where possible (to avoid introducing interfaces where not required)
     * [ ] Avoid `dss-interfaces` multi-import layout (see [issue #69](https://github.com/makerdao/dss-interfaces/issues/69))
     * [ ] Prefer single import layout
       * [ ] `import { VatAbstract } from "dss-interfaces/dss/VatAbstract.sol";`
@@ -70,6 +73,7 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
     * [ ] Check with Oracle CU
       * [ ] Check IF oracle deployment is required (e.g. univ3-lp-oracle, new ilk pip, ...)
   * [ ] Ensure every spell variable is declared as public/internal
+  * [ ] Consider `immutable` visibility when fetching addresses from the `ChainLog` via `DssExecLib.getChangelogAddress` and use `constant` for static addresses
   * [ ] Add New Addresses in the ChainLog
   * [ ] Bump ChainLog, accordingly with spec (`major`, `minor`, `patch`)
     * [ ] MAJOR -> New Vat
@@ -87,7 +91,7 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
 * [ ] Add new ChainLog Address in `addresses_goerli.sol` (e.g. Collateral Onboarding)
 * [ ] Run Tests `make test` or `make test match=<test_name>` to inspect debug traces
   * [ ] Ensure Good Coverage
-  * [ ] Ensure every test function is declared as public if enabled or private if not
+  * [ ] Ensure every test function is declared as public if enabled or private if disabled
   * [ ] Tests PASS via `make test`
 * [ ] Open PR & Add Reviewers
 * [ ] Iterate until polls are ended and exec doc is confirmed
@@ -96,6 +100,7 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
 * [ ] Pre-Deploy Setup and Checks (currently via `dapptools`)
   * [ ] Set local env (`.sethrc`)
     * [ ] Deployer
+      * [ ] Avoid using the same deployer for mainnet and testnet (to avoid deploying contracts with the same address but different sources)
       * [ ] `export ETH_PASSWORD=~/.env/password.txt`
       * [ ] `export ETH_KEYSTORE=~/.ethereum/keystore`
       * [ ] `export ETH_FROM=<address>`
@@ -105,8 +110,8 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
       * [ ] `export ETH_GAS_PRICE=$(seth --to-wei X gwei)`
         * [ ] Check current gas price using `seth gas-price` and Set `ETH_GAS_PRICE` accordingly (e.g. 40 gwei)
       * [ ] `export ETH_PRIO_FEE=$(seth --to-wei X gwei)`
-        * [ ] Check [current gas priority fee](https://etherscan.io/gastracker) and set `ETH_PRIO_FEE` accordingly (e.g. 2 gwei)
-    * [ ] Mainnet RPC URL
+        * [ ] Check current gas priority fee and set `ETH_PRIO_FEE` accordingly (e.g. 2 gwei)
+    * [ ] Goerli RPC URL
       * [ ] `export ETH_RPC_URL=<url>`
     * [ ] Etherscan API KEY
       * [ ] `export ETHERSCAN_API_KEY=<key>`
@@ -115,19 +120,21 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
     * [ ] `seth ls`
     * [ ] `seth chain`
 * [ ] Deploy spell on Goerli via `make deploy`
+  * [ ] Ensure `src/test/config.sol` is edited correctly
+    * [ ] `deployed_spell: address(<deployed_spell_address>)`
+    * [ ] `deployed_spell_created: <timestamp>`
+    * [ ] `deployed_spell_block: <block number>`
+    * [ ] validate the above values via `make deploy-info tx=<tx_hash>`
   * [ ] Ensure spell is verified on etherscan
-* [ ] Add deployed spell address to `config.sol`
-  * [ ] `deployed_spell: address(<deployed_spell_address>)`
-* [ ] Run Tests Locally with deployed spell address
+  * [ ] Ensure local tests PASS against deployed spell run via the deploy script
+  * [ ] Push auto-generated commit
+* [ ] Archive Spell via `make archive-spell` for current date or `date="YYYY-MM-DD" make archive-spell` (date as per cast timestamp)
 * [ ] Commit & Push for Review
 * [ ] Wait for CI to PASS
 * [ ] Wait for at Least Two Approvals
-* [ ] Archive spell via `date="YYYY-MM-DD" make archive-spell` (date as per the exec doc)
-* [ ] Commit & Push Archive for Review
-* [ ] Wait for Merge Approvals and CI to PASS
-* [ ] Squash & Merge
 * [ ] Cast Spell via `make cast-spell` (ONLY ON GOERLI)
 * [ ] Check `cast()` trace (via [EthTx](https://ethtx.info/))
   * [ ] Ensure no reverts are present that block execution
     * [ ] Inspect low level call reverts if expected
   * [ ] Ensure all actions are executed and not out-of-gas errors are present
+* [ ] Squash & Merge

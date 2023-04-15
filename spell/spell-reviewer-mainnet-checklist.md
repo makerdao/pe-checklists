@@ -12,21 +12,36 @@ Spell Actions:
   * [ ] On (Collateral Onboarding, Keepers, Integrations, ...)
   * [ ] matches exec doc
 * [ ] Exec Hash
-  * [ ] `community` commit is the latest change or merge commit
-  * [ ] `community` repo url matches
-  * [ ] script matches
-  * [ ] `description` date in `DssSpell.sol` matches exec copy
+  * [ ] Run `make exec-hash` for current date, or `date=YYYY-MM-DD`
+    * [ ] Executive vote file name and date is correct
+    * [ ] [community](https://github.com/makerdao/community) repo commit hash corresponds to latest change
+    * [ ] Raw GitHub URL is correct
+    * [ ] Exec hash is correct
+  * [ ] `description` date in `DssSpell.sol` matches exec copy date
 * [ ] 30 Days Expiry
-* [ ] dss-interfaces
-  * [ ] git submodule hash matches github master commit
+* [ ] `lib`
+  * [ ] `dss-exec-lib`
+    * [ ] if submodule upgrades are present make sure `dss-exec-lib` is synced as well
+    * [ ] git submodule hash matches tag latest release version or above
+  * [ ] `dss-test`
+    * [ ] `dss-interfaces`
+      * [ ] git submodule hash matches github master commit
+    * [ ] `forge-std`
+      * [ ] git submodule hash matches github tag latest release version
+* [ ] `dss-interfaces`
   * [ ] used in the current spell
   * [ ] cleanup previous ones
-  * [ ] if submodule upgrades are present make sure `dss-exec-lib` is synced as well
-* [ ] Rates OK
+  * [ ] ensure only single import layout is used (e.g. `import "dss-interfaces/dss/VatAbstract.sol";`)
+* [ ] Static Interfaces
+  * [ ] ensure they match `dss-interfaces`
+  * [ ] check on-chain interface of deployed contract via `cast interfaces <contract_address>` to ensure correctness
+  * [ ] interface naming style should match with `Like` suffix (e.g. `VatLike`)
+  * [ ] ensure they only list used functions in spell code
+* [ ] Rates match
   * [ ] Compare against [IPFS](https://ipfs.io/ipfs/QmVp4mhhbwWGTfbh2BzwQB9eiBrQBKiqcPRZCaAxNUaar6)
-  * [ ] Calculate manually using `bc -l <<< 'scale=27; e( l(1.0X)/(60 * 60 * 24 * 365) )'` (replace X with %, e.g. 1 = 1%)
+  * [ ] Check manually via `make rates pct=<pct>` (e.g. pct=0.75, for 0.75%)
   * [ ] Variable visibility declared as internal
-* [ ] Math OK
+* [ ] Math matches
   * [ ] Internal Precision
     * [ ] `WAD = 10**18`
     * [ ] `RAY = 10**27`
@@ -47,6 +62,7 @@ Spell Actions:
   * [ ] Constructor args ok (e.g. `vat`, `dai`, `dog`, ...)
     * [ ] Match [ChainLog](https://chainlog.makerdao.com/)
   * [ ] Wards ok (pause proxy relied, deployer denied)
+    * [ ] Check whether the contract requires to rely the ESM in the spell (in order to allow de-authing the pause proxy during Emergency Shutdown, via `denyProxy`).
   * [ ] Matches corresponding github source code (i.e. diffcheck via vscode `code --diff etherscan.sol github.sol`)
   * [ ] Ensure deployer address is included into `addresses_deployers.sol` (**to keep up to date**)
 * [ ] External Contracts Calls (e.g. Starknet)
@@ -59,6 +75,31 @@ Spell Actions:
   * [ ]  Target contract is not upgradable
   * [ ]  Target Contract is included in the ChainLog
   * [ ]  Test Coverage is comprehensive
+* [ ] Risk Parameters Changes
+  * [ ] `dog.ilk.hole` ([setIlkMaxLiquidationAmount](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L699))
+  * [ ] `vat.ilk.dust`([setIlkMinVaultAmount](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L676))
+  * [ ] `dog.ilk.chop` ([liquidationPenalty](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L689))
+  * [ ] `jug.ilk.duty` ([setIlkStabilityFee](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L792))
+  * [ ] `spotter.ilk.mat`  ([liquidationRatio](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L709))
+  * [ ] `clip.buf`  ([startingPriceFactor](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L720))
+  * [ ] `clipperMom.clip.tolerance` ([setLiquidationBreakerPriceTolerance](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L772))
+  * [ ] `clip.tail` ([auctionDuration](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L731))
+  * [ ] `clip.cusp` ([permittedDrop](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L740))
+  * [ ] `clip.chip` ([kprPctReward](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L750))
+  * [ ] `clip.tip`([kprFlatReward](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L760))
+  * [ ] `calc.tau` ([setLinearDecrease](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L811))
+  * [ ] [setStairstepExponentialDecrease](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L822)
+    * [ ] `calc.cut`
+    * [ ] `calc.step`
+* [ ] Autoline Changes
+  * [setIlkAutoLineParameters](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L648)
+    * [ ] `ilk`
+    * [ ] `line`
+    * [ ] `gap`
+    * [ ] `ttl`
+  * [setIlkAutoLineDebtCeiling](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L658)
+    * [ ] `ilk`
+    * [ ] `line`
 * [ ] Onboarding
   * [ ] [Collateral Onboarding](./collateral-onboarding-checklist.md)
   * [ ] [RWA Onboarding](./rwa-onboarding-checklist.md)
@@ -137,6 +178,7 @@ Spell Actions:
     * [ ] PATCH -> Collateral addition or addition/modification
 * [ ] `addresses_mainnet.sol` matches spell code
 * [ ] Ensure every spell variable is declared as public/internal
+* [ ] Ensure `immutable` visibility is only used when fetching addresses from the `ChainLog` via `DssExecLib.getChangelogAddress` and `constant` is used instead for static addresses
 * [ ] Spell actions match [GovAlpha Spell Content Sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw) and hashed exec doc
 * [ ] Tests PASS
   * [ ] Ensure Good Coverage
@@ -146,9 +188,23 @@ Spell Actions:
   * [ ] Optimization Enabled: No
   * [ ] Other Settings: default evmVersion, GNU AGPLv3 license
 * [ ] Deployed Spell Code matches GitHub
-  * [ ] diffcheck etherscan source against spell PR (i.e. via vscode `code --diff etherscan.sol github.sol`)
-* [ ] Ensure Etherscan `Libraries Used` matches DssExecLib [Latest Release](https://github.com/makerdao/dss-exec-lib/releases/latest)
-  * [ ] git submodule hash matches [dss-exec-lib](https://github.com/makerdao/dss-exec-lib) latest release's tag commit
-* [ ] Local Tests and CI PASS
+  * [ ] diffcheck etherscan source against spell PR (via `make diff-deployed-spell`)
+* [ ] Deployed Spell Etherscan Checks
+  * [ ] automated checks via `make check-deployed-spell`
+    * [ ] verified
+    * [ ] license type matches
+    * [ ] solc version matches
+    * [ ] optimizations are disabled
+    * [ ] dss-exec-lib library address matches hardcoded local `DssExecLib.address`
+    * [ ] `deployed_spell_created` matches deployment timestamp
+    * [ ] `deployed_spell_block` matches deployment block number
+  * [ ] manual checks
+      * [ ] Ensure `make deploy-info tx=<tx>` matches [config](https://github.com/makerdao/spells-mainnet/blob/master/src/test/config.sol)
+        * [ ] `deployed_spell_created` timestamp
+        * [ ] `deployed_spell_block` block number
+      * [ ] Ensure Etherscan `Libraries Used` matches DssExecLib [Latest Release](https://github.com/makerdao/dss-exec-lib/releases/latest)
+       * [ ] git submodule hash matches [dss-exec-lib](https://github.com/makerdao/dss-exec-lib/releases/latest) latest release's tag commit and inspect diffs if doesn't match to ensure expected behaviour
 * [ ] Archive matches `src`
-  * `make diff-archive-spell`
+  * [ ] `make diff-archive-spell` for current date or or `date="YYYY-MM-DD" make diff-archive-spell` (date as per target exec date)
+  * [ ] ensure date corresponds to target exec date
+* [ ] Local Tests and CI PASS

@@ -8,11 +8,11 @@
 >These checklists emerged during the review and crafting processes as ways to avoid pitfalls, allowing protocol engineers to focus on more in-depth reviews.
 >Future workflow improvements will be reflected in these checklists.
 
-## Core Contracts
+## Checklists
+
+### Core Contracts
 
 - [Standards](core/standards.md)
-
-## Checklists
 
 ### Spells
 
@@ -27,4 +27,5 @@
 - [Spell Reviewer Mainnet Checklist](./spell/spell-reviewer-mainnet-checklist.md)
 - [Spell Reviewer Collateral Onboarding Checklist](./spell/collateral-onboarding-checklist.md)
 - [Spell Reviewer RWA Onboarding Checklist](./spell/rwa-onboarding-checklist.md)
-- [Spell Reviewer Teleport Onboarding Checklist](./spell/teleport-oboarding-checklist.md)
+- [Spell Reviewer Teleport Onboarding Checklist](./spell/teleport-onboarding-checklist.md)
+- [Spell Reviewer Mom Onboarding Checklist](./spell/mom-onboarding-checklist.md)
