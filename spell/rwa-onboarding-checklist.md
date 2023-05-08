@@ -1,8 +1,9 @@
 # RWA Onboarding Checklist
   * [ ] Deployed Contracts
     * [ ] `RwaToken` (Token Used as Collateral In Adapter)
-      * [ ] deployed via `RwaTokenFactory`
+      * [ ] deployed via [`RwaTokenFactory`](https://github.com/makerdao/rwa-toolkit/blob/master/src/tokens/RwaTokenFactory.sol)
         * [ ] Fab matches [chainlog](https://chainlog.makerdao.com/)
+        * [ ] ensure source matches github code and it's consistent with previous RWA onboarding
         * [ ] Rwa Token transferred to MCD Pause Proxy
         * [ ] `createRwaToken` parameters are correct
          * [ ] `name` is in `RWA-XXX` format
@@ -11,6 +12,7 @@
     * [ ] `AuthGemJoin` (Join Adapter)
       * [ ] deployed via [JoinFab](https://github.com/makerdao/JoinFab/blob/master/src/JoinFab.sol)
         * [ ] Fab matches [chainlog](https://chainlog.makerdao.com/)
+        * [ ] ensure source matches github code and it's consistent with previous RWA onboarding (NOTE: Etherscan may have a bug where it displays additional code for `AuthGemJoin`. In this case, using `cast interface` or otherwise, ensure that this code cannot be executed)
         * [ ] `newAuthGemJoin` parameters are correct
           * [ ] `owner` matches MCD Pause Proxy
           * [ ] `ilk` is the `bytes32` representation of "RWAXXX-A"
@@ -102,6 +104,8 @@
      * [ ] New Chainlog Entries
         * [ ] `RWAXXX`
         * [ ] `PIP_RWAXXX` precomputed via `cast compute-address $MIP21_LIQUIDATION_ORACLE`
+          * [ ] Note that a nonce change for `MIP21_LIQUIDATION_ORACLE` prior to casting will cause this to be incorrect
+        * [ ] `MCD_JOIN_RWAXXX_A`
         * [ ] `RWAXXX_A_URN`
         * [ ] `RWAXXX_A_JAR`
         * [ ] `RWAXXX_A_INPUT_CONDUIT`
