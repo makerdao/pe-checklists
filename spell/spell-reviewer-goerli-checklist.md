@@ -16,13 +16,14 @@ Spell Actions:
 * [ ] 30 Days Expiry
 * [ ] `lib`
   * [ ] `dss-exec-lib`
+    * [ ] `DssExecLib.address` is unchanged by the spell PR (if changed, the new address must match the [Latest Release Tag](https://github.com/makerdao/dss-exec-lib/releases/latest) and be approved as a legitimate new release by GovAlpha)
     * [ ] if submodule upgrades are present make sure `dss-exec-lib` is synced as well
-    * [ ] git submodule hash matches tag latest release version or above
+    * [ ] git submodule hash matches the latest release version or newer (NOTE: `dss-exec-lib` as installed locally will use GitHub code more recent than the 0.0.9 release)
   * [ ] `dss-test`
     * [ ] `dss-interfaces`
-      * [ ] git submodule hash matches github master commit
+      * [ ] git submodule hash matches github master commit (Non-critical)
     * [ ] `forge-std`
-      * [ ] git submodule hash matches github tag latest release version
+      * [ ] git submodule hash matches github tag latest release version (Non-critical)
 * [ ] `dss-interfaces`
   * [ ] used in the current spell
   * [ ] cleanup previous ones
@@ -190,7 +191,7 @@ Spell Actions:
     * [ ] license type matches
     * [ ] solc version matches
     * [ ] optimizations are disabled
-    * [ ] dss-exec-lib library address matches hardcoded local `DssExecLib.address`
+    * [ ] dss-exec-lib library address used (under 'Libraries Used') matches the hardcoded local `DssExecLib.address` file
     * [ ] `deployed_spell_created` matches deployment timestamp
     * [ ] `deployed_spell_block` matches deployment block number
   * [ ] manual checks
