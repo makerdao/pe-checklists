@@ -36,6 +36,7 @@ Spell Actions:
 * [ ] Rates match
   * [ ] Compare against [IPFS](https://ipfs.io/ipfs/QmVp4mhhbwWGTfbh2BzwQB9eiBrQBKiqcPRZCaAxNUaar6)
   * [ ] Check manually via `make rates pct=<pct>` (e.g. pct=0.75, for 0.75%)
+  * [ ] Variable name conforms to `X_PT_Y_Z_PCT_RATE` (e.g. `ZERO_PT_SEVEN_FIVE_PCT_RATE` for 0.75%)
   * [ ] Variable visibility declared as `internal`
   * [ ] State mutability declared as `constant`
 * [ ] Math matches
