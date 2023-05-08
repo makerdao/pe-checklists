@@ -31,6 +31,7 @@
         * [ ] `outputConduit` matches `RwaOutputConduit<2,3>`
       * [ ] check `wards`
         * [ ] `MCD_PAUSE_PROXY` is relied
+        * [ ] `MCD_ESM` is relied (as approved by GovAlpha)
         * [ ] deployer is denied
         * [ ] no other address has been relied
     * [ ] `RwaJar`
@@ -55,6 +56,7 @@
         * [ ] `psm`, `gem` (`v3`)
       * [ ] check `wards`
         * [ ] `MCD_PAUSE_PROXY` is relied
+        * [ ] `MCD_ESM` is relied (as approved by GovAlpha)
         * [ ] deployer is denied
         * [ ] no other address has been relied
     * [ ] `RwaOutputConduit<2,3>`
@@ -69,6 +71,7 @@
         * [ ] `psm`, `gem` (`v3`)
       * [ ] check `wards`
         * [ ] `MCD_PAUSE_PROXY` is relied
+        * [ ] `MCD_ESM` is relied (as approved by GovAlpha)
         * [ ] deployer is denied
         * [ ] no other address has been relied
     * [ ] Risk Parameters Match Doc
