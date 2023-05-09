@@ -15,6 +15,7 @@ Repo: https://github.com/makerdao/spells-mainnet
 * [ ] Pull `master` Locally, Create and Checkout Branch (IF Branch was not created via GitHub)
 * [ ] Cleanup Previous Spell's Actions in `DssSpell.sol` (diffcheck with Goerli)
   * [ ] Check previous spells in the `archive` folder for cleanup patterns
+  * [ ] Delete unused dependencies in the `src/dependencies` folder where applicable
 * [ ] Cleanup `src/test/config.sol`
   * [ ] Set `deployed_spell` to `address(0)`
   * [ ] Set `deployed_spell_created` to `0`
