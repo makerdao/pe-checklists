@@ -55,7 +55,7 @@ Spell Actions:
     * [ ] Variable visibility declared as internal
     * [ ] State mutability declared as `constant`
     * [ ] Ensure they match with [config](https://github.com/makerdao/spells-mainnet/blob/master/src/test/config.sol)
-* [ ] Deployed Contracts
+* [ ] Deployed Contracts (not on chainlog)
   * [ ] Verified on etherscan
   * [ ] Optimizations match Repo
   * [ ] `GNU AGPLv3` license
