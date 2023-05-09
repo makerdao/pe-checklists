@@ -99,8 +99,8 @@
         * [ ] `hope` (operator, pause proxy)
         * [ ] `mate` (operator, pause proxy as fallback if required)
         * [ ] `kiss` (whitelist for `urn` destination address `who`)
-     * [ ] Filable
-        * [ ] `quitTo`
+     * [ ] Filable (`RwaOutputConduit` and `RwaInputConduit`)
+        * [ ] `quitTo` (`file` the appropriate address for conduits per technical assessment)
      * [ ] New Chainlog Entries
         * [ ] `RWAXXX`
         * [ ] `PIP_RWAXXX` precomputed via `cast compute-address $MIP21_LIQUIDATION_ORACLE`
