@@ -23,7 +23,7 @@ Spell Actions:
   * [ ] `dss-exec-lib`
     * [ ] `DssExecLib.address` is unchanged by the spell PR (if changed, the new address must match the [Latest Release Tag](https://github.com/makerdao/dss-exec-lib/releases/latest) and be approved as a legitimate new release by GovAlpha)
     * [ ] if submodule upgrades are present make sure `dss-exec-lib` is synced as well
-    * [ ] git submodule hash matches the latest release version or newer (NOTE: `dss-exec-lib` as installed locally will use GitHub code more recent than the 0.0.9 release)
+    * [ ] git submodule hash (run `git submodule status`) matches the latest release version or newer (NOTE: `dss-exec-lib` as installed locally will use GitHub code more recent than the 0.0.9 release)
   * [ ] `dss-test`
     * [ ] `dss-interfaces`
       * [ ] git submodule hash matches github master commit (Non-critical)
@@ -60,7 +60,6 @@ Spell Actions:
     * [ ] Variable visibility declared as internal
     * [ ] State mutability declared as `constant`
     * [ ] Ensure they match with [config](https://github.com/makerdao/spells-mainnet/blob/master/src/test/config.sol)
-    
 * [ ] Deployed Contracts
   * [ ] Verified on etherscan
   * [ ] Optimizations match Repo
