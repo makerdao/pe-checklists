@@ -29,8 +29,8 @@ Spell Actions:
   * [ ] cleanup previous ones
   * [ ] ensure only single import layout is used (e.g. `import "dss-interfaces/dss/VatAbstract.sol";`)
 * [ ] Static Interfaces
-  * [ ] ensure they match `dss-interfaces`
-  * [ ] check on-chain interface of deployed contract via `cast interfaces <contract_address>` to ensure correctness
+  * [ ] ensure they match `dss-interfaces` (Where there is a mismatch, use `cast interface` as the source of truth)
+  * [ ] check on-chain interface of deployed contract via `cast interface <contract_address>` to ensure correctness
   * [ ] interface naming style should match with `Like` suffix (e.g. `VatLike`)
   * [ ] ensure they only list used functions in spell code
 * [ ] Rates match
