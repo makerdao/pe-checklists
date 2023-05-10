@@ -164,7 +164,7 @@ Spell Actions:
   * [ ] Streams (`DssVest`)
     * [ ] `DssVest` Interface is correct
     * [ ] Ensure that `cap` > max new vest `tot`/`tau` otherwise file cap as well
-    * [ ] Timestampts match Doc (`bgn`, `fin`)
+    * [ ] Timestamps match Doc (`bgn`, `fin`)
     * [ ] CUs Addresses match Doc (`usr`)
     * [ ] Amount matches Doc (`tot`, if decimals are present consider using `ether`)
     * [ ] Vesting Duration matches Doc (`tau`)
