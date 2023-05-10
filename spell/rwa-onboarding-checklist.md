@@ -42,7 +42,7 @@
         * [ ] ensure optimization are off
         * [ ] ensure license is specified
         * [ ] ensure source matches github code and it's consistent with previous RWA onboarding
-      * [ ] constructor arg matches [changelog](https://chainlog.makerdao.com/)
+      * [ ] constructor arg matches [`ChainLog`](https://chainlog.makerdao.com/)
         * [ ] `chainlog`
       * [ ] no `wards`
     * [ ] `RwaInputConduit<2,3>`
