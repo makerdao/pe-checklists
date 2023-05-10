@@ -60,6 +60,12 @@ Spell Actions:
     * [ ] Variable visibility declared as internal
     * [ ] State mutability declared as `constant`
     * [ ] Ensure they match with [config](https://github.com/makerdao/spells-mainnet/blob/master/src/test/config.sol)
+  * [ ] Timestamps
+    * [ ] Variable naming matches `MONTH_DD_YYYY` (e.g. `MAY_01_2023` for 2023-05-01)
+    * [ ] Time of day makes logical sense (i.e. `11:59:59` on the last day of the month) in the context of exec actions
+    * [ ] Variable visibility declared as `internal`
+    * [ ] State mutability declared as `constant`
+    * [ ] Ensure the timestamp [converts](https://www.epochconverter.com/) to the correct date
 * [ ] Deployed Contracts (not on chainlog)
   * [ ] Verified on etherscan
   * [ ] Optimizations match Repo
