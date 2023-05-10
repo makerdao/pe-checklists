@@ -14,7 +14,7 @@ Spell Actions:
   * [ ] empty (default)
   * [ ] ensure `description` is `Goerli Spell`
 * [ ] 30 Days Expiry
-* [ ] `lib`
+* [ ] `lib` (`git submodule update --init --recursive` to install/update)
   * [ ] `dss-exec-lib`
     * [ ] `DssExecLib.address` is unchanged by the spell PR (if changed, the new address must match the [Latest Release Tag](https://github.com/makerdao/dss-exec-lib/releases/latest) and be approved as a legitimate new release by GovAlpha)
     * [ ] if submodule upgrades are present make sure `dss-exec-lib` is synced as well
