@@ -149,28 +149,6 @@ Spell Actions:
       * [ ] `val` should enable DAI to be drawn over the loan period while taking into
             account the configured `ink` amount, interest rate and liquidation ratio
     * [ ] Poke `spotter` to pull in the new price
-* [ ] Payments
-  * [ ] Streams (`DssVest`)
-    * [ ] `DssVest` Interface is correct
-    * [ ] Ensure that `cap` > max new vest `tot`/`tau` otherwise file cap as well
-    * [ ] Timestampts match Doc (`bgn`, `fin`)
-    * [ ] CUs Addresses match Doc (`usr`)
-    * [ ] Amount matches Doc (`tot`, if decimals are present consider using `ether`)
-    * [ ] Vesting Duration matches Doc (`tau`)
-    * [ ] Cliff Duration matches Doc (`eta`)
-    * [ ] Restricted (by default)
-    * [ ] Manager match Doc (`mgr`, set to zero for DAI streams by default)
-    * [ ] IF [DssVestTransferrable](https://github.com/makerdao/dss-vest/blob/master/src/DssVest.sol#L463) is used
-      * [ ] Ensure `DssVestTransferrable` allowance is increased by new vesting delta (by approving the `transferrable` vest contract to allowance + new total amount streamed)
-  * [ ] CUs MKR Transfers
-    * [ ] Recipient Addresses match Doc
-    * [ ] Transfers Amounts match Doc
-    * [ ] Follows Previous Patterns
-  * [ ] Direct SB DAI Payment
-    * [ ] Recipient Addresses match Doc
-    * [ ] Payment Amounts match Doc
-    * [ ] Follow Previous Patterns
-  * [ ] Ensure Recipient Addresses match `addresses_wallets.sol`
 * [ ] ChainLog
   * [ ] Bump ChainLog, accordingly with spec (major, minor, patch)
     * [ ] MAJOR -> New Vat

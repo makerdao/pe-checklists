@@ -181,6 +181,10 @@ Spell Actions:
     * [ ] Recipient Addresses match Doc
     * [ ] Payment Amounts match Doc
     * [ ] Follow Previous Patterns
+  * [ ] `Yank`
+    * [ ] Stream ID is matches exec
+    * [ ] `MCD_VEST_DAI` for DAI stream `yank`
+    * [ ] `MCD_VEST_MKR_TREASURY` for MKR stream `yank`
   * [ ] Ensure Recipient Addresses match `addresses_wallets.sol`
 * [ ] ChainLog
   * [ ] Bump ChainLog, accordingly with spec (major, minor, patch)
