@@ -75,7 +75,7 @@ Spell Actions:
   * [ ]  Target contract is not upgradable
   * [ ]  Target Contract is included in the ChainLog
   * [ ]  Test Coverage is comprehensive
-* [ ] Risk Parameters Changes
+* [ ] Risk Parameter Changes
   * [ ] `dog.ilk.hole` ([setIlkMaxLiquidationAmount](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L699))
   * [ ] `vat.ilk.dust`([setIlkMinVaultAmount](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L676))
   * [ ] `dog.ilk.chop` ([liquidationPenalty](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L689))
