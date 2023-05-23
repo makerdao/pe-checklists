@@ -65,7 +65,7 @@ Spell Actions:
     * [ ] `MCD_ESM` is relied (as approved by GovAlpha) in order to allow de-authing the pause proxy during Emergency Shutdown, via `denyProxy`.
   * [ ] Matches corresponding github source code (i.e. diffcheck via vscode `code --diff etherscan.sol github.sol`)
   * [ ] Ensure deployer address is included into `addresses_deployers.sol` (**to keep up to date**)
-* [ ] External Contracts Calls (e.g. Starknet)
+* [ ] External Contracts Calls (Not SubDAOs, e.g. Starknet)
   * [ ]  Target Contract don't block spell execution
   * [ ]  External call is NOT delegate call
   * [ ]  Target Contract doesn't have permissions on the Vat
@@ -75,6 +75,18 @@ Spell Actions:
   * [ ]  Target contract is not upgradable
   * [ ]  Target Contract is included in the ChainLog
   * [ ]  Test Coverage is comprehensive
+* [ ] SubDAO Actions
+  * [ ] No SubDao contract being interacted with is authed on a core contract like vat, etc. (script this eventually)
+  * [ ] SubDAO contract licensing and optimizations do not matter (not strictly)
+  * [ ] SubDao contracts and all libraries / dependencies are verified (Blocking if not true)
+  * [ ] Upgradable SubDAO contracts
+    * [ ] Any upgradable contracts have the `PAUSE_PROXY` as their `admin` (i.e. the party that can upgrade)
+      * [ ] Any upgradable SubDao contracts with an `admin` that is not `PAUSE_PROXY` are not authed on any core contracts (Blocking)
+  * [ ] All SubDao content addresses (i.e. provided contract addresses or EOAs) are present in the exec sheet and are correct
+  * [ ] SubDao actions match exec sheet (only where inline with main spell code) and do not affect core contracts
+  * [ ] Core contract knock-on actions (such as offboarding or setting DC to 0) are present in the exec and match the code
+  * [ ] External calls for SubDAO content are NOT delegate call
+  * [ ] TBD: Code does not behave untoward within the scope of Maker Core Contracts (e.g. up to funnels, etc. This is future work)
 * [ ] Risk Parameter Changes
   * [ ] `dog.ilk.hole` ([setIlkMaxLiquidationAmount](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L699))
   * [ ] `vat.ilk.dust`([setIlkMinVaultAmount](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L676))
