@@ -26,10 +26,10 @@
         * [ ] ensure license is specified (SPDX in code or otherwise)
         * [ ] ensure source matches GitHub code and it's consistent with previous RWA onboardings
       * [ ] constructor args are correct and match [chainlog](https://chainlog.makerdao.com/)
-        * [ ] `vat`
-        * [ ] `jug`
-        * [ ] `gemJoin`
-        * [ ] `daiJoin`
+        * [ ] `vat` is `MCD_VAT`
+        * [ ] `jug` is `MCD_JUG`
+        * [ ] `gemJoin` is `MCD_JOIN_RWAXXX_A`
+        * [ ] `daiJoin` is `MCD_JOIN_DAI`
         * [ ] `outputConduit` matches `RwaOutputConduit<2,3>`
       * [ ] check `wards`
         * [ ] `MCD_PAUSE_PROXY` is relied
