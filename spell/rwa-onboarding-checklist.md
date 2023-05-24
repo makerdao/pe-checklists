@@ -3,7 +3,7 @@
     * [ ] `RwaToken` (Token Used as Collateral In Adapter)
       * [ ] deployed via [`RwaTokenFactory`](https://github.com/makerdao/rwa-toolkit/blob/master/src/tokens/RwaTokenFactory.sol)
         * [ ] Fab matches [chainlog](https://chainlog.makerdao.com/)
-        * [ ] ensure source matches github code and it's consistent with previous RWA onboarding
+        * [ ] ensure source matches [GitHub code](https://github.com/makerdao/rwa-toolkit/blob/92c79aac24ef7645902ce4be57ba41b19e6c7dd5/src/tokens/RwaToken.sol) and it's consistent with previous RWA onboarding
         * [ ] Rwa Token transferred to MCD Pause Proxy
         * [ ] `createRwaToken` parameters are correct
          * [ ] `name` is in `RWA-XXX` format
@@ -12,7 +12,7 @@
     * [ ] `AuthGemJoin` (Join Adapter)
       * [ ] deployed via [JoinFab](https://github.com/makerdao/JoinFab/blob/master/src/JoinFab.sol)
         * [ ] Fab matches [chainlog](https://chainlog.makerdao.com/)
-        * [ ] ensure source matches github code and it's consistent with previous RWA onboarding (NOTE: Etherscan may have a bug where it displays additional code for `AuthGemJoin`. In this case, using `cast interface` or otherwise, ensure that this code cannot be executed)
+        * [ ] ensure source matches [GitHub code](https://github.com/makerdao/dss-gem-joins/blob/8ca0a7fdd5edc6ed3da68c3ffdfadfb9540c83f7/src/join-auth.sol) and it's consistent with previous RWA onboarding (NOTE: Etherscan may have a bug where it displays additional code for `AuthGemJoin`. In this case, using `cast interface` or otherwise, ensure that this code cannot be executed)
         * [ ] `newAuthGemJoin` parameters are correct
           * [ ] `owner` matches `PAUSE_PROXY`
           * [ ] `ilk` is the `bytes32` representation of "RWAXXX-A"
@@ -24,8 +24,8 @@
         * [ ] ensure `0.6.12` solc version is used
         * [ ] ensure optimizations are off
         * [ ] ensure license is specified (SPDX in code or otherwise)
-        * [ ] ensure source matches GitHub code and it's consistent with previous RWA onboardings
-      * [ ] constructor args are correct and match [chainlog](https://chainlog.makerdao.com/)
+        * [ ] ensure source matches [GitHub code](https://github.com/makerdao/rwa-toolkit/blob/92c79aac24ef7645902ce4be57ba41b19e6c7dd5/src/urns/RwaUrn2.sol) and it's consistent with previous RWA onboardings
+      * [ ] constructor args are correct and match [Chainlog](https://chainlog.makerdao.com/)
         * [ ] `vat` is `MCD_VAT`
         * [ ] `jug` is `MCD_JUG`
         * [ ] `gemJoin` is `MCD_JOIN_RWAXXX_A`
@@ -40,8 +40,8 @@
       * [ ] contract is verified on etherscan
         * [ ] ensure `0.6.12` solc version is used
         * [ ] ensure optimization are off
-        * [ ] ensure license is specified
-        * [ ] ensure source matches github code and it's consistent with previous RWA onboarding
+        * [ ] ensure license is specified (SPDX in code or otherwise)
+        * [ ] ensure source matches [GitHub code](https://github.com/makerdao/rwa-toolkit/blob/92c79aac24ef7645902ce4be57ba41b19e6c7dd5/src/jars/RwaJar.sol) and it's consistent with previous RWA onboarding
       * [ ] constructor arg matches [`ChainLog`](https://chainlog.makerdao.com/)
         * [ ] `chainlog`
       * [ ] no `wards`
@@ -49,8 +49,8 @@
       * [ ] contract is verified on etherscan
         * [ ] ensure `0.6.12` solc version is used
         * [ ] ensure optimization are off
-        * [ ] ensure license is specified
-        * [ ] ensure source matches github code and it's consistent with previous RWA onboarding
+        * [ ] ensure license is specified (SPDX in code or otherwise)
+        * [ ] ensure source matches [GitHub code](https://github.com/makerdao/rwa-toolkit/blob/92c79aac24ef7645902ce4be57ba41b19e6c7dd5/src/conduits/RwaSwapInputConduit2.sol) and it's consistent with previous RWA onboarding
       * [ ] constructor args are correct and match [chainlog](https://chainlog.makerdao.com/)
         * [ ] `dai`
         * [ ] `to` (`RwaUrn`, `RwaJar`)
@@ -65,8 +65,8 @@
       * [ ] contract is verified on etherscan
         * [ ] ensure `0.6.12` solc version is used
         * [ ] ensure optimization are off
-        * [ ] ensure license is specified
-        * [ ] ensure source matches github code and it's consistent with previous RWA onboarding
+        * [ ] ensure license is specified (SPDX in code or otherwise)
+        * [ ] ensure source matches [GitHub code](https://github.com/makerdao/rwa-toolkit/blob/92c79aac24ef7645902ce4be57ba41b19e6c7dd5/src/conduits/RwaSwapOutputConduit.sol) and it's consistent with previous RWA onboarding
       * [ ] constructor args are correct and match [chainlog](https://chainlog.makerdao.com/)
         * [ ] `dai`
         * [ ] `gov` (`v1`)
@@ -130,7 +130,7 @@
         * [ ] `testRWAXXX_SPELL_LOCK_OPERATOR_DRAW_WIPE_FREE`
         * [ ] `testFailRWAXXX_DRAW_ABOVE_LINE`
         * [ ] `testRWAXXX_OPERATOR_LOCK_DRAW_CAGE`
-        * [ ] `testFailRWAXXX_PUSH_ABOVE_LINE`
+        * [ ] `testFailRWAXXX_OUTPUT_CONDUIT_PUSH_ABOVE_BALANCE`
         * [ ] `testRWAXXX_SPELL_LOCK`
         * [ ] `addresses_<mainnet, goerli>.sol`
         * [ ] `config.sol`
