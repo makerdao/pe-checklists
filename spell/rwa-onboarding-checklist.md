@@ -14,17 +14,17 @@
         * [ ] Fab matches [chainlog](https://chainlog.makerdao.com/)
         * [ ] ensure source matches github code and it's consistent with previous RWA onboarding (NOTE: Etherscan may have a bug where it displays additional code for `AuthGemJoin`. In this case, using `cast interface` or otherwise, ensure that this code cannot be executed)
         * [ ] `newAuthGemJoin` parameters are correct
-          * [ ] `owner` matches MCD Pause Proxy
+          * [ ] `owner` matches `PAUSE_PROXY`
           * [ ] `ilk` is the `bytes32` representation of "RWAXXX-A"
             * [ ] `cast --to-ascii <bytes32>` matches ASCII Ilk
-            * [ ] `cast --to-bytes32 $(cast --from-ascii "RWAXXX-A")` matches `bytes32`
+            * [ ] `cast --to-bytes32 $(cast --from-ascii "RWAXXX-A")` matches `bytes32` (to check the amount of padding zeroes is correct)
           * [ ] `gem` matches `RwaToken` deployed contract
     * [ ] `RwaUrn2`
       * [ ] contract is verified on etherscan
         * [ ] ensure `0.6.12` solc version is used
-        * [ ] ensure optimization are off
-        * [ ] ensure license is specified
-        * [ ] ensure source matches github code and it's consistent with previous RWA onboarding
+        * [ ] ensure optimizations are off
+        * [ ] ensure license is specified (SPDX in code or otherwise)
+        * [ ] ensure source matches GitHub code and it's consistent with previous RWA onboardings
       * [ ] constructor args are correct and match [chainlog](https://chainlog.makerdao.com/)
         * [ ] `vat`
         * [ ] `jug`
