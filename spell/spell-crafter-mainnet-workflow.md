@@ -79,6 +79,7 @@ Repo: https://github.com/makerdao/spells-mainnet
       * [ ] Note: oracle should be deployed on mainnet before Friday (usually Wed-Thu)
   * [ ] Ensure every spell variable is declared as public/internal
   * [ ] Consider `immutable` visibility when fetching addresses from the `ChainLog` via `DssExecLib.getChangelogAddress` and use `constant` for static addresses
+    * [ ] Variable names of addresses fetched from the `ChainLog` match the corresponding ChainLog key (e.g. `MCD_VAT` rather than `vat`)
   * [ ] Add New Addresses in the ChainLog
   * [ ] Bump ChainLog, accordingly with spec (`major`, `minor`, `patch`)
     * [ ] MAJOR -> New Vat
