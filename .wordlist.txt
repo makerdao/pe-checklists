@@ -6,7 +6,7 @@ goerli
 https
 makerdao
 DAO
-subDAO
+SubDAO
 Onboarding
 YYYY
 GovAlpha
