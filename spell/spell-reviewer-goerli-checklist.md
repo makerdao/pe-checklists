@@ -31,7 +31,7 @@ Spell Actions:
 * [ ] Static Interfaces
   * [ ] ensure they match `dss-interfaces` (Where there is a mismatch, use `cast interface` as the source of truth)
   * [ ] check on-chain interface of deployed contract via `cast interface <contract_address>` to ensure correctness
-  * [ ] interface naming style should match with `Like` suffix (e.g. `VatLike`)
+  * [ ] interface naming style should match with `Like` suffix (e.g. `VatLike`), with some [exceptions](https://github.com/makerdao/dss-exec-lib/blob/master/src/DssExecLib.sol#L24)
   * [ ] ensure they only list used functions in spell code
 * [ ] Rates match
   * [ ] Compare against [IPFS](https://ipfs.io/ipfs/QmVp4mhhbwWGTfbh2BzwQB9eiBrQBKiqcPRZCaAxNUaar6)
