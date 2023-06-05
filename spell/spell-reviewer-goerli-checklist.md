@@ -138,7 +138,7 @@ Spell Actions:
         * [ ] Check IF Target `mat` Covers All Remaining Vaults CR times Risk Multiplier Factor
       * [ ] `duration` matches Exec Doc
 * [ ] RWA Updates
-  * [ ] `doc`
+  * [ ] `doc` (Using the [`_updateDoc` helper](https://github.com/makerdao/spells-goerli/blob/88413f576d14628a3488a096d9da6775bef46eaa/archive/2022-11-14-DssSpell/Goerli-DssSpell.sol#L59) or otherwise)
     * [ ] `init` the `RwaLiquidationOracle` to reset the `doc`
     * [ ] Sanity Check `pip` must be set (not the zero address)
     * [ ] `ilk` follows format "RWAXXX-A"
