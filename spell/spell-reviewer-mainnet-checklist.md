@@ -97,7 +97,7 @@ Spell Actions:
   * [ ] SubDAO actions match exec sheet (only where inline with main spell code) and do not affect core contracts
   * [ ] Core contract knock-on actions (such as offboarding or setting DC to 0) are present in the exec and match the code
   * [ ] External calls for SubDAO content are NOT delegate call
-  * [ ] TBD: Code does not behave untoward within the scope of Maker Core Contracts (e.g. up to funnels, etc. This is future work)
+  * [ ] Code does not have untoward behavior within the scope of Maker Core Contracts (e.g. up to the SubDAO proxy)
 * [ ] Risk Parameter Changes
   * [ ] `dog.ilk.hole` ([setIlkMaxLiquidationAmount](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L699))
   * [ ] `vat.ilk.dust`([setIlkMinVaultAmount](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L676))
