@@ -66,7 +66,7 @@ Spell Actions:
     * [ ] Variable visibility declared as `internal`
     * [ ] State mutability declared as `constant`
     * [ ] Ensure the timestamp [converts](https://www.epochconverter.com/) to the correct date
-* [ ] Deployed Contracts (not on chainlog)
+* [ ] Deployed Contracts (not yet on chainlog or new to chainlog)
   * [ ] Verified on etherscan
   * [ ] Optimizations match Repo
   * [ ] `GNU AGPLv3` license
