@@ -157,7 +157,7 @@ Spell Actions:
     * [ ] Executed using `ProxyLike(SUBDAO_PROXY).exec(SUBDAO_SPELL, abi.encodeWithSignature("execute()"));`
     * [ ] Execution is NOT delegate call
     * [ ] Gas cost will not be too high (low level call gas estimation is not done by our scripts)
-  * [ ] Maker Core (main spell) SubDAO actions (i.e. operate in PauseProxy `DelegateCall` context)
+  * [ ] Maker Core (main spell) SubDAO actions (i.e. operate in Pause Proxy `DelegateCall` context)
     * [ ] No SubDAO contract being interacted with is authed on a core contract like vat, etc. (script this eventually)
     * [ ] SubDAO contract licensing and optimizations do not matter (not strictly)
     * [ ] SubDAO contracts and all libraries / dependencies are verified (Blocking if not true)
