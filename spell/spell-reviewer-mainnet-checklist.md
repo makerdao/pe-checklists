@@ -86,18 +86,6 @@ Spell Actions:
   * [ ]  Target contract is not upgradable
   * [ ]  Target Contract is included in the ChainLog
   * [ ]  Test Coverage is comprehensive
-* [ ] SubDAO Actions
-  * [ ] No SubDAO contract being interacted with is authed on a core contract like vat, etc. (script this eventually)
-  * [ ] SubDAO contract licensing and optimizations do not matter (not strictly)
-  * [ ] SubDAO contracts and all libraries / dependencies are verified (Blocking if not true)
-  * [ ] Upgradable SubDAO contracts
-    * [ ] Any upgradable contracts have the `PAUSE_PROXY` as their `admin` (i.e. the party that can upgrade)
-      * [ ] Any upgradable SubDAO contracts with an `admin` that is not `PAUSE_PROXY` are not authed on any core contracts (Blocking)
-  * [ ] All SubDAO content addresses (i.e. provided contract addresses or EOAs) present in the Maker Core spell are present in the exec sheet and are correct
-  * [ ] SubDAO actions match exec sheet (only where inline with main spell code) and do not affect core contracts
-  * [ ] Core contract knock-on actions (such as offboarding or setting DC to 0) are present in the exec and match the code
-  * [ ] External calls for SubDAO content are NOT delegate call
-  * [ ] Code does not have untoward behavior within the scope of Maker Core Contracts (e.g. up to the SubDAO proxy)
 * [ ] Risk Parameter Changes
   * [ ] `dog.ilk.hole` ([setIlkMaxLiquidationAmount](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L699))
   * [ ] `vat.ilk.dust`([setIlkMinVaultAmount](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L676))
@@ -199,6 +187,25 @@ Spell Actions:
     * [ ] `MCD_VEST_DAI` for DAI stream `yank`
     * [ ] `MCD_VEST_MKR_TREASURY` for MKR stream `yank`
   * [ ] Ensure Recipient Addresses match `addresses_wallets.sol`
+* [ ] SubDAO Content
+  * [ ] SubDAO SubProxy spell execution
+    * [ ] SubDAO spell address matches exec doc
+    * [ ] SubDAO spell deployer is in `addresses_deployers`
+    * [ ] Executed using `ProxyLike(SUBDAO_PROXY).exec(SUBDAO_SPELL, abi.encodeWithSignature("execute()"));`
+    * [ ] Execution is NOT delegate call
+    * [ ] Gas cost will not be too high (low level call gas estimation is not done by our scripts)
+  * [ ] Maker Core (main spell) SubDAO actions (i.e. operate in PauseProxy `DelegateCall` context)
+    * [ ] No SubDAO contract being interacted with is authed on a core contract like vat, etc. (script this eventually)
+    * [ ] SubDAO contract licensing and optimizations do not matter (not strictly)
+    * [ ] SubDAO contracts and all libraries / dependencies are verified (Blocking if not true)
+    * [ ] Upgradable SubDAO contracts
+      * [ ] Any upgradable contracts have the `PAUSE_PROXY` as their `admin` (i.e. the party that can upgrade)
+        * [ ] Any upgradable SubDAO contracts with an `admin` that is not `PAUSE_PROXY` are not authed on any core contracts (Blocking)
+    * [ ] All SubDAO content addresses (i.e. provided contract addresses or EOAs) present in the Maker Core spell are present in the exec sheet and are correct
+    * [ ] SubDAO actions match exec sheet (only where inline with main spell code) and do not affect core contracts
+    * [ ] Core contract knock-on actions (such as offboarding or setting DC to 0) are present in the exec and match the code
+    * [ ] External calls for SubDAO content are NOT delegate call
+    * [ ] Code does not have untoward behavior within the scope of Maker Core Contracts (e.g. up to the SubDAO proxy)
 * [ ] ChainLog
   * [ ] Bump ChainLog, accordingly with spec (major, minor, patch)
     * [ ] MAJOR -> New Vat
