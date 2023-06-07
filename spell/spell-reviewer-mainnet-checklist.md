@@ -160,6 +160,7 @@ Spell Actions:
     * [ ] `bump` `RwaLiquidationOracle` with new computed increased price (`val`)
       * [ ] `val` should enable DAI to be drawn over the loan period while taking into
             account the configured `ink` amount, interest rate and liquidation ratio
+        * [ ] Archive precedent is to use `[ (debt ceiling) + (2 years interest at current rate) ] * mat` per RWA ilk and use the sum of these values where multiple ilks are being combined. 2 years appears to correspond to the minimum RWA deal length. For more information refer to the [develop guides](https://github.com/makerdao/developerguides/blob/master/mcd/intro-rate-mechanism/intro-rate-mechanism.md)
     * [ ] Poke `spotter` to pull in the new price
 * [ ] Payments
   * [ ] Streams (`DssVest`)
