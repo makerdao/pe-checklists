@@ -142,14 +142,19 @@ Spell Actions:
     * [ ] `bump` `RwaLiquidationOracle` with new computed increased price (`val`)
       * [ ] ensure `val` is set accordingly with autoline max debt ceiling (`line`)
       * [ ] `val` should enable DAI to be drawn over the loan period while taking into
-            account the configured `ink` amount, interest rate and liquidation ratio
+            account the configured `ink` amount, interest rate and liquidation ratio (see below)
+        * [ ] New `val` is calculated with `[(line + duty ** years) * mat]` (i.e. `[(Debt ceiling) + (RWA stability fee )^(minimum deal duration in years)] * liquidation ratio`) and makes sense in context of the [rate mechanism](https://github.com/makerdao/developerguides/blob/master/mcd/intro-rate-mechanism/intro-rate-mechanism.md). Minimum duration is usually in the exec doc of the spell with the RWAXXX ilk onboarding.
+        * [ ] Accompanying comment above `bump` line in format `// XXMM * 1.XX^X * X.XX as a WAD` corresponding to the `val` calculation formula (e.g. `// 15MM * 1.03^2 * 1.00 as a WAD`) is present along with the calculation formula on the line above
+        * [ ] IF combining `val` of multiple RWA ilks being combined, `val` calculation is done once per ilk and added to make the total, with workings provided in code comments
     * [ ] Poke `spotter` to pull in the new price
   * [ ] Debt Ceiling (`line`) + Liquidation Oracle Price Bump (`val`)
     * [ ] Increase Ilk Debt Ceiling (set DC + increase Global DC)
     * [ ] `bump` `RwaLiquidationOracle` with new computed increased price (`val`)
       * [ ] `val` should enable DAI to be drawn over the loan period while taking into
-            account the configured `ink` amount, interest rate and liquidation ratio
-        * [ ] Archive precedent is to use `[ (debt ceiling) + (2 years interest at current rate) ] * mat` per RWA ilk and use the sum of these values where multiple ilks are being combined. 2 years appears to correspond to the minimum RWA deal length. For more information refer to the [develop guides](https://github.com/makerdao/developerguides/blob/master/mcd/intro-rate-mechanism/intro-rate-mechanism.md)
+            account the configured `ink` amount, interest rate and liquidation ratio (see below)
+        * [ ] New `val` is calculated with `[(line + duty ** years) * mat]` (i.e. `[(Debt ceiling) + (RWA stability fee )^(minimum deal duration in years)] * liquidation ratio`) and makes sense in context of the [rate mechanism](https://github.com/makerdao/developerguides/blob/master/mcd/intro-rate-mechanism/intro-rate-mechanism.md). Minimum duration is usually in the exec doc of the spell with the RWAXXX ilk onboarding.
+        * [ ] Accompanying comment above `bump` line in format `// XXMM * 1.XX^X * X.XX as a WAD` corresponding to the `val` calculation formula (e.g. `// 15MM * 1.03^2 * 1.00 as a WAD`) is present along with the calculation formula on the line above
+        * [ ] IF combining `val` of multiple RWA ilks being combined, `val` calculation is done once per ilk and added to make the total, with workings provided in code comments
     * [ ] Poke `spotter` to pull in the new price
 * [ ] SubDAO Content
   * [ ] SubDAO SubProxy spell execution
