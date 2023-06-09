@@ -19,6 +19,11 @@
             * [ ] `cast --to-ascii <bytes32>` matches ASCII Ilk
             * [ ] `cast --to-bytes32 $(cast --from-ascii "RWAXXX-A")` matches `bytes32` (to check the amount of padding zeroes is correct)
           * [ ] `gem` matches `RwaToken` deployed contract
+        * [ ] check `wards`
+          * [ ] `MCD_PAUSE_PROXY` is relied
+          * [ ] `MCD_ESM` is being relied in the spell (as approved by GovAlpha)
+          * [ ] deployer is denied
+        * [ ] no other address has been relied
     * [ ] `RwaUrn2`
       * [ ] contract is verified on etherscan
         * [ ] ensure `0.6.12` solc version is used
@@ -26,14 +31,14 @@
         * [ ] ensure license is specified (SPDX in code or otherwise)
         * [ ] ensure source matches [GitHub code](https://github.com/makerdao/rwa-toolkit/blob/92c79aac24ef7645902ce4be57ba41b19e6c7dd5/src/urns/RwaUrn2.sol) and it's consistent with previous RWA onboardings
       * [ ] constructor args are correct and match [Chainlog](https://chainlog.makerdao.com/)
-        * [ ] `vat` is `MCD_VAT`
-        * [ ] `jug` is `MCD_JUG`
-        * [ ] `gemJoin` is `MCD_JOIN_RWAXXX_A`
-        * [ ] `daiJoin` is `MCD_JOIN_DAI`
-        * [ ] `outputConduit` matches `RwaOutputConduit<2,3>`
+        * [ ] `vat` matches `MCD_VAT`
+        * [ ] `jug` matches `MCD_JUG`
+        * [ ] `gemJoin` matches `MCD_JOIN_RWAXXX_A` (Per spell code)
+        * [ ] `daiJoin` matches `MCD_JOIN_DAI`
+        * [ ] `outputConduit` matches `RwaOutputConduit<2,3>` (Per spell code)
       * [ ] check `wards`
         * [ ] `MCD_PAUSE_PROXY` is relied
-        * [ ] `MCD_ESM` is relied (as approved by GovAlpha)
+        * [ ] `MCD_ESM` is being relied in the spell (as approved by GovAlpha)
         * [ ] deployer is denied
         * [ ] no other address has been relied
     * [ ] `RwaJar`
@@ -58,7 +63,7 @@
         * [ ] `psm`, `gem` (`v3`)
       * [ ] check `wards`
         * [ ] `MCD_PAUSE_PROXY` is relied
-        * [ ] `MCD_ESM` is relied (as approved by GovAlpha)
+        * [ ] `MCD_ESM` is being relied in the spell (as approved by GovAlpha)
         * [ ] deployer is denied
         * [ ] no other address has been relied
     * [ ] `RwaOutputConduit<2,3>`
@@ -73,7 +78,7 @@
         * [ ] `psm`, `gem` (`v3`)
       * [ ] check `wards`
         * [ ] `MCD_PAUSE_PROXY` is relied
-        * [ ] `MCD_ESM` is relied (as approved by GovAlpha)
+        * [ ] `MCD_ESM` is being relied in the spell (as approved by GovAlpha)
         * [ ] deployer is denied
         * [ ] no other address has been relied
     * [ ] Risk Parameters Match Doc
