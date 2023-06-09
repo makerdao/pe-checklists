@@ -134,8 +134,8 @@
         * [ ] `testRWAXXX_PAUSE_PROXY_OWNS_RWAXXX_TOKEN_BEFORE_SPELL`
         * [ ] `testRWAXXX_SPELL_LOCK_OPERATOR_DRAW_WIPE_FREE`
         * [ ] `testFailRWAXXX_DRAW_ABOVE_LINE`
-        * [ ] `testRWAXXX_OPERATOR_LOCK_DRAW_CAGE`
         * [ ] `testFailRWAXXX_OUTPUT_CONDUIT_PUSH_ABOVE_BALANCE`
+        * [ ] `testRWAXXX_OPERATOR_LOCK_DRAW_CAGE`
         * [ ] `testRWAXXX_SPELL_LOCK`
         * [ ] `addresses_<mainnet, goerli>.sol`
         * [ ] `config.sol`
