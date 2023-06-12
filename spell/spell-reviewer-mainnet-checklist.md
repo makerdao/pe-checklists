@@ -228,6 +228,7 @@ Spell Actions:
 * [ ] Local Tests PASS
   * [ ] Ensure Good Coverage
   * [ ] Ensure every test function is declared as public if enabled or private if disabled
+
 _Insert your passing local tests here_
 
 ## Deployed Stage
@@ -257,4 +258,5 @@ _Insert your passing local tests here_
   * [ ] ensure date corresponds to target exec date
 * [ ] CI tests are passing
 * [ ] Local Tests PASS
+
 _Insert your passing local tests here_
