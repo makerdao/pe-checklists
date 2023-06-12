@@ -1,13 +1,14 @@
-# Goerli Executive Spell Review Checklist [PE-TODO]
+# Goerli Executive Spell Review Checklist
 
-## Goerli
+## Goerli YYYY-MM-DD
 
 Spell Actions:
 
 * TODO
 * TODO
 
-## Checklist
+## Coding Stage
+
 * [ ] Office Hours
   * [ ] Off (default, spell casted after deploying, pause delay 60 sec.)
 * [ ] Exec Hash
@@ -187,10 +188,13 @@ Spell Actions:
   * [ ] Use the [DssExecLib Core Address Helpers](https://github.com/makerdao/dss-exec-lib/blob/master/src/DssExecLib.sol#L166) where possible (e.g. `DssExecLib.vat()`)
   * [ ] Variable names of addresses fetched from the `ChainLog` match the corresponding ChainLog key (e.g. `MCD_VAT` rather than `vat`)
 * [ ] Spell actions match [GovAlpha Spell Content Sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw)
-* [ ] Tests PASS
+* [ ] Local Tests PASS
   * [ ] Ensure Good Coverage
   * [ ] Ensure every test function is declared as public if enabled or private if disabled
-* [ ] Local Tests and CI PASS
+_Insert your passing local tests here_
+
+## Deployed Stage
+
 * [ ] Deployed Spell is Verified
   * [ ] Optimization Enabled: No
   * [ ] Other Settings: default evmVersion, GNU AGPLv3 license
@@ -214,9 +218,17 @@ Spell Actions:
 * [ ] Archive matches `src`
   * [ ] `make diff-archive-spell` for current date or or `date="YYYY-MM-DD" make diff-archive-spell` (date as per cast timestamp)
   * [ ] ensure date corresponds to target exec date
-* [ ] Local Tests and CI PASS
+* [ ] CI tests are passing
+* [ ] Local Tests PASS
+_Insert your passing local tests here_
+
+## Cast Stage
+
 * [ ] Spell is Cast (**only on Goerli**)
   * [ ] Check Cast Trace (via [EthTx](https://ethtx.info/))
     * [ ] Ensure no reverts are present that block execution
       * [ ] Inspect low level call reverts if expected
     * [ ] Ensure all actions are executed and no out-of-gas errors are present
+* [ ] CI tests are passing
+* [ ] Local Tests PASS
+_Insert your passing local tests here_

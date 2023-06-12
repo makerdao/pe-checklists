@@ -1,13 +1,14 @@
-# Mainnet Exec Spell Review Checklist [PE-TODO]
+# Mainnet Executive Spell Review Checklist
 
-## Mainnet
+## Mainnet YYYY-MM-DD
 
 Spell Actions:
 
 * TODO
 * TODO
 
-## Checklist
+## Coding Stage
+
 * [ ] Office Hours
   * [ ] On (Collateral Onboarding, Keepers, Integrations, ...)
   * [ ] matches exec doc
@@ -224,10 +225,13 @@ Spell Actions:
   * [ ] Use the [DssExecLib Core Address Helpers](https://github.com/makerdao/dss-exec-lib/blob/master/src/DssExecLib.sol#L166) where possible (e.g. `DssExecLib.vat()`)
   * [ ] Variable names of addresses fetched from the `ChainLog` match the corresponding ChainLog key (e.g. `MCD_VAT` rather than `vat`)
 * [ ] Spell actions match [GovAlpha Spell Content Sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw) and hashed exec doc
-* [ ] Tests PASS
+* [ ] Local Tests PASS
   * [ ] Ensure Good Coverage
   * [ ] Ensure every test function is declared as public if enabled or private if disabled
-* [ ] Local Tests and CI PASS
+_Insert your passing local tests here_
+
+## Deployed Stage
+
 * [ ] Deployed Spell is Verified
   * [ ] Optimization Enabled: No
   * [ ] Other Settings: default evmVersion, GNU AGPLv3 license
@@ -251,4 +255,6 @@ Spell Actions:
 * [ ] Archive matches `src`
   * [ ] `make diff-archive-spell` for current date or or `date="YYYY-MM-DD" make diff-archive-spell` (date as per target exec date)
   * [ ] ensure date corresponds to target exec date
-* [ ] Local Tests and CI PASS
+* [ ] CI tests are passing
+* [ ] Local Tests PASS
+_Insert your passing local tests here_
