@@ -102,7 +102,7 @@ Spell Actions:
   * [setIlkAutoLineDebtCeiling](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L658)
     * [ ] `ilk`
     * [ ] `line`
-* [ ] Onboarding
+* [ ] Onboarding (insert relevant checklists inline here)
   * [ ] [Collateral Onboarding](./collateral-onboarding-checklist.md)
   * [ ] [RWA Onboarding](./rwa-onboarding-checklist.md)
   * [ ] [Teleport Onboarding](./teleport-onboarding-checklist.md)
