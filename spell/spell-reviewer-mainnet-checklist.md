@@ -17,7 +17,7 @@ Spell Actions:
     * [ ] Executive vote file name and date is correct
     * [ ] [community](https://github.com/makerdao/community) repo commit hash corresponds to latest change
     * [ ] Raw GitHub URL is correct
-    * [ ] Exec hash is correct
+    * [ ] Exec hash is correct (use `cast keccak -- "$(curl '$URL' -o - 2>/dev/null)"` where `wget` doesn't work)
   * [ ] `description` date in `DssSpell.sol` matches exec copy date
 * [ ] 30 Days Expiry
 * [ ] `lib` (`git submodule update --init --recursive` to install/update)

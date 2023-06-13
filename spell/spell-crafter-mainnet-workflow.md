@@ -110,7 +110,7 @@ Repo: https://github.com/makerdao/spells-mainnet
     * [ ] Executive vote file name and date is correct
     * [ ] [community](https://github.com/makerdao/community) repo commit hash corresponds to latest change
     * [ ] Raw GitHub URL is correct
-    * [ ] Exec hash is correct
+    * [ ] Exec hash is correct (use `cast keccak -- "$(curl '$URL' -o - 2>/dev/null)"` where `wget` doesn't work)
   * [ ] Ensure `description` date in `DssSpell.sol` matches exec copy one
 * [ ] Wait for at Least Two Approvals with local tests to deploy
 * [ ] Pre-Deploy Setup and Checks (currently via `dapptools`)
