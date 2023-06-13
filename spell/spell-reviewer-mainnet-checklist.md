@@ -27,9 +27,9 @@ Spell Actions:
     * [ ] git submodule hash (run `git submodule status`) matches the latest release version or newer (NOTE: `dss-exec-lib` as installed locally will use GitHub code more recent than the 0.0.9 release)
   * [ ] `dss-test`
     * [ ] `dss-interfaces`
-      * [ ] git submodule hash matches github master commit (Non-critical)
+      * [ ] git submodule hash matches [version used by `dss-test`](https://github.com/makerdao/dss-test/tree/master/lib) (Non-critical)
     * [ ] `forge-std`
-      * [ ] git submodule hash matches github tag latest release version (Non-critical)
+      * [ ] git submodule hash matches [version used by `dss-test`](https://github.com/makerdao/dss-test/tree/master/lib) (Non-critical)
 * [ ] `dss-interfaces`
   * [ ] used in the current spell
   * [ ] cleanup previous ones
