@@ -71,6 +71,7 @@ Spell Actions:
   * [ ]  External call is NOT delegate call
   * [ ]  Target Contract doesn't have permissions on the Vat
   * [ ]  Target Contract doesn't do anything untoward (e.g. interacting with unsafe contracts)
+  * [ ]  Contracts deployed via `CREATE2` (e.g. if it looks like a vanity address) do not have `selfdestruct` in their code
   * [ ]  MCD Pause Proxy doesn't give any approvals
   * [ ]  All possible actions of the Target Contract are documented
   * [ ]  Target contract is not upgradable
