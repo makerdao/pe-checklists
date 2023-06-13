@@ -46,14 +46,14 @@ Spell Actions:
     * [ ] `RAY = 10 ** 27`
     * [ ] `RAD = 10 ** 45`
     * [ ] Ensure they match with [ds-math](https://github.com/dapphub/ds-math/blob/master/src/math.sol) and the [Numerical Ranges](https://github.com/makerdao/dss/wiki/Numerical-Ranges#notation)
-    * [ ] Variable visibility declared as internal
+    * [ ] Variable visibility declared as `internal`
     * [ ] State mutability declared as `constant`
   * [ ] Units
     * [ ] `HUNDRED  = 10 ** 2`
     * [ ] `THOUSAND = 10 ** 3`
     * [ ] `MILLION  = 10 ** 6`
     * [ ] `BILLION  = 10 ** 9`
-    * [ ] Variable visibility declared as internal
+    * [ ] Variable visibility declared as `internal`
     * [ ] State mutability declared as `constant`
     * [ ] Ensure they match with [config](https://github.com/makerdao/spells-mainnet/blob/master/src/test/config.sol)
 * [ ] Deployed Contracts (not yet on chainlog or new to chainlog)
