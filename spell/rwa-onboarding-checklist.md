@@ -93,7 +93,7 @@
       * [ ] Sanity Checks (constructor args, public vars, ... via `require` condition)
       * [ ] `oracle.init`
       * [ ] `vat.init.ilk`
-      * [ ] `jug.init.ilk` (this will set `duty` to `RAY` (zero ptc) by default)
+      * [ ] `jug.init.ilk` (this will set `duty` to `RAY` (zero pct) by default)
       * [ ] `vat` rely `join`
       * [ ] Increase Ilk Debt Ceiling (set DC + increase Global DC)
       * [ ] File Ilk `pip` in the `spotter`

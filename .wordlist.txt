@@ -99,8 +99,7 @@ Integrations
 Monetalis
 precomputed
 IAM
-Timestampts
-ptc
+Timestamps
 vscode
 EthTx
 TeleportJoin
