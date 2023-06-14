@@ -210,7 +210,7 @@ Spell Actions:
       * [ ] Any upgradable contracts have the `PAUSE_PROXY` as their `admin` (i.e. the party that can upgrade)
         * [ ] Any upgradable SubDAO contracts with an `admin` that is not `PAUSE_PROXY` are not authed on any core contracts (Blocking)
     * [ ] All SubDAO content addresses (i.e. provided contract addresses or EOAs) present in the Maker Core spell are present in the exec doc and are correct. SubDAO addresses being authed or given any permissions MUST be in the exec doc. SubDAO addresses being called must be confirmed by the SubDAO spell team.
-    * [ ] SubDAO actions match exec sheet (only where inline with main spell code) and do not affect core contracts
+    * [ ] SubDAO actions match exec doc (only where inline with main spell code) and do not affect core contracts
     * [ ] Core contract knock-on actions (such as offboarding or setting DC to 0) are present in the exec and match the code
     * [ ] External calls for SubDAO content are NOT delegate call
     * [ ] Code does not have untoward behavior within the scope of Maker Core Contracts (e.g. up to the SubDAO proxy)
@@ -225,7 +225,7 @@ Spell Actions:
   * [ ] Fetch addresses as type `address` and wrap with `Like` suffix interfaces inline (when making calls) unless archive patterns permit otherwise (Such as `MKR`)
   * [ ] Use the [DssExecLib Core Address Helpers](https://github.com/makerdao/dss-exec-lib/blob/master/src/DssExecLib.sol#L166) where possible (e.g. `DssExecLib.vat()`)
   * [ ] Variable names of addresses fetched from the `ChainLog` match the corresponding ChainLog key (e.g. `MCD_VAT` rather than `vat`)
-* [ ] Spell actions match [GovAlpha Spell Content Sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw) and hashed exec doc
+* [ ] Spell actions match [GovAlpha Spell Content Sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw) and hashed exec doc (Exec Doc is the source of truth)
 * [ ] Local Tests PASS
   * [ ] Ensure Good Coverage
   * [ ] Ensure every test function is declared as public if enabled or private if disabled
