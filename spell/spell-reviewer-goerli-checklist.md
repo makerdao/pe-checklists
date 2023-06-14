@@ -209,6 +209,7 @@ _Insert your passing local tests here_
     * [ ] solc version matches
     * [ ] optimizations are disabled
     * [ ] dss-exec-lib library address used (under 'Libraries Used') matches the hardcoded local `DssExecLib.address` file
+      * [ ] Check again that the PR did not modify the `DssExecLib.sol` file (e.g. look under the 'Files Changed' PR tab, etc.)
     * [ ] `deployed_spell_created` matches deployment timestamp
     * [ ] `deployed_spell_block` matches deployment block number
   * [ ] manual checks
