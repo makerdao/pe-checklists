@@ -27,7 +27,6 @@ ExecLib
 diffcheck
 diffchecked
 ChainLog
-changelog
 env
 EIP
 gwei
