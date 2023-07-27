@@ -66,17 +66,6 @@ Spell Actions:
     * [ ] `MCD_ESM` is already relied / being relied this spell (as approved by GovAlpha) in order to allow de-authing the pause proxy during Emergency Shutdown, via `denyProxy`.
   * [ ] Matches corresponding github source code (i.e. diffcheck via vscode `code --diff etherscan.sol github.sol`)
   * [ ] Ensure deployer address is included into `addresses_deployers.sol` (**to keep up to date**)
-* [ ] External Contracts Calls (Not SubDAOs, e.g. Starknet)
-  * [ ]  Target Contract don't block spell execution
-  * [ ]  External call is NOT delegate call
-  * [ ]  Target Contract doesn't have permissions on the Vat
-  * [ ]  Target Contract doesn't do anything untoward (e.g. interacting with unsafe contracts)
-  * [ ]  Contracts deployed via `CREATE2` (e.g. if it looks like a vanity address) do not have `selfdestruct` in their code
-  * [ ]  MCD Pause Proxy doesn't give any approvals
-  * [ ]  All possible actions of the Target Contract are documented
-  * [ ]  Target contract is not upgradable
-  * [ ]  Target Contract is included in the ChainLog
-  * [ ]  Test Coverage is comprehensive
 * [ ] Risk Parameter Changes
   * [ ] `dog.ilk.hole` ([setIlkMaxLiquidationAmount](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L699))
   * [ ] `vat.ilk.dust`([setIlkMinVaultAmount](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L676))
@@ -158,6 +147,17 @@ Spell Actions:
         * [ ] Accompanying comment above `bump` line in format `// XXM * 1.XX^X * X.XX as a WAD` corresponding to the `val` calculation formula (e.g. `// 15M * 1.03^2 * 1.00 as a WAD`) is present along with the calculation formula on the line above
         * [ ] IF combining `val` of multiple RWA ilks being combined, `val` calculation is done once per ilk and added to make the total, with workings provided in code comments. The existing `val` value can be retrieved by calling `read()` on `PIP_RWAXX` and converting the result into decimal.
     * [ ] Poke `spotter` to pull in the new price
+* [ ] External Contracts Calls (Not SubDAOs, e.g. Starknet)
+  * [ ]  Target Contract don't block spell execution
+  * [ ]  External call is NOT delegate call
+  * [ ]  Target Contract doesn't have permissions on the Vat
+  * [ ]  Target Contract doesn't do anything untoward (e.g. interacting with unsafe contracts)
+  * [ ]  Contracts deployed via `CREATE2` (e.g. if it looks like a vanity address) do not have `selfdestruct` in their code
+  * [ ]  MCD Pause Proxy doesn't give any approvals
+  * [ ]  All possible actions of the Target Contract are documented
+  * [ ]  Target contract is not upgradable
+  * [ ]  Target Contract is included in the ChainLog
+  * [ ]  Test Coverage is comprehensive
 * [ ] SubDAO Content
   * [ ] SubDAO SubProxy spell execution
     * [ ] SubDAO spell address matches exec doc

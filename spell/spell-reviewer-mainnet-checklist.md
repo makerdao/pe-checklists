@@ -77,17 +77,6 @@ Spell Actions:
     * [ ] `MCD_ESM` is already relied / being relied this spell (as approved by GovAlpha) in order to allow de-authing the pause proxy during Emergency Shutdown, via `denyProxy`.
   * [ ] Matches corresponding github source code (i.e. diffcheck via vscode `code --diff etherscan.sol github.sol`)
   * [ ] Ensure deployer address is included into `addresses_deployers.sol` (**to keep up to date**)
-* [ ] External Contracts Calls (Not SubDAOs, e.g. Starknet)
-  * [ ]  Target Contract don't block spell execution
-  * [ ]  External call is NOT delegate call
-  * [ ]  Target Contract doesn't have permissions on the Vat
-  * [ ]  Target Contract doesn't do anything untoward (e.g. interacting with unsafe contracts)
-  * [ ]  Contracts deployed via `CREATE2` (e.g. if it looks like a vanity address) do not have `selfdestruct` in their code
-  * [ ]  MCD Pause Proxy doesn't give any approvals
-  * [ ]  All possible actions of the Target Contract are documented
-  * [ ]  Target contract is not upgradable
-  * [ ]  Target Contract is included in the ChainLog
-  * [ ]  Test Coverage is comprehensive
 * [ ] Risk Parameter Changes
   * [ ] `dog.ilk.hole` ([setIlkMaxLiquidationAmount](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L699))
   * [ ] `vat.ilk.dust`([setIlkMinVaultAmount](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L676))
@@ -215,6 +204,17 @@ Spell Actions:
     * [ ] Core contract knock-on actions (such as offboarding or setting DC to 0) are present in the exec and match the code
     * [ ] External calls for SubDAO content are NOT delegate call
     * [ ] Code does not have untoward behavior within the scope of Maker Core Contracts (e.g. up to the SubDAO proxy)
+* [ ] External Contracts Calls (Not SubDAOs, e.g. Starknet)
+  * [ ]  Target Contract don't block spell execution
+  * [ ]  External call is NOT delegate call
+  * [ ]  Target Contract doesn't have permissions on the Vat
+  * [ ]  Target Contract doesn't do anything untoward (e.g. interacting with unsafe contracts)
+  * [ ]  Contracts deployed via `CREATE2` (e.g. if it looks like a vanity address) do not have `selfdestruct` in their code
+  * [ ]  MCD Pause Proxy doesn't give any approvals
+  * [ ]  All possible actions of the Target Contract are documented
+  * [ ]  Target contract is not upgradable
+  * [ ]  Target Contract is included in the ChainLog
+  * [ ]  Test Coverage is comprehensive
 * [ ] ChainLog
   * [ ] Bump ChainLog, accordingly with spec (major, minor, patch)
     * [ ] MAJOR -> New Vat
