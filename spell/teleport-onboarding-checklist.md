@@ -27,7 +27,7 @@
           * [ ] others (L2 dependant)
         * [ ] check `wards`
           * [ ] `L2GovernanceRelay` is relied
-          * [ ] `MCD_ESM` is already relied / being relied this spell (as approved by GovAlpha)
+          * [ ] `MCD_ESM` is already relied / being relied in this spell (as approved by GovAlpha)
           * [ ] deployer is denied
           * [ ] no other address has been relied
     * [ ] `TeleportLinearFee` (Domain Teleport Linear Fee or different fee contract)
