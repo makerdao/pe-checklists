@@ -9,8 +9,8 @@ Repo: https://github.com/makerdao/spells-mainnet
 ![](https://ipfs.io/ipfs/QmUqCvy7c8Qmzn7yZ6D3353wTqCZ3VDAwQKYB37pJ2BjXb)
 
 ### Steps:
-* [ ] Create Branch on GitHub `PE-<kanban ticket issue number>`
-  * [ ] Ensure the same ticket issue number is used as per `spells-goerli` spell
+* [ ] Create a new branch on the `spells-mainnet` repo named `YYYY-MM-DD` using the initial target date of the spell
+  * [ ] Ensure the same target date is used as the corresponding `spells-goerli` spell branch
 * [ ] Pull `master` Locally and Checkout Branch (IF Branch is created via GitHub)
 * [ ] Pull `master` Locally, Create and Checkout Branch (IF Branch was not created via GitHub)
 * [ ] Cleanup Previous Spell's Actions in `DssSpell.sol` (diffcheck with Goerli)
