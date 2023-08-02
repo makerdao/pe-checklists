@@ -124,7 +124,7 @@ Spell Actions:
       * [ ] `what` matches `mat`
       * [ ] `startTime` matches `block.timestamp`
       * [ ] `start` matches Var `CURRENT_XXX_A_MAT`
-      * [ ] `end` matches Var `TARGET_XXX_A_MAT` (Mach Exec Doc & Risk Computations)
+      * [ ] `end` matches Var `TARGET_XXX_A_MAT` (Match Exec Doc & Risk Computations)
         * [ ] Check IF Target `mat` Covers All Remaining Vaults CR times Risk Multiplier Factor
       * [ ] `duration` matches Exec Doc
 * [ ] RWA Updates

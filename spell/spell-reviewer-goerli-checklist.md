@@ -113,9 +113,9 @@ Spell Actions:
       * [ ] `what` matches `mat`
       * [ ] `startTime` matches `block.timestamp`
       * [ ] `start` matches Var `CURRENT_XXX_A_MAT`
-      * [ ] `end` matches Var `TARGET_XXX_A_MAT` (Mach Exec Doc & Risk Computations)
+      * [ ] `end` matches Var `TARGET_XXX_A_MAT` (Match Exec Doc & Risk Computations)
         * [ ] Check IF Target `mat` Covers All Remaining Vaults CR times Risk Multiplier Factor
-      * [ ] `duration` matches Exec Doc
+      * [ ] `duration` matches Exec Sheet
 * [ ] RWA Updates
   * [ ] `doc` (Using the [`_updateDoc` helper](https://github.com/makerdao/spells-goerli/blob/88413f576d14628a3488a096d9da6775bef46eaa/archive/2022-11-14-DssSpell/Goerli-DssSpell.sol#L59) or otherwise)
     * [ ] `init` the `RwaLiquidationOracle` to reset the `doc`
@@ -151,7 +151,7 @@ Spell Actions:
     * [ ] Poke `spotter` to pull in the new price
 * [ ] SubDAO Content
   * [ ] SubDAO SubProxy spell execution
-    * [ ] SubDAO spell address matches exec doc
+    * [ ] SubDAO spell address matches exec sheet (comment or otherwise)
     * [ ] SubDAO spell deployer is in `addresses_deployers`
     * [ ] Executed using `ProxyLike(SUBDAO_PROXY).exec(SUBDAO_SPELL, abi.encodeWithSignature("execute()"));`
     * [ ] Execution is NOT delegate call
