@@ -171,11 +171,11 @@ Spell Actions:
     * [ ] Manager match Doc (`mgr`, set to zero for DAI streams by default)
     * [ ] IF [DssVestTransferrable](https://github.com/makerdao/dss-vest/blob/master/src/DssVest.sol#L463) is used
       * [ ] Ensure `DssVestTransferrable` allowance is increased by new vesting delta (by approving the `transferrable` vest contract to allowance + new total amount streamed)
-  * [ ] CUs MKR Transfers
+  * [ ] MKR Transfers
     * [ ] Recipient Addresses match Doc
     * [ ] Transfers Amounts match Doc
     * [ ] Follows Previous Patterns
-  * [ ] Direct SB DAI Payment
+  * [ ] DAI Surplus Buffer Transfers
     * [ ] Recipient Addresses match Doc
     * [ ] Payment Amounts match Doc
     * [ ] Follow Previous Patterns
