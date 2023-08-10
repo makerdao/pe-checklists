@@ -138,7 +138,7 @@ Spell Actions:
     * [ ] Sanity Check `pip` must be set (not the zero address)
     * [ ] `ilk` follows format "RWAXXX-A"
     * [ ] `val` price ignored (`0`) if `init` has already been called
-    * [ ] `doc` new legal document (IPFS HASH) matches Doc (or Forum Post)
+    * [ ] `doc` new legal document (IPFS HASH) matches Exec Doc
     * [ ] `tau` parameter used is the old `tau` value
   * [ ] Autoline (`line`) + Liquidation Oracle Price Bump (`val`)
     * [ ] Enable Autoline
@@ -164,14 +164,14 @@ Spell Actions:
         * [ ] IF combining `val` of multiple RWA ilks being combined, `val` calculation is done once per ilk and added to make the total, with workings provided in code comments. The existing `val` value can be retrieved by calling `read()` on `PIP_RWAXX` and converting the result into decimal.
     * [ ] Poke `spotter` to pull in the new price
 * [ ] Payments
-  * [ ] MKR Transfers
+  * [ ] MKR transfers
     * [ ] Recipient addresses match Exec Doc
     * [ ] Transfer values match Exec Doc
-    * [ ] Follows Previous Patterns
-  * [ ] DAI Surplus Buffer Transfers
-    * [ ] Recipient Addresses match Doc
-    * [ ] Payment Amounts match Doc
-    * [ ] Follow Previous Patterns
+    * [ ] Follows archive patterns
+  * [ ] DAI Surplus Buffer transfers
+    * [ ] Recipient Addresses match Exec Doc
+    * [ ] Payment Amounts match Exec Doc
+    * [ ] Follows previous patterns
   * [ ] Create New MKR/DAI Streams (`DssVest`)
     * [ ] `DssVestLike` interface is correct
     * [ ] Check for all streams (MKR, DAI)
