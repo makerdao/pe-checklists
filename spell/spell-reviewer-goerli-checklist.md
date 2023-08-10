@@ -117,7 +117,7 @@ Spell Actions:
       * [ ] `what` matches `mat`
       * [ ] `startTime` matches `block.timestamp`
       * [ ] `start` matches Var `CURRENT_XXX_A_MAT`
-      * [ ] `end` matches Var `TARGET_XXX_A_MAT` (Match Exec Doc & Risk Computations)
+      * [ ] `end` matches Var `TARGET_XXX_A_MAT` (Match Exec Sheet & Risk Computations)
         * [ ] Check IF Target `mat` Covers All Remaining Vaults CR times Risk Multiplier Factor
       * [ ] `duration` matches Exec Sheet
 * [ ] RWA Updates
@@ -155,7 +155,7 @@ Spell Actions:
     * [ ] Poke `spotter` to pull in the new price
 * [ ] SubDAO Content
   * [ ] SubDAO SubProxy spell execution
-    * [ ] SubDAO spell address matches exec sheet (comment or otherwise)
+    * [ ] SubDAO spell address matches Exec Sheet (comment or otherwise)
     * [ ] SubDAO spell deployer is in `addresses_deployers`
     * [ ] Executed using `ProxyLike(SUBDAO_PROXY).exec(SUBDAO_SPELL, abi.encodeWithSignature("execute()"));`
     * [ ] Execution is NOT delegate call
@@ -167,9 +167,9 @@ Spell Actions:
     * [ ] Upgradable SubDAO contracts
       * [ ] Any upgradable contracts have the `PAUSE_PROXY` as their `admin` (i.e. the party that can upgrade)
         * [ ] Any upgradable SubDAO contracts with an `admin` that is not `PAUSE_PROXY` are not authed on any core contracts (Blocking)
-    * [ ] All SubDAO content addresses (i.e. provided contract addresses or EOAs) present in the Maker Core spell are present in the exec sheet and are correct. SubDAO addresses being authed or given any permissions and addresses being called must be confirmed by the SubDAO spell team.
-    * [ ] SubDAO actions match exec sheet (only where inline with main spell code) and do not affect core contracts
-    * [ ] Core contract knock-on actions (such as offboarding or setting DC to 0) are present in the exec and match the code
+    * [ ] All SubDAO content addresses (i.e. provided contract addresses or EOAs) present in the Maker Core spell are present in the Exec Sheet and are correct. SubDAO addresses being authed or given any permissions and addresses being called must be confirmed by the SubDAO spell team.
+    * [ ] SubDAO actions match Exec Sheet (only where inline with main spell code) and do not affect core contracts
+    * [ ] Core contract knock-on actions (such as offboarding or setting DC to 0) are present in the Exec Sheet and match the code
     * [ ] External calls for SubDAO content are NOT delegate call
     * [ ] Code does not have untoward behavior within the scope of Maker Core Contracts (e.g. up to the SubDAO proxy)
 * [ ] External Contracts Calls (Not SubDAOs, e.g. Starknet)
@@ -228,10 +228,10 @@ _Insert your passing local tests here_
         * [ ] `deployed_spell_created` timestamp
         * [ ] `deployed_spell_block` block number
       * [ ] Ensure Etherscan `Libraries Used` matches DssExecLib [Latest Release](https://github.com/makerdao/dss-exec-lib/releases/latest)
-       * [ ] (For your tests to be accurate) git submodule hash matches [dss-exec-lib](https://github.com/makerdao/dss-exec-lib/releases/latest) latest release's tag commit and inspect diffs if doesn't match to ensure expected behaviour (Currently Non-Critical pending the next DssExecLib release, double check that exec lib used by the contract matches the latest release)
+       * [ ] (For your tests to be accurate) git submodule hash matches [dss-exec-lib](https://github.com/makerdao/dss-exec-lib/releases/latest) latest release's tag commit and inspect diffs if doesn't match to ensure expected behaviour (Currently Non-Critical pending the next DssExecLib release, double check that the ExecLib used by the contract matches the latest release)
 * [ ] Archive matches `src`
   * [ ] `make diff-archive-spell` for current date or or `date="YYYY-MM-DD" make diff-archive-spell` (date as per cast timestamp)
-  * [ ] Ensure date corresponds to target exec date
+  * [ ] Ensure date corresponds to target Exec Sheet date
 * [ ] Tests
   * [ ] Check all CI tests are passing as at the latest commit
     _Insert most recent commit hash where CI was passing_
