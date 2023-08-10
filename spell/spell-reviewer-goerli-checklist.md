@@ -240,7 +240,3 @@ _Insert your passing local tests here_
     * [ ] Ensure no reverts are present that block execution
       * [ ] Inspect low level call reverts if expected
     * [ ] Ensure all actions are executed and no out-of-gas errors are present
-* [ ] CI tests are passing
-* [ ] Local Tests PASS
-
-_Insert your passing local tests here_
