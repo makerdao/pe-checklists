@@ -254,8 +254,10 @@ Spell Actions:
   * [ ] Ensure each spell action has sufficient test coverage
   _List actions for which coverage was checked here_
   * [ ] Ensure every test function is declared as public if enabled or private if disabled
-  * [ ] Check tests pass via CI tests
-  * [ ] Check tests pass locally using `make test`
+  * [ ] Check all CI tests are passing as at the latest commit
+    _Insert most recent commit hash where CI was passing_
+  * [ ] Check all tests are passing locally using `make test`
+    * [ ] Ensure that only `ETH_RPC_URL` is being used from env (i.e. no `match`, `block` or similar are active in your env)
 
 _Insert your passing local tests here_
 
@@ -292,7 +294,7 @@ _Insert your passing local tests here_
 
 ## Handover and Merge Stage
 
-* [ ] Check that the spell address posted by the crafter in `new-spells` is correct
-  * [ ] Confirm the address in `new-spells` (via a thumbs up message reaction, )
+* [ ] Check that the spell address posted by the crafter in [`new-spells`](https://discord.com/channels/893112320329396265/897483518316265553) is correct
+  * [ ] Confirm the address in [`new-spells`](https://discord.com/channels/893112320329396265/897483518316265553) (via a thumbs up message reaction, )
 * [ ] Ensure that no commits or changes have occurred since the spell was deployed and archived
 * [ ] Approve spell PR for merge via 'Approve' review option

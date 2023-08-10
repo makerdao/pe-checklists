@@ -199,8 +199,10 @@ Spell Actions:
   * [ ] Ensure each spell action has sufficient test coverage
   _List actions for which coverage was checked here_
   * [ ] Ensure every test function is declared as public if enabled or private if disabled
-  * [ ] Check tests pass via CI tests
-  * [ ] Check tests pass locally using `make test`
+  * [ ] Check all CI tests are passing as at the latest commit
+    _Insert most recent commit hash where CI was passing_
+  * [ ] Check all tests are passing locally using `make test`
+    * [ ] Ensure that only `ETH_RPC_URL` is being used from env (i.e. no `match`, `block` or similar are active in your env)
 
 _Insert your passing local tests here_
 
@@ -230,14 +232,17 @@ _Insert your passing local tests here_
 * [ ] Archive matches `src`
   * [ ] `make diff-archive-spell` for current date or or `date="YYYY-MM-DD" make diff-archive-spell` (date as per cast timestamp)
   * [ ] Ensure date corresponds to target exec date
-* [ ] CI tests are passing
-* [ ] Local Tests PASS
+* [ ] Tests
+  * [ ] Check all CI tests are passing as at the latest commit
+    _Insert most recent commit hash where CI was passing_
+  * [ ] Check all tests are passing locally using `make test`
+    * [ ] Ensure that only `ETH_RPC_URL` is being used from env (i.e. no `match`, `block` or similar are active in your env)
 
 _Insert your passing local tests here_
 
 ## Cast and Merge Stage
 
-* [ ] Spell is Cast (**only on Goerli**)
+* [ ] Spell is Cast
   * [ ] Check Cast Trace (via [EthTx](https://ethtx.info/))
     * [ ] Ensure no reverts are present that block execution
       * [ ] Inspect low level call reverts if expected
