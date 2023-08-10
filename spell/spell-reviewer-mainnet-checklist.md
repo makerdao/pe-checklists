@@ -287,8 +287,11 @@ _Insert your passing local tests here_
 * [ ] Archive matches `src`
   * [ ] `make diff-archive-spell` for current date or or `date="YYYY-MM-DD" make diff-archive-spell` (date as per target exec date)
   * [ ] Ensure date corresponds to target exec date
-* [ ] CI tests are passing
-* [ ] Local Tests PASS
+* [ ] Tests
+  * [ ] Check all CI tests are passing as at the latest commit
+    _Insert most recent commit hash where CI was passing_
+  * [ ] Check all tests are passing locally using `make test`
+    * [ ] Ensure that only `ETH_RPC_URL` is being used from env (i.e. no `match`, `block` or similar are active in your env)
 
 _Insert your passing local tests here_
 
