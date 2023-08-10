@@ -211,7 +211,10 @@ Spell Actions:
 * [ ] SubDAO Content
   * [ ] SubDAO SubProxy spell execution
     * [ ] SubDAO spell address matches Exec Doc
-    * [ ] SubDAO spell deployer is in `addresses_deployers`
+    * [ ] SubDAO spell deployer is a smart contract (e.g. multisig or factory)
+      * [ ] Ensure the deployer address is in `addresses_deployers.sol` as an entry
+    * [ ] SubDAO spell deployer is purely an EOA
+      * [ ] Ensure the deployer address is in `addresses_deployers.sol` as a comment
     * [ ] Executed using `ProxyLike(SUBDAO_PROXY).exec(SUBDAO_SPELL, abi.encodeWithSignature("execute()"));`
     * [ ] Execution is NOT delegate call
     * [ ] Reviewer Note: Gas cost may be very high as SubDAO spells execute within the main `cast` execution. (Also note that low level call gas estimation is not done by our scripts)

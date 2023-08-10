@@ -36,9 +36,12 @@ Repo: https://github.com/makerdao/spells-mainnet
 * [ ] Tests PASS via `make test`
 * [ ] Commit & Push `Base spell`
 * [ ] CI Tests PASS
-* [ ] Open Draft PR on `spells-mainnet` titled "PE-<ticket number>: YYYY-MM-DD Executive"
+* [ ] Open Draft PR on `spells-goerli` titled `Goerli spell YYYY-MM-DD` where `YYYY-MM-DD` is the expected target date of the spell
 * [ ] Assign to yourself
-* [ ] Add Spell Actions as per [GovAlpha Spell Content Sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw) - [Polls](https://vote.makerdao.com/polling?network=mainnet)
+* [ ] If corresponding Exec Doc is ready
+  * [ ] Add Spell Actions as per the corresponding Exec Doc
+* [ ] If corresponding Exec Doc is NOT ready
+  * [ ] Add Spell Actions as per [GovAlpha Spell Content Sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw) - [Polls](https://vote.makerdao.com/polling?network=mainnet)
   * [ ] Polls starts on Monday and ends on Thursday
     * [ ] Ensure spell actions match polls details and links (forum posts, MIPs portal, ...)
     * [ ] Check spell copy is merged in [community](https://github.com/makerdao/community/blob/master/governance/votes) repo
@@ -104,6 +107,8 @@ Repo: https://github.com/makerdao/spells-mainnet
 * [ ] Open PR & Add Reviewers
 * [ ] Iterate until polls are ended and exec doc is confirmed
 * [ ] Confirm Exec Doc Actions
+  * [ ] Check that every action present in the spell code is present in the Exec Doc
+  * [ ] Check that every action in the Exec Doc is present in the spell code
 * [ ] Make sure CI PASS
 * [ ] Add Exec Hash
   * [ ] Run `make exec-hash` for current date, or `date=YYYY-MM-DD` and update spell code accordingly
@@ -150,7 +155,7 @@ Repo: https://github.com/makerdao/spells-mainnet
 * [ ] Wait for CI to PASS
 * [ ] Wait for at Least two Approvals to Share for Publishing to GovAlpha
 * [ ] Share Deployed Address in `new-spells`
-* [ ] Fill Spell Crafter Related Boxes in the Main Exec Doc Sheet
+* [ ] Fill Spell Crafter Related Boxes in the Main Exec Sheet
 * [ ] Squash & Merge
 
 ## Next Steps
