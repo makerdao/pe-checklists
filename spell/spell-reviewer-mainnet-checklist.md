@@ -63,7 +63,7 @@ Spell Actions:
     * [ ] Ensure they match with [config](https://github.com/makerdao/spells-mainnet/blob/master/src/test/config.sol)
   * [ ] Timestamps
     * [ ] Variable naming matches `MONTH_DD_YYYY` (e.g. `MAY_01_2023` for 2023-05-01)
-    * [ ] Time of day makes logical sense (i.e. `11:59:59` on the last day of the month) in the context of exec actions
+    * [ ] Time of day makes logical sense (i.e. `11:59:59` for the final day of something, `00:00:00` for the first day of something) in the context of timestamp usage
     * [ ] Variable visibility declared as `internal`
     * [ ] State mutability declared as `constant`
     * [ ] Ensure the timestamp [converts](https://www.epochconverter.com/) to the correct date
@@ -163,30 +163,49 @@ Spell Actions:
         * [ ] IF combining `val` of multiple RWA ilks being combined, `val` calculation is done once per ilk and added to make the total, with workings provided in code comments. The existing `val` value can be retrieved by calling `read()` on `PIP_RWAXX` and converting the result into decimal.
     * [ ] Poke `spotter` to pull in the new price
 * [ ] Payments
-  * [ ] Streams (`DssVest`)
-    * [ ] `DssVest` Interface is correct
-    * [ ] Ensure that `cap` > max new vest `tot`/`tau` otherwise file cap as well
-    * [ ] Timestamps match Doc (`bgn`, `fin`)
-    * [ ] CUs Addresses match Doc (`usr`)
-    * [ ] Amount matches Doc (`tot`, if decimals are present consider using `ether`)
-    * [ ] Vesting Duration matches Doc (`tau`)
-    * [ ] Cliff Duration matches Doc (`eta`)
-    * [ ] Restricted (by default)
-    * [ ] Manager match Doc (`mgr`, set to zero for DAI streams by default)
-    * [ ] IF [DssVestTransferrable](https://github.com/makerdao/dss-vest/blob/master/src/DssVest.sol#L463) is used
-      * [ ] Ensure `DssVestTransferrable` allowance is increased by new vesting delta (by approving the `transferrable` vest contract to allowance + new total amount streamed)
   * [ ] MKR Transfers
-    * [ ] Recipient Addresses match Doc
-    * [ ] Transfers Amounts match Doc
+    * [ ] Recipient addresses match Exec Doc
+    * [ ] Transfer values match Exec Doc
     * [ ] Follows Previous Patterns
   * [ ] DAI Surplus Buffer Transfers
     * [ ] Recipient Addresses match Doc
     * [ ] Payment Amounts match Doc
     * [ ] Follow Previous Patterns
-  * [ ] `Yank`
-    * [ ] Stream ID is matches exec
-    * [ ] `MCD_VEST_DAI` for DAI stream `yank`
-    * [ ] `MCD_VEST_MKR_TREASURY` for MKR stream `yank`
+  * [ ] Create New MKR/DAI Streams (`DssVest`)
+    * [ ] `DssVestLike` interface is correct
+    * [ ] Check for all streams (MKR, DAI)
+      * [ ] `restrict` is used for each stream unless otherwise stated in the Exec Doc
+      * [ ] `usr` (Vest recipient address) matches Exec Doc
+      * [ ] `tot` (Total stream amount) matches Exec Doc
+        * [ ] Use `ether` to express decimal (non-integer) values of `tot`
+        * [ ] Where vest amount is expressed in 'per year' or similar in the Exec Doc, account for leap days
+      * [ ] `bgn` (Vest start timestamp) matches Exec Doc
+      * [ ] `tau` (Vest total duration) matches Exec Doc
+        * [ ] `tau` is expressed as '`bgn` - `fin`' (i.e. `MONTH_DD_YYYY - MONTH_DD_YYYY`)
+        * [ ] `fin` (Vest end timestamp) matches Exec Doc
+      * [ ] `eta` (Vest cliff duration) matches Exec Doc
+        * [ ] If the Exec Doc does not specify a cliff date (`clf`), `eta` is 0
+        * [ ] `clf` (Cliff end timestamp) matches Exec Doc
+        * [ ] If `clf` <= `bgn`, `eta` is 0
+        * [ ] If `clf` > `bgn`
+          * [ ] `eta` is expressed as '`clf` - `bgn`' (i.e. `MONTH_DD_YYYY - MONTH_DD_YYYY`)
+      * [ ] `mgr` (Vest manager address) matches Exec Doc
+        * [ ] If the Exec Doc does not specify a manager address, `mgr` is `address(0)`
+    * [ ] Max vesting rate (`cap`) check (MKR, DAI)
+      * [ ] The maximum vesting rate (`tot` divided by `tau`) <= the maximum vest streaming rate (`cap`)
+      * [ ] The maximum vesting rate (`tot` divided by `tau`) >  the maximum vest streaming rate (`cap`)
+        * [ ] TODO Calculate new `cap` value equal to 10% greater than the new maximum vesting rate
+        * [ ] TODO Round new `cap` up with 2 significant figure precision (i.e. 2446 becomes 2500)
+        * [ ] TODO Notify Governance Facilitators for addition in exec doc
+        * [ ] Ensure that `cap` change is noted in the Exec Doc
+        * [ ] New `cap` value matches Exec Doc
+    * [ ] MKR Streams ([DssVestTransferrable](https://github.com/makerdao/dss-vest/blob/master/src/DssVest.sol#L463))
+      * [ ] Increase vest contract's MKR allowance by the cumulative `tot` (total of new MKR vest amounts)
+      * [ ] Ensure allowance increase follows archive patterns
+  * [ ] Terminate Existing MKR/DAI Streams (`Yank`)
+    * [ ] Yanked stream ID matches Exec Doc
+    * [ ] Use `MCD_VEST_MKR_TREASURY` for MKR `yank`
+    * [ ] Use `MCD_VEST_DAI` for DAI `yank`
   * [ ] Ensure Recipient Addresses match `addresses_wallets.sol`
 * [ ] SubDAO Content
   * [ ] SubDAO SubProxy spell execution
