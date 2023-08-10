@@ -196,7 +196,8 @@ Spell Actions:
   * [ ] Where addresses are fetched from the `ChainLog`, the variable name must match the value of the ChainLog key for that address (e.g. `MCD_VAT` rather than `vat`), except where the archive pattern differs from this pattern (e.g. MKR)
 * [ ] Spell actions match [GovAlpha Spell Content Sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw)
 * [ ] Local Tests PASS
-  * [ ] Ensure Good Coverage
+  * [ ] Ensure each action has sufficient test coverage
+  _List actions for which coverage was checked here_
   * [ ] Ensure every test function is declared as public if enabled or private if disabled
 
 _Insert your passing local tests here_
