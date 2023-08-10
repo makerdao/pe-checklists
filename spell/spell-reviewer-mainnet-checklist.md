@@ -10,8 +10,9 @@ Spell Actions:
 ## Coding Stage
 
 * [ ] Office Hours
-  * [ ] On (Collateral Onboarding, Keepers, Integrations, ...)
-  * [ ] matches exec doc
+  * [ ] ON (Collateral Onboarding, Keepers, Integrations, ...)
+  * [ ] OFF
+  * [ ] Matches Exec Doc
 * [ ] Exec Hash
   * [ ] Run `make exec-hash` for current date, or `date=YYYY-MM-DD`
     * [ ] Executive vote file name and date is correct
@@ -148,7 +149,7 @@ Spell Actions:
     * [ ] `bump` `RwaLiquidationOracle` with new computed increased price (`val`)
       * [ ] ensure `val` is set accordingly with autoline max debt ceiling (`line`)
       * [ ] `val` should enable DAI to be drawn over the loan period while taking into account the configured `ink` amount, interest rate and liquidation ratio (see below)
-        * [ ] New `val` is calculated with `line * [(1 + duty) ** years] * mat` - rounded up - and makes sense in context of the [rate mechanism](https://github.com/makerdao/developerguides/blob/master/mcd/intro-rate-mechanism/intro-rate-mechanism.md). Minimum duration is usually in the exec doc of the spell with the RWAXXX ilk onboarding.
+        * [ ] New `val` is calculated with `line * [(1 + duty) ** years] * mat` - rounded up - and makes sense in context of the [rate mechanism](https://github.com/makerdao/developerguides/blob/master/mcd/intro-rate-mechanism/intro-rate-mechanism.md). Minimum duration is usually in the Exec Doc of the spell with the RWAXXX ilk onboarding.
         * [ ] Comment explaining `val` formula (`Debt ceiling * [ (1 + RWA stability fee ) ^ (minimum deal duration in years) ] * liquidation ratio`) is present
         * [ ] Accompanying comment above `bump` line in format `// XXM * 1.XX^X * X.XX as a WAD` corresponding to the `val` calculation formula (e.g. `// 15M * 1.03^2 * 1.00 as a WAD`) is present along with the calculation formula on the line above
         * [ ] IF combining `val` of multiple RWA ilks being combined, `val` calculation is done once per ilk and added to make the total, with workings provided in code comments. The existing `val` value can be retrieved by calling `read()` on `PIP_RWAXX` and converting the result into decimal.
@@ -157,7 +158,7 @@ Spell Actions:
     * [ ] Increase Ilk Debt Ceiling (set DC + increase Global DC)
     * [ ] `bump` `RwaLiquidationOracle` with new computed increased price (`val`)
       * [ ] `val` should enable DAI to be drawn over the loan period while taking into account the configured `ink` amount, interest rate and liquidation ratio (see below)
-        * [ ] New `val` is calculated with `line * [(1 + duty) ** years] * mat` - rounded up - and makes sense in context of the [rate mechanism](https://github.com/makerdao/developerguides/blob/master/mcd/intro-rate-mechanism/intro-rate-mechanism.md). Minimum duration is usually in the exec doc of the spell with the RWAXXX ilk onboarding.
+        * [ ] New `val` is calculated with `line * [(1 + duty) ** years] * mat` - rounded up - and makes sense in context of the [rate mechanism](https://github.com/makerdao/developerguides/blob/master/mcd/intro-rate-mechanism/intro-rate-mechanism.md). Minimum duration is usually in the Exec Doc of the spell with the RWAXXX ilk onboarding.
         * [ ] Comment explaining `val` formula (`Debt ceiling * [ (1 + RWA stability fee ) ^ (minimum deal duration in years) ] * liquidation ratio`) is present
         * [ ] Accompanying comment above `bump` line in format `// XXM * 1.XX^X * X.XX as a WAD` corresponding to the `val` calculation formula (e.g. `// 15M * 1.03^2 * 1.00 as a WAD`) is present along with the calculation formula on the line above
         * [ ] IF combining `val` of multiple RWA ilks being combined, `val` calculation is done once per ilk and added to make the total, with workings provided in code comments. The existing `val` value can be retrieved by calling `read()` on `PIP_RWAXX` and converting the result into decimal.
@@ -196,7 +197,7 @@ Spell Actions:
       * [ ] The maximum vesting rate (`tot` divided by `tau`) >  the maximum vest streaming rate (`cap`)
         * [ ] TODO Calculate new `cap` value equal to 10% greater than the new maximum vesting rate
         * [ ] TODO Round new `cap` up with 2 significant figure precision (i.e. 2446 becomes 2500)
-        * [ ] TODO Notify Governance Facilitators for addition in exec doc
+        * [ ] TODO Notify Governance Facilitators for addition in Exec Doc
         * [ ] Ensure that `cap` change is noted in the Exec Doc
         * [ ] New `cap` value matches Exec Doc
     * [ ] MKR Streams ([DssVestTransferrable](https://github.com/makerdao/dss-vest/blob/master/src/DssVest.sol#L463))
@@ -209,7 +210,7 @@ Spell Actions:
   * [ ] Ensure Recipient Addresses match `addresses_wallets.sol`
 * [ ] SubDAO Content
   * [ ] SubDAO SubProxy spell execution
-    * [ ] SubDAO spell address matches exec doc
+    * [ ] SubDAO spell address matches Exec Doc
     * [ ] SubDAO spell deployer is in `addresses_deployers`
     * [ ] Executed using `ProxyLike(SUBDAO_PROXY).exec(SUBDAO_SPELL, abi.encodeWithSignature("execute()"));`
     * [ ] Execution is NOT delegate call
@@ -221,9 +222,9 @@ Spell Actions:
     * [ ] Upgradable SubDAO contracts
       * [ ] Any upgradable contracts have the `PAUSE_PROXY` as their `admin` (i.e. the party that can upgrade)
         * [ ] Any upgradable SubDAO contracts with an `admin` that is not `PAUSE_PROXY` are not authed on any core contracts (Blocking)
-    * [ ] All SubDAO content addresses (i.e. provided contract addresses or EOAs) present in the Maker Core spell are present in the exec doc and are correct. SubDAO addresses being authed or given any permissions MUST be in the exec doc. SubDAO addresses being called must be confirmed by the SubDAO spell team.
+    * [ ] All SubDAO content addresses (i.e. provided contract addresses or EOAs) present in the Maker Core spell are present in the Exec Doc and are correct. SubDAO addresses being authed or given any permissions MUST be in the Exec Doc. SubDAO addresses being called must be confirmed by the SubDAO spell team.
       * [ ] IF addresses not PR'ed in by the SubDAO team (use git blame for example), SubDAO content addresses all have inline comment for provenance or source being OKed by SubDAO
-    * [ ] SubDAO actions match exec doc (only where inline with main spell code) and do not affect core contracts
+    * [ ] SubDAO actions match Exec Doc (only where inline with main spell code) and do not affect core contracts
     * [ ] Core contract knock-on actions (such as offboarding or setting DC to 0) are present in the exec and match the code
     * [ ] External calls for SubDAO content are NOT delegate call
     * [ ] Code does not have untoward behavior within the scope of Maker Core Contracts (e.g. up to the SubDAO proxy)
@@ -249,7 +250,7 @@ Spell Actions:
   * [ ] Fetch addresses as type `address` and wrap with `Like` suffix interfaces inline (when making calls) unless archive patterns permit otherwise (Such as `MKR`)
   * [ ] Use the [DssExecLib Core Address Helpers](https://github.com/makerdao/dss-exec-lib/blob/master/src/DssExecLib.sol#L166) where possible (e.g. `DssExecLib.vat()`)
   * [ ] Where addresses are fetched from the `ChainLog`, the variable name must match the value of the ChainLog key for that address (e.g. `MCD_VAT` rather than `vat`), except where the archive pattern differs from this pattern (e.g. MKR)
-* [ ] Spell actions match [GovAlpha Spell Content Sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw) and hashed exec doc (Exec Doc is the source of truth)
+* [ ] Spell actions match [GovAlpha Spell Content Sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw) and hashed Exec Doc (Exec Doc is the source of truth)
 * [ ] Tests
   * [ ] Ensure each spell action has sufficient test coverage
   _List actions for which coverage was checked here_
