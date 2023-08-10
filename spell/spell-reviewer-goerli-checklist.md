@@ -227,16 +227,18 @@ _Insert your passing local tests here_
        * [ ] (For your tests to be accurate) git submodule hash matches [dss-exec-lib](https://github.com/makerdao/dss-exec-lib/releases/latest) latest release's tag commit and inspect diffs if doesn't match to ensure expected behaviour (Currently Non-Critical pending the next DssExecLib release, double check that exec lib used by the contract matches the latest release)
 * [ ] Archive matches `src`
   * [ ] `make diff-archive-spell` for current date or or `date="YYYY-MM-DD" make diff-archive-spell` (date as per cast timestamp)
-  * [ ] ensure date corresponds to target exec date
+  * [ ] Ensure date corresponds to target exec date
 * [ ] CI tests are passing
 * [ ] Local Tests PASS
 
 _Insert your passing local tests here_
 
-## Cast Stage
+## Cast and Merge Stage
 
 * [ ] Spell is Cast (**only on Goerli**)
   * [ ] Check Cast Trace (via [EthTx](https://ethtx.info/))
     * [ ] Ensure no reverts are present that block execution
       * [ ] Inspect low level call reverts if expected
     * [ ] Ensure all actions are executed and no out-of-gas errors are present
+* [ ] Ensure that no commits or changes have occurred since the spell was deployed and archived
+* [ ] Approve spell PR for merge via 'Approve' review option

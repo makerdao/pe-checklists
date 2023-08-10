@@ -289,6 +289,9 @@ _Insert your passing local tests here_
 
 _Insert your passing local tests here_
 
-## Handover Stage
+## Handover and Merge Stage
 
 * [ ] Check that the spell address posted by the crafter in `new-spells` is correct
+  * [ ] Confirm the address in `new-spells` (via a thumbs up message reaction, )
+* [ ] Ensure that no commits or changes have occurred since the spell was deployed and archived
+* [ ] Approve spell PR for merge via 'Approve' review option
