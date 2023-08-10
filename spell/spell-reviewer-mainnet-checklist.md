@@ -283,8 +283,12 @@ _Insert your passing local tests here_
        * [ ] (For your tests to be accurate) git submodule hash matches [dss-exec-lib](https://github.com/makerdao/dss-exec-lib/releases/latest) latest release's tag commit and inspect diffs if doesn't match to ensure expected behaviour (Currently Non-Critical pending the next DssExecLib release, double check that exec lib used by the contract matches the latest release)
 * [ ] Archive matches `src`
   * [ ] `make diff-archive-spell` for current date or or `date="YYYY-MM-DD" make diff-archive-spell` (date as per target exec date)
-  * [ ] ensure date corresponds to target exec date
+  * [ ] Ensure date corresponds to target exec date
 * [ ] CI tests are passing
 * [ ] Local Tests PASS
 
 _Insert your passing local tests here_
+
+## Handover Stage
+
+* [ ] Check that the spell address posted by the crafter in `new-spells` is correct
