@@ -2,26 +2,39 @@
 
 ## Mainnet YYYY-MM-DD
 
-Spell Actions:
+Spell Actions (Per Exec Doc):
 
-* TODO
-* TODO
+* _Read spell actions and instructions from the Exec Doc_
+* _List the actions being performed in this spell_
 
-## Coding Stage
+## Development Stage
 
 * [ ] Office Hours
-  * [ ] ON (Collateral Onboarding, Keepers, Integrations, ...)
+  * [ ] ON
   * [ ] OFF
   * [ ] Matches Exec Doc
-* [ ] Exec Hash
-  * [ ] Run `make exec-hash` for current date, or `date=YYYY-MM-DD`
-    * [ ] Executive vote file name and date is correct
-    * [ ] [community](https://github.com/makerdao/community) repo commit hash corresponds to latest change
-    * [ ] Raw GitHub URL is correct
-    * [ ] Exec hash is correct (use `cast keccak -- "$(curl '$URL' -o - 2>/dev/null)"` where `wget` doesn't work)
-  * [ ] `description` date in `DssSpell.sol` matches exec copy date
-* [ ] 30 Days Expiry
-* [ ] `lib` (`git submodule update --init --recursive` to install/update)
+* [ ] 30 days spell expiry in constructor (`block.timestamp + 30 days`)
+* [ ] Exec Doc Hash
+  * [ ] Search the ['Community' GitHub repo](https://github.com/makerdao/community/tree/master/governance/votes) for the corresponding Exec Doc
+  * [ ] Click ['History'](https://github.com/makerdao/community/commits/master/governance/votes/) for the corresponding Exec Doc
+  * [ ] Ensure Exec Doc file name follows the format `Executive vote - Month DD, YYYY.md`
+  * [ ] Click 'View at this point in the history' (the file icon with `< >`) for the latest commit
+  * [ ] Click 'Raw' and copy the resulting URL
+  _Insert your Raw Exec Doc URL here_
+  * [ ] Generate Exec Doc Hash using this URL
+    * [ ] Automatically: using `make exec-hash $URL`
+    * [ ] Manually:      using `cast keccak -- "$(curl '$URL' -o - 2>/dev/null)"`
+    _Insert your Exec Doc Hash here_
+* [ ] Spell Description
+  * [ ] Description follows the format `TARGET_DATE MakerDAO Executive Spell | Hash: EXEC_DOC_HASH)`
+  * [ ] Target date in description matches the Exec Doc target date    
+  * [ ] Exec Doc Hash in description matches your locally generated Exec Doc Hash
+  * [ ] Accompanying comment above spell `description` 
+    * [ ] Comment follows the format `// Hash: cast keccak -- "$(wget 'EXEC_DOC_URL' -q -O - 2>/dev/null)"`
+    * [ ] Exec Doc URL in comment matches your Raw Exec Doc URL
+    * [ ] Exec Doc URL in comment refers to the ['Community' GitHub repo](https://github.com/makerdao/community/tree/master/governance/votes)
+* [ ] Developer Environment Checks
+  * [ ] `lib` (`git submodule update --init --recursive` to install/update)
   * [ ] `dss-exec-lib`
     * [ ] `DssExecLib.address` is unchanged by the spell PR (if changed, the new address must match the [Latest Release Tag](https://github.com/makerdao/dss-exec-lib/releases/latest) and be approved as a legitimate new release by GovAlpha)
     * [ ] if submodule upgrades are present make sure `dss-exec-lib` is synced as well

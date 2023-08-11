@@ -2,20 +2,21 @@
 
 ## Goerli YYYY-MM-DD
 
-Spell Actions:
+Spell Actions (Per Exec Sheet):
 
-* TODO
-* TODO
+* _Read spell actions and instructions from the Exec Sheet_
+* _List the actions being performed in this spell_
 
-## Coding Stage
+## Development Stage
 
 * [ ] Office Hours
-  * [ ] Off (default, spell casted after deploying, pause delay 60 sec.)
-* [ ] Exec Hash
-  * [ ] empty (default)
-  * [ ] ensure `description` is `Goerli Spell`
-* [ ] 30 Days Expiry
-* [ ] `lib` (`git submodule update --init --recursive` to install/update)
+  * [ ] OFF (On Goerli the deployed spell is cast with a pause delay of 60 sec.)
+* [ ] 30 days spell expiry in constructor (`block.timestamp + 30 days`)
+* [ ] No Exec Doc Hash on Goerli
+* [ ] Spell Description
+  * [ ] Ensure `description` exactly matches '`Goerli Spell`'
+* [ ] Developer Environment Checks
+  * [ ] `lib` (`git submodule update --init --recursive` to install/update)
   * [ ] `dss-exec-lib`
     * [ ] `DssExecLib.address` is unchanged by the spell PR (if changed, the new address must match the [Latest Release Tag](https://github.com/makerdao/dss-exec-lib/releases/latest) and be approved as a legitimate new release by GovAlpha)
     * [ ] if submodule upgrades are present make sure `dss-exec-lib` is synced as well
