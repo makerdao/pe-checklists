@@ -32,21 +32,21 @@ Spell Actions (Per Exec Sheet):
         * [ ] git submodule hash matches [version used by `dss-test`](https://github.com/makerdao/dss-test/tree/master/lib) (Non-critical)
       * [ ] `forge-std`
         * [ ] git submodule hash matches [version used by `dss-test`](https://github.com/makerdao/dss-test/tree/master/lib) (Non-critical)
-* [ ] Rates match
-  * [ ] Compare against [IPFS](https://ipfs.io/ipfs/QmVp4mhhbwWGTfbh2BzwQB9eiBrQBKiqcPRZCaAxNUaar6)
-  * [ ] Check manually via `make rates pct=<pct>` (e.g. pct=0.75, for 0.75%)
+* [ ] Rate constants used are correct
+  * [ ] Manual check 1: using `make rates pct=<pct>` (e.g. pct=0.75, for 0.75%)
+  * [ ] Manual check 2: Compare against [IPFS](https://ipfs.io/ipfs/QmVp4mhhbwWGTfbh2BzwQB9eiBrQBKiqcPRZCaAxNUaar6)
   * [ ] Variable name conforms to `X_PT_Y_Z_PCT_RATE` (e.g. `ZERO_PT_SEVEN_FIVE_PCT_RATE` for 0.75%)
   * [ ] Variable visibility declared as `internal`
   * [ ] State mutability declared as `constant`
-* [ ] Math matches
-  * [ ] Internal Precision
+* [ ] Constants Match
+  * [ ] Precision unit constants used match their defined values
     * [ ] `WAD = 10 ** 18`
     * [ ] `RAY = 10 ** 27`
     * [ ] `RAD = 10 ** 45`
-    * [ ] Ensure they match with [ds-math](https://github.com/dapphub/ds-math/blob/master/src/math.sol) and the [Numerical Ranges](https://github.com/makerdao/dss/wiki/Numerical-Ranges#notation)
     * [ ] Variable visibility declared as `internal`
     * [ ] State mutability declared as `constant`
-  * [ ] Units
+    * [ ] Ensure they match with [ds-math](https://github.com/dapphub/ds-math/blob/master/src/math.sol) and the [Numerical Ranges](https://github.com/makerdao/dss/wiki/Numerical-Ranges#notation)
+  * [ ] Math unit constants used match their defined values
     * [ ] `HUNDRED  = 10 ** 2`
     * [ ] `THOUSAND = 10 ** 3`
     * [ ] `MILLION  = 10 ** 6`
