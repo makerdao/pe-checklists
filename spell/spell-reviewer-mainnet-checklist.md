@@ -33,26 +33,33 @@ Spell Actions (Per Exec Doc):
     * [ ] Comment follows the format `// Hash: cast keccak -- "$(wget 'EXEC_DOC_URL' -q -O - 2>/dev/null)"`
     * [ ] Exec Doc URL in comment matches your Raw Exec Doc URL
     * [ ] Exec Doc URL in comment refers to the ['Community' GitHub repo](https://github.com/makerdao/community/tree/master/governance/votes)
-* [ ] Developer Environment Checks
-  * [ ] `lib` (`git submodule update --init --recursive` to install/update)
-  * [ ] `dss-exec-lib`
-    * [ ] `DssExecLib.address` is unchanged by the spell PR (if changed, the new address must match the [Latest Release Tag](https://github.com/makerdao/dss-exec-lib/releases/latest) and be approved as a legitimate new release by GovAlpha)
-    * [ ] if submodule upgrades are present make sure `dss-exec-lib` is synced as well
-    * [ ] git submodule hash (run `git submodule status`) matches the latest release version or newer (NOTE: `dss-exec-lib` as installed locally will use GitHub code more recent than the 0.0.9 release)
-  * [ ] `dss-test`
-    * [ ] `dss-interfaces`
-      * [ ] git submodule hash matches [version used by `dss-test`](https://github.com/makerdao/dss-test/tree/master/lib) (Non-critical)
-    * [ ] `forge-std`
-      * [ ] git submodule hash matches [version used by `dss-test`](https://github.com/makerdao/dss-test/tree/master/lib) (Non-critical)
-* [ ] `dss-interfaces`
-  * [ ] used in the current spell
-  * [ ] cleanup previous ones
-  * [ ] ensure only single import layout is used (e.g. `import "dss-interfaces/dss/VatAbstract.sol";`)
-* [ ] Static Interfaces
-  * [ ] ensure they match `dss-interfaces` (Where there is a mismatch, use `cast interface` as the source of truth)
-  * [ ] check on-chain interface of deployed contract via `cast interface <contract_address>` to ensure correctness
-  * [ ] interface naming style should match with `Like` suffix (e.g. `VatLike`), with some [exceptions](https://github.com/makerdao/dss-exec-lib/blob/master/src/DssExecLib.sol#L24)
-  * [ ] ensure they only list used functions in spell code
+* [ ] Local Environment Actions
+  * [ ] Update Foundry by running `foundryup`
+  * [ ] Reinstall libraries
+    * [ ] Remove libraries by deleting the `lib` folder
+    * [ ] Install libraries using `git submodule update --init --recursive`
+    ```
+    Insert checked out submodule paths here
+    ```
+  * [ ] Dependency checks
+    * [ ] `dss-exec-lib`
+      * [ ] if submodule upgrades are present make sure `dss-exec-lib` is synced as well
+      * [ ] git submodule hash (run `git submodule status`) matches the latest release version or newer (NOTE: `dss-exec-lib` as installed locally will use GitHub code more recent than the 0.0.9 release)
+    * [ ] `dss-test`
+      * [ ] `dss-interfaces`
+        * [ ] git submodule hash matches [version used by `dss-test`](https://github.com/makerdao/dss-test/tree/master/lib) (Non-critical)
+      * [ ] `forge-std`
+        * [ ] git submodule hash matches [version used by `dss-test`](https://github.com/makerdao/dss-test/tree/master/lib) (Non-critical)
+* [ ] Interface Checks
+  * [ ] `dss-interfaces`
+    * [ ] used in the current spell
+    * [ ] cleanup previous ones
+    * [ ] ensure only single import layout is used (e.g. `import "dss-interfaces/dss/VatAbstract.sol";`)
+  * [ ] Static Interfaces
+    * [ ] ensure they match `dss-interfaces` (Where there is a mismatch, use `cast interface` as the source of truth)
+    * [ ] check on-chain interface of deployed contract via `cast interface <contract_address>` to ensure correctness
+    * [ ] interface naming style should match with `Like` suffix (e.g. `VatLike`), with some [exceptions](https://github.com/makerdao/dss-exec-lib/blob/master/src/DssExecLib.sol#L24)
+    * [ ] ensure they only list used functions in spell code
 * [ ] Rates match
   * [ ] Compare against [IPFS](https://ipfs.io/ipfs/QmVp4mhhbwWGTfbh2BzwQB9eiBrQBKiqcPRZCaAxNUaar6)
   * [ ] Check manually via `make rates pct=<pct>` (e.g. pct=0.75, for 0.75%)
@@ -271,6 +278,7 @@ Spell Actions (Per Exec Doc):
   * [ ] Ensure each spell action has sufficient test coverage
   _List actions for which coverage was checked here_
   * [ ] Ensure every test function is declared as public if enabled or private if disabled
+  * [ ] Ensure that the `DssExecLib.address` file is not being modified by the spell PR
   * [ ] Check all CI tests are passing as at the latest commit
     _Insert most recent commit hash where CI was passing_
   * [ ] Check all tests are passing locally using `make test`
@@ -305,6 +313,7 @@ _Insert your passing local tests here_
   * [ ] `make diff-archive-spell` for current date or or `date="YYYY-MM-DD" make diff-archive-spell` (date as per target Exec Doc date)
   * [ ] Ensure date corresponds to target Exec Doc date
 * [ ] Tests
+  * [ ] Ensure that the `DssExecLib.address` file is not being modified by the spell PR
   * [ ] Check all CI tests are passing as at the latest commit
     _Insert most recent commit hash where CI was passing_
   * [ ] Check all tests are passing locally using `make test`
