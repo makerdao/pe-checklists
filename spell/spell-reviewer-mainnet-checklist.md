@@ -38,9 +38,9 @@ Spell Actions (Per Exec Doc):
   * [ ] Reinstall libraries
     * [ ] Remove libraries by deleting the `lib` folder
     * [ ] Install libraries using `git submodule update --init --recursive`
-    ```
-    Insert checked out submodule paths here
-    ```
+      ```
+      Insert checked out submodule paths here
+      ```
   * [ ] Dependency checks
     * [ ] `dss-exec-lib`
       * [ ] if submodule upgrades are present make sure `dss-exec-lib` is synced as well
