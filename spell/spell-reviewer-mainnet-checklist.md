@@ -263,10 +263,10 @@ Spell Actions (Per Exec Doc):
   * [ ]  Target Contract is included in the ChainLog
   * [ ]  Test Coverage is comprehensive
 * [ ] ChainLog
-  * [ ] Bump ChainLog, accordingly with spec (major, minor, patch)
-    * [ ] MAJOR -> New Vat
-    * [ ] MINOR -> Core Module (DSS) Update (e.g. Flapper)
-    * [ ] PATCH -> Collateral addition or addition/modification
+  * [ ] Increment ChainLog version based on update type
+    * [ ] Major -> New Vat (++.0.0)
+    * [ ] Minor -> Core Module (DSS) Update (e.g. Flapper) (0.++.0)
+    * [ ] Patch -> Collateral addition or addition/modification (0.0.++)
 * [ ] `addresses_mainnet.sol` matches spell code
 * [ ] Ensure every spell variable is declared as public/internal
 * [ ] Ensure `immutable` visibility is only used when fetching addresses from the `ChainLog` via `DssExecLib.getChangelogAddress` and `constant` is used instead for static addresses

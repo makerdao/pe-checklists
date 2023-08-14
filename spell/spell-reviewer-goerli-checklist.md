@@ -17,43 +17,67 @@ Spell Actions (Per Exec Sheet):
   * [ ] Ensure `description` exactly matches '`Goerli Spell`'
 * [ ] Local Environment Actions
   * [ ] Update Foundry by running `foundryup`
-  * [ ] Reinstall libraries
-    * [ ] Remove libraries by deleting the `lib` folder
-    * [ ] Install libraries using `git submodule update --init --recursive`
+  * [ ] Reinstall libraries by running `rm -r lib && git submodule update --init --recursive`
     ```
     Insert checked out submodule paths here
     ```
-  * [ ] Dependency checks
+  * [ ] Library Checks
     * [ ] `dss-exec-lib`
-      * [ ] if submodule upgrades are present make sure `dss-exec-lib` is synced as well
-      * [ ] git submodule hash (run `git submodule status`) matches the latest release version or newer (NOTE: `dss-exec-lib` as installed locally will use GitHub code more recent than the 0.0.9 release)
+      * [ ] If submodule upgrades are present make sure `dss-exec-lib` is synced as well
+      * [ ] (Non-critical) Submodule hash matches the latest release version (NOTE: `dss-exec-lib` as installed locally will use GitHub code more recent than the 0.0.9 release until the 0.0.10 release)
     * [ ] `dss-test`
       * [ ] `dss-interfaces`
-        * [ ] git submodule hash matches [version used by `dss-test`](https://github.com/makerdao/dss-test/tree/master/lib) (Non-critical)
+        * [ ] (Non-critical) Submodule hash matches [version used by `dss-test`](https://github.com/makerdao/dss-test/tree/master/lib)
+        * [ ] (Non-critical) Submodule hash matches [version used by `dss-exec-lib`](https://github.com/makerdao/dss-test/tree/master/lib)
       * [ ] `forge-std`
-        * [ ] git submodule hash matches [version used by `dss-test`](https://github.com/makerdao/dss-test/tree/master/lib) (Non-critical)
+        * [ ] (Non-critical) Submodule hash matches [version used by `dss-test`](https://github.com/makerdao/dss-test/tree/master/lib)
+        * [ ] (Non-critical) Submodule hash matches [version used by `dss-exec-lib`](https://github.com/makerdao/dss-test/tree/master/lib)
 * [ ] Rate constants used are correct
-  * [ ] Manual check 1: using `make rates pct=<pct>` (e.g. pct=0.75, for 0.75%)
-  * [ ] Manual check 2: Compare against [IPFS](https://ipfs.io/ipfs/QmVp4mhhbwWGTfbh2BzwQB9eiBrQBKiqcPRZCaAxNUaar6)
-  * [ ] Variable name conforms to `X_PT_Y_Z_PCT_RATE` (e.g. `ZERO_PT_SEVEN_FIVE_PCT_RATE` for 0.75%)
-  * [ ] Variable visibility declared as `internal`
-  * [ ] State mutability declared as `constant`
+  * [ ] Manual check 1: Calculate rates using `make rates pct=<pct>` (e.g. pct=0.75, for 0.75%)
+  * [ ] Manual check 2: Compare rates used against [IPFS rate list](https://ipfs.io/ipfs/QmVp4mhhbwWGTfbh2BzwQB9eiBrQBKiqcPRZCaAxNUaar6)
+  * [ ] Variable name conforms to `X_PT_Y_Z_PCT_RATE` (e.g. `ZERO_PT_SEVEN_FIVE_PCT_RATE` for 0.75%, `SIX_PCT_RATE` for 6.00%)
+  * [ ] Visibility is `internal`
+  * [ ] State mutability is `constant`
 * [ ] Constants Match
   * [ ] Precision unit constants used match their defined values
     * [ ] `WAD = 10 ** 18`
     * [ ] `RAY = 10 ** 27`
     * [ ] `RAD = 10 ** 45`
-    * [ ] Variable visibility declared as `internal`
-    * [ ] State mutability declared as `constant`
-    * [ ] Ensure they match with [ds-math](https://github.com/dapphub/ds-math/blob/master/src/math.sol) and the [Numerical Ranges](https://github.com/makerdao/dss/wiki/Numerical-Ranges#notation)
+    * [ ] Visibility is `internal`
+    * [ ] State mutability is `constant`
+    * [ ] (Non-critical) Ensure they match with [ds-math](https://github.com/dapphub/ds-math/blob/master/src/math.sol) and the [Numerical Ranges](https://github.com/makerdao/dss/wiki/Numerical-Ranges#notation)
   * [ ] Math unit constants used match their defined values
     * [ ] `HUNDRED  = 10 ** 2`
     * [ ] `THOUSAND = 10 ** 3`
     * [ ] `MILLION  = 10 ** 6`
     * [ ] `BILLION  = 10 ** 9`
-    * [ ] Variable visibility declared as `internal`
-    * [ ] State mutability declared as `constant`
-    * [ ] Ensure they match with [config](https://github.com/makerdao/spells-mainnet/blob/master/src/test/config.sol)
+    * [ ] Visibility is `internal`
+    * [ ] State mutability is `constant`
+    * [ ] (Non-critical) Ensure they match with [config](https://github.com/makerdao/spells-mainnet/blob/master/src/test/config.sol)
+* [ ] Address Declaration
+  * [ ] Address Constants
+    * [ ] Address is not in the ChainLog
+    * [ ] Variable name matches corresponding entry in an `addresses.sol` file
+    * [ ] Address value matches corresponding entry in an `addresses.sol` file
+    * [ ] Visibility is `internal`
+    * [ ] State mutability is `constant`
+  * [ ] Address Immutables
+    * [ ] Use the [DssExecLib Core Address Helpers](https://github.com/makerdao/dss-exec-lib/blob/master/src/DssExecLib.sol#L166) instead of `getChangelogAddress()` whenever possible (e.g. `DssExecLib.vat()`)
+    * [ ] Follow pattern `address internal immutable KEY_NAME = DssExecLib.getChangelogAddress(KEY_NAME)`
+    * [ ] Variable name matches ChainLog key name
+      * [ ] Exceptions must follow archive patterns (e.g. `MKR` for `MCD_GOV`)
+    * [ ] Instantiate as `address` type
+      * [ ] Exceptions must follow archive patterns (e.g. `GemLike` for `MKR`)
+    * [ ] Visibility is `internal`
+    * [ ] State mutability is `immutable`
+* [ ] String Constants
+  * [ ] TODO - IPFS hashes or DAO resolutions
+  * [ ] TODO - Must be TOP LEVEL (or ds pause will reject)
+  * [ ] TODO - Exec action comments are above it
+  * [ ] TODO - One IPFS hash PER public variable (TODO - same gas cost roughly and makes life easier for end user)
+  * [ ] TODO - Name matches purpose per EXEC DOC
+  * [ ] Visibility is `public`
+  * [ ] TODO - State mutability MUST BE `constant`
 * [ ] Deployed Contracts (not yet on chainlog or new to chainlog)
   * [ ] Verified on etherscan
   * [ ] Optimizations match Repo
@@ -185,16 +209,13 @@ Spell Actions (Per Exec Sheet):
   * [ ]  Target Contract is included in the ChainLog
   * [ ]  Test Coverage is comprehensive
 * [ ] ChainLog
-  * [ ] Bump ChainLog, accordingly with spec (major, minor, patch)
-    * [ ] MAJOR -> New Vat
-    * [ ] MINOR -> Core Module (DSS) Update (e.g. Flapper)
-    * [ ] PATCH -> Collateral addition or addition/modification
+  * [ ] Increment ChainLog version based on update type
+    * [ ] Major -> New Vat (++.0.0)
+    * [ ] Minor -> Core Module (DSS) Update (e.g. Flapper) (0.++.0)
+    * [ ] Patch -> Collateral addition or addition/modification (0.0.++)
 * [ ] `addresses_goerli.sol` matches spell code
 * [ ] Ensure every spell variable is declared as public/internal
-* [ ] Ensure `immutable` visibility is only used when fetching addresses from the `ChainLog` via `DssExecLib.getChangelogAddress` and `constant` is used instead for static addresses
-  * [ ] Fetch addresses as type `address` and wrap with `Like` suffix interfaces inline (when making calls) unless archive patterns permit otherwise (Such as `MKR`)
-  * [ ] Use the [DssExecLib Core Address Helpers](https://github.com/makerdao/dss-exec-lib/blob/master/src/DssExecLib.sol#L166) where possible (e.g. `DssExecLib.vat()`)
-  * [ ] Where addresses are fetched from the `ChainLog`, the variable name must match the value of the ChainLog key for that address (e.g. `MCD_VAT` rather than `vat`), except where the archive pattern differs from this pattern (e.g. MKR)
+* [ ] Ensure every spell variable is used in the spell (no unused variables)
 * [ ] Spell actions match the corresponding [Exec Sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw)
 * [ ] Tests
   * [ ] Ensure each spell action has sufficient test coverage
