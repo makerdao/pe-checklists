@@ -142,4 +142,21 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
   * [ ] Ensure no reverts are present that block execution
     * [ ] Inspect low level call reverts if expected
   * [ ] Ensure all actions are executed and not out-of-gas errors are present
+* [ ] Pre-Merge Target Branch Pull Attack Checks
+  * [ ] Ensure that the latest commit to the spells-mainnet repo was not a maintenance PR
+  * [ ] Ensure that there was not a maintenance PR within the last THREE spells (i.e. 6 weeks)
+    * [ ] If maintenance PR is present:
+      * [ ] PR Name / Descroption?
+      * [ ] PR Actions match description and look safe?
+      * [ ] PR Did not modify files unrelated to name / description?
+      * [ ] PR Did not modify test script (including CI)?
+        * [ ] Run old test script to ensure the test results are the same (use --block flag if spell is already `cast` for Goerli)
+        * [ ] Obtain unanimous approval of the safety of the new deploy script
+      * [ ] PR Did not modify DssExecLib.address?
+        * [ ] If it did, flag with Governance Facilitators
+      * [ ] PR Did not affect deploy script?
+        * [ ] If it did, flag internally with reviewers and investigate prior to merging
+        * [ ] Run old deploy script to ensure the output results are the same
+          * [ ] If different, flag with Governance Facilitators (this may affect external scripts or third party reviews)
+        * [ ] Obtain unanimous approval of the safety of the new deploy script
 * [ ] Squash & Merge
