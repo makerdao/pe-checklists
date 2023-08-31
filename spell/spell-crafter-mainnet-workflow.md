@@ -160,7 +160,7 @@ Repo: https://github.com/makerdao/spells-mainnet
   * [ ] Ensure that the latest commit to the spells-mainnet repo was not a maintenance PR
   * [ ] Ensure that there was not a maintenance PR within the last THREE spells (i.e. 6 weeks)
     * [ ] If maintenance PR is present:
-      * [ ] PR Name / Descroption?
+      * [ ] PR Name / Description?
       * [ ] PR Actions match description and look safe?
       * [ ] PR Did not modify files unrelated to name / description?
       * [ ] PR Did not modify test script (including CI)?
