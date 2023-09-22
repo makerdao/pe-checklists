@@ -35,7 +35,7 @@ PR: https://github.com/makerdao/spells-goerli/pull/TODO
 * [ ] Tests PASS via `make test`
 * [ ] Commit & Push `Base spell`
 * [ ] CI Tests PASS
-* [ ] Open Draft PR on `spells-goerli` titled `Goerli spell YYYY-MM-DD` where `YYYY-MM-DD` is the expected target date of the spell
+* [ ] Open Draft PR on `spells-goerli` titled `YYYY-MM-DD Goerli Spell` where `YYYY-MM-DD` is the target date of the spell
 * [ ] Assign to yourself
 * [ ] BECAUSE corresponding Exec Doc is NOT ready
   * [ ] Add Spell Actions as per [Exec Sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw) - [Polls](https://vote.makerdao.com/polling?network=mainnet)
