@@ -1,4 +1,4 @@
-# Goerli Executive Spell Review Checklist
+# Goerli Executive Spell Review Checklistgoerli
 
 ## Goerli YYYY-MM-DD
 
@@ -123,7 +123,7 @@ Spell Actions (Per Exec Sheet):
             * [ ] `ilk`
             * [ ] `amount`
             * [ ] `global`
-        * [ ] [decreaseIlkDebtCeiling](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L634)
+        * [ ] [`decreaseIlkDebtCeiling`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L634)
             * [ ] `ilk`
             * [ ] `amount`
             * [ ] `global`

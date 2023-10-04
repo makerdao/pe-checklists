@@ -9,7 +9,7 @@ Repo: https://github.com/makerdao/spells-mainnet
 ![](https://ipfs.io/ipfs/QmUqCvy7c8Qmzn7yZ6D3353wTqCZ3VDAwQKYB37pJ2BjXb)
 
 ### Steps:
-* [ ] (Highly Desired, non-blocking) Make sure that the crafter relatied confirmations in the exec sheet are `Confirmed`
+* [ ] (Highly Desired, non-blocking) Make sure that the crafter related confirmations in the exec sheet are `Confirmed`
     * [ ] Technical confirm
     * [ ] Office hours
     * [ ] Global line modifier

@@ -128,7 +128,7 @@ Spell Actions (Per Exec Doc):
             * [ ] `ilk`
             * [ ] `amount`
             * [ ] `global`
-        * [ ] [decreaseIlkDebtCeiling](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L634)
+        * [ ] [`decreaseIlkDebtCeiling`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L634)
             * [ ] `ilk`
             * [ ] `amount`
             * [ ] `global`
