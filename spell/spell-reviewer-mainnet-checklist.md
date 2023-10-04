@@ -16,10 +16,8 @@ Spell Actions (Per Exec Doc):
 * [ ] 30 days spell expiry in constructor (`block.timestamp + 30 days`)
 * [ ] Exec Doc Hash
   * [ ] Search the ['Community' GitHub repo](https://github.com/makerdao/community/tree/master/governance/votes) for the corresponding Exec Doc
-  * [ ] Click ['History'](https://github.com/makerdao/community/commits/master/governance/votes/) for the corresponding Exec Doc
   * [ ] Ensure Exec Doc file name follows the format `Executive vote - Month DD, YYYY.md`
-  * [ ] Click 'View at this point in the history' (the file icon with `< >`) for the latest commit
-  * [ ] Click 'Raw' and copy the resulting URL
+  * [ ] Extract permanent raw Url link via Github
   _Insert your Raw Exec Doc URL here_
   * [ ] Generate Exec Doc Hash using this URL
     * [ ] Automatically: using `make exec-hash $URL`
