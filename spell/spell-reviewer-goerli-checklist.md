@@ -1,4 +1,4 @@
-# Goerli Executive Spell Review Checklist goerli
+# Goerli Executive Spell Review Checklist
 
 ## Goerli YYYY-MM-DD
 
@@ -115,26 +115,13 @@ Spell Actions (Per Exec Sheet):
 * [ ] Debt Ceiling Changes
   * [ ] `vat.ilk.line` changes (per ilk)
     * [ ] Collateral type (ilk) is not RWAXXX (For RWA refer to the designated section of the checklist)
-    * [ ] Either is used depending on the exec sheet/doc contents:
-        * [ ] [`setIlkDebtCeiling`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L611)
-            * [ ] `ilk`
-            * [ ] `line`
-        * [ ] [`increaseIlkDebtCeiling`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L621C14-L621C36)
-            * [ ] `ilk`
-            * [ ] `amount`
-            * [ ] `global`
-        * [ ] [`decreaseIlkDebtCeiling`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L634)
-            * [ ] `ilk`
-            * [ ] `amount`
-            * [ ] `global`
+    * [ ] [`setIlkDebtCeiling`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L611) or [`increaseIlkDebtCeiling`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L621C14-L621C36) or [`increaseIlkDebtCeiling`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L621C14-L621C36)
+        * [ ] `ilk`
+        * [ ] `amount`
+        * [ ] `global`
   * [ ] `vat.Line` changes (Global Line)
-      * [ ] Either is used:
-          * [ ] [`setGlobalDebtCeiling`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L428)
-              * [ ] `amount`
-          * [ ] [`increaseGlobalDebtCeiling`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L436)
-              * [ ] `amount`
-          * [ ] [`decreaseGlobalDebtCeiling`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L445C14-L445C39)
-              * [ ] `amount`
+      * [ ] [`setGlobalDebtCeiling`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L428) or [`increaseGlobalDebtCeiling`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L436) or [`decreaseGlobalDebtCeiling`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L445C14-L445C39)
+          * [ ] `amount`
   * [ ] Autoline Changes
     * [setIlkAutoLineDebtCeiling](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L658)
       * [ ] `ilk`
@@ -190,17 +177,17 @@ Spell Actions (Per Exec Sheet):
         * [ ] Accompanying comment above `bump` line in format `// XXM * 1.XX^X * X.XX as a WAD` corresponding to the `val` calculation formula (e.g. `// 15M * 1.03^2 * 1.00 as a WAD`) is present along with the calculation formula on the line above
         * [ ] IF combining `val` of multiple RWA ilks being combined, `val` calculation is done once per ilk and added to make the total, with workings provided in code comments. The existing `val` value can be retrieved by calling `read()` on `PIP_RWAXX` and converting the result into decimal.
     * [ ] Poke `spotter` to pull in the new price
-  * [ ] Payments
-    * [ ] Payments are not crafted or reviewed on Goerli (comments may be present)
-  * [ ] Debt Ceiling (`line`) + Liquidation Oracle Price Bump (`val`)
-    * [ ] Increase Ilk Debt Ceiling (set DC + increase Global DC)
-    * [ ] `bump` `RwaLiquidationOracle` with new computed increased price (`val`)
-      * [ ] `val` should enable DAI to be drawn over the loan period while taking into account the configured `ink` amount, interest rate and liquidation ratio (see below)
-        * [ ] New `val` is calculated with `line * [(1 + duty) ** years] * mat` - rounded up - and makes sense in context of the [rate mechanism](https://github.com/makerdao/developerguides/blob/master/mcd/intro-rate-mechanism/intro-rate-mechanism.md). Minimum duration is usually in the Exec Doc of the spell with the RWAXXX ilk onboarding.
-        * [ ] Comment explaining `val` formula (`Debt ceiling * [ (1 + RWA stability fee ) ^ (minimum deal duration in years) ] * liquidation ratio`) is present
-        * [ ] Accompanying comment above `bump` line in format `// XXM * 1.XX^X * X.XX as a WAD` corresponding to the `val` calculation formula (e.g. `// 15M * 1.03^2 * 1.00 as a WAD`) is present along with the calculation formula on the line above
-        * [ ] IF combining `val` of multiple RWA ilks being combined, `val` calculation is done once per ilk and added to make the total, with workings provided in code comments. The existing `val` value can be retrieved by calling `read()` on `PIP_RWAXX` and converting the result into decimal.
-    * [ ] Poke `spotter` to pull in the new price
+* [ ] Payments
+* [ ] Payments are not crafted or reviewed on Goerli (comments may be present)
+* [ ] Debt Ceiling (`line`) + Liquidation Oracle Price Bump (`val`)
+* [ ] Increase Ilk Debt Ceiling (set DC + increase Global DC)
+* [ ] `bump` `RwaLiquidationOracle` with new computed increased price (`val`)
+  * [ ] `val` should enable DAI to be drawn over the loan period while taking into account the configured `ink` amount, interest rate and liquidation ratio (see below)
+    * [ ] New `val` is calculated with `line * [(1 + duty) ** years] * mat` - rounded up - and makes sense in context of the [rate mechanism](https://github.com/makerdao/developerguides/blob/master/mcd/intro-rate-mechanism/intro-rate-mechanism.md). Minimum duration is usually in the Exec Doc of the spell with the RWAXXX ilk onboarding.
+    * [ ] Comment explaining `val` formula (`Debt ceiling * [ (1 + RWA stability fee ) ^ (minimum deal duration in years) ] * liquidation ratio`) is present
+    * [ ] Accompanying comment above `bump` line in format `// XXM * 1.XX^X * X.XX as a WAD` corresponding to the `val` calculation formula (e.g. `// 15M * 1.03^2 * 1.00 as a WAD`) is present along with the calculation formula on the line above
+    * [ ] IF combining `val` of multiple RWA ilks being combined, `val` calculation is done once per ilk and added to make the total, with workings provided in code comments. The existing `val` value can be retrieved by calling `read()` on `PIP_RWAXX` and converting the result into decimal.
+* [ ] Poke `spotter` to pull in the new price
 * [ ] SubDAO Content
   * [ ] SubDAO SubProxy spell execution
     * [ ] SubDAO spell address matches Exec Sheet (comment or otherwise)
