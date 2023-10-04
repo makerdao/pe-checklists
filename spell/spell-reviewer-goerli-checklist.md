@@ -1,4 +1,4 @@
-# Goerli Executive Spell Review Checklistgoerli
+# Goerli Executive Spell Review Checklist goerli
 
 ## Goerli YYYY-MM-DD
 
