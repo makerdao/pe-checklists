@@ -71,7 +71,12 @@ Spell Actions (Per Exec Sheet):
     * [ ] Visibility is `internal`
     * [ ] State mutability is `immutable`
 * [ ] String Constants
-  * [ ] TODO - IPFS hashes or DAO resolutions
+  * [ ] IPFS hashes or DAO resolutions
+      * [ ] IPFS hashes and DAO resolutions match the exec doc.
+      * [ ] The variable is named `dao_resolutions`
+      * [ ] if multiple dao resolutions are present
+          * [ ] they are located in the same string constant and are comma separated.
+          * [ ] The comment above the the variable states: `Comma-separated list of DAO resolutions IPFS hashes.`
   * [ ] TODO - Must be TOP LEVEL (or ds pause will reject)
   * [ ] TODO - Exec action comments are above it
   * [ ] TODO - One IPFS hash PER public variable (TODO - same gas cost roughly and makes life easier for end user)
