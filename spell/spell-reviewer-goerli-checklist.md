@@ -77,12 +77,10 @@ Spell Actions (Per Exec Sheet):
       * [ ] if multiple dao resolutions are present
           * [ ] they are located in the same string constant and are comma separated.
           * [ ] The comment above the the variable states: `Comma-separated list of DAO resolutions IPFS hashes.`
-  * [ ] TODO - Must be TOP LEVEL (or ds pause will reject)
-  * [ ] TODO - Exec action comments are above it
-  * [ ] TODO - One IPFS hash PER public variable (TODO - same gas cost roughly and makes life easier for end user)
-  * [ ] TODO - Name matches purpose per EXEC DOC
+  * [ ] Must be TOP LEVEL (or ds pause will reject)
+  * [ ] Name of the variable matches purpose per EXEC DOC
   * [ ] Visibility is `public`
-  * [ ] TODO - State mutability MUST BE `constant`
+  * [ ] State mutability MUST BE `constant`
 * [ ] Deployed Contracts (not yet on chainlog or new to chainlog)
   * [ ] Verified on etherscan
   * [ ] Optimizations match Repo
@@ -115,9 +113,28 @@ Spell Actions (Per Exec Sheet):
     * [ ] `calc.cut`
     * [ ] `calc.step`
 * [ ] Debt Ceiling Changes
-  * [ ] TODO `vat.ilk.line` changes (per ilk)
-    * [ ] TODO Note that `line` changes for RWA are under `RWA` section
-  * [ ] TODO `vat.Line` changes (Global Line)
+  * [ ] `vat.ilk.line` changes (per ilk)
+    * [ ] Collateral type (ilk) is not RWAXXX (For RWA refer to the designated section of the checklist)
+    * [ ] Either is used depending on the exec sheet/doc contents:
+        * [ ] [`setIlkDebtCeiling`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L611)
+            * [ ] `ilk`
+            * [ ] `line`
+        * [ ] [`increaseIlkDebtCeiling`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L621C14-L621C36)
+            * [ ] `ilk`
+            * [ ] `amount`
+            * [ ] `global`
+        * [ ] [decreaseIlkDebtCeiling](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L634)
+            * [ ] `ilk`
+            * [ ] `amount`
+            * [ ] `global`
+  * [ ] `vat.Line` changes (Global Line)
+      * [ ] Either is used:
+          * [ ] [`setGlobalDebtCeiling`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L428)
+              * [ ] `amount`
+          * [ ] [`increaseGlobalDebtCeiling`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L436)
+              * [ ] `amount`
+          * [ ] [`decreaseGlobalDebtCeiling`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L445C14-L445C39)
+              * [ ] `amount`
   * [ ] Autoline Changes
     * [setIlkAutoLineDebtCeiling](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L658)
       * [ ] `ilk`
