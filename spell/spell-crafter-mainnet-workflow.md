@@ -9,6 +9,11 @@ Repo: https://github.com/makerdao/spells-mainnet
 ![](https://ipfs.io/ipfs/QmUqCvy7c8Qmzn7yZ6D3353wTqCZ3VDAwQKYB37pJ2BjXb)
 
 ### Steps:
+* [ ] (Highly Desired, non-blocking) Make sure that the crafter relatied confirmations in the exec sheet are `Confirmed`
+    * [ ] Technical confirm
+    * [ ] Office hours
+    * [ ] Global line modifier
+    * [ ] Order of operations issues
 * [ ] Create a new branch on the `spells-mainnet` repo named `YYYY-MM-DD` using the initial target date of the spell
   * [ ] Ensure the same target date is used as the corresponding `spells-goerli` spell branch
 * [ ] Pull `master` Locally and Checkout Branch (IF Branch is created via GitHub)
@@ -155,7 +160,7 @@ Repo: https://github.com/makerdao/spells-mainnet
 * [ ] Wait for CI to PASS
 * [ ] Wait for at Least two Approvals to Share for Publishing to GovAlpha
 * [ ] Share Deployed Address in `new-spells`
-* [ ] Fill Spell Crafter Related Boxes in the Main Exec Sheet
+* [ ] Fill the rest of the Spell Crafter Related Boxes in the Main Exec Sheet
 * [ ] Pre-Merge Target Branch Pull Attack Checks
   * [ ] Ensure that the latest commit to the spells-mainnet repo was not a maintenance PR
   * [ ] Ensure that there was not a maintenance PR within the last THREE spells (i.e. 6 weeks)
