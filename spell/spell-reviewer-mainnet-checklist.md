@@ -27,9 +27,9 @@ Spell Actions (Per Exec Doc):
     _Insert your Exec Doc Hash here_
 * [ ] Spell Description
   * [ ] Description follows the format `TARGET_DATE MakerDAO Executive Spell | Hash: EXEC_DOC_HASH)`
-  * [ ] Target date in description matches the Exec Doc target date    
+  * [ ] Target date in description matches the Exec Doc target date
   * [ ] Exec Doc Hash in description matches your locally generated Exec Doc Hash
-  * [ ] Accompanying comment above spell `description` 
+  * [ ] Accompanying comment above spell `description`
     * [ ] Comment follows the format `// Hash: cast keccak -- "$(wget 'EXEC_DOC_URL' -q -O - 2>/dev/null)"`
     * [ ] Exec Doc URL in comment matches your Raw Exec Doc URL
     * [ ] Exec Doc URL in comment refers to the ['Community' GitHub repo](https://github.com/makerdao/community/tree/master/governance/votes)
@@ -120,10 +120,29 @@ Spell Actions (Per Exec Doc):
     * [ ] `calc.cut`
     * [ ] `calc.step`
 * [ ] Debt Ceiling Changes
-  * [ ] TODO `vat.ilk.line` changes (per ilk)
-    * [ ] TODO Note that `line` changes for RWA are under `RWA` section
-  * [ ] TODO `vat.Line` changes (Global Line)
-  * [ ] Autoline Changes
+  * [ ] `vat.ilk.line` changes (per ilk)
+    * [ ] Collateral type (ilk) is not RWAXXX (For RWA refer to the designated section of the checklist)
+    * [ ] Either is used depending on the EXEC DOC contents:
+        * [ ] [`setIlkDebtCeiling`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L611)
+            * [ ] `ilk`
+            * [ ] `line`
+        * [ ] [`increaseIlkDebtCeiling`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L621C14-L621C36)
+            * [ ] `ilk`
+            * [ ] `amount`
+            * [ ] `global`
+        * [ ] [decreaseIlkDebtCeiling](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L634)
+            * [ ] `ilk`
+            * [ ] `amount`
+            * [ ] `global`
+  * [ ] `vat.Line` changes (Global Line)
+      * [ ] Either is used:
+          * [ ] [`setGlobalDebtCeiling`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L428)
+              * [ ] `amount`
+          * [ ] [`increaseGlobalDebtCeiling`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L436)
+              * [ ] `amount`
+          * [ ] [`decreaseGlobalDebtCeiling`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L445C14-L445C39)
+              * [ ] `amount`
+ Autoline Changes
     * [setIlkAutoLineDebtCeiling](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L658)
       * [ ] `ilk`
       * [ ] `line`
