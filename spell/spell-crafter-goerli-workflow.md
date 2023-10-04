@@ -2,7 +2,7 @@
 
 ## Goerli
 
-PR: https://github.com/makerdao/spells-goerli/pull/TODO
+PR: https://github.com/makerdao/spells-goerli/pull/<TODO>
 
 ### [Governance Cadence Improvement](https://forum.makerdao.com/t/governance-cadence-improvement/14972)
 

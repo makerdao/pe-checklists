@@ -238,9 +238,9 @@ Spell Actions (Per Exec Doc):
     * [ ] Max vesting rate (`cap`) check (MKR, DAI)
       * [ ] The maximum vesting rate (`tot` divided by `tau`) <= the maximum vest streaming rate (`cap`)
       * [ ] The maximum vesting rate (`tot` divided by `tau`) >  the maximum vest streaming rate (`cap`)
-        * [ ] TODO Calculate new `cap` value equal to 10% greater than the new maximum vesting rate
-        * [ ] TODO Round new `cap` up with 2 significant figure precision (i.e. 2446 becomes 2500)
-        * [ ] TODO Notify Governance Facilitators for addition in Exec Doc
+        * [ ] Calculate new `cap` value equal to 10% greater than the new maximum vesting rate
+        * [ ] Round new `cap` up with 2 significant figure precision (i.e. 2446 becomes 2500)
+        * [ ] Notify Governance Facilitators for addition in Exec Doc AND Exec Sheet
         * [ ] Ensure that `cap` change is noted in the Exec Doc
         * [ ] New `cap` value matches Exec Doc
     * [ ] MKR Streams ([DssVestTransferrable](https://github.com/makerdao/dss-vest/blob/master/src/DssVest.sol#L463))
