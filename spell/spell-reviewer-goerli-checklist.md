@@ -182,7 +182,7 @@ Spell Actions (Per Exec Sheet):
     * [ ] Poke `spotter` to pull in the new price
   * [ ] Soft Liquidation (`tell`)
       * [ ] Call `RwaLiquidationOracle.tell(ilk)`
-      * [ ] IF `RWAXXX_A_INPUT_CONDUIT` is an instance of [`TinlakeMgr`](https://github.com/centrifuge/tinlake-maker-lib/blob/master/src/mgr.sol) (it is a Centrifuge integration)
+      * [ ] IF `RWAXX_A_INPUT_CONDUIT` is an instance of [`TinlakeMgr`](https://github.com/centrifuge/tinlake-maker-lib/blob/master/src/mgr.sol) (it is a Centrifuge integration)
         * [ ] Call `TinlakeMgr.tell()` to prevent further `TIN` redemptions in the Centrifuge pool.
 * [ ] Payments
   * [ ] Payments are not crafted or reviewed on Goerli (comments may be present)
