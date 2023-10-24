@@ -9,7 +9,6 @@ DAO
 SubDAO
 Onboarding
 YYYY
-GovAlpha
 MIPs
 Pragma
 solc
@@ -131,11 +130,8 @@ hardcoded
 fileables
 configs
 SubDAOs
-TBD
 EOAs
 SubProxy
 PR'ed
-DSR
-setDSR
 multisig
 EOA

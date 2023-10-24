@@ -36,12 +36,12 @@ Repo: https://github.com/makerdao/spells-mainnet
 * [ ] Tests PASS via `make test`
 * [ ] Commit & Push `Base spell`
 * [ ] CI Tests PASS
-* [ ] Open Draft PR on `spells-goerli` titled `Goerli spell YYYY-MM-DD` where `YYYY-MM-DD` is the expected target date of the spell
+* [ ] Open Draft PR on `spells-mainnet` titled `Mainnet spell YYYY-MM-DD` where `YYYY-MM-DD` is the expected target date of the spell
 * [ ] Assign to yourself
 * [ ] If corresponding Exec Doc is ready
   * [ ] Add Spell Actions as per the corresponding Exec Doc
 * [ ] If corresponding Exec Doc is NOT ready
-  * [ ] Add Spell Actions as per [GovAlpha Spell Content Sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw) - [Polls](https://vote.makerdao.com/polling?network=mainnet)
+  * [ ] Add Spell Actions as per [Governance Facilitators Spell Content Sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw) - [Polls](https://vote.makerdao.com/polling?network=mainnet)
   * [ ] Polls starts on Monday and ends on Thursday
     * [ ] Ensure spell actions match polls details and links (forum posts, MIPs portal, ...)
     * [ ] Check spell copy is merged in [community](https://github.com/makerdao/community/blob/master/governance/votes) repo
@@ -141,7 +141,7 @@ Repo: https://github.com/makerdao/spells-mainnet
   * [ ] Check local env
     * [ ] `seth ls`
     * [ ] `seth chain`
-* [ ] Deploy spell on Goerli via `make deploy`
+* [ ] Deploy spell on mainnet via `make deploy`
   * [ ] Ensure `src/test/config.sol` is edited correctly
     * [ ] `deployed_spell: address(<deployed_spell_address>)`
     * [ ] `deployed_spell_created: <timestamp>`

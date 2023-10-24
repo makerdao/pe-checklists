@@ -10,8 +10,7 @@ Spell Actions (Per Exec Doc):
 ## Development Stage
 
 * [ ] Office Hours
-  * [ ] ON
-  * [ ] OFF
+  * [ ] On (Collateral Onboarding, Keepers, Integrations, ...)
   * [ ] Matches Exec Doc
 * [ ] 30 days spell expiry in constructor (`block.timestamp + 30 days`)
 * [ ] Exec Doc Hash
@@ -83,7 +82,7 @@ Spell Actions (Per Exec Doc):
   * [ ] Timestamp constants used are correct
     * [ ] Ensure the timestamp [converts](https://www.epochconverter.com/) to the correct date
     * [ ] Variable naming matches `MONTH_DD_YYYY` (e.g. `MAY_01_2023` for 2023-05-01)
-    * [ ] Time of day makes logical sense (i.e. `11:59:59` for the final day of something, `00:00:00` for the first day of something) in the context of timestamp usage
+    * [ ] Time of day makes logical sense (i.e. `23:59:59` for the final day of something, `00:00:00` for the first day of something) in the context of timestamp usage
     * [ ] Variable visibility declared as `internal`
     * [ ] State mutability declared as `constant`
 * [ ] Deployed Contracts (not yet on chainlog or new to chainlog)
