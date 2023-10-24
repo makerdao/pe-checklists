@@ -94,7 +94,7 @@ Spell Actions (Per Exec Sheet):
 * [ ] Core System Parameter Changes
   * [ ] Stability Fee `jug.ilk.duty` ([setIlkStabilityFee](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L792))
     * [ ] Comment matches pattern `// Increase ILK-A Stability Fee by X.XX% from X.XX% to X.XX%.`
-  * [ ] Dai Savings Rate `pot.dsr` ([setDSR](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L455))
+  * [ ] Dai Savings Rate `pot.dsr` ([`setDSR`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L455))
     * [ ] Double check that `PCT_RATE` is correct
       * [ ] Check manually via `make rates pct=<pct>` (e.g. pct=0.75, for 0.75%)
       * [ ] Compare against [IPFS](https://ipfs.io/ipfs/QmVp4mhhbwWGTfbh2BzwQB9eiBrQBKiqcPRZCaAxNUaar6)
