@@ -180,12 +180,15 @@ Spell Actions (Per Exec Doc):
     * [ ] `val` price ignored (`0`) if `init` has already been called
     * [ ] `doc` new legal document (IPFS HASH) matches Exec Doc
     * [ ] `tau` parameter used is the old `tau` value
-  * [ ] Autoline (`line`) + Liquidation Oracle Price Bump (`val`)
-    * [ ] Enable Autoline
-      * [ ] `ilk` follows format "RWAXXX-A"
-      * [ ] `line` (max debt ceiling)
-      * [ ] `gap`
-      * [ ] `ttl`
+  * [ ] Debt Ceiling changes (`line`)
+    * [ ] Autoline (`line`) + Liquidation Oracle Price Bump (`val`)
+      * [ ] Enable Autoline
+        * [ ] `ilk` follows format "RWAXXX-A"
+        * [ ] `line` (max debt ceiling)
+        * [ ] `gap`
+        * [ ] `ttl`
+    * [ ] Debt Ceiling (`line`) + Liquidation Oracle Price Bump (`val`)
+      * [ ] Increase Ilk Debt Ceiling (set DC + increase Global DC)
     * [ ] `bump` `RwaLiquidationOracle` with new computed increased price (`val`)
       * [ ] ensure `val` is set accordingly with autoline max debt ceiling (`line`)
       * [ ] `val` should enable DAI to be drawn over the loan period while taking into account the configured `ink` amount, interest rate and liquidation ratio (see below)
@@ -194,15 +197,10 @@ Spell Actions (Per Exec Doc):
         * [ ] Accompanying comment above `bump` line in format `// XXM * 1.XX^X * X.XX as a WAD` corresponding to the `val` calculation formula (e.g. `// 15M * 1.03^2 * 1.00 as a WAD`) is present along with the calculation formula on the line above
         * [ ] IF combining `val` of multiple RWA ilks being combined, `val` calculation is done once per ilk and added to make the total, with workings provided in code comments. The existing `val` value can be retrieved by calling `read()` on `PIP_RWAXX` and converting the result into decimal.
     * [ ] Poke `spotter` to pull in the new price
-  * [ ] Debt Ceiling (`line`) + Liquidation Oracle Price Bump (`val`)
-    * [ ] Increase Ilk Debt Ceiling (set DC + increase Global DC)
-    * [ ] `bump` `RwaLiquidationOracle` with new computed increased price (`val`)
-      * [ ] `val` should enable DAI to be drawn over the loan period while taking into account the configured `ink` amount, interest rate and liquidation ratio (see below)
-        * [ ] New `val` is calculated with `line * [(1 + duty) ** years] * mat` - rounded up - and makes sense in context of the [rate mechanism](https://github.com/makerdao/developerguides/blob/master/mcd/intro-rate-mechanism/intro-rate-mechanism.md). Minimum duration is usually in the Exec Doc of the spell with the RWAXXX ilk onboarding.
-        * [ ] Comment explaining `val` formula (`Debt ceiling * [ (1 + RWA stability fee ) ^ (minimum deal duration in years) ] * liquidation ratio`) is present
-        * [ ] Accompanying comment above `bump` line in format `// XXM * 1.XX^X * X.XX as a WAD` corresponding to the `val` calculation formula (e.g. `// 15M * 1.03^2 * 1.00 as a WAD`) is present along with the calculation formula on the line above
-        * [ ] IF combining `val` of multiple RWA ilks being combined, `val` calculation is done once per ilk and added to make the total, with workings provided in code comments. The existing `val` value can be retrieved by calling `read()` on `PIP_RWAXX` and converting the result into decimal.
-    * [ ] Poke `spotter` to pull in the new price
+  * [ ] Soft Liquidation (`tell`)
+      * [ ] Call `RwaLiquidationOracle.tell(ilk)`
+      * [ ] IF `RWAXX_A_INPUT_CONDUIT` is an instance of [`TinlakeMgr`](https://github.com/centrifuge/tinlake-maker-lib/blob/master/src/mgr.sol) (it is a Centrifuge integration)
+        * [ ] Call `TinlakeMgr.tell()` to prevent further `TIN` redemptions in the Centrifuge pool.
 * [ ] Payments
   * [ ] MKR transfers
     * [ ] Recipient addresses match Exec Doc
