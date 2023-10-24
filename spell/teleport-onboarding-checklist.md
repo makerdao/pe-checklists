@@ -27,7 +27,7 @@
           * [ ] others (L2 dependant)
         * [ ] check `wards`
           * [ ] `L2GovernanceRelay` is relied
-          * [ ] `MCD_ESM` is already relied / being relied in this spell (as approved by GovAlpha)
+          * [ ] `MCD_ESM` is already relied / being relied in this spell (as approved by Governance Facilitators)
           * [ ] deployer is denied
           * [ ] no other address has been relied
     * [ ] `TeleportLinearFee` (Domain Teleport Linear Fee or different fee contract)
@@ -55,7 +55,7 @@
   * [ ] `escrow.approve` max uint256 dai to teleport gateway contract address
 * [ ] New Chainlog Entries
   * [ ] `<DOMAIN>_TELEPORT_BRIDGE`
-  * [ ] `<DOMAIN>_TELEPORT_FEE` 
+  * [ ] `<DOMAIN>_TELEPORT_FEE`
 * [ ] Chainlog Bump
   * [ ] Patch `x.x.1` (onboarding)
 * [ ] Test Coverage (Follow Previous Test Patterns)

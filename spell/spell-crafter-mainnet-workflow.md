@@ -153,7 +153,7 @@ Repo: https://github.com/makerdao/spells-mainnet
 * [ ] Archive Spell via `make archive-spell` for current date or `date="YYYY-MM-DD" make archive-spell` (date as per target exec date)
 * [ ] Commit & Push for Review
 * [ ] Wait for CI to PASS
-* [ ] Wait for at Least two Approvals to Share for Publishing to GovAlpha
+* [ ] Wait for at Least two Approvals to Share for Publishing to Governance Facilitators
 * [ ] Share Deployed Address in `new-spells`
 * [ ] Fill the rest of the Spell Crafter Related Boxes in the Main Exec Sheet
 * [ ] Pre-Merge Target Branch Pull Attack Checks

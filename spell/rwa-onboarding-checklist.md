@@ -21,7 +21,7 @@
           * [ ] `gem` matches `RwaToken` deployed contract
         * [ ] check `wards`
           * [ ] `MCD_PAUSE_PROXY` is relied
-          * [ ] `MCD_ESM` is being relied in the spell (as approved by GovAlpha)
+          * [ ] `MCD_ESM` is being relied in the spell (as approved by Governance Facilitators)
           * [ ] deployer is denied
         * [ ] no other address has been relied
     * [ ] `RwaUrn2`
@@ -38,7 +38,7 @@
         * [ ] `outputConduit` matches `RwaOutputConduit<2,3>` (Per spell code)
       * [ ] check `wards`
         * [ ] `MCD_PAUSE_PROXY` is relied
-        * [ ] `MCD_ESM` is being relied in the spell (as approved by GovAlpha)
+        * [ ] `MCD_ESM` is being relied in the spell (as approved by Governance Facilitators)
         * [ ] deployer is denied
         * [ ] no other address has been relied
     * [ ] `RwaJar`
@@ -63,7 +63,7 @@
         * [ ] `psm`, `gem` (`v3`)
       * [ ] check `wards`
         * [ ] `MCD_PAUSE_PROXY` is relied
-        * [ ] `MCD_ESM` is being relied in the spell (as approved by GovAlpha)
+        * [ ] `MCD_ESM` is being relied in the spell (as approved by Governance Facilitators)
         * [ ] deployer is denied
         * [ ] no other address has been relied
     * [ ] `RwaOutputConduit<2,3>`
@@ -78,7 +78,7 @@
         * [ ] `psm`, `gem` (`v3`)
       * [ ] check `wards`
         * [ ] `MCD_PAUSE_PROXY` is relied
-        * [ ] `MCD_ESM` is being relied in the spell (as approved by GovAlpha)
+        * [ ] `MCD_ESM` is being relied in the spell (as approved by Governance Facilitators)
         * [ ] deployer is denied
         * [ ] no other address has been relied
     * [ ] Risk Parameters Match Doc
@@ -115,9 +115,9 @@
         * [ ] `RWAXXX_A_JAR`
         * [ ] `RWAXXX_A_INPUT_CONDUIT`
         * [ ] `RWAXXX_A_OUTPUT_CONDUIT`
-      * [ ] Chainlog Bump 
+      * [ ] Chainlog Bump
         * [ ] Patch `x.x.1`
-      * [ ] Add Ilk to `IlkRegistry` 
+      * [ ] Add Ilk to `IlkRegistry`
         * [ ] `put` is used
         * [ ] `class` is 3
         * [ ] `name` matches forum post (e.g. "RWA007-A: Monetalis Clydesdale")
