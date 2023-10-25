@@ -126,7 +126,7 @@ Spell Actions (Per Exec Sheet):
     * [setIlkAutoLineDebtCeiling](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L658)
       * [ ] `ilk`
       * [ ] `line`
-    * [setIlkAutoLineParameters](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L648)
+    * [ ] [setIlkAutoLineParameters](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L648)
       * [ ] `ilk`
       * [ ] `line`
       * [ ] `gap`
