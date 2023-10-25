@@ -66,7 +66,7 @@
         * [ ] `MCD_ESM` is being relied in the spell (as approved by Governance Facilitators)
         * [ ] deployer is denied
         * [ ] no other address has been relied
-    * [ ] `RwaOutputConduit<2,3>`/`RwaSwapOutputConduit`
+    * [ ] `RwaOutputConduit<2>`/`RwaSwapOutputConduit`
       * [ ] contract is verified on etherscan
         * [ ] ensure `0.6.12` solc version is used
         * [ ] ensure optimization are off
