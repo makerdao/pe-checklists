@@ -223,7 +223,7 @@ Spell Actions (Per Exec Sheet):
     * [ ] Minor -> Core Module (DSS) Update (e.g. Flapper) (0.++.0)
     * [ ] Patch -> Collateral addition or addition/modification (0.0.++)
 * [ ] `addresses_goerli.sol` matches spell code
-* [ ] Ensure every spell variable is declared as public/internal
+* [ ] Ensure every spell variable is declared as `public`/`internal`
 * [ ] Ensure every spell variable is used in the spell (no unused variables)
 * [ ] Spell actions match the corresponding [Exec Sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw)
 * [ ] Tests
@@ -232,7 +232,7 @@ Spell Actions (Per Exec Sheet):
   * [ ] Ensure every test function is declared as public if enabled or private if disabled
   * [ ] Ensure that the `DssExecLib.address` file is not being modified by the spell PR
   * [ ] Check all CI tests are passing as at the latest commit
-      _Insert most recent commit hash where CI was passing_
+    _Insert most recent commit hash where CI was passing_
   * [ ] Check all tests are passing locally using `make test`
     * [ ] Ensure that only `ETH_RPC_URL` is being used from env (i.e. no `match`, `block` or similar are active in your env)
 

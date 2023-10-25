@@ -99,6 +99,7 @@ Repo: https://github.com/makerdao/spells-mainnet
   * [ ] Add new chainLog value tests
   * [ ] Add new ilk registry value tests
   * [ ] Add specific tests (DAI/MKR Streams/Payments, Lerps, ...)
+    * [ ] The test for payments should check the sum of all payments matches the Exec Doc
 * [ ] Add new ChainLog Address in `addresses_mainnet.sol` (e.g. Collateral Onboarding)
 * [ ] Run Tests `make test` or `make test match=<test_name>` to inspect debug traces
   * [ ] Ensure Good Coverage
