@@ -50,7 +50,7 @@
       * [ ] constructor arg matches [`ChainLog`](https://chainlog.makerdao.com/)
         * [ ] `chainlog`
       * [ ] no `wards`
-    * [ ] `RwaInputConduit<2,3>`
+    * [ ] `RwaInputConduit<2>`/`RwaSwapInputConduit<2>`
       * [ ] contract is verified on etherscan
         * [ ] ensure `0.6.12` solc version is used
         * [ ] ensure optimization are off
