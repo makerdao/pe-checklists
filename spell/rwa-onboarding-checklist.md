@@ -66,7 +66,7 @@
         * [ ] `MCD_ESM` is being relied in the spell (as approved by Governance Facilitators)
         * [ ] deployer is denied
         * [ ] no other address has been relied
-    * [ ] `RwaOutputConduit<2,3>`
+    * [ ] `RwaOutputConduit<2,3>`/`RwaSwapOutputConduit`
       * [ ] contract is verified on etherscan
         * [ ] ensure `0.6.12` solc version is used
         * [ ] ensure optimization are off
@@ -104,7 +104,7 @@
         * [ ] `hope` (operator, pause proxy)
         * [ ] `mate` (operator, pause proxy as fallback if required)
         * [ ] `kiss` (whitelist for `urn` destination address `who`)
-     * [ ] Filable (`RwaOutputConduit` and `RwaInputConduit`)
+     * [ ] Filable (`RwaSwapOutputConduit` and `RwaSwapInputConduit`)
         * [ ] `quitTo` (`file` the appropriate address for conduits per technical assessment)
      * [ ] New Chainlog Entries
         * [ ] `RWAXXX`
