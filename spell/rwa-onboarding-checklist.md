@@ -29,7 +29,7 @@
         * [ ] ensure `0.6.12` solc version is used
         * [ ] ensure optimizations are off
         * [ ] ensure license is specified (SPDX in code or otherwise)
-        * [ ] ensure source matches [GitHub code](https://github.com/makerdao/rwa-toolkit/blob/92c79aac24ef7645902ce4be57ba41b19e6c7dd5/src/urns/RwaUrn2.sol) and it's consistent with previous RWA onboardings
+        * [ ] ensure source matches [GitHub code](https://github.com/makerdao/rwa-toolkit/tree/8d30ed2cb657641253d45b57c894613e26b4ae1b/src/urns) and it's consistent with previous RWA onboardings
       * [ ] constructor args are correct and match [Chainlog](https://chainlog.makerdao.com/)
         * [ ] `vat` matches `MCD_VAT`
         * [ ] `jug` matches `MCD_JUG`
