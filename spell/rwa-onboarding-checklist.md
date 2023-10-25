@@ -24,7 +24,7 @@
           * [ ] `MCD_ESM` is being relied in the spell (as approved by Governance Facilitators)
           * [ ] deployer is denied
         * [ ] no other address has been relied
-    * [ ] `RwaUrn2`
+    * [ ] `RwaUrn`/`RwaUrn2`
       * [ ] contract is verified on etherscan
         * [ ] ensure `0.6.12` solc version is used
         * [ ] ensure optimizations are off
