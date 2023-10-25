@@ -18,9 +18,9 @@ Spell Actions (Per Exec Sheet):
 * [ ] Local Environment Actions
   * [ ] Update Foundry by running `foundryup`
   * [ ] Reinstall libraries by running `rm -r lib && git submodule update --init --recursive`
-      ```
-      Insert checked out submodule paths here
-      ```
+    ```
+    Insert checked out submodule paths here
+    ```
   * [ ] Library Checks
     * [ ] `dss-exec-lib`
       * [ ] If submodule upgrades are present make sure `dss-exec-lib` is synced as well
