@@ -55,7 +55,7 @@
         * [ ] ensure `0.6.12` solc version is used
         * [ ] ensure optimization are off
         * [ ] ensure license is specified (SPDX in code or otherwise)
-        * [ ] ensure source matches [GitHub code](https://github.com/makerdao/rwa-toolkit/blob/92c79aac24ef7645902ce4be57ba41b19e6c7dd5/src/conduits/RwaSwapInputConduit2.sol) and it's consistent with previous RWA onboarding
+        * [ ] ensure source matches [GitHub code](https://github.com/makerdao/rwa-toolkit/tree/8d30ed2cb657641253d45b57c894613e26b4ae1b/src/conduits) and it's consistent with previous RWA onboarding
       * [ ] constructor args are correct and match [chainlog](https://chainlog.makerdao.com/)
         * [ ] `dai`
         * [ ] `to` (`RwaUrn`, `RwaJar`)
