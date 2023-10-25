@@ -6,10 +6,9 @@ goerli
 https
 makerdao
 DAO
-subDAO
+SubDAO
 Onboarding
 YYYY
-GovAlpha
 MIPs
 Pragma
 solc
@@ -23,6 +22,7 @@ Etherscan
 ClipFab
 DSS
 DssExecLib
+ExecLib
 diffcheck
 diffchecked
 ChainLog
@@ -97,8 +97,7 @@ Integrations
 Monetalis
 precomputed
 IAM
-Timestampts
-ptc
+Timestamps
 vscode
 EthTx
 TeleportJoin
@@ -130,3 +129,10 @@ authing
 hardcoded
 fileables
 configs
+SubDAOs
+EOAs
+SubProxy
+PR'ed
+multisig
+EOA
+redemptions

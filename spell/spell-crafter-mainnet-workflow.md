@@ -9,12 +9,13 @@ Repo: https://github.com/makerdao/spells-mainnet
 ![](https://ipfs.io/ipfs/QmUqCvy7c8Qmzn7yZ6D3353wTqCZ3VDAwQKYB37pJ2BjXb)
 
 ### Steps:
-* [ ] Create Branch on GitHub `PE-<kanban ticket issue number>`
-  * [ ] Ensure the same ticket issue number is used as per `spells-goerli` spell
+* [ ] Create a new branch on the `spells-mainnet` repo named `YYYY-MM-DD` using the initial target date of the spell
+  * [ ] Ensure the same target date is used as the corresponding `spells-goerli` spell branch
 * [ ] Pull `master` Locally and Checkout Branch (IF Branch is created via GitHub)
 * [ ] Pull `master` Locally, Create and Checkout Branch (IF Branch was not created via GitHub)
 * [ ] Cleanup Previous Spell's Actions in `DssSpell.sol` (diffcheck with Goerli)
   * [ ] Check previous spells in the `archive` folder for cleanup patterns
+  * [ ] Delete unused dependencies in the `src/dependencies` folder where applicable
 * [ ] Cleanup `src/test/config.sol`
   * [ ] Set `deployed_spell` to `address(0)`
   * [ ] Set `deployed_spell_created` to `0`
@@ -35,9 +36,12 @@ Repo: https://github.com/makerdao/spells-mainnet
 * [ ] Tests PASS via `make test`
 * [ ] Commit & Push `Base spell`
 * [ ] CI Tests PASS
-* [ ] Open Draft PR on `spells-mainnet` titled "PE-<ticket number>: YYYY-MM-DD Executive"
+* [ ] Open Draft PR on `spells-mainnet` titled `Mainnet spell YYYY-MM-DD` where `YYYY-MM-DD` is the expected target date of the spell
 * [ ] Assign to yourself
-* [ ] Add Spell Actions as per [GovAlpha Spell Content Sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw) - [Polls](https://vote.makerdao.com/polling?network=mainnet)
+* [ ] If corresponding Exec Doc is ready
+  * [ ] Add Spell Actions as per the corresponding Exec Doc
+* [ ] If corresponding Exec Doc is NOT ready
+  * [ ] Add Spell Actions as per [Governance Facilitators Spell Content Sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw) - [Polls](https://vote.makerdao.com/polling?network=mainnet)
   * [ ] Polls starts on Monday and ends on Thursday
     * [ ] Ensure spell actions match polls details and links (forum posts, MIPs portal, ...)
     * [ ] Check spell copy is merged in [community](https://github.com/makerdao/community/blob/master/governance/votes) repo
@@ -78,6 +82,9 @@ Repo: https://github.com/makerdao/spells-mainnet
       * [ ] Note: oracle should be deployed on mainnet before Friday (usually Wed-Thu)
   * [ ] Ensure every spell variable is declared as public/internal
   * [ ] Consider `immutable` visibility when fetching addresses from the `ChainLog` via `DssExecLib.getChangelogAddress` and use `constant` for static addresses
+    * [ ] Fetch addresses as type `address` and wrap with `Like` suffix interfaces inline (when making calls) unless archive patterns permit otherwise (Such as `MKR`)
+    * [ ] Use the [DssExecLib Core Address Helpers](https://github.com/makerdao/dss-exec-lib/blob/master/src/DssExecLib.sol#L166) where possible (e.g. `DssExecLib.vat()`)
+    * [ ] Where addresses are fetched from the `ChainLog`, the variable name must match the value of the ChainLog key for that address (e.g. `MCD_VAT` rather than `vat`), except where the archive pattern differs from this pattern (e.g. MKR)
   * [ ] Add New Addresses in the ChainLog
   * [ ] Bump ChainLog, accordingly with spec (`major`, `minor`, `patch`)
     * [ ] MAJOR -> New Vat
@@ -100,13 +107,15 @@ Repo: https://github.com/makerdao/spells-mainnet
 * [ ] Open PR & Add Reviewers
 * [ ] Iterate until polls are ended and exec doc is confirmed
 * [ ] Confirm Exec Doc Actions
+  * [ ] Check that every action present in the spell code is present in the Exec Doc
+  * [ ] Check that every action in the Exec Doc is present in the spell code
 * [ ] Make sure CI PASS
 * [ ] Add Exec Hash
   * [ ] Run `make exec-hash` for current date, or `date=YYYY-MM-DD` and update spell code accordingly
     * [ ] Executive vote file name and date is correct
     * [ ] [community](https://github.com/makerdao/community) repo commit hash corresponds to latest change
     * [ ] Raw GitHub URL is correct
-    * [ ] Exec hash is correct
+    * [ ] Exec hash is correct (use `cast keccak -- "$(curl '$URL' -o - 2>/dev/null)"` where `wget` doesn't work)
   * [ ] Ensure `description` date in `DssSpell.sol` matches exec copy one
 * [ ] Wait for at Least Two Approvals with local tests to deploy
 * [ ] Pre-Deploy Setup and Checks (currently via `dapptools`)
@@ -132,7 +141,7 @@ Repo: https://github.com/makerdao/spells-mainnet
   * [ ] Check local env
     * [ ] `seth ls`
     * [ ] `seth chain`
-* [ ] Deploy spell on Goerli via `make deploy`
+* [ ] Deploy spell on mainnet via `make deploy`
   * [ ] Ensure `src/test/config.sol` is edited correctly
     * [ ] `deployed_spell: address(<deployed_spell_address>)`
     * [ ] `deployed_spell_created: <timestamp>`
@@ -144,9 +153,26 @@ Repo: https://github.com/makerdao/spells-mainnet
 * [ ] Archive Spell via `make archive-spell` for current date or `date="YYYY-MM-DD" make archive-spell` (date as per target exec date)
 * [ ] Commit & Push for Review
 * [ ] Wait for CI to PASS
-* [ ] Wait for at Least two Approvals to Share for Publishing to GovAlpha
+* [ ] Wait for at Least two Approvals to Share for Publishing to Governance Facilitators
 * [ ] Share Deployed Address in `new-spells`
-* [ ] Fill Spell Crafter Related Boxes in the Main Exec Doc Sheet
+* [ ] Fill the rest of the Spell Crafter Related Boxes in the Main Exec Sheet
+* [ ] Pre-Merge Target Branch Pull Attack Checks
+  * [ ] Ensure that the latest commit to the spells-mainnet repo was not a maintenance PR
+  * [ ] Ensure that there was not a maintenance PR within the last THREE spells (i.e. 6 weeks)
+    * [ ] If maintenance PR is present:
+      * [ ] PR Name / Description?
+      * [ ] PR Actions match description and look safe?
+      * [ ] PR Did not modify files unrelated to name / description?
+      * [ ] PR Did not modify test script (including CI)?
+        * [ ] Run old test script to ensure the test results are the same
+        * [ ] Obtain unanimous approval of the safety of the new deploy script
+      * [ ] PR Did not modify DssExecLib.address?
+        * [ ] If it did, flag with Governance Facilitators
+      * [ ] PR Did not affect deploy script?
+        * [ ] If it did, flag internally with reviewers and investigate prior to merging
+        * [ ] Run old deploy script to ensure the output results are the same
+          * [ ] If different, flag with Governance Facilitators (this may affect external scripts or third party reviews)
+        * [ ] Obtain unanimous approval of the safety of the new deploy script
 * [ ] Squash & Merge
 
 ## Next Steps
