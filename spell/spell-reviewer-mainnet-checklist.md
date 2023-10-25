@@ -292,7 +292,7 @@ Spell Actions (Per Exec Doc):
 * [ ] Spell actions match the corresponding Exec Doc
 * [ ] Tests
   * [ ] Ensure each spell action has sufficient test coverage
-  _List actions for which coverage was checked here_
+    _List actions for which coverage was checked here_
   * [ ] Ensure every test function is declared as public if enabled or private if disabled
   * [ ] Ensure that the `DssExecLib.address` file is not being modified by the spell PR
   * [ ] Check all CI tests are passing as at the latest commit
