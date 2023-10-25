@@ -123,7 +123,7 @@ Spell Actions (Per Exec Sheet):
       * [ ] [`setGlobalDebtCeiling`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L428) or [`increaseGlobalDebtCeiling`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L436) or [`decreaseGlobalDebtCeiling`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L445C14-L445C39)
           * [ ] `amount`
   * [ ] Autoline Changes
-    * [setIlkAutoLineDebtCeiling](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L658)
+    * [ ] [setIlkAutoLineDebtCeiling](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L658)
       * [ ] `ilk`
       * [ ] `line`
     * [ ] [setIlkAutoLineParameters](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L648)
