@@ -206,13 +206,13 @@ Spell Actions (Per Exec Doc):
     * [ ] Recipient addresses match Exec Doc
     * [ ] Transfer values match Exec Doc
         * [ ] All values are specified with at least 2 decimals
-        * [ ] Sum of all values match Exec Doc
+        * [ ] Sum of all values matches Exec Doc
     * [ ] Follows archive patterns
   * [ ] DAI Surplus Buffer transfers
     * [ ] Recipient addresses match Exec Doc
     * [ ] Transfer values match Exec Doc
         * [ ] All values are specified with 2 decimals
-        * [ ] Sum of all values match Exec Doc
+        * [ ] Sum of all values matches Exec Doc
     * [ ] Follows previous patterns
   * [ ] Create New MKR/DAI Streams (`DssVest`)
     * [ ] `DssVestLike` interface is correct
