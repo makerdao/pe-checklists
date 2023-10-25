@@ -300,7 +300,9 @@ Spell Actions (Per Exec Doc):
   * [ ] Check all tests are passing locally using `make test`
     * [ ] Ensure that only `ETH_RPC_URL` is being used from env (i.e. no `match`, `block` or similar are active in your env)
 
+```
 _Insert your passing local tests here_
+```
 
 ## Deployed Stage
 
