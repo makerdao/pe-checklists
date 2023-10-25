@@ -17,11 +17,11 @@ Spell Actions (Per Exec Doc):
   * [ ] Search the ['Community' GitHub repo](https://github.com/makerdao/community/tree/master/governance/votes) for the corresponding Exec Doc
   * [ ] Ensure Exec Doc file name follows the format `Executive vote - Month DD, YYYY.md`
   * [ ] Extract permanent raw Url link via Github
-  _Insert your Raw Exec Doc URL here_
+    _Insert your Raw Exec Doc URL here_
   * [ ] Generate Exec Doc Hash using this URL
     * [ ] Automatically: using `make exec-hash $URL`
-    * [ ] Manually:      using `cast keccak -- "$(curl '$URL' -o - 2>/dev/null)"`
-    _Insert your Exec Doc Hash here_
+    * [ ] Manually: using `cast keccak -- "$(curl '$URL' -o - 2>/dev/null)"`
+      _Insert your Exec Doc Hash here_
 * [ ] Spell Description
   * [ ] Description follows the format `TARGET_DATE MakerDAO Executive Spell | Hash: EXEC_DOC_HASH)`
   * [ ] Target date in description matches the Exec Doc target date
@@ -35,9 +35,9 @@ Spell Actions (Per Exec Doc):
   * [ ] Reinstall libraries
     * [ ] Remove libraries by deleting the `lib` folder
     * [ ] Install libraries using `git submodule update --init --recursive`
-    ```
-    Insert checked out submodule paths here
-    ```
+      ```
+      Insert checked out submodule paths here
+      ```
   * [ ] Dependency checks
     * [ ] `dss-exec-lib`
       * [ ] if submodule upgrades are present make sure `dss-exec-lib` is synced as well
@@ -139,7 +139,7 @@ Spell Actions (Per Exec Doc):
               * [ ] `amount`
           * [ ] [`decreaseGlobalDebtCeiling`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L445C14-L445C39)
               * [ ] `amount`
- Autoline Changes
+  * [ ] Autoline Changes
     * [ ] [setIlkAutoLineDebtCeiling](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L658)
       * [ ] `ilk`
       * [ ] `line`
@@ -225,14 +225,14 @@ Spell Actions (Per Exec Doc):
       * [ ] `eta` (Vest cliff duration) matches Exec Doc
         * [ ] If the Exec Doc does not specify a cliff date (`clf`), `eta` is 0
         * [ ] `clf` (Cliff end timestamp) matches Exec Doc
-        * [ ] If `clf` <= `bgn`, `eta` is 0
-        * [ ] If `clf` > `bgn`
+        * [ ] If `clf <= bgn`, `eta` is 0
+        * [ ] If `clf > bgn`
           * [ ] `eta` is expressed as '`clf` - `bgn`' (i.e. `MONTH_DD_YYYY - MONTH_DD_YYYY`)
       * [ ] `mgr` (Vest manager address) matches Exec Doc
         * [ ] If the Exec Doc does not specify a manager address, `mgr` is `address(0)`
     * [ ] Max vesting rate (`cap`) check (MKR, DAI)
-      * [ ] The maximum vesting rate (`tot` divided by `tau`) <= the maximum vest streaming rate (`cap`)
-      * [ ] The maximum vesting rate (`tot` divided by `tau`) >  the maximum vest streaming rate (`cap`)
+      * [ ] The maximum vesting rate (`tot` divided by `tau`) `<=` the maximum vest streaming rate (`cap`)
+      * [ ] The maximum vesting rate (`tot` divided by `tau`) `>`  the maximum vest streaming rate (`cap`)
         * [ ] Calculate new `cap` value equal to 10% greater than the new maximum vesting rate
         * [ ] Round new `cap` up with 2 significant figure precision (i.e. 2446 becomes 2500)
         * [ ] Notify Governance Facilitators for addition in Exec Doc AND Exec Sheet
@@ -261,7 +261,9 @@ Spell Actions (Per Exec Doc):
     * [ ] Upgradable SubDAO contracts
       * [ ] Any upgradable contracts have the `PAUSE_PROXY` as their `admin` (i.e. the party that can upgrade)
         * [ ] Any upgradable SubDAO contracts with an `admin` that is not `PAUSE_PROXY` are not authed on any core contracts (Blocking)
-    * [ ] All SubDAO content addresses (i.e. provided contract addresses or EOAs) present in the Maker Core spell are present in the Exec Doc and are correct. SubDAO addresses being authed or given any permissions MUST be in the Exec Doc. SubDAO addresses being called must be confirmed by the SubDAO spell team.
+    * [ ] All SubDAO content addresses (i.e. provided contract addresses or EOAs) present in the Maker Core spell are present in the Exec Doc and are correct.
+      * [ ] SubDAO addresses being authed or given any permissions MUST be in the Exec Doc.
+      * [ ] SubDAO addresses being called must be confirmed by the SubDAO spell team.
       * [ ] IF addresses not PR'ed in by the SubDAO team (use git blame for example), SubDAO content addresses all have inline comment for provenance or source being OKed by SubDAO
     * [ ] SubDAO actions match Exec Doc (only where inline with main spell code) and do not affect core contracts
     * [ ] Core contract knock-on actions (such as offboarding or setting DC to 0) are present in the exec and match the code
@@ -284,7 +286,7 @@ Spell Actions (Per Exec Doc):
     * [ ] Minor -> Core Module (DSS) Update (e.g. Flapper) (0.++.0)
     * [ ] Patch -> Collateral addition or addition/modification (0.0.++)
 * [ ] `addresses_mainnet.sol` matches spell code
-* [ ] Ensure every spell variable is declared as public/internal
+* [ ] Ensure every spell variable is declared as `public`/`internal`
 * [ ] Ensure `immutable` visibility is only used when fetching addresses from the `ChainLog` via `DssExecLib.getChangelogAddress` and `constant` is used instead for static addresses
   * [ ] Fetch addresses as type `address` and wrap with `Like` suffix interfaces inline (when making calls) unless archive patterns permit otherwise (Such as `MKR`)
   * [ ] Use the [DssExecLib Core Address Helpers](https://github.com/makerdao/dss-exec-lib/blob/master/src/DssExecLib.sol#L166) where possible (e.g. `DssExecLib.vat()`)
