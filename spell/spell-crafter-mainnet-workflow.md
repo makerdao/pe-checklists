@@ -101,7 +101,7 @@ Repo: https://github.com/makerdao/spells-mainnet
     * [ ] add newline above it
   * [ ] For every `Reasoning URL` and `Authority URL` from the Exec Sheet add comment with it under relevant section or instruction in the spell code (depending on which row the link is present)
     * [ ] For every `Reasoning URL` and `Authority URL` add prefix derived from the url itself
-      * [ ] `Executive Vote:` if URL starts with `https://vote.makerdao.com/executive/`
+      * [ ] `// Executive Vote:` if URL starts with `https://vote.makerdao.com/executive/`
       * [ ] `Poll:` if URL starts with `https://vote.makerdao.com/polling/`
       * [ ] `Forum:` if URL starts with `https://forum.makerdao.com/t/`
       * [ ] `MIP:` if URL starts with `https://mips.makerdao.com/mips/details/`
