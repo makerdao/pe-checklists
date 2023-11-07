@@ -42,7 +42,7 @@ Repo: https://github.com/makerdao/spells-mainnet
       * [ ] `// Poll:` if URL starts with `https://vote.makerdao.com/polling/`
       * [ ] `// Forum:` if URL starts with `https://forum.makerdao.com/t/`
       * [ ] `// MIP:` if URL starts with `https://mips.makerdao.com/mips/details/`
-  * [ ] If action in the spell doesn't have relevant instruction (e.g.: `chainlog` version bump), it add explanation prefixed with `// Note:`
+  * [ ] If action in the spell doesn't have relevant instruction (e.g.: `chainlog` version bump), add the explanation prefixed with `// Note:`
   * [ ] If an instruction can not be taken, add a comment under the instruction prefixed with `// Note:` (e.g.: `// Note: Payments are skipped on goerli`)
 * [ ] Run Tests `make test` or `make test match=<test_name>` to inspect debug traces
   * [ ] Ensure to use latest `foundry` stable version
