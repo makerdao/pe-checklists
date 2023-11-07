@@ -28,7 +28,7 @@ Spell Actions (Per Exec Sheet):
       * [ ] `// Forum:` if URL starts with `https://forum.makerdao.com/t/`
       * [ ] `// MIP:` if URL starts with `https://mips.makerdao.com/mips/details/`
   * [ ] If action in the spell doesn't have relevant instruction (e.g.: `chainlog` version bump), it should have explanation prefixed with `// Note:`
-  * [ ] If an instruction can not be taken, add a comment under the instruction prefixed with `// Note:` (e.g.: `// Note: Payments are skipped on goerli`)
+  * [ ] If an instruction can not be taken, it should have a comment under the instruction prefixed with `// Note:` (e.g.: `// Note: Payments are skipped on goerli`)
 * [ ] Local Environment Actions
   * [ ] Update Foundry by running `foundryup`
   * [ ] Reinstall libraries by running `rm -r lib && git submodule update --init --recursive`
