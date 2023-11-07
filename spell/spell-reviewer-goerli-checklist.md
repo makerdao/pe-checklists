@@ -70,6 +70,19 @@ Spell Actions (Per Exec Sheet):
       * [ ] Exceptions must follow archive patterns (e.g. `GemLike` for `MKR`)
     * [ ] Visibility is `internal`
     * [ ] State mutability is `immutable`
+* [ ] Ensure the comments inside the spell action are correct:
+  * [ ] Every _Section text_ from the Exec Sheet should be copied as comment to the spell code (above the code segment that implements the action)
+    * [ ] is surrounded by the set of dashes (`-----`)
+  * [ ] Every _Instruction text_ Exec Sheet should be:
+    * [ ] copied to the spell code as `// Instruction text`
+    * [ ] have newline above it
+  * [ ] Every `Reasoning URL` and `Authority URL` from the Exec Sheet should be present under relevant section or instruction in the spell code (depending on which row the link is present)
+    * [ ] Every `Reasoning URL` and `Authority URL` should have prefix derived from the url itself
+      * [ ] `Executive Vote:` if URL starts with `https://vote.makerdao.com/executive/`
+      * [ ] `Poll:` if URL starts with `https://vote.makerdao.com/polling/`
+      * [ ] `Forum:` if URL starts with `https://forum.makerdao.com/t/`
+      * [ ] `MIP:` if URL starts with `https://mips.makerdao.com/mips/details/`
+  * [ ] If action in the spell doesn't have relevant instruction (e.g.: `chainlog` version bump), it should have explanation prefixed with `// Note:`
 * [ ] String Constants
   * [ ] IPFS hashes or DAO resolutions
       * [ ] IPFS hashes and DAO resolutions match the exec doc
