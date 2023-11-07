@@ -95,7 +95,7 @@ Repo: https://github.com/makerdao/spells-mainnet
     * [ ] Check previous spells for common patterns
 * [ ] Add comments to the spell:
   * [ ] Copy every _Section text_ from the Exec Sheet as comment to the spell code (above the code segment that implements the action)
-    * [ ] Surround the comment by the set of dashes (E.g. `----- Section text -----`)
+    * [ ] Surround the comment by the set of dashes (E.g. `// ----- Section text -----`)
   * [ ] For every _Instruction text_ Exec Sheet:
     * [ ] copy to the spell code as `// Instruction text`
     * [ ] add newline above it

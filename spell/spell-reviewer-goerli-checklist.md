@@ -72,7 +72,7 @@ Spell Actions (Per Exec Sheet):
     * [ ] State mutability is `immutable`
 * [ ] Ensure the comments inside the spell action are correct:
   * [ ] Every _Section text_ from the Exec Sheet should be copied as comment to the spell code (above the code segment that implements the action)
-    * [ ] is surrounded by the set of dashes (E.g. `----- Section text -----`)
+    * [ ] is surrounded by the set of dashes (E.g. `// ----- Section text -----`)
   * [ ] Every _Instruction text_ Exec Sheet should be:
     * [ ] copied to the spell code as `// Instruction text`
     * [ ] have newline above it
