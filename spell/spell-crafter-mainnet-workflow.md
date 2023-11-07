@@ -21,6 +21,15 @@ Repo: https://github.com/makerdao/spells-mainnet
   * [ ] Set `deployed_spell_created` to `0`
   * [ ] Set `deployed_spell_block` to `0`
   * [ ] Consider to add `previous_spell` address if it haven't been executed yet
+* [ ] Cleanup Specific Tests in `DssSpell.t.sol`
+  * [ ] Check previous spells in the `archive` folder for cleanup patterns
+  * [ ] Disable specific tests IF Not Used (e.g. `testCollateralIntegrations`, `testNewChainlogValues`, `testNewIlkRegistryValues`, ...)
+    * [ ] Remove spell-specific part
+    * [ ] Keep setup
+    * [ ] Disable by setting visibility to `private`
+    * [ ] Add commented notes
+      * [ ] e.g. `// Insert new collateral integration tests here`
+    * [ ] Keep commented tests (e.g. `testOSMs`, `testMedianizers`)
 * [ ] Add comments to the spell:
   * [ ] Copy every _Section text_ from the Exec Sheet as comment to the spell code (above the code segment that implements the action)
     * [ ] Surround the comment by the set of dashes (E.g. `// ----- Section text -----`)
@@ -35,15 +44,6 @@ Repo: https://github.com/makerdao/spells-mainnet
       * [ ] `// MIP:` if URL starts with `https://mips.makerdao.com/mips/details/`
   * [ ] If action in the spell doesn't have relevant instruction (e.g.: `chainlog` version bump), it add explanation prefixed with `// Note:`
   * [ ] If an instruction can not be taken, add a comment under the instruction prefixed with `// Note:` (e.g.: `// Note: Payments are skipped on goerli`)
-* [ ] Cleanup Specific Tests in `DssSpell.t.sol`
-  * [ ] Check previous spells in the `archive` folder for cleanup patterns
-  * [ ] Disable specific tests IF Not Used (e.g. `testCollateralIntegrations`, `testNewChainlogValues`, `testNewIlkRegistryValues`, ...)
-    * [ ] Remove spell-specific part
-    * [ ] Keep setup
-    * [ ] Disable by setting visibility to `private`
-    * [ ] Add commented notes
-      * [ ] e.g. `// Insert new collateral integration tests here`
-    * [ ] Keep commented tests (e.g. `testOSMs`, `testMedianizers`)
 * [ ] Run Tests `make test` or `make test match=<test_name>` to inspect debug traces
   * [ ] Ensure to use latest `foundry` stable version
     * [ ] Run `foundryup`
