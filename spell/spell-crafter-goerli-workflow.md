@@ -87,20 +87,20 @@ PR: https://github.com/makerdao/spells-goerli/pull/<TODO>
   * [ ] Use DssExecLib Functions
     * [ ] Ensure `DssExecLib` address used in current spell (`DssExecLib.address`) matches `dss-exec-lib` [Latest Release Tag](https://github.com/makerdao/dss-exec-lib/releases/latest)
     * [ ] Check previous spells for common patterns
-* [ ] Ensure the comments inside the spell action are correct:
-  * [ ] Every _Section text_ from the Exec Sheet should be copied as comment to the spell code (above the code segment that implements the action)
-    * [ ] is surrounded by the set of dashes (E.g. `----- Section text -----`)
-  * [ ] Every _Instruction text_ Exec Sheet should be:
-    * [ ] copied to the spell code as `// Instruction text`
-    * [ ] have newline above it
-  * [ ] Every `Reasoning URL` and `Authority URL` from the Exec Sheet should be present under relevant section or instruction in the spell code (depending on which row the link is present)
-    * [ ] Every `Reasoning URL` and `Authority URL` should have prefix derived from the url itself
+* [ ] Add comments to the spell:
+  * [ ] Copy every _Section text_ from the Exec Sheet as comment to the spell code (above the code segment that implements the action)
+    * [ ] Surround the comment by the set of dashes (E.g. `----- Section text -----`)
+  * [ ] For every _Instruction text_ Exec Sheet:
+    * [ ] copy to the spell code as `// Instruction text`
+    * [ ] add newline above it
+  * [ ] For every `Reasoning URL` and `Authority URL` from the Exec Sheet add comment with it under relevant section or instruction in the spell code (depending on which row the link is present)
+    * [ ] For every `Reasoning URL` and `Authority URL` add prefix derived from the url itself
       * [ ] `Executive Vote:` if URL starts with `https://vote.makerdao.com/executive/`
       * [ ] `Poll:` if URL starts with `https://vote.makerdao.com/polling/`
       * [ ] `Forum:` if URL starts with `https://forum.makerdao.com/t/`
       * [ ] `MIP:` if URL starts with `https://mips.makerdao.com/mips/details/`
-  * [ ] If action in the spell doesn't have relevant instruction (e.g.: `chainlog` version bump), it should have explanation prefixed with `// Note:`
-  * [ ] If an instruction can not be taken, a note should be added under the instruction prefixed with `// Note: ` (e.g.: `// Note: Skip payments on goerli`)
+  * [ ] If action in the spell doesn't have relevant instruction (e.g.: `chainlog` version bump), it add explanation prefixed with `// Note:`
+  * [ ] If an instruction can not be taken, a note add under the instruction prefixed with `// Note: ` (e.g.: `// Note: Skip payments on goerli`)
 * [ ] Adjust System Values, Collateral Values in `config.sol` (i.e. diffcheck via vscode `code --diff config1.sol config2.sol`) with `spells-mainnet`)
 * [ ] Add Specific Tests in `DssSpell.t.sol` (i.e. diffcheck via vscode `code --diff source1.sol source2.sol`) with `spells-mainnet`)
   * [ ] Add new collateral tests
