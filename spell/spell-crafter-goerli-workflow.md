@@ -20,6 +20,20 @@ PR: https://github.com/makerdao/spells-goerli/pull/<TODO>
   * [ ] Set `deployed_spell` to `address(0)`
   * [ ] Set `deployed_spell_created` to `0`
   * [ ] Set `deployed_spell_block` to `0`
+* [ ] Add comments to the spell:
+  * [ ] Copy every _Section text_ from the Exec Sheet as comment to the spell code (above the code segment that implements the action)
+    * [ ] Surround the comment by the set of dashes (E.g. `// ----- Section text -----`)
+  * [ ] For every _Instruction text_ Exec Sheet:
+    * [ ] copy to the spell code as `// Instruction text`
+    * [ ] add newline above it
+  * [ ] For every `Reasoning URL` and `Authority URL` from the Exec Sheet add comment with it under relevant section or instruction in the spell code (depending on which row the link is present)
+    * [ ] For every `Reasoning URL` and `Authority URL` add prefix derived from the url itself
+      * [ ] `// Executive Vote:` if URL starts with `https://vote.makerdao.com/executive/`
+      * [ ] `Poll:` if URL starts with `https://vote.makerdao.com/polling/`
+      * [ ] `Forum:` if URL starts with `https://forum.makerdao.com/t/`
+      * [ ] `MIP:` if URL starts with `https://mips.makerdao.com/mips/details/`
+  * [ ] If action in the spell doesn't have relevant instruction (e.g.: `chainlog` version bump), it add explanation prefixed with `// Note:`
+  * [ ] If an instruction can not be taken, add a comment under the instruction prefixed with `// Note:` (e.g.: `// Note: Payments are skipped on goerli`)
 * [ ] Cleanup Specific Tests in `DssSpell.t.sol`
   * [ ] Check previous spells in the `archive` folder for cleanup patterns
   * [ ] Disable specific tests IF Not Used (e.g. `testCollateralIntegrations`, `testNewChainlogValues`, `testNewIlkRegistryValues`, ...)
@@ -87,20 +101,6 @@ PR: https://github.com/makerdao/spells-goerli/pull/<TODO>
   * [ ] Use DssExecLib Functions
     * [ ] Ensure `DssExecLib` address used in current spell (`DssExecLib.address`) matches `dss-exec-lib` [Latest Release Tag](https://github.com/makerdao/dss-exec-lib/releases/latest)
     * [ ] Check previous spells for common patterns
-* [ ] Add comments to the spell:
-  * [ ] Copy every _Section text_ from the Exec Sheet as comment to the spell code (above the code segment that implements the action)
-    * [ ] Surround the comment by the set of dashes (E.g. `// ----- Section text -----`)
-  * [ ] For every _Instruction text_ Exec Sheet:
-    * [ ] copy to the spell code as `// Instruction text`
-    * [ ] add newline above it
-  * [ ] For every `Reasoning URL` and `Authority URL` from the Exec Sheet add comment with it under relevant section or instruction in the spell code (depending on which row the link is present)
-    * [ ] For every `Reasoning URL` and `Authority URL` add prefix derived from the url itself
-      * [ ] `// Executive Vote:` if URL starts with `https://vote.makerdao.com/executive/`
-      * [ ] `Poll:` if URL starts with `https://vote.makerdao.com/polling/`
-      * [ ] `Forum:` if URL starts with `https://forum.makerdao.com/t/`
-      * [ ] `MIP:` if URL starts with `https://mips.makerdao.com/mips/details/`
-  * [ ] If action in the spell doesn't have relevant instruction (e.g.: `chainlog` version bump), it add explanation prefixed with `// Note:`
-  * [ ] If an instruction can not be taken, add a comment under the instruction prefixed with `// Note:` (e.g.: `// Note: Payments are skipped on goerli`)
 * [ ] Adjust System Values, Collateral Values in `config.sol` (i.e. diffcheck via vscode `code --diff config1.sol config2.sol`) with `spells-mainnet`)
 * [ ] Add Specific Tests in `DssSpell.t.sol` (i.e. diffcheck via vscode `code --diff source1.sol source2.sol`) with `spells-mainnet`)
   * [ ] Add new collateral tests
