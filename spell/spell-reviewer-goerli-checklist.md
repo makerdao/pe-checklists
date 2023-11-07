@@ -72,7 +72,7 @@ Spell Actions (Per Exec Sheet):
     * [ ] State mutability is `immutable`
 * [ ] Ensure the comments inside the spell action are correct:
   * [ ] Every _Section text_ from the Exec Sheet should be copied as comment to the spell code (above the code segment that implements the action)
-    * [ ] is surrounded by the set of dashes (`-----`)
+    * [ ] is surrounded by the set of dashes (E.g. `----- Section text -----`)
   * [ ] Every _Instruction text_ Exec Sheet should be:
     * [ ] copied to the spell code as `// Instruction text`
     * [ ] have newline above it
@@ -83,6 +83,7 @@ Spell Actions (Per Exec Sheet):
       * [ ] `Forum:` if URL starts with `https://forum.makerdao.com/t/`
       * [ ] `MIP:` if URL starts with `https://mips.makerdao.com/mips/details/`
   * [ ] If action in the spell doesn't have relevant instruction (e.g.: `chainlog` version bump), it should have explanation prefixed with `// Note:`
+  * [ ] If an instruction can not be taken, a note should be added under the instruction prefixed with `// Note: ` (e.g.: `// Note: Skip payments on goerli`)
 * [ ] String Constants
   * [ ] IPFS hashes or DAO resolutions
       * [ ] IPFS hashes and DAO resolutions match the exec doc
