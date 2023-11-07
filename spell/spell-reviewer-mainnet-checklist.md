@@ -30,6 +30,20 @@ Spell Actions (Per Exec Doc):
     * [ ] Comment follows the format `// Hash: cast keccak -- "$(wget 'EXEC_DOC_URL' -q -O - 2>/dev/null)"`
     * [ ] Exec Doc URL in comment matches your Raw Exec Doc URL
     * [ ] Exec Doc URL in comment refers to the ['Community' GitHub repo](https://github.com/makerdao/community/tree/master/governance/votes)
+* [ ] Ensure the comments inside the spell action are correct:
+  * [ ] Every _Section text_ from the Exec Sheet should be copied as comment to the spell code (above the code segment that implements the action)
+    * [ ] is surrounded by the set of dashes (E.g. `// ----- Section text -----`)
+  * [ ] Every _Instruction text_ Exec Sheet should be:
+    * [ ] copied to the spell code as `// Instruction text`
+    * [ ] have newline above it
+  * [ ] Every `Reasoning URL` and `Authority URL` from the Exec Sheet should be present under relevant section or instruction in the spell code (depending on which row the link is present)
+    * [ ] Every `Reasoning URL` and `Authority URL` should have prefix derived from the url itself
+      * [ ] `// Executive Vote:` if URL starts with `https://vote.makerdao.com/executive/`
+      * [ ] `// Poll:` if URL starts with `https://vote.makerdao.com/polling/`
+      * [ ] `// Forum:` if URL starts with `https://forum.makerdao.com/t/`
+      * [ ] `// MIP:` if URL starts with `https://mips.makerdao.com/mips/details/`
+  * [ ] If action in the spell doesn't have relevant instruction (e.g.: `chainlog` version bump), it should have explanation prefixed with `// Note:`
+  * [ ] If an instruction can not be taken, add a comment under the instruction prefixed with `// Note:` (e.g.: `// Note: Payments are skipped on goerli`)
 * [ ] Local Environment Actions
   * [ ] Update Foundry by running `foundryup`
   * [ ] Reinstall libraries
@@ -57,20 +71,6 @@ Spell Actions (Per Exec Doc):
     * [ ] check on-chain interface of deployed contract via `cast interface <contract_address>` to ensure correctness
     * [ ] interface naming style should match with `Like` suffix (e.g. `VatLike`), with some [exceptions](https://github.com/makerdao/dss-exec-lib/blob/master/src/DssExecLib.sol#L24)
     * [ ] ensure they only list used functions in spell code
-* [ ] Ensure the comments inside the spell action are correct:
-  * [ ] Every _Section text_ from the Exec Sheet should be copied as comment to the spell code (above the code segment that implements the action)
-    * [ ] is surrounded by the set of dashes (E.g. `// ----- Section text -----`)
-  * [ ] Every _Instruction text_ Exec Sheet should be:
-    * [ ] copied to the spell code as `// Instruction text`
-    * [ ] have newline above it
-  * [ ] Every `Reasoning URL` and `Authority URL` from the Exec Sheet should be present under relevant section or instruction in the spell code (depending on which row the link is present)
-    * [ ] Every `Reasoning URL` and `Authority URL` should have prefix derived from the url itself
-      * [ ] `// Executive Vote:` if URL starts with `https://vote.makerdao.com/executive/`
-      * [ ] `// Poll:` if URL starts with `https://vote.makerdao.com/polling/`
-      * [ ] `// Forum:` if URL starts with `https://forum.makerdao.com/t/`
-      * [ ] `// MIP:` if URL starts with `https://mips.makerdao.com/mips/details/`
-  * [ ] If action in the spell doesn't have relevant instruction (e.g.: `chainlog` version bump), it should have explanation prefixed with `// Note:`
-  * [ ] If an instruction can not be taken, add a comment under the instruction prefixed with `// Note:` (e.g.: `// Note: Payments are skipped on goerli`)
 * [ ] Rate constants used are correct
   * [ ] Manual check 1: using `make rates pct=<pct>` (e.g. pct=0.75, for 0.75%)
   * [ ] Manual check 2: Compare against [IPFS](https://ipfs.io/ipfs/QmVp4mhhbwWGTfbh2BzwQB9eiBrQBKiqcPRZCaAxNUaar6)
