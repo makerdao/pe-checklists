@@ -79,9 +79,9 @@ Spell Actions (Per Exec Sheet):
   * [ ] Every `Reasoning URL` and `Authority URL` from the Exec Sheet should be present under relevant section or instruction in the spell code (depending on which row the link is present)
     * [ ] Every `Reasoning URL` and `Authority URL` should have prefix derived from the url itself
       * [ ] `// Executive Vote:` if URL starts with `https://vote.makerdao.com/executive/`
-      * [ ] `Poll:` if URL starts with `https://vote.makerdao.com/polling/`
-      * [ ] `Forum:` if URL starts with `https://forum.makerdao.com/t/`
-      * [ ] `MIP:` if URL starts with `https://mips.makerdao.com/mips/details/`
+      * [ ] `// Poll:` if URL starts with `https://vote.makerdao.com/polling/`
+      * [ ] `// Forum:` if URL starts with `https://forum.makerdao.com/t/`
+      * [ ] `// MIP:` if URL starts with `https://mips.makerdao.com/mips/details/`
   * [ ] If action in the spell doesn't have relevant instruction (e.g.: `chainlog` version bump), it should have explanation prefixed with `// Note:`
   * [ ] If an instruction can not be taken, add a comment under the instruction prefixed with `// Note:` (e.g.: `// Note: Payments are skipped on goerli`)
 * [ ] String Constants
