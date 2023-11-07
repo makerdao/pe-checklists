@@ -106,7 +106,7 @@ Repo: https://github.com/makerdao/spells-mainnet
       * [ ] `Forum:` if URL starts with `https://forum.makerdao.com/t/`
       * [ ] `MIP:` if URL starts with `https://mips.makerdao.com/mips/details/`
   * [ ] If action in the spell doesn't have relevant instruction (e.g.: `chainlog` version bump), it add explanation prefixed with `// Note:`
-  * [ ] If an instruction can not be taken, a note add under the instruction prefixed with `// Note: ` (e.g.: `// Note: Skip payments on goerli`)
+  * [ ] If an instruction can not be taken, add a comment under the instruction prefixed with `// Note:` (e.g.: `// Note: Payments are skipped on goerli`)
 * [ ] Adjust System Values, Collateral Values in `config.sol` (i.e. diffcheck via vscode `code --diff config1.sol config2.sol`) with `spells-goerli`)
 * [ ] Add Specific Tests in `DssSpell.t.sol` (i.e. diffcheck via vscode `code --diff source1.sol source2.sol`) with `spells-goerli`)
   * [ ] Add new collateral tests

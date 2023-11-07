@@ -70,7 +70,7 @@ Spell Actions (Per Exec Doc):
       * [ ] `Forum:` if URL starts with `https://forum.makerdao.com/t/`
       * [ ] `MIP:` if URL starts with `https://mips.makerdao.com/mips/details/`
   * [ ] If action in the spell doesn't have relevant instruction (e.g.: `chainlog` version bump), it should have explanation prefixed with `// Note:`
-  * [ ] If an instruction can not be taken, a note should be added under the instruction prefixed with `// Note: ` (e.g.: `// Note: Skip payments on goerli`)
+  * [ ] If an instruction can not be taken, add a comment under the instruction prefixed with `// Note:` (e.g.: `// Note: Payments are skipped on goerli`)
 * [ ] Rate constants used are correct
   * [ ] Manual check 1: using `make rates pct=<pct>` (e.g. pct=0.75, for 0.75%)
   * [ ] Manual check 2: Compare against [IPFS](https://ipfs.io/ipfs/QmVp4mhhbwWGTfbh2BzwQB9eiBrQBKiqcPRZCaAxNUaar6)
