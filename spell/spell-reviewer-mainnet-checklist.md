@@ -9,108 +9,109 @@ Spell Actions (Per Exec Doc):
 
 ## Development Stage
 
-* [ ] Office Hours
-  * [ ] On (Collateral Onboarding, Keepers, Integrations, ...)
-  * [ ] Matches Exec Doc
-* [ ] 30 days spell expiry in constructor (`block.timestamp + 30 days`)
-* [ ] Exec Doc Hash
-  * [ ] Search the ['Community' GitHub repo](https://github.com/makerdao/community/tree/master/governance/votes) for the corresponding Exec Doc
-  * [ ] Ensure Exec Doc file name follows the format `Executive vote - Month DD, YYYY.md`
-  * [ ] Extract permanent raw Url link via Github
+* [ ] 30 days spell expiry in the constructor (`block.timestamp + 30 days`)
+* Office hours
+  * [ ] Office hours is `true` IF spell introduces a major change that can affect external parties (e.g.: keepers are affected in case of collateral offboarding) OTHERWISE explicitely set to `false`
+  * [ ] Office hours value matches Exec Doc
+* Exec Doc
+  * [ ] Exec Doc can be found in the [`makerdao/community` GitHub repo](https://github.com/makerdao/community/tree/master/governance/votes)
+  * [ ] Exec Doc file name follows the format `Executive vote - Month DD, YYYY.md`
+  * [ ] URL to the raw markdown file on the last commit matches the spell
     _Insert your Raw Exec Doc URL here_
-  * [ ] Generate Exec Doc Hash using this URL
-    * [ ] Automatically: using `make exec-hash $URL`
-    * [ ] Manually: using `cast keccak -- "$(curl '$URL' -o - 2>/dev/null)"`
-      _Insert your Exec Doc Hash here_
-* [ ] Spell Description
-  * [ ] Description follows the format `TARGET_DATE MakerDAO Executive Spell | Hash: EXEC_DOC_HASH)`
-  * [ ] Target date in description matches the Exec Doc target date
-  * [ ] Exec Doc Hash in description matches your locally generated Exec Doc Hash
-  * [ ] Accompanying comment above spell `description`
-    * [ ] Comment follows the format `// Hash: cast keccak -- "$(wget 'EXEC_DOC_URL' -q -O - 2>/dev/null)"`
-    * [ ] Exec Doc URL in comment matches your Raw Exec Doc URL
-    * [ ] Exec Doc URL in comment refers to the ['Community' GitHub repo](https://github.com/makerdao/community/tree/master/governance/votes)
-* [ ] Ensure the comments inside the spell action are correct:
-  * [ ] Every _Section text_ from the Exec Sheet should be copied as comment to the spell code (above the code segment that implements the action)
-    * [ ] is surrounded by the set of dashes (E.g. `// ----- Section text -----`)
-  * [ ] Every _Instruction text_ Exec Sheet should be:
-    * [ ] copied to the spell code as `// Instruction text`
-    * [ ] have newline above it
-  * [ ] Every `Reasoning URL` and `Authority URL` from the Exec Sheet should be present under relevant section or instruction in the spell code (depending on which row the link is present)
-    * [ ] Every `Reasoning URL` and `Authority URL` should have prefix derived from the url itself
-      * [ ] `// Executive Vote:` if URL starts with `https://vote.makerdao.com/executive/`
-      * [ ] `// Poll:` if URL starts with `https://vote.makerdao.com/polling/`
-      * [ ] `// Forum:` if URL starts with `https://forum.makerdao.com/t/`
-      * [ ] `// MIP:` if URL starts with `https://mips.makerdao.com/mips/details/`
-  * [ ] If action in the spell doesn't have relevant instruction (e.g.: `chainlog` version bump), it should have explanation prefixed with `// Note:`
-  * [ ] If an instruction can not be taken, it should have a comment under the instruction prefixed with `// Note:` (e.g.: `// Note: Payments are skipped on goerli`)
-* [ ] Local Environment Actions
+  * [ ] Exec Doc Hash generated from the URL above via `make exec-hash $URL` matches hash in the spell description
+  * [ ] Exec Doc Hash generated from the URL above via `cast keccak -- "$(curl '$URL' -o - 2>/dev/null)"` matches hash in the spell description
+    _Insert your Exec Doc Hash here_
+* Spell description
+  * [ ] Description follows the format `TARGET_DATE MakerDAO Executive Spell | Hash: EXEC_DOC_HASH`
+  * [ ] Target date in the description matches the Exec Doc target date
+  * [ ] Accompanying comment above spell description follows the format `// Hash: cast keccak -- "$(wget 'EXEC_DOC_URL' -q -O - 2>/dev/null)"`
+  * [ ] Exec Doc URL in comment matches your Raw Exec Doc URL above
+  * [ ] Exec Doc URL in comment refers to the [`https://github.com/makerdao/community` repo](https://github.com/makerdao/community/tree/master/governance/votes)
+* Comments inside the spell
+  * [ ] Every _Section text_ from the Exec Sheet is copied to the spell code as a comment surrounded by the set of dashes (E.g. `// ----- Section text -----`)
+  * [ ] Every _Instruction text_ from the Exec Sheet is copied to the spell code as `// Instruction text`
+  * [ ] Every _Instruction text_ have newline above it
+  * [ ] Every _Instruction text_ have a _single_ action below it
+  * [ ] IF an instruction can not be taken, it should have explanation under the instruction prefixed with `// Note:` (e.g.: `// Note: Payments are skipped on goerli`)
+  * [ ] IF action in the spell doesn't have relevant instruction (e.g.: `chainlog` version bump), the necessity of it is explained in the comment above prefixed with `// Note:`
+  * [ ] Every proof url from the Exec Sheet, such as `Reasoning URL` and `Authority URL` is present in the spell code under relevant section or instruction (depending on which row the url is present) 
+  * [ ] Every proof url from the Exec Sheet, such as `Reasoning URL` and `Authority URL` have prefix derived from the url itself
+      * `// Executive Vote:` if URL starts with `https://vote.makerdao.com/executive/`
+      * `// Poll:` if URL starts with `https://vote.makerdao.com/polling/`
+      * `// Forum:` if URL starts with `https://forum.makerdao.com/t/`
+      * `// MIP:` if URL starts with `https://mips.makerdao.com/mips/details/`
+  * [ ] Every other comment that is copied from the Exec Sheet is prefixed with `// Note:`
+* Local environment actions
   * [ ] Update Foundry by running `foundryup`
-  * [ ] Reinstall libraries
+  * Reinstall libraries
     * [ ] Remove libraries by deleting the `lib` folder
     * [ ] Install libraries using `git submodule update --init --recursive`
       ```
       Insert checked out submodule paths here
       ```
-  * [ ] Dependency checks
-    * [ ] `dss-exec-lib`
-      * [ ] if submodule upgrades are present make sure `dss-exec-lib` is synced as well
-      * [ ] git submodule hash (run `git submodule status`) matches the latest release version or newer (NOTE: `dss-exec-lib` as installed locally will use GitHub code more recent than the 0.0.9 release)
-    * [ ] `dss-test`
-      * [ ] `dss-interfaces`
-        * [ ] git submodule hash matches [version used by `dss-test`](https://github.com/makerdao/dss-test/tree/master/lib) (Non-critical)
-      * [ ] `forge-std`
-        * [ ] git submodule hash matches [version used by `dss-test`](https://github.com/makerdao/dss-test/tree/master/lib) (Non-critical)
-* [ ] Interface Checks
-  * [ ] `dss-interfaces`
-    * [ ] used in the current spell
-    * [ ] cleanup previous ones
-    * [ ] ensure only single import layout is used (e.g. `import "dss-interfaces/dss/VatAbstract.sol";`)
-  * [ ] Static Interfaces
-    * [ ] ensure they match `dss-interfaces` (Where there is a mismatch, use `cast interface` as the source of truth)
-    * [ ] check on-chain interface of deployed contract via `cast interface <contract_address>` to ensure correctness
-    * [ ] interface naming style should match with `Like` suffix (e.g. `VatLike`), with some [exceptions](https://github.com/makerdao/dss-exec-lib/blob/master/src/DssExecLib.sol#L24)
-    * [ ] ensure they only list used functions in spell code
-* [ ] Rate constants used are correct
-  * [ ] Manual check 1: using `make rates pct=<pct>` (e.g. pct=0.75, for 0.75%)
-  * [ ] Manual check 2: Compare against [IPFS](https://ipfs.io/ipfs/QmVp4mhhbwWGTfbh2BzwQB9eiBrQBKiqcPRZCaAxNUaar6)
-  * [ ] Variable name conforms to `X_PT_Y_Z_PCT_RATE` (e.g. `ZERO_PT_SEVEN_FIVE_PCT_RATE` for 0.75%)
-  * [ ] Variable visibility declared as `internal`
-  * [ ] State mutability declared as `constant`
-* [ ] Constants Match
-  * [ ] Precision unit constants used match their defined values
-    * [ ] `WAD = 10 ** 18`
-    * [ ] `RAY = 10 ** 27`
-    * [ ] `RAD = 10 ** 45`
-    * [ ] Variable visibility declared as `internal`
-    * [ ] State mutability declared as `constant`
-    * [ ] Ensure they match with [ds-math](https://github.com/dapphub/ds-math/blob/master/src/math.sol) and the [Numerical Ranges](https://github.com/makerdao/dss/wiki/Numerical-Ranges#notation)
-  * [ ] Math unit constants used match their defined values
-    * [ ] `HUNDRED  = 10 ** 2`
-    * [ ] `THOUSAND = 10 ** 3`
-    * [ ] `MILLION  = 10 ** 6`
-    * [ ] `BILLION  = 10 ** 9`
-    * [ ] Variable visibility declared as `internal`
-    * [ ] State mutability declared as `constant`
-    * [ ] Ensure they match with [config](https://github.com/makerdao/spells-mainnet/blob/master/src/test/config.sol)
-  * [ ] Timestamp constants used are correct
+* Dependency checks
+  * `dss-exec-lib`
+    * [ ] IF submodule upgrades are present make sure `dss-exec-lib` is synced as well
+    * [ ] git submodule hash (run `git submodule status`) matches the latest release version or newer
+      * EXCEPTION: `dss-exec-lib` installed locally can use `69b658f35d8618272cd139dfc18c5713caf6b96b` but please consult the [changes](https://github.com/makerdao/dss-exec-lib/compare/v0.0.9...69b658f35d8618272cd139dfc18c5713caf6b96b#diff-72201ff20380f5c7fc89281be3ad2dd6bd5a992f246d41d6d9d97f71e078d40d)
+  * `dss-test`
+    * `dss-interfaces`
+      * [ ] git submodule hash matches [version used by `dss-test`](https://github.com/makerdao/dss-test/tree/master/lib) (Non-critical)
+    * `forge-std`
+      * [ ] git submodule hash matches [version used by `dss-test`](https://github.com/makerdao/dss-test/tree/master/lib) (Non-critical)
+* IF interfaces present in the spell
+  * Interfaces imported from `dss-interfaces`
+    * [ ] No unused `dss-interfaces` left from the previous spell
+    * [ ] Only single import layout is used (e.g. `import "dss-interfaces/dss/VatAbstract.sol";`)
+  * Static Interfaces
+    * [ ] Not present in the `dss-interfaces`, OTHERWISE whould be imported from there
+    * [ ] Interface matches deployed contract using `cast interface <contract_address>` command
+    * [ ] Interface naming style should match with `Like` suffix (e.g. `VatLike`)
+      * EXCEPTION: [known interface naming exceptions](https://github.com/makerdao/dss-exec-lib/blob/master/src/DssExecLib.sol#L24-L52)
+    * [ ] Ensure each static interface declare only functions actually used in the spell code
+* IF rate constants present
+  * [ ] Rates used in the spell match generated locally via `make rates pct=<pct>` (e.g. pct=0.75, for 0.75%)
+  * [ ] Rates used in the spell match [IPFS](https://ipfs.io/ipfs/QmVp4mhhbwWGTfbh2BzwQB9eiBrQBKiqcPRZCaAxNUaar6) document
+  * [ ] Rate variable name conforms to `X_PT_Y_Z_PCT_RATE` (e.g. `ZERO_PT_SEVEN_FIVE_PCT_RATE` for 0.75%)
+  * [ ] Rate variable visibility declared as `internal`
+  * [ ] Rate state mutability declared as `constant`
+* IF constants present
+  * IF precision unit constants present
+    * [ ] Precision units used in the spell match their defined values:
+      * `WAD = 10 ** 18`
+      * `RAY = 10 ** 27`
+      * `RAD = 10 ** 45`
+    * [ ] Precision units match with [Numerical Ranges](https://github.com/makerdao/dss/wiki/Numerical-Ranges#notation)
+    * [ ] Each constant variable visibility declared as `internal`
+    * [ ] Each constant state mutability declared as `constant`
+  * IF math unit constants present
+    * [ ] Match their defined values:
+      * `HUNDRED  = 10 ** 2`
+      * `THOUSAND = 10 ** 3`
+      * `MILLION  = 10 ** 6`
+      * `BILLION  = 10 ** 9`
+    * [ ] Match with [config](https://github.com/makerdao/spells-mainnet/blob/master/src/test/config.sol)
+    * [ ] Each constant variable visibility declared as `internal`
+    * [ ] Each constant state mutability declared as `constant`
+  * IF timestamp constants present
     * [ ] Comment above timestamp states full date including `UTC` timezone
-    * [ ] Ensure the timestamp [converts](https://www.epochconverter.com/) back to the correct date
-      * [ ] Ensure `UTC` timezone is used
+    * [ ] Timestamp [converts](https://www.epochconverter.com/) back to the correct date
+    * [ ] Timestamp [converts](https://www.epochconverter.com/) back to the `UTC` timezone
     * [ ] Variable naming matches `MONTH_DD_YYYY` (e.g. `MAY_01_2023` for 2023-05-01)
-    * [ ] Time of day makes logical sense (i.e. `23:59:59 UTC` for the final day of something, `00:00:00 UTC` for the first day of something) in the context of timestamp usage
-    * [ ] Variable visibility declared as `internal`
-    * [ ] State mutability declared as `constant`
-* [ ] Deployed Contracts (not yet on chainlog or new to chainlog)
-  * [ ] Verified on etherscan
-  * [ ] Optimizations match Repo
+    * [ ] Time of day makes logical sense in the context of timestamp usage (i.e. `23:59:59 UTC` for the final day of something, `00:00:00 UTC` for the first day of something)
+    * [ ] Each constant variable visibility declared as `internal`
+    * [ ] Each constant state mutability declared as `constant`
+* IF new contract is present in the spell (not yet on chainlog or new to chainlog)
+  * [ ] Source code is verified on etherscan
+  * [ ] Compilation optimizations match deployment settings defined in the source code repo
   * [ ] `GNU AGPLv3` license
-  * [ ] Constructor args ok (e.g. `vat`, `dai`, `dog`, ...)
-    * [ ] Match [ChainLog](https://chainlog.makerdao.com/)
-  * [ ] Wards ok (pause proxy relied, deployer denied)
-    * [ ] `MCD_ESM` is already relied / being relied in this spell (as approved by Governance Facilitators) in order to allow de-authing the pause proxy during Emergency Shutdown, via `denyProxy`.
-  * [ ] Matches corresponding github source code (i.e. diffcheck via vscode `code --diff etherscan.sol github.sol`)
-  * [ ] Ensure deployer address is included into `addresses_deployers.sol` (**to keep up to date**)
+  * [ ] Every maker-related constructor argument matches chainlog (e.g. `vat`, `dai`, `dog`, ...)
+  * IF contract have concept of `wards`
+    * [ ] Ensure `PAUSE_PROXY` address was `relied`
+    * [ ] Ensure that contract deployer address was `denied`
+    * [ ] Ensure `MCD_ESM` address is already relied OR being relied in this spell (as approved by Governance Facilitators, in order to allow de-authing the pause proxy during Emergency Shutdown, via `denyProxy`)
+  * [ ] Source code matches corresponding github source code (e.g. diffcheck via vscode `code --diff etherscan.sol github.sol`)
+  * [ ] Ensure deployer address is included into `addresses_deployers.sol`
 * [ ] Core System Parameter Changes
   * [ ] Stability Fee `jug.ilk.duty` ([setIlkStabilityFee](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L792))
     * [ ] Comment matches pattern `// Increase ILK-A Stability Fee by X.XX% from X.XX% to X.XX%.`
