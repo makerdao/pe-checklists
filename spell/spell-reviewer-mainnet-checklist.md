@@ -94,9 +94,11 @@ Spell Actions (Per Exec Doc):
     * [ ] State mutability declared as `constant`
     * [ ] Ensure they match with [config](https://github.com/makerdao/spells-mainnet/blob/master/src/test/config.sol)
   * [ ] Timestamp constants used are correct
-    * [ ] Ensure the timestamp [converts](https://www.epochconverter.com/) to the correct date
+    * [ ] Comment above timestamp states full date including `UTC` timezone
+    * [ ] Ensure the timestamp [converts](https://www.epochconverter.com/) back to the correct date
+      * [ ] Ensure `UTC` timezone is used
     * [ ] Variable naming matches `MONTH_DD_YYYY` (e.g. `MAY_01_2023` for 2023-05-01)
-    * [ ] Time of day makes logical sense (i.e. `23:59:59` for the final day of something, `00:00:00` for the first day of something) in the context of timestamp usage
+    * [ ] Time of day makes logical sense (i.e. `23:59:59 UTC` for the final day of something, `00:00:00 UTC` for the first day of something) in the context of timestamp usage
     * [ ] Variable visibility declared as `internal`
     * [ ] State mutability declared as `constant`
 * [ ] Deployed Contracts (not yet on chainlog or new to chainlog)
