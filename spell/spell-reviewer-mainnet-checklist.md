@@ -9,18 +9,25 @@ Spell Actions (Per Exec Doc):
 
 ## Development Stage
 
-* [ ] 30 days spell expiry in the constructor (`block.timestamp + 30 days`)
-* Office hours
-  * [ ] Office hours is `true` IF spell introduces a major change that can affect external parties (e.g.: keepers are affected in case of collateral offboarding) OTHERWISE explicitely set to `false`
-  * [ ] Office hours value matches Exec Doc
 * Exec Doc
-  * [ ] Exec Doc can be found in the [`makerdao/community` GitHub repo](https://github.com/makerdao/community/tree/master/governance/votes)
+  * [ ] Exec Doc for the specified date is found in the [`makerdao/community` GitHub repo](https://github.com/makerdao/community/tree/master/governance/votes)
   * [ ] Exec Doc file name follows the format `Executive vote - Month DD, YYYY.md`
-  * [ ] URL to the raw markdown file on the last commit matches the spell
+  * [ ] URL to the raw markdown file on the relevant commit matches the spell
     _Insert your Raw Exec Doc URL here_
   * [ ] Exec Doc Hash generated from the URL above via `make exec-hash $URL` matches hash in the spell description
   * [ ] Exec Doc Hash generated from the URL above via `cast keccak -- "$(curl '$URL' -o - 2>/dev/null)"` matches hash in the spell description
     _Insert your Exec Doc Hash here_
+* Local environment actions
+  * [ ] Update Foundry by running `foundryup`
+  * [ ] Reinstall libraries by running `rm -rf ./lib && git submodule update --init --recursive`
+    ```
+    Insert checked out submodule paths here
+    ```
+* Base checks
+  * [ ] Current solc version `0.8.16`
+  * [ ] Office hours is `true` IF spell introduces a major change that can affect external parties (e.g.: keepers are affected in case of collateral offboarding) OTHERWISE explicitely set to `false`
+  * [ ] Office hours value matches the Exec Doc
+  * [ ] 30 days spell expiry set in the constructor (`block.timestamp + 30 days`)
 * Spell description
   * [ ] Description follows the format `TARGET_DATE MakerDAO Executive Spell | Hash: EXEC_DOC_HASH`
   * [ ] Target date in the description matches the Exec Doc target date
@@ -40,15 +47,6 @@ Spell Actions (Per Exec Doc):
       * `// Poll:` if URL starts with `https://vote.makerdao.com/polling/`
       * `// Forum:` if URL starts with `https://forum.makerdao.com/t/`
       * `// MIP:` if URL starts with `https://mips.makerdao.com/mips/details/`
-  * [ ] Every other comment that is copied from the Exec Sheet is prefixed with `// Note:`
-* Local environment actions
-  * [ ] Update Foundry by running `foundryup`
-  * Reinstall libraries
-    * [ ] Remove libraries by deleting the `lib` folder
-    * [ ] Install libraries using `git submodule update --init --recursive`
-      ```
-      Insert checked out submodule paths here
-      ```
 * Dependency checks
   * `dss-exec-lib`
     * [ ] IF submodule upgrades are present make sure `dss-exec-lib` is synced as well
@@ -59,54 +57,55 @@ Spell Actions (Per Exec Doc):
       * [ ] git submodule hash matches [version used by `dss-test`](https://github.com/makerdao/dss-test/tree/master/lib) (Non-critical)
     * `forge-std`
       * [ ] git submodule hash matches [version used by `dss-test`](https://github.com/makerdao/dss-test/tree/master/lib) (Non-critical)
-* IF interfaces present in the spell
+* IF interfaces are present in the spell
   * Interfaces imported from `dss-interfaces`
-    * [ ] No unused `dss-interfaces` left from the previous spell
+    * [ ] No unused `dss-interfaces`
     * [ ] Only single import layout is used (e.g. `import "dss-interfaces/dss/VatAbstract.sol";`)
   * Static Interfaces
-    * [ ] Not present in the `dss-interfaces`, OTHERWISE whould be imported from there
+    * [ ] No unused static interfaces
+    * [ ] Declared static interface not present in the `dss-interfaces`, OTHERWISE should be imported from there
     * [ ] Interface matches deployed contract using `cast interface <contract_address>` command
     * [ ] Interface naming style should match with `Like` suffix (e.g. `VatLike`)
       * EXCEPTION: [known interface naming exceptions](https://github.com/makerdao/dss-exec-lib/blob/master/src/DssExecLib.sol#L24-L52)
     * [ ] Ensure each static interface declare only functions actually used in the spell code
-* IF rate constants present
-  * [ ] Rates used in the spell match generated locally via `make rates pct=<pct>` (e.g. pct=0.75, for 0.75%)
-  * [ ] Rates used in the spell match [IPFS](https://ipfs.io/ipfs/QmVp4mhhbwWGTfbh2BzwQB9eiBrQBKiqcPRZCaAxNUaar6) document
-  * [ ] Rate variable name conforms to `X_PT_Y_Z_PCT_RATE` (e.g. `ZERO_PT_SEVEN_FIVE_PCT_RATE` for 0.75%)
-  * [ ] Rate variable visibility declared as `internal`
-  * [ ] Rate state mutability declared as `constant`
-* IF constants present
-  * IF precision unit constants present
+* IF variable declarations are present in the spell
+  * IF precision units are present
     * [ ] Precision units used in the spell match their defined values:
       * `WAD = 10 ** 18`
       * `RAY = 10 ** 27`
       * `RAD = 10 ** 45`
     * [ ] Precision units match with [Numerical Ranges](https://github.com/makerdao/dss/wiki/Numerical-Ranges#notation)
-    * [ ] Each constant variable visibility declared as `internal`
-    * [ ] Each constant state mutability declared as `constant`
-  * IF math unit constants present
+    * [ ] Each variable visibility declared as `internal`
+    * [ ] Each variable state mutability declared as `constant`
+  * IF math units are present
     * [ ] Match their defined values:
       * `HUNDRED  = 10 ** 2`
       * `THOUSAND = 10 ** 3`
       * `MILLION  = 10 ** 6`
       * `BILLION  = 10 ** 9`
     * [ ] Match with [config](https://github.com/makerdao/spells-mainnet/blob/master/src/test/config.sol)
-    * [ ] Each constant variable visibility declared as `internal`
-    * [ ] Each constant state mutability declared as `constant`
-  * IF timestamp constants present
+    * [ ] Each variable visibility declared as `internal`
+    * [ ] Each variable state mutability declared as `constant`
+  * IF rates are present in the spell
+    * [ ] Rates match generated locally via `make rates pct=<pct>` (e.g. pct=0.75, for 0.75%)
+    * [ ] Rates match [IPFS](https://ipfs.io/ipfs/QmVp4mhhbwWGTfbh2BzwQB9eiBrQBKiqcPRZCaAxNUaar6) document
+    * [ ] Rate variable name conforms to `X_PT_Y_Z_PCT_RATE` (e.g. `ZERO_PT_SEVEN_FIVE_PCT_RATE` for 0.75%)
+    * [ ] Rate variable visibility declared as `internal`
+    * [ ] Rate variable state mutability declared as `constant`
+  * IF timestamps are present
     * [ ] Comment above timestamp states full date including `UTC` timezone
     * [ ] Timestamp [converts](https://www.epochconverter.com/) back to the correct date
     * [ ] Timestamp [converts](https://www.epochconverter.com/) back to the `UTC` timezone
     * [ ] Variable naming matches `MONTH_DD_YYYY` (e.g. `MAY_01_2023` for 2023-05-01)
     * [ ] Time of day makes logical sense in the context of timestamp usage (i.e. `23:59:59 UTC` for the final day of something, `00:00:00 UTC` for the first day of something)
-    * [ ] Each constant variable visibility declared as `internal`
-    * [ ] Each constant state mutability declared as `constant`
+    * [ ] Each variable visibility declared as `internal`
+    * [ ] Each variable state mutability declared as `constant`
 * IF new contract is present in the spell (not yet on chainlog or new to chainlog)
   * [ ] Source code is verified on etherscan
   * [ ] Compilation optimizations match deployment settings defined in the source code repo
   * [ ] `GNU AGPLv3` license
   * [ ] Every maker-related constructor argument matches chainlog (e.g. `vat`, `dai`, `dog`, ...)
-  * IF contract have concept of `wards`
+  * IF new contract have concept of `wards`
     * [ ] Ensure `PAUSE_PROXY` address was `relied`
     * [ ] Ensure that contract deployer address was `denied`
     * [ ] Ensure `MCD_ESM` address is already relied OR being relied in this spell (as approved by Governance Facilitators, in order to allow de-authing the pause proxy during Emergency Shutdown, via `denyProxy`)
