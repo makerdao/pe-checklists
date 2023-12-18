@@ -94,6 +94,8 @@ PR: https://github.com/makerdao/spells-goerli/pull/<TODO>
     * [ ] Use the [DssExecLib Core Address Helpers](https://github.com/makerdao/dss-exec-lib/blob/master/src/DssExecLib.sol#L166) where possible (e.g. `DssExecLib.vat()`)
     * [ ] Where addresses are fetched from the `ChainLog`, the variable name must match the value of the ChainLog key for that address (e.g. `MCD_VAT` rather than `vat`), except where the archive pattern differs from this pattern (e.g. MKR)
   * [ ] Add New Addresses in the ChainLog
+    * [ ] Enable `testAuth` and include the new addresses there (only applicable if contract has `wards`).
+    * [ ] Enable `testOsmAuth` and include the new addresses there (only applicable if the contract is an `OSM` instance).
   * [ ] Bump ChainLog, accordingly with spec (`major`, `minor`, `patch`)
     * [ ] MAJOR -> New Vat
     * [ ] MINOR -> Core Module (DSS) Update (e.g. Flapper)
