@@ -105,6 +105,8 @@ Spell Actions (Per Exec Sheet):
     * [ ] `MCD_ESM` is already relied / being relied in this spell (as approved by Governance Facilitators) in order to allow de-authing the pause proxy during Emergency Shutdown, via `denyProxy`.
   * [ ] Matches corresponding github source code (i.e. diffcheck via vscode `code --diff etherscan.sol github.sol`)
   * [ ] Ensure deployer address is included into `addresses_deployers.sol` (**to keep up to date**)
+  * [ ] Ensure `testAuth` is enabled and covers every new contract that is **not** an `OSM`
+  * [ ] Ensure `testAuthInSources` is enabled and covers every new contract that is an `OSM`
 * [ ] Core System Parameter Changes
   * [ ] Stability Fee `jug.ilk.duty` ([setIlkStabilityFee](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L792))
     * [ ] Comment matches pattern `// Increase ILK-A Stability Fee by X.XX% from X.XX% to X.XX%.`
