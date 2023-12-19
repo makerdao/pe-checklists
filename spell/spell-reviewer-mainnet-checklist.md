@@ -1,28 +1,23 @@
 # Mainnet Executive Spell Review Checklist
 
-## Mainnet YYYY-MM-DD
-
-Spell Actions (Per Exec Doc):
-
-* _Read spell actions and instructions from the Exec Doc_
-* _List the actions being performed in this spell_
-
 ## Development Stage
 
 * Exec Doc
+  * [ ] Record target date for the executive spell
+    _Insert taget date here in the YYYY-MM-DD format_
+  * [ ] Exec Sheet for the specified date is found in the ["Executive Vote Implementation Process" google sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw)
   * [ ] Exec Doc for the specified date is found in the [`makerdao/community` GitHub repo](https://github.com/makerdao/community/tree/master/governance/votes)
   * [ ] Exec Doc file name follows the format `Executive vote - Month DD, YYYY.md`
-  * [ ] URL to the raw markdown file on the relevant commit matches the spell
+  * [ ] Extract permanent URL to the raw markdown file and paste it below
     _Insert your Raw Exec Doc URL here_
-  * [ ] Exec Doc Hash generated from the URL above via `make exec-hash $URL` matches hash in the spell description
-  * [ ] Exec Doc Hash generated from the URL above via `cast keccak -- "$(curl '$URL' -o - 2>/dev/null)"` matches hash in the spell description
+  * [ ] Using URL from the above, generate Exec Doc Hash via `make exec-hash $URL`
     _Insert your Exec Doc Hash here_
-* Local environment actions
-  * [ ] Update Foundry by running `foundryup`
-  * [ ] Reinstall libraries by running `rm -rf ./lib && git submodule update --init --recursive`
-    ```
-    Insert checked out submodule paths here
-    ```
+  * [ ] Using URL from the above, generate Exec Doc Hash via `cast keccak -- "$(curl '$URL' -o - 2>/dev/null)"`
+    _Insert your Exec Doc Hash here_
+  * [ ] Ensure that both hashes match
+  * [ ] Using URL from the above, read spell instructions from the Exec Doc and list them below
+    _List all actions announced in the Exec Doc_
+  * [ ] Ensure that announced actions listed in the Exec Doc match instructions in the Exec Sheet
 * Base checks
   * [ ] Current solc version `0.8.16`
   * [ ] Office hours is `true` IF spell introduces a major change that can affect external parties (e.g.: keepers are affected in case of collateral offboarding) OTHERWISE explicitely set to `false`
@@ -48,15 +43,14 @@ Spell Actions (Per Exec Doc):
       * `// Forum:` if URL starts with `https://forum.makerdao.com/t/`
       * `// MIP:` if URL starts with `https://mips.makerdao.com/mips/details/`
 * Dependency checks
-  * `dss-exec-lib`
-    * [ ] IF submodule upgrades are present make sure `dss-exec-lib` is synced as well
-    * [ ] git submodule hash (run `git submodule status`) matches the latest release version or newer
-      * EXCEPTION: `dss-exec-lib` installed locally can use `69b658f35d8618272cd139dfc18c5713caf6b96b` but please consult the [changes](https://github.com/makerdao/dss-exec-lib/compare/v0.0.9...69b658f35d8618272cd139dfc18c5713caf6b96b#diff-72201ff20380f5c7fc89281be3ad2dd6bd5a992f246d41d6d9d97f71e078d40d)
-  * `dss-test`
-    * `dss-interfaces`
-      * [ ] git submodule hash matches [version used by `dss-test`](https://github.com/makerdao/dss-test/tree/master/lib) (Non-critical)
-    * `forge-std`
-      * [ ] git submodule hash matches [version used by `dss-test`](https://github.com/makerdao/dss-test/tree/master/lib) (Non-critical)
+  * [ ] Update Foundry by running `foundryup`
+  * [ ] Reinstall libraries by running `rm -rf ./lib && git submodule update --init --recursive`
+    ```bash
+    Insert checked out submodule paths here
+    ```
+  * [ ] IF submodule upgrades are present, make sure `dss-exec-lib` is synced as well
+  * [ ] git submodule hash of `dss-exec-lib` (run `git submodule status`) matches the [latest release version](https://github.com/makerdao/dss-exec-lib/releases) or newer
+  * [ ] git submodule hashes of `lib/dss-interfaces` matches submodules inside `lib/dss-test`. Can be checked by comparing outputs of `(cd lib/dss-exec-lib && git submodule status)` and `(cd lib/dss-test && git submodule status)`
 * IF interfaces are present in the spell
   * Interfaces imported from `dss-interfaces`
     * [ ] No unused `dss-interfaces`
@@ -67,7 +61,7 @@ Spell Actions (Per Exec Doc):
     * [ ] Interface matches deployed contract using `cast interface <contract_address>` command
     * [ ] Interface naming style should match with `Like` suffix (e.g. `VatLike`)
       * EXCEPTION: [known interface naming exceptions](https://github.com/makerdao/dss-exec-lib/blob/master/src/DssExecLib.sol#L24-L52)
-    * [ ] Ensure each static interface declare only functions actually used in the spell code
+    * [ ] Each static interface declare only functions actually used in the spell code
 * IF variable declarations are present in the spell
   * IF precision units are present
     * [ ] Precision units used in the spell match their defined values:
@@ -105,34 +99,34 @@ Spell Actions (Per Exec Doc):
   * [ ] Compilation optimizations match deployment settings defined in the source code repo
   * [ ] `GNU AGPLv3` license
   * [ ] Every maker-related constructor argument matches chainlog (e.g. `vat`, `dai`, `dog`, ...)
-  * IF new contract have concept of `wards`
+  * IF new contract have concept of `wards` or access control
     * [ ] Ensure `PAUSE_PROXY` address was `relied`
     * [ ] Ensure that contract deployer address was `denied`
     * [ ] Ensure `MCD_ESM` address is already relied OR being relied in this spell (as approved by Governance Facilitators, in order to allow de-authing the pause proxy during Emergency Shutdown, via `denyProxy`)
   * [ ] Source code matches corresponding github source code (e.g. diffcheck via vscode `code --diff etherscan.sol github.sol`)
   * [ ] Ensure deployer address is included into `addresses_deployers.sol`
-* [ ] Core System Parameter Changes
-  * [ ] Stability Fee `jug.ilk.duty` ([setIlkStabilityFee](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L792))
-    * [ ] Comment matches pattern `// Increase ILK-A Stability Fee by X.XX% from X.XX% to X.XX%.`
-  * [ ] Dai Savings Rate `pot.dsr` ([`setDSR`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L455))
-    * [ ] Double check that `PCT_RATE` is correct
-      * [ ] Check manually via `make rates pct=<pct>` (e.g. pct=0.75, for 0.75%)
-      * [ ] Compare against [IPFS](https://ipfs.io/ipfs/QmVp4mhhbwWGTfbh2BzwQB9eiBrQBKiqcPRZCaAxNUaar6)
-  * [ ] `spotter.ilk.mat`  ([liquidationRatio](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L709))
-  * [ ] `dog.ilk.hole` ([setIlkMaxLiquidationAmount](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L699))
-  * [ ] `vat.ilk.dust`([setIlkMinVaultAmount](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L676))
-  * [ ] `dog.ilk.chop` ([liquidationPenalty](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L689))
-  * [ ] `clip.buf`  ([startingPriceFactor](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L720))
-  * [ ] `clipperMom.clip.tolerance` ([setLiquidationBreakerPriceTolerance](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L772))
-  * [ ] `clip.tail` ([auctionDuration](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L731))
-  * [ ] `clip.cusp` ([permittedDrop](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L740))
-  * [ ] `clip.chip` ([kprPctReward](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L750))
-  * [ ] `clip.tip`([kprFlatReward](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L760))
-  * [ ] `calc.tau` ([setLinearDecrease](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L811))
-  * [ ] [setStairstepExponentialDecrease](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L822)
-    * [ ] `calc.cut`
-    * [ ] `calc.step`
-* [ ] Debt Ceiling Changes
+* IF core system parameter changes are present in the spell
+  * IF stability fee (`jug.ilk.duty`) is updated
+    * [ ] ([`DssExecLib.setIlkStabilityFee`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L792)) is used
+    * [ ] Comment matches pattern `// Increase ILK-A Stability Fee by X.XX% from X.XX% to X.XX%`
+  * IF Dai Savings Rate (`pot.dsr`) is updated
+    * [ ] ([`DssExecLib.setDSR`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L455)) is used
+    * [ ] Comment matches pattern `// Increase DSR by X.XX% from X.XX% to X.XX%`
+    * [ ] Double check that rate match `make rates pct=<pct>` (e.g. pct=0.75, for 0.75%)
+    * [ ] Double check that rate match [IPFS](https://ipfs.io/ipfs/QmVp4mhhbwWGTfbh2BzwQB9eiBrQBKiqcPRZCaAxNUaar6) document
+  * [ ] IF `spotter.ilk.mat` is updated, ([`DssExecLib.setIlkLiquidationRatio`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L709)) is used
+  * [ ] IF `dog.ilk.hole` is updated, ([`DssExecLib.setIlkMaxLiquidationAmount`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L699)) is used
+  * [ ] IF `vat.ilk.dust` is updated, ([`DssExecLib.setIlkMinVaultAmount`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L676)) is used
+  * [ ] IF `dog.ilk.chop` is updated, ([`DssExecLib.setIlkLiquidationPenalty`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L689)) is used
+  * [ ] IF `clip.buf` is updated, ([`DssExecLib.setStartingPriceMultiplicativeFactor`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L720)) is used
+  * [ ] IF `clipperMom.clip.tolerance` is updated, ([`DssExecLib.setLiquidationBreakerPriceTolerance`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L772)) is used
+  * [ ] IF `clip.tail` is updated, ([`DssExecLib.setAuctionTimeBeforeReset`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L731)) is used
+  * [ ] IF `clip.cusp` is updated, ([`DssExecLib.setAuctionPermittedDrop`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L740)) is used
+  * [ ] IF `clip.chip` is updated, ([`DssExecLib.setKeeperIncentivePercent`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L750)) is used
+  * [ ] IF `clip.tip` is updated, ([`DssExecLib.setKeeperIncentiveFlatRate`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L760)) is used
+  * [ ] IF `calc.tau` is updated, ([`DssExecLib.setLinearDecrease`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L811)) is used
+  * [ ] IF `calc.cut` or `calc.step` are updated, [`DssExecLib.setStairstepExponentialDecrease`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L822) is used
+* IF debt ceiling changes are present in the spell
   * [ ] `vat.ilk.line` changes (per ilk)
     * [ ] Collateral type (ilk) is not RWAXXX (For RWA refer to the designated section of the checklist)
     * [ ] Either is used depending on the EXEC DOC contents:
