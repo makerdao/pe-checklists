@@ -144,8 +144,8 @@
           * [`DssExecLib.increaseIlkDebtCeiling(ilk, amount, global)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L621C14-L621C36)
           * [`DssExecLib.decreaseIlkDebtCeiling(ilk, amount, global)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L634)
           * [`DssExecLib.setIlkDebtCeiling(ilk, amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L611)
-      * [ ] Global debt ceiling (`vat.Line`) is updated accordingly, UNLESS specifically instructed not to. Either via:
-          * `global` set to `true` in `increaseIlkDebtCeiling`/`increaseIlkDebtCeiling`
+      * [ ] Global debt ceiling (`vat.Line`) is updated accordingly, UNLESS specifically instructed not to, via either:
+          * `global` set to `true` in `increaseIlkDebtCeiling`/`decreaseIlkDebtCeiling`
           * [`DssExecLib.setGlobalDebtCeiling(amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L428)
           * [`DssExecLib.increaseGlobalDebtCeiling(amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L436)
           * [`DssExecLib.decreaseGlobalDebtCeiling(amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L445C14-L445C39)
@@ -184,35 +184,38 @@
       * [ ] Ensure `duration` matches the instruction
     * [ ] Spotter price is updated via [`DssExecLib.updateCollateralPrice(ilk)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L374) IF collateral have no running oracle or is stablecoin
     * [ ] Offboarding is tested at least via [`_checkIlkClipper` helper](https://github.com/makerdao/spells-mainnet/blob/7400e91c4f211fc24bd4d3a95a86416afc4df9d1/src/DssSpell.t.base.sol#L856)
-* [ ] RWA Updates
-  * [ ] `doc` (Using the [`_updateDoc` helper](https://github.com/makerdao/spells-goerli/blob/88413f576d14628a3488a096d9da6775bef46eaa/archive/2022-11-14-DssSpell/Goerli-DssSpell.sol#L59) or otherwise)
-    * [ ] `init` the `RwaLiquidationOracle` to reset the `doc`
-    * [ ] Sanity Check `pip` must be set (not the zero address)
-    * [ ] `ilk` follows format "RWAXXX-A"
-    * [ ] `val` price ignored (`0`) if `init` has already been called
-    * [ ] `doc` new legal document (IPFS HASH) matches Exec Doc
-    * [ ] `tau` parameter used is the old `tau` value
-  * [ ] Debt Ceiling changes (`line`)
-    * [ ] Autoline (`line`) + Liquidation Oracle Price Bump (`val`)
-      * [ ] Enable Autoline
-        * [ ] `ilk` follows format "RWAXXX-A"
-        * [ ] `line` (max debt ceiling)
-        * [ ] `gap`
-        * [ ] `ttl`
-    * [ ] Debt Ceiling (`line`) + Liquidation Oracle Price Bump (`val`)
-      * [ ] Increase Ilk Debt Ceiling (set DC + increase Global DC)
-    * [ ] `bump` `RwaLiquidationOracle` with new computed increased price (`val`)
-      * [ ] ensure `val` is set accordingly with autoline max debt ceiling (`line`)
-      * [ ] `val` should enable DAI to be drawn over the loan period while taking into account the configured `ink` amount, interest rate and liquidation ratio (see below)
-        * [ ] New `val` is calculated with `line * [(1 + duty) ** years] * mat` - rounded up - and makes sense in context of the [rate mechanism](https://github.com/makerdao/developerguides/blob/master/mcd/intro-rate-mechanism/intro-rate-mechanism.md). Minimum duration is usually in the Exec Doc of the spell with the RWAXXX ilk onboarding.
-        * [ ] Comment explaining `val` formula (`Debt ceiling * [ (1 + RWA stability fee ) ^ (minimum deal duration in years) ] * liquidation ratio`) is present
-        * [ ] Accompanying comment above `bump` line in format `// XXM * 1.XX^X * X.XX as a WAD` corresponding to the `val` calculation formula (e.g. `// 15M * 1.03^2 * 1.00 as a WAD`) is present along with the calculation formula on the line above
-        * [ ] IF combining `val` of multiple RWA ilks being combined, `val` calculation is done once per ilk and added to make the total, with workings provided in code comments. The existing `val` value can be retrieved by calling `read()` on `PIP_RWAXX` and converting the result into decimal.
-    * [ ] Poke `spotter` to pull in the new price
-  * [ ] Soft Liquidation (`tell`)
-      * [ ] Call `RwaLiquidationOracle.tell(ilk)`
-      * [ ] IF `RWAXX_A_INPUT_CONDUIT` is an instance of [`TinlakeMgr`](https://github.com/centrifuge/tinlake-maker-lib/blob/master/src/mgr.sol) (it is a Centrifuge integration)
-        * [ ] Call `TinlakeMgr.tell()` to prevent further `TIN` redemptions in the Centrifuge pool.
+* IF RWA updates are present
+  * IF `doc` is updated
+    * [ ] [`_updateDoc` helper](https://github.com/makerdao/spells-mainnet/blob/7400e91c4f211fc24bd4d3a95a86416afc4df9d1/archive/2023-09-27-DssSpell/DssSpell.sol#L76-L87) is copied one-to-one from the archive and defined above `actions`
+    * [ ] `_updateDoc(ilk, doc)` is called in the spell
+  * IF debt ceiling is updated
+    * [ ] IF AutoLine update is requested by the Exec Doc, parameters are set via [`DssExecLib.setIlkAutoLineParameters(ilk, amount, gap, ttl)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L648) or [`DssExecLib.setIlkAutoLineDebtCeiling(ilk, amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L658)
+    * IF regular debt ceiling (`vat.ilk.line`) update is requested by the Exec Doc
+      * [ ] Collateral type (`ilk`) have [`AutoLine`](https://github.com/makerdao/dss-auto-line/tree/master) disabled previously or in the spell
+      * [ ] Debt ceiling (`vat.ilk.line`) is updated, via either:
+          * [`DssExecLib.increaseIlkDebtCeiling(ilk, amount, global)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L621C14-L621C36)
+          * [`DssExecLib.decreaseIlkDebtCeiling(ilk, amount, global)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L634)
+          * [`DssExecLib.setIlkDebtCeiling(ilk, amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L611)
+      * [ ] Global debt ceiling (`vat.Line`) is updated accordingly, UNLESS specifically instructed not to, via either:
+          * `global` set to `true` in `increaseIlkDebtCeiling`/`decreaseIlkDebtCeiling`
+          * [`DssExecLib.setGlobalDebtCeiling(amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L428)
+          * [`DssExecLib.increaseGlobalDebtCeiling(amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L436)
+          * [`DssExecLib.decreaseGlobalDebtCeiling(amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L445C14-L445C39)
+    * [ ] Liquidation oracle price is bumped via `RwaLiquidationOracleLike(MIP21_LIQUIDATION_ORACLE).bump(ilk, val)` pattern
+    * [ ] Comment above `bump` explains `val` computation via `// Note: the formula is: "debt_ceiling * [ (1 + rwa_stability_fee ) ^ (minimum_deal_duration_in_years) ] * liquidation_ratio"`
+    * [ ] Comment  above `bump` provides locally executable formula (e.g. `// bc -l <<< 'scale=18; 50000000 * e(l(1.07) * (3342/365)) * 1.00' | cast --to-wei`)
+    * [ ] The formula matches the example provided above
+    * [ ] `debt_ceiling` in the executable formula matches new debt ceiling set in the spell or the maximum possible debt ceiling in case of the enabled AutoLine
+    * [ ] `rwa_stability_fee` in the executable formula matches stability fee of the specified RWA found on chain
+    * [ ] `minimum_deal_duration_in_years` in the executable formula matches number found in the Exec Doc of the spell containing relevant RWA onboarding
+    * [ ] `liquidation_ratio` in the executable formula matches liquidation ratio of the specified RWA found on chain
+    * [ ] Executing formula locally provides integer number that matches the `val` in the spell
+    * [ ] `val` makes sense in context of the [rate mechanism](https://github.com/makerdao/developerguides/blob/master/mcd/intro-rate-mechanism/intro-rate-mechanism.md). Minimum duration is usually in the Exec Doc of the spell with the RWAXXX ilk onboarding.
+    * [ ] IF multiple RWA ilks are being combined into one, `val` calculation is done once per ilk and added to make the total, with separate executable formulas provided in comments. The existing `val` value can be retrieved by calling `read()` on `PIP_RWAXX` and converting the result into decimal.
+    * [ ] Oracle price is updated via `DssExecLib.updateCollateralPrice(ilk)`
+    * IF debt ceiling is set to `0` or soft liquidation explicitely requested to be triggered (`tell`)
+        * [ ] `RwaLiquidationOracle.tell(ilk)` call is present
+        * [ ] IF `RWAXX_A_INPUT_CONDUIT` is an instance of [`TinlakeMgr`](https://github.com/centrifuge/tinlake-maker-lib/blob/master/src/mgr.sol) (it is a Centrifuge integration), additional `TinlakeMgr.tell()` call is present (in order to prevent further `TIN` redemptions in the Centrifuge pool)
 * IF payments are present in the spell
   * IF `MKR` transfers are present
     * [ ] Recipient address in the instruction is in the checksummed format
