@@ -127,37 +127,28 @@
   * [ ] IF `calc.tau` is updated, ([`DssExecLib.setLinearDecrease`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L811)) is used
   * [ ] IF `calc.cut` or `calc.step` are updated, [`DssExecLib.setStairstepExponentialDecrease`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L822) is used
 * IF debt ceiling changes are present in the spell
-  * [ ] `vat.ilk.line` changes (per ilk)
-    * [ ] Collateral type (ilk) is not RWAXXX (For RWA refer to the designated section of the checklist)
-    * [ ] Either is used depending on the EXEC DOC contents:
-        * [ ] [`setIlkDebtCeiling`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L611)
-            * [ ] `ilk`
-            * [ ] `line`
-        * [ ] [`increaseIlkDebtCeiling`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L621C14-L621C36)
-            * [ ] `ilk`
-            * [ ] `amount`
-            * [ ] `global`
-        * [ ] [`decreaseIlkDebtCeiling`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L634)
-            * [ ] `ilk`
-            * [ ] `amount`
-            * [ ] `global`
-  * [ ] `vat.Line` changes (Global Line)
-      * [ ] Either is used:
-          * [ ] [`setGlobalDebtCeiling`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L428)
-              * [ ] `amount`
-          * [ ] [`increaseGlobalDebtCeiling`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L436)
-              * [ ] `amount`
-          * [ ] [`decreaseGlobalDebtCeiling`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L445C14-L445C39)
-              * [ ] `amount`
-  * [ ] Autoline Changes
-    * [ ] [setIlkAutoLineDebtCeiling](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L658)
-      * [ ] `ilk`
-      * [ ] `line`
-    * [ ] [setIlkAutoLineParameters](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L648)
-      * [ ] `ilk`
-      * [ ] `line`
-      * [ ] `gap`
-      * [ ] `ttl`
+  * IF collateral type (`ilk`) is not RWA (for RWA refer to the designated section of the checklist)
+    * IF collateral type (`ilk`) have [`auto-line`](https://github.com/makerdao/dss-auto-line/tree/master) enabled
+      * IF collateral debt ceiling is set to 0
+        * [ ] Collateral is removed from `auto-line` via [`DssExecLib.removeIlkFromAutoLine(ilk)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L668)
+        * [ ] The instruction to remove from auto-line is present in the Exec Sheet
+        * [ ] Collateral debt ceiling is set to 0 via [`DssExecLib.setIlkDebtCeiling(ilk, amount)`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L611)
+        * [ ] Global debt ceiling is updated accordingly, UNLESS specifically instructed not to
+      * IF `auto-line` parameters are updated
+        * [ ] Either is used, depending on the instruction:
+          * [`DssExecLib.setIlkAutoLineDebtCeiling(ilk, amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L658)
+          * [`DssExecLib.setIlkAutoLineParameters(ilk, amount, gap, ttl)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L648)
+    * IF collateral debt ceiling (`vat.ilk.line`) is updated
+      * [ ] Collateral type (`ilk`) have [`auto-line`](https://github.com/makerdao/dss-auto-line/tree/master) disabled
+      * [ ] Either is used, depending on the instruction:
+          * [`DssExecLib.increaseIlkDebtCeiling(ilk, amount, global)`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L621C14-L621C36)
+          * [`DssExecLib.decreaseIlkDebtCeiling(ilk, amount, global)`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L634)
+          * [`DssExecLib.setIlkDebtCeiling(ilk, amount)`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L611)
+      * [ ] Global debt ceiling is updated accordingly, UNLESS specifically instructed not to. Either via:
+          * `global` set to `true` in `increaseIlkDebtCeiling`/`increaseIlkDebtCeiling`
+          * [`DssExecLib.setGlobalDebtCeiling(amount)`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L428)
+          * [`DssExecLib.increaseGlobalDebtCeiling(amount)`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L436)
+          * [`DssExecLib.decreaseGlobalDebtCeiling(amount)`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L445C14-L445C39)
 * [ ] Onboarding (insert relevant checklists inline here)
   * [ ] [Collateral Onboarding](./collateral-onboarding-checklist.md)
   * [ ] [RWA Onboarding](./rwa-onboarding-checklist.md)
