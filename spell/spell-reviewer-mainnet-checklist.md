@@ -80,7 +80,7 @@
     * [ ] Match with [config](https://github.com/makerdao/spells-mainnet/blob/master/src/test/config.sol)
     * [ ] Each variable visibility declared as `internal`
     * [ ] Each variable state mutability declared as `constant`
-  * IF rates are present in the spell
+  * IF rates are present
     * [ ] Rates match generated locally via `make rates pct=<pct>` (e.g. pct=0.75, for 0.75%)
     * [ ] Rates match [IPFS](https://ipfs.io/ipfs/QmVp4mhhbwWGTfbh2BzwQB9eiBrQBKiqcPRZCaAxNUaar6) document
     * [ ] Rate variable name conforms to `X_PT_Y_Z_PCT_RATE` (e.g. `ZERO_PT_SEVEN_FIVE_PCT_RATE` for 0.75%)
@@ -105,7 +105,7 @@
     * [ ] Ensure `MCD_ESM` address is already relied OR being relied in this spell (as approved by Governance Facilitators, in order to allow de-authing the pause proxy during Emergency Shutdown, via `denyProxy`)
   * [ ] Source code matches corresponding github source code (e.g. diffcheck via vscode `code --diff etherscan.sol github.sol`)
   * [ ] Ensure deployer address is included into `addresses_deployers.sol`
-* IF core system parameter changes are present in the spell
+* IF core system parameter changes are present in the instructions
   * IF stability fee (`jug.ilk.duty`) is updated
     * [ ] ([`DssExecLib.setIlkStabilityFee`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L792)) is used
     * [ ] Comment matches pattern `// Increase ILK-A Stability Fee by X.XX% from X.XX% to X.XX%`
@@ -128,51 +128,62 @@
   * [ ] IF `calc.cut` or `calc.step` are updated, [`DssExecLib.setStairstepExponentialDecrease`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L822) is used
 * IF debt ceiling changes are present in the spell
   * IF collateral type (`ilk`) is not RWA (for RWA refer to the designated section of the checklist)
-    * IF collateral type (`ilk`) have [`auto-line`](https://github.com/makerdao/dss-auto-line/tree/master) enabled
-      * IF collateral debt ceiling is set to 0
-        * [ ] Collateral is removed from `auto-line` via [`DssExecLib.removeIlkFromAutoLine(ilk)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L668)
-        * [ ] The instruction to remove from auto-line is present in the Exec Sheet
-        * [ ] Collateral debt ceiling is set to 0 via [`DssExecLib.setIlkDebtCeiling(ilk, amount)`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L611)
-        * [ ] Global debt ceiling is updated accordingly, UNLESS specifically instructed not to
-      * IF `auto-line` parameters are updated
+    * IF collateral type (`ilk`) have [AutoLine](https://github.com/makerdao/dss-auto-line/tree/master) enabled (`MCD_IAM_AUTO_LINE`)
+      * IF collateral debt ceiling (`vat.ilk.line`) is set to `0`
+        * [ ] Collateral is removed from AutoLine (`MCD_IAM_AUTO_LINE`) via [`DssExecLib.removeIlkFromAutoLine(ilk)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L668)
+        * [ ] The instruction to remove from AutoLine (`MCD_IAM_AUTO_LINE`) is present in the Exec Sheet
+        * [ ] Collateral debt ceiling is set to `0` via [`DssExecLib.setIlkDebtCeiling(ilk, amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L611)
+        * [ ] Global debt ceiling (`vat.Line`) is updated accordingly, UNLESS specifically instructed not to
+      * IF `AutoLine` parameters are updated
         * [ ] Either is used, depending on the instruction:
           * [`DssExecLib.setIlkAutoLineDebtCeiling(ilk, amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L658)
           * [`DssExecLib.setIlkAutoLineParameters(ilk, amount, gap, ttl)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L648)
     * IF collateral debt ceiling (`vat.ilk.line`) is updated
-      * [ ] Collateral type (`ilk`) have [`auto-line`](https://github.com/makerdao/dss-auto-line/tree/master) disabled
+      * [ ] Collateral type (`ilk`) have [`AutoLine`](https://github.com/makerdao/dss-auto-line/tree/master) disabled previously or in the spell
       * [ ] Either is used, depending on the instruction:
-          * [`DssExecLib.increaseIlkDebtCeiling(ilk, amount, global)`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L621C14-L621C36)
-          * [`DssExecLib.decreaseIlkDebtCeiling(ilk, amount, global)`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L634)
-          * [`DssExecLib.setIlkDebtCeiling(ilk, amount)`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L611)
-      * [ ] Global debt ceiling is updated accordingly, UNLESS specifically instructed not to. Either via:
+          * [`DssExecLib.increaseIlkDebtCeiling(ilk, amount, global)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L621C14-L621C36)
+          * [`DssExecLib.decreaseIlkDebtCeiling(ilk, amount, global)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L634)
+          * [`DssExecLib.setIlkDebtCeiling(ilk, amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L611)
+      * [ ] Global debt ceiling (`vat.Line`) is updated accordingly, UNLESS specifically instructed not to. Either via:
           * `global` set to `true` in `increaseIlkDebtCeiling`/`increaseIlkDebtCeiling`
-          * [`DssExecLib.setGlobalDebtCeiling(amount)`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L428)
-          * [`DssExecLib.increaseGlobalDebtCeiling(amount)`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L436)
-          * [`DssExecLib.decreaseGlobalDebtCeiling(amount)`](https://github.com/makerdao/dss-exec-lib/blob/c0d3c6c6244468ddab9767de6f853122723fafda/src/DssExecLib.sol#L445C14-L445C39)
-* [ ] Onboarding (insert relevant checklists inline here)
-  * [ ] [Collateral Onboarding](./collateral-onboarding-checklist.md)
-  * [ ] [RWA Onboarding](./rwa-onboarding-checklist.md)
-  * [ ] [Teleport Onboarding](./teleport-onboarding-checklist.md)
-* [ ] Offboarding (Lerp `mat`)
-  * [ ] 1st Stage Spell Actions
-    * [ ] Remove Ilk from Autoline
-    * [ ] Set Ilks Debt Ceilings to `0`
-    * [ ] Cache Ilks `line` to Reduce in the Global Debt Ceiling
-    * [ ] Decrease Global Debt Ceiling by Total Amount of Offboarded Ilks `line` Cached
-  * [ ] 2nd Stage Spell Actions
-    * [ ] Set Ilk Liquidation Penalty `chop` to `0`
-    * [ ] Set Keeper Incentive Flat Rate `tip` to `0`
-    * [ ] Check IF `chip` is required to be adjusted as well
-    * [ ] Use `DssExecLib.linearInterpolation`
-      * [ ] `name` Format matches "XXX-A Offboarding"
-      * [ ] `target` matches `spotter`
-      * [ ] `ilk` Format matches "XXX-A"
-      * [ ] `what` matches `mat`
-      * [ ] `startTime` matches `block.timestamp`
-      * [ ] `start` matches Var `CURRENT_XXX_A_MAT`
-      * [ ] `end` matches Var `TARGET_XXX_A_MAT` (Match Exec Doc & Risk Computations)
-        * [ ] Check IF Target `mat` Covers All Remaining Vaults CR times Risk Multiplier Factor
-      * [ ] `duration` matches Exec Doc
+          * [`DssExecLib.setGlobalDebtCeiling(amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L428)
+          * [`DssExecLib.increaseGlobalDebtCeiling(amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L436)
+          * [`DssExecLib.decreaseGlobalDebtCeiling(amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L445C14-L445C39)
+* IF onboarding is present in the spell
+  * [ ] Insert and follow relevant checklists here
+    * [Collateral Onboarding](./collateral-onboarding-checklist.md)
+    * [RWA Onboarding](./rwa-onboarding-checklist.md)
+    * [Teleport Onboarding](./teleport-onboarding-checklist.md)
+* IF collateral offboarding is present in the spell
+  * 1st stage collateral offboarding
+    * [ ] Collateral type (`ilk`) is removed from AutoLine (`MCD_IAM_AUTO_LINE`) IF currently enabled
+    * [ ] Current collateral debt ceiling (`vat.ilk.line`) is saved into local variable (`line`)
+    * [ ] Collateral debt ceiling (`vat.ilk.line`) is set to `0`
+    * [ ] Global debt ceiling (`vat.Line`) decreased by the total amount of offboarded ilks using local variable (`line`)
+  * 2nd stage collateral offboarding
+    * [ ] All actions from the 1st stage offboarding are previously taken
+    * [ ] Collateral liquidation penalty (`chop`) is set to `0`
+    * [ ] Flat keeper incentive (`tip`) is set to `0`
+    * [ ] Relative keeper incentive (`chip`) is set to `0` IF requested by the governance
+    * [ ] Relevant clipper contract (`MCD_CLIP_`) is not stopped ([`stopped`](https://github.com/makerdao/dss/blob/fa4f6630afb0624d04a003e920b0d71a00331d98/src/clip.sol#L97) is `0`)
+    * [ ] Max liquidation amount (`hole`) is adjusted via [`DssExecLib.setIlkMaxLiquidationAmount(ilk, amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L699) IF requested by the governance
+    * [ ] Liquidations are triggered via (depending on the governance instruction):
+      * EITHER liquidation ratio (`spotter.ilk.mat`) being set very high in the spell (using `DssExecLib.setValue(DssExecLib.spotter(), ilk, "mat", ratio)`)
+      * OR via enabling linear interpolation ([`DssExecLib.linearInterpolation`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L1096-L1112))
+    * IF linear interpolation is used
+      * [ ] Ensure `name` format matches "XXX-X Offboarding"
+      * [ ] Ensure `target` matches `DssExecLib.spotter()` address
+      * [ ] Ensure `ilk` format matches collateral type (`ilk`) name (`"XXX-X"`)
+      * [ ] Ensure `what` matches string `"mat"`
+      * [ ] Ensure `startTime` matches `block.timestamp`
+      * [ ] Ensure `start` uses variable `CURRENT_XXX_A_MAT`
+      * [ ] Ensure `start` matches current `spotter.ilk.mat` value
+      * [ ] Ensure `end` uses variable `TARGET_XXX_A_MAT`
+      * [ ] Ensure `end` value matches the instruction
+      * [ ] Ensure `end` allows liquidation of all remaining vaults (`end` is bigger than `collateral_type_collateralization_ratio * risk_multiplier_factor`)
+      * [ ] Ensure `duration` matches the instruction
+    * [ ] Spotter price is updated via [`DssExecLib.updateCollateralPrice(ilk)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L374) IF collateral have no running oracle or is stablecoin
+    * [ ] Offboarding is tested at least via [`_checkIlkClipper` helper](https://github.com/makerdao/spells-mainnet/blob/7400e91c4f211fc24bd4d3a95a86416afc4df9d1/src/DssSpell.t.base.sol#L856)
 * [ ] RWA Updates
   * [ ] `doc` (Using the [`_updateDoc` helper](https://github.com/makerdao/spells-goerli/blob/88413f576d14628a3488a096d9da6775bef46eaa/archive/2022-11-14-DssSpell/Goerli-DssSpell.sol#L59) or otherwise)
     * [ ] `init` the `RwaLiquidationOracle` to reset the `doc`
