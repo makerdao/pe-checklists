@@ -4,7 +4,7 @@
 
 * Exec Doc
   * [ ] Record target date for the executive spell
-    _Insert taget date here in the YYYY-MM-DD format_
+    _Insert target date here in the YYYY-MM-DD format_
   * [ ] Exec Sheet for the specified date is found in the ["Executive Vote Implementation Process" google sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw)
     _Insert URL to the specific sheet here_
   * [ ] Exec Doc for the specified date is found in the [`makerdao/community` GitHub repo](https://github.com/makerdao/community/tree/master/governance/votes)
@@ -20,7 +20,7 @@
   * [ ] Ensure that instructions announced in the Exec Doc match instructions in the Exec Sheet
 * Base checks
   * [ ] Current solc version `0.8.16`
-  * [ ] Office hours is `true` IF spell introduces a major change that can affect external parties (e.g.: keepers are affected in case of collateral offboarding) OTHERWISE explicitely set to `false`
+  * [ ] Office hours is `true` IF spell introduces a major change that can affect external parties (e.g.: keepers are affected in case of collateral offboarding) OTHERWISE explicitly set to `false`
   * [ ] Office hours value matches the Exec Sheet
   * [ ] Office hours value matches the Exec Doc
   * [ ] 30 days spell expiry set in the constructor (`block.timestamp + 30 days`)
@@ -213,7 +213,7 @@
       * [ ] `val` makes sense in context of the [rate mechanism](https://github.com/makerdao/developerguides/blob/master/mcd/intro-rate-mechanism/intro-rate-mechanism.md)
     * [ ] IF multiple RWA ilks are being combined into one, `val` calculation is done once per ilk and added to make the total, with separate executable formulas provided in comments. The existing `val` value can be retrieved by calling `read()` on `PIP_RWAXX` and converting the result into decimal
     * [ ] Oracle price is updated via `DssExecLib.updateCollateralPrice(ilk)`
-    * IF debt ceiling is set to `0` OR soft liquidation explicitely requested to be triggered (`tell`)
+    * IF debt ceiling is set to `0` OR soft liquidation explicitly requested to be triggered (`tell`)
         * [ ] `RwaLiquidationOracle.tell(ilk)` call is present
         * [ ] IF `RWAXX_A_INPUT_CONDUIT` is an instance of [`TinlakeMgr`](https://github.com/centrifuge/tinlake-maker-lib/blob/master/src/mgr.sol) (it is a Centrifuge integration), additional `TinlakeMgr.tell()` call is present (in order to prevent further `TIN` redemptions in the Centrifuge pool)
 * IF payments are present in the spell
@@ -233,8 +233,9 @@
     * [ ] Sum of all DAI transfers tested in `testDAIPayments` matches number in the Exec Doc
   * IF `MKR` or `DAI` streams (`DssVest`) are created
     * [ ] `VestAbstract` interface is imported from `dss-interfaces/dss/VestAbstract.sol`
-    * [ ] `restrict` is used for each stream unless otherwise explicitely stated in the Exec Doc
+    * [ ] `restrict` is used for each stream unless otherwise explicitly stated in the Exec Doc
     * [ ] `usr` (Vest recipient address) matches Exec Doc
+    * [ ] `usr` address in the instruction is in the checksummed format
     * [ ] `tot` (Total stream amount) matches Exec Doc
     * [ ] IF `ether` keyword is used, comment is present on the same line `// Note: ether is a keyword helper, only MKR is transferred here`
     * [ ] IF vest amount is expressed in 'per year' or similar in the Exec Doc, account for leap days
@@ -242,7 +243,7 @@
     * [ ] `tau` is expressed as `bgn - fin` (i.e. `MONTH_DD_YYYY - MONTH_DD_YYYY`)
     * [ ] `fin` (Vest end timestamp) matches Exec Doc
     * [ ] `eta` (Vest cliff duration) matches the following logic
-      * IF `eta` is explicitely specified in the Exec Doc, then the values match
+      * IF `eta` is explicitly specified in the Exec Doc, then the values match
       * IF `eta` and `clf` (Cliff end timestamp) are not specified in the Exec Doc, then `eta` is `0`
       * IF `clf` is specified, but `clf <= bgn`, then `eta` is `0`
       * IF `clf` is specified and `clf > bgn`, `eta` is expressed as `clf - bgn` (i.e. `MONTH_DD_YYYY - MONTH_DD_YYYY`)
