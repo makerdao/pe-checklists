@@ -220,6 +220,7 @@
   * IF `MKR` transfers are present
     * [ ] Recipient address in the instruction is in the checksummed format
     * [ ] Recipient address matches Exec Doc
+    * [ ] Recipient address variable name match one found in `addresses_wallets.sol`
     * [ ] Transfer amount matches Exec Doc
     * [ ] Transfer amount is specified with (at least) 2 decimals using `ether` keyword
     * [ ] IF `ether` keyword is used, comment is present on the same line `// Note: ether is a keyword helper, only MKR is transferred here`
@@ -228,6 +229,7 @@
   * IF `DAI` surplus buffer transfers are present
     * [ ] Recipient address in the instruction is in the checksummed format
     * [ ] Recipient address matches Exec Doc
+    * [ ] Recipient address variable name match one found in `addresses_wallets.sol`
     * [ ] Transfer amount matches Exec Doc
     * [ ] The transfers are tested via `testDAIPayments` test
     * [ ] Sum of all DAI transfers tested in `testDAIPayments` matches number in the Exec Doc
@@ -236,6 +238,7 @@
     * [ ] `restrict` is used for each stream unless otherwise explicitly stated in the Exec Doc
     * [ ] `usr` (Vest recipient address) matches Exec Doc
     * [ ] `usr` address in the instruction is in the checksummed format
+    * [ ] `usr` address variable name match one found in `addresses_wallets.sol`
     * [ ] `tot` (Total stream amount) matches Exec Doc
     * [ ] IF `ether` keyword is used, comment is present on the same line `// Note: ether is a keyword helper, only MKR is transferred here`
     * [ ] IF vest amount is expressed in 'per year' or similar in the Exec Doc, account for leap days
@@ -259,11 +262,12 @@
     * IF MKR stream ([DssVestTransferrable](https://github.com/makerdao/dss-vest/blob/master/src/DssVest.sol#L463)) is present
       * [ ] Vest contract's MKR allowance increased by the cumulative `total` (the sum of all `tot` values)
       * [ ] Ensure allowance increase follows archive patterns
+    * [ ] Tested via `testVestDAI` or `testVestMKR`
   * IF `MKR` or `DAI` vest termination (`Yank`) is present
     * [ ] Yanked stream ID matches Exec Doc
     * [ ] `MCD_VEST_MKR_TREASURY` chainlog address is used for MKR stream `yank`
     * [ ] `MCD_VEST_DAI` chainlog address is used for DAI stream `yank`
-  * [ ] Ensure Recipient Addresses match `addresses_wallets.sol`
+    * [ ] Tested via `testYankDAI` or `testYankMKR`
 * IF SubDAO-related content is present
   * IF SubDAO provides SubProxy spell address
     * [ ] SubDAO spell address matches Exec Doc
