@@ -6,21 +6,22 @@
   * [ ] Record target date for the executive spell
     _Insert taget date here in the YYYY-MM-DD format_
   * [ ] Exec Sheet for the specified date is found in the ["Executive Vote Implementation Process" google sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw)
+    _Insert URL to the specific sheet here_
   * [ ] Exec Doc for the specified date is found in the [`makerdao/community` GitHub repo](https://github.com/makerdao/community/tree/master/governance/votes)
   * [ ] Exec Doc file name follows the format `Executive vote - Month DD, YYYY.md`
   * [ ] Extract permanent URL to the raw markdown file and paste it below
     _Insert your Raw Exec Doc URL here_
-  * [ ] Using URL from the above, generate Exec Doc Hash via `make exec-hash $URL`
+  * [ ] Using Exec Doc URL from the above and the target date, generate Exec Doc Hash via `make exec-hash date=$date $URL`
     _Insert your Exec Doc Hash here_
-  * [ ] Using URL from the above, generate Exec Doc Hash via `cast keccak -- "$(curl '$URL' -o - 2>/dev/null)"`
+  * [ ] Using Exec Doc URL from the above, generate Exec Doc Hash via `cast keccak -- "$(curl '$URL' -o - 2>/dev/null)"`
     _Insert your Exec Doc Hash here_
-  * [ ] Ensure that both hashes match
-  * [ ] Using URL from the above, read spell instructions from the Exec Doc and list them below
-    _List all actions announced in the Exec Doc_
-  * [ ] Ensure that announced actions listed in the Exec Doc match instructions in the Exec Sheet
+  * [ ] Using Exec Doc URL from the above, read spell instructions from the Exec Doc and list them below
+    _List all instructions announced in the Exec Doc_
+  * [ ] Ensure that instructions announced in the Exec Doc match instructions in the Exec Sheet
 * Base checks
   * [ ] Current solc version `0.8.16`
   * [ ] Office hours is `true` IF spell introduces a major change that can affect external parties (e.g.: keepers are affected in case of collateral offboarding) OTHERWISE explicitely set to `false`
+  * [ ] Office hours value matches the Exec Sheet
   * [ ] Office hours value matches the Exec Doc
   * [ ] 30 days spell expiry set in the constructor (`block.timestamp + 30 days`)
 * Spell description
@@ -50,7 +51,7 @@
     ```
   * [ ] IF submodule upgrades are present, make sure `dss-exec-lib` is synced as well
   * [ ] git submodule hash of `dss-exec-lib` (run `git submodule status`) matches the [latest release version](https://github.com/makerdao/dss-exec-lib/releases) or newer
-  * [ ] git submodule hashes of `lib/dss-interfaces` matches submodules inside `lib/dss-test`. Can be checked by comparing outputs of `(cd lib/dss-exec-lib && git submodule status)` and `(cd lib/dss-test && git submodule status)`
+  * [ ] `dss-interfaces` library used inside `lib/dss-exec-lib` matches submodule used inside `lib/dss-test`
 * IF interfaces are present in the spell
   * Interfaces imported from `dss-interfaces`
     * [ ] No unused `dss-interfaces`
@@ -90,7 +91,7 @@
     * [ ] Comment above timestamp states full date including `UTC` timezone
     * [ ] Timestamp [converts](https://www.epochconverter.com/) back to the correct date
     * [ ] Timestamp [converts](https://www.epochconverter.com/) back to the `UTC` timezone
-    * [ ] Variable naming matches `MONTH_DD_YYYY` (e.g. `MAY_01_2023` for 2023-05-01)
+    * [ ] Variable naming matches `MMM_DD_YYYY` (e.g. `JAN_01_2023` for 2023-01-01)
     * [ ] Time of day makes logical sense in the context of timestamp usage (i.e. `23:59:59 UTC` for the final day of something, `00:00:00 UTC` for the first day of something)
     * [ ] Each variable visibility declared as `internal`
     * [ ] Each variable state mutability declared as `constant`
@@ -100,56 +101,55 @@
   * [ ] `GNU AGPLv3` license
   * [ ] Every maker-related constructor argument matches chainlog (e.g. `vat`, `dai`, `dog`, ...)
   * IF new contract have concept of `wards` or access control
-    * [ ] Ensure `PAUSE_PROXY` address was `relied`
-    * [ ] Ensure that contract deployer address was `denied`
-    * [ ] Ensure `MCD_ESM` address is already relied OR being relied in this spell (as approved by Governance Facilitators, in order to allow de-authing the pause proxy during Emergency Shutdown, via `denyProxy`)
+    * [ ] Ensure `PAUSE_PROXY` address was `relied` (`wards(PAUSE_PROXY)` is `1`)
+    * [ ] Ensure that contract deployer address was `denied` (`wards(deployer)` is `0`)
+    * [ ] Ensure `MCD_ESM` address is already relied OR being `relied` (`wards(MCD_ESM)` is `1`) in this spell (as approved by Governance Facilitators, in order to allow de-authing the pause proxy during Emergency Shutdown, via `denyProxy`)
   * [ ] Source code matches corresponding github source code (e.g. diffcheck via vscode `code --diff etherscan.sol github.sol`)
-  * [ ] Ensure deployer address is included into `addresses_deployers.sol`
+  * [ ] Deployer address is included into `addresses_deployers.sol`
 * IF core system parameter changes are present in the instructions
   * IF stability fee (`jug.ilk.duty`) is updated
-    * [ ] ([`DssExecLib.setIlkStabilityFee`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L792)) is used
+    * [ ] ([`DssExecLib.setIlkStabilityFee(ilk, rate, doDrip)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L792)) is used
     * [ ] Comment matches pattern `// Increase ILK-A Stability Fee by X.XX% from X.XX% to X.XX%`
   * IF Dai Savings Rate (`pot.dsr`) is updated
-    * [ ] ([`DssExecLib.setDSR`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L455)) is used
+    * [ ] ([`DssExecLib.setDSR(rate, doDrip)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L455)) is used
     * [ ] Comment matches pattern `// Increase DSR by X.XX% from X.XX% to X.XX%`
     * [ ] Double check that rate match `make rates pct=<pct>` (e.g. pct=0.75, for 0.75%)
     * [ ] Double check that rate match [IPFS](https://ipfs.io/ipfs/QmVp4mhhbwWGTfbh2BzwQB9eiBrQBKiqcPRZCaAxNUaar6) document
-  * [ ] IF `spotter.ilk.mat` is updated, ([`DssExecLib.setIlkLiquidationRatio`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L709)) is used
-  * [ ] IF `dog.ilk.hole` is updated, ([`DssExecLib.setIlkMaxLiquidationAmount`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L699)) is used
-  * [ ] IF `vat.ilk.dust` is updated, ([`DssExecLib.setIlkMinVaultAmount`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L676)) is used
-  * [ ] IF `dog.ilk.chop` is updated, ([`DssExecLib.setIlkLiquidationPenalty`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L689)) is used
-  * [ ] IF `clip.buf` is updated, ([`DssExecLib.setStartingPriceMultiplicativeFactor`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L720)) is used
-  * [ ] IF `clipperMom.clip.tolerance` is updated, ([`DssExecLib.setLiquidationBreakerPriceTolerance`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L772)) is used
-  * [ ] IF `clip.tail` is updated, ([`DssExecLib.setAuctionTimeBeforeReset`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L731)) is used
-  * [ ] IF `clip.cusp` is updated, ([`DssExecLib.setAuctionPermittedDrop`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L740)) is used
-  * [ ] IF `clip.chip` is updated, ([`DssExecLib.setKeeperIncentivePercent`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L750)) is used
-  * [ ] IF `clip.tip` is updated, ([`DssExecLib.setKeeperIncentiveFlatRate`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L760)) is used
-  * [ ] IF `calc.tau` is updated, ([`DssExecLib.setLinearDecrease`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L811)) is used
-  * [ ] IF `calc.cut` or `calc.step` are updated, [`DssExecLib.setStairstepExponentialDecrease`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L822) is used
-* IF debt ceiling changes are present in the spell
-  * IF collateral type (`ilk`) is not RWA (for RWA refer to the designated section of the checklist)
-    * IF collateral type (`ilk`) have [AutoLine](https://github.com/makerdao/dss-auto-line/tree/master) enabled (`MCD_IAM_AUTO_LINE`)
-      * IF collateral debt ceiling (`vat.ilk.line`) is set to `0`
-        * [ ] Collateral is removed from AutoLine (`MCD_IAM_AUTO_LINE`) via [`DssExecLib.removeIlkFromAutoLine(ilk)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L668)
-        * [ ] The instruction to remove from AutoLine (`MCD_IAM_AUTO_LINE`) is present in the Exec Sheet
-        * [ ] Collateral debt ceiling is set to `0` via [`DssExecLib.setIlkDebtCeiling(ilk, amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L611)
-        * [ ] Global debt ceiling (`vat.Line`) is updated accordingly, UNLESS specifically instructed not to
-      * IF `AutoLine` parameters are updated
-        * [ ] Either is used, depending on the instruction:
-          * [`DssExecLib.setIlkAutoLineDebtCeiling(ilk, amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L658)
-          * [`DssExecLib.setIlkAutoLineParameters(ilk, amount, gap, ttl)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L648)
-    * IF collateral debt ceiling (`vat.ilk.line`) is updated
-      * [ ] Collateral type (`ilk`) have [`AutoLine`](https://github.com/makerdao/dss-auto-line/tree/master) disabled previously or in the spell
+  * [ ] IF `spotter.ilk.mat` is updated, ([`DssExecLib.setIlkLiquidationRatio(ilk, pct_bps)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L709)) is used
+  * [ ] IF `dog.ilk.hole` is updated, ([`DssExecLib.setIlkMaxLiquidationAmount(ilk, amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L699)) is used
+  * [ ] IF `vat.ilk.dust` is updated, ([`DssExecLib.setIlkMinVaultAmount(ilk, amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L676)) is used
+  * [ ] IF `dog.ilk.chop` is updated, ([`DssExecLib.setIlkLiquidationPenalty(ilk, pct_bps)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L689)) is used
+  * [ ] IF `clip.buf` is updated, ([`DssExecLib.setStartingPriceMultiplicativeFactor(ilk, pct_bps)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L720)) is used
+  * [ ] IF `clipperMom.clip.tolerance` is updated, ([`DssExecLib.setLiquidationBreakerPriceTolerance(clip, pct_bps)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L772)) is used
+  * [ ] IF `clip.tail` is updated, ([`DssExecLib.setAuctionTimeBeforeReset(ilk, duration)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L731)) is used
+  * [ ] IF `clip.cusp` is updated, ([`DssExecLib.setAuctionPermittedDrop(ilk, pct_bps)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L740)) is used
+  * [ ] IF `clip.chip` is updated, ([`DssExecLib.setKeeperIncentivePercent(ilk, pct_bps)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L750)) is used
+  * [ ] IF `clip.tip` is updated, ([`DssExecLib.setKeeperIncentiveFlatRate(ilk, amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L760)) is used
+  * [ ] IF `calc.tau` is updated, ([`DssExecLib.setLinearDecrease(calc, duration)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L811)) is used
+  * [ ] IF `calc.cut` or `calc.step` are updated, [`DssExecLib.setStairstepExponentialDecrease(calc, duration, pct_bps)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L822) is used
+* IF debt ceiling changes are present in the instructions
+  * IF adjusted collateral type (`ilk`) have [AutoLine](https://github.com/makerdao/dss-auto-line/tree/master) enabled (`MCD_IAM_AUTO_LINE`)
+    * IF collateral debt ceiling requested to be `0`
+      * [ ] Collateral is removed from AutoLine (`MCD_IAM_AUTO_LINE`) via [`DssExecLib.removeIlkFromAutoLine(ilk)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L668)
+      * [ ] The instruction to remove from AutoLine (`MCD_IAM_AUTO_LINE`) is present in the Exec Sheet
+      * [ ] Collateral debt ceiling is set to `0` via [`DssExecLib.setIlkDebtCeiling(ilk, amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L611)
+      * [ ] Global debt ceiling (`vat.Line`) is updated accordingly, UNLESS specifically instructed not to
+    * IF `AutoLine` parameters are updated
       * [ ] Either is used, depending on the instruction:
-          * [`DssExecLib.increaseIlkDebtCeiling(ilk, amount, global)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L621C14-L621C36)
-          * [`DssExecLib.decreaseIlkDebtCeiling(ilk, amount, global)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L634)
-          * [`DssExecLib.setIlkDebtCeiling(ilk, amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L611)
-      * [ ] Global debt ceiling (`vat.Line`) is updated accordingly, UNLESS specifically instructed not to, via either:
-          * `global` set to `true` in `increaseIlkDebtCeiling`/`decreaseIlkDebtCeiling`
-          * [`DssExecLib.setGlobalDebtCeiling(amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L428)
-          * [`DssExecLib.increaseGlobalDebtCeiling(amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L436)
-          * [`DssExecLib.decreaseGlobalDebtCeiling(amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L445C14-L445C39)
-* IF onboarding is present in the spell
+        * [`DssExecLib.setIlkAutoLineDebtCeiling(ilk, amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L658)
+        * [`DssExecLib.setIlkAutoLineParameters(ilk, amount, gap, ttl)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L648)
+  * IF collateral debt ceiling (`vat.ilk.line`) is updated
+    * [ ] Collateral type (`ilk`) have [`AutoLine`](https://github.com/makerdao/dss-auto-line/tree/master) disabled previously or in the spell
+    * [ ] Either is used, depending on the instruction:
+        * [`DssExecLib.increaseIlkDebtCeiling(ilk, amount, global)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L621C14-L621C36)
+        * [`DssExecLib.decreaseIlkDebtCeiling(ilk, amount, global)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L634)
+        * [`DssExecLib.setIlkDebtCeiling(ilk, amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L611)
+    * [ ] Global debt ceiling (`vat.Line`) is updated accordingly, UNLESS specifically instructed not to, via either:
+        * `global` set to `true` in `increaseIlkDebtCeiling`/`decreaseIlkDebtCeiling`
+        * [`DssExecLib.setGlobalDebtCeiling(amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L428)
+        * [`DssExecLib.increaseGlobalDebtCeiling(amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L436)
+        * [`DssExecLib.decreaseGlobalDebtCeiling(amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L445C14-L445C39)
+* IF onboarding is present
   * [ ] Insert and follow relevant checklists here
     * [Collateral Onboarding](./collateral-onboarding-checklist.md)
     * [RWA Onboarding](./rwa-onboarding-checklist.md)
@@ -157,39 +157,39 @@
 * IF collateral offboarding is present in the spell
   * 1st stage collateral offboarding
     * [ ] Collateral type (`ilk`) is removed from AutoLine (`MCD_IAM_AUTO_LINE`) IF currently enabled
-    * [ ] Current collateral debt ceiling (`vat.ilk.line`) is saved into local variable (`line`)
     * [ ] Collateral debt ceiling (`vat.ilk.line`) is set to `0`
-    * [ ] Global debt ceiling (`vat.Line`) decreased by the total amount of offboarded ilks using local variable (`line`)
+    * [ ] Global debt ceiling (`vat.Line`) decreased by the total amount of offboarded ilks
   * 2nd stage collateral offboarding
     * [ ] All actions from the 1st stage offboarding are previously taken
-    * [ ] Collateral liquidation penalty (`chop`) is set to `0`
-    * [ ] Flat keeper incentive (`tip`) is set to `0`
+    * [ ] Collateral liquidation penalty (`chop`) is set to `0` IF requested by the governance
+    * [ ] Flat keeper incentive (`tip`) is set to `0` IF requested by the governance
     * [ ] Relative keeper incentive (`chip`) is set to `0` IF requested by the governance
-    * [ ] Relevant clipper contract (`MCD_CLIP_`) is not stopped ([`stopped`](https://github.com/makerdao/dss/blob/fa4f6630afb0624d04a003e920b0d71a00331d98/src/clip.sol#L97) is `0`)
     * [ ] Max liquidation amount (`hole`) is adjusted via [`DssExecLib.setIlkMaxLiquidationAmount(ilk, amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L699) IF requested by the governance
+    * [ ] Relevant clipper contract (`MCD_CLIP_`) is active (i.e. [`stopped`](https://github.com/makerdao/dss/blob/fa4f6630afb0624d04a003e920b0d71a00331d98/src/clip.sol#L97) is `0`)
     * [ ] Liquidations are triggered via (depending on the governance instruction):
       * EITHER liquidation ratio (`spotter.ilk.mat`) being set very high in the spell (using `DssExecLib.setValue(DssExecLib.spotter(), ilk, "mat", ratio)`)
-      * OR via enabling linear interpolation ([`DssExecLib.linearInterpolation`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L1096-L1112))
-    * IF linear interpolation is used
-      * [ ] Ensure `name` format matches "XXX-X Offboarding"
-      * [ ] Ensure `target` matches `DssExecLib.spotter()` address
-      * [ ] Ensure `ilk` format matches collateral type (`ilk`) name (`"XXX-X"`)
-      * [ ] Ensure `what` matches string `"mat"`
-      * [ ] Ensure `startTime` matches `block.timestamp`
-      * [ ] Ensure `start` uses variable `CURRENT_XXX_A_MAT`
-      * [ ] Ensure `start` matches current `spotter.ilk.mat` value
-      * [ ] Ensure `end` uses variable `TARGET_XXX_A_MAT`
-      * [ ] Ensure `end` value matches the instruction
-      * [ ] Ensure `end` allows liquidation of all remaining vaults (`end` is bigger than `collateral_type_collateralization_ratio * risk_multiplier_factor`)
-      * [ ] Ensure `duration` matches the instruction
-    * [ ] Spotter price is updated via [`DssExecLib.updateCollateralPrice(ilk)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L374) IF collateral have no running oracle or is stablecoin
+      * OR via enabling linear interpolation ([`DssExecLib.linearInterpolation(name, target, ilk, what, startTime, start, end, duration)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L1096-L1112))
+        * [ ] Ensure `name` format matches "XXX-X Offboarding"
+        * [ ] Ensure `target` matches `DssExecLib.spotter()` address
+        * [ ] Ensure `ilk` format matches collateral type (`ilk`) name (`"XXX-X"`)
+        * [ ] Ensure `what` matches string `"mat"`
+        * [ ] Ensure `startTime` matches `block.timestamp`
+        * [ ] Ensure `start` uses variable `CURRENT_XXX_A_MAT`
+        * [ ] Ensure `start` matches current `spotter.ilk.mat` value
+        * [ ] Ensure `end` uses variable `TARGET_XXX_A_MAT`
+        * [ ] Ensure `end` value matches the instruction
+        * [ ] Ensure `end` allows liquidation of all remaining vaults (`end` is bigger than `collateral_type_collateralization_ratio * risk_multiplier_factor`)
+        * [ ] Ensure `duration` matches the instruction
+    * [ ] Spotter price is updated via [`DssExecLib.updateCollateralPrice(ilk)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L374) IF collateral have no running oracle (i.e. relevant `PIP_` contract have outdated `zzz` value)
+    * [ ] Spotter price is updated after all other actions
     * [ ] Offboarding is tested at least via [`_checkIlkClipper` helper](https://github.com/makerdao/spells-mainnet/blob/7400e91c4f211fc24bd4d3a95a86416afc4df9d1/src/DssSpell.t.base.sol#L856)
 * IF RWA updates are present
   * IF `doc` is updated
     * [ ] [`_updateDoc` helper](https://github.com/makerdao/spells-mainnet/blob/7400e91c4f211fc24bd4d3a95a86416afc4df9d1/archive/2023-09-27-DssSpell/DssSpell.sol#L76-L87) is copied one-to-one from the archive and defined above `actions`
     * [ ] `_updateDoc(ilk, doc)` is called in the spell
   * IF debt ceiling is updated
-    * [ ] IF AutoLine update is requested by the Exec Doc, parameters are set via [`DssExecLib.setIlkAutoLineParameters(ilk, amount, gap, ttl)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L648) or [`DssExecLib.setIlkAutoLineDebtCeiling(ilk, amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L658)
+    * IF AutoLine update is requested by the Exec Doc
+      * [ ] Parameters are set via [`DssExecLib.setIlkAutoLineParameters(ilk, amount, gap, ttl)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L648) or [`DssExecLib.setIlkAutoLineDebtCeiling(ilk, amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L658)
     * IF regular debt ceiling (`vat.ilk.line`) update is requested by the Exec Doc
       * [ ] Collateral type (`ilk`) have [`AutoLine`](https://github.com/makerdao/dss-auto-line/tree/master) disabled previously or in the spell
       * [ ] Debt ceiling (`vat.ilk.line`) is updated, via either:
@@ -202,18 +202,18 @@
           * [`DssExecLib.increaseGlobalDebtCeiling(amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L436)
           * [`DssExecLib.decreaseGlobalDebtCeiling(amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L445C14-L445C39)
     * [ ] Liquidation oracle price is bumped via `RwaLiquidationOracleLike(MIP21_LIQUIDATION_ORACLE).bump(ilk, val)` pattern
-    * [ ] Comment above `bump` explains `val` computation via `// Note: the formula is: "debt_ceiling * [ (1 + rwa_stability_fee ) ^ (minimum_deal_duration_in_years) ] * liquidation_ratio"`
-    * [ ] Comment  above `bump` provides locally executable formula (e.g. `// bc -l <<< 'scale=18; 50000000 * e(l(1.07) * (3342/365)) * 1.00' | cast --to-wei`)
-    * [ ] The formula matches the example provided above
-    * [ ] `debt_ceiling` in the executable formula matches new debt ceiling set in the spell or the maximum possible debt ceiling in case of the enabled AutoLine
-    * [ ] `rwa_stability_fee` in the executable formula matches stability fee of the specified RWA found on chain
-    * [ ] `minimum_deal_duration_in_years` in the executable formula matches number found in the Exec Doc of the spell containing relevant RWA onboarding
-    * [ ] `liquidation_ratio` in the executable formula matches liquidation ratio of the specified RWA found on chain
-    * [ ] Executing formula locally provides integer number that matches the `val` in the spell
-    * [ ] `val` makes sense in context of the [rate mechanism](https://github.com/makerdao/developerguides/blob/master/mcd/intro-rate-mechanism/intro-rate-mechanism.md). Minimum duration is usually in the Exec Doc of the spell with the RWAXXX ilk onboarding.
-    * [ ] IF multiple RWA ilks are being combined into one, `val` calculation is done once per ilk and added to make the total, with separate executable formulas provided in comments. The existing `val` value can be retrieved by calling `read()` on `PIP_RWAXX` and converting the result into decimal.
+      * [ ] Comment above `bump` explains `val` computation via `// Note: the formula is: "debt_ceiling * [ (1 + rwa_stability_fee ) ^ (minimum_deal_duration_in_years) ] * liquidation_ratio"`
+      * [ ] Comment  above `bump` provides locally executable formula (e.g. `// bc -l <<< 'scale=18; 50000000 * e(l(1.07) * (3342/365)) * 1.00' | cast --to-wei`)
+        * [ ] The formula matches the example provided above
+        * [ ] `debt_ceiling` in the executable formula matches new debt ceiling set in the spell or the maximum possible debt ceiling in case of the enabled AutoLine
+        * [ ] `rwa_stability_fee` in the executable formula matches stability fee of the specified RWA found on chain
+        * [ ] `minimum_deal_duration_in_years` in the executable formula matches number found in the Exec Doc of the spell containing relevant RWA onboarding
+        * [ ] `liquidation_ratio` in the executable formula matches liquidation ratio of the specified RWA found on chain
+        * [ ] Executing formula locally provides integer number that matches the `val` in the spell
+      * [ ] `val` makes sense in context of the [rate mechanism](https://github.com/makerdao/developerguides/blob/master/mcd/intro-rate-mechanism/intro-rate-mechanism.md)
+    * [ ] IF multiple RWA ilks are being combined into one, `val` calculation is done once per ilk and added to make the total, with separate executable formulas provided in comments. The existing `val` value can be retrieved by calling `read()` on `PIP_RWAXX` and converting the result into decimal
     * [ ] Oracle price is updated via `DssExecLib.updateCollateralPrice(ilk)`
-    * IF debt ceiling is set to `0` or soft liquidation explicitely requested to be triggered (`tell`)
+    * IF debt ceiling is set to `0` OR soft liquidation explicitely requested to be triggered (`tell`)
         * [ ] `RwaLiquidationOracle.tell(ilk)` call is present
         * [ ] IF `RWAXX_A_INPUT_CONDUIT` is an instance of [`TinlakeMgr`](https://github.com/centrifuge/tinlake-maker-lib/blob/master/src/mgr.sol) (it is a Centrifuge integration), additional `TinlakeMgr.tell()` call is present (in order to prevent further `TIN` redemptions in the Centrifuge pool)
 * IF payments are present in the spell
@@ -223,12 +223,14 @@
     * [ ] Transfer amount matches Exec Doc
     * [ ] Transfer amount is specified with (at least) 2 decimals using `ether` keyword
     * [ ] IF `ether` keyword is used, comment is present on the same line `// Note: ether is a keyword helper, only MKR is transferred here`
-    * [ ] Sum of all amounts matches Exec Doc
+    * [ ] The transfers are tested via `testMKRPayments` test
+    * [ ] Sum of all MKR transfers tested in `testMKRPayments` matches number in the Exec Doc
   * IF `DAI` surplus buffer transfers are present
     * [ ] Recipient address in the instruction is in the checksummed format
     * [ ] Recipient address matches Exec Doc
     * [ ] Transfer amount matches Exec Doc
-    * [ ] Sum of all values matches Exec Doc
+    * [ ] The transfers are tested via `testDAIPayments` test
+    * [ ] Sum of all DAI transfers tested in `testDAIPayments` matches number in the Exec Doc
   * IF `MKR` or `DAI` streams (`DssVest`) are created
     * [ ] `VestAbstract` interface is imported from `dss-interfaces/dss/VestAbstract.sol`
     * [ ] `restrict` is used for each stream unless otherwise explicitely stated in the Exec Doc
@@ -237,14 +239,13 @@
     * [ ] IF `ether` keyword is used, comment is present on the same line `// Note: ether is a keyword helper, only MKR is transferred here`
     * [ ] IF vest amount is expressed in 'per year' or similar in the Exec Doc, account for leap days
     * [ ] `bgn` (Vest start timestamp) matches Exec Doc
-    * [ ] `tau` (Vest total duration) matches Exec Doc
     * [ ] `tau` is expressed as `bgn - fin` (i.e. `MONTH_DD_YYYY - MONTH_DD_YYYY`)
     * [ ] `fin` (Vest end timestamp) matches Exec Doc
-    * [ ] IF `eta` (Vest cliff duration) specified in the Exec Doc, matches the value
-    * [ ] IF `clf` not specified in the Exec Doc, `eta` is `0`
-    * [ ] IF `clf <= bgn`, `eta` is `0`
-    * [ ] IF `clf > bgn`, `eta` is expressed as '`clf` - `bgn`' (i.e. `MONTH_DD_YYYY - MONTH_DD_YYYY`)
-    * [ ] `clf` (Cliff end timestamp) matches Exec Doc
+    * [ ] `eta` (Vest cliff duration) matches the following logic
+      * IF `eta` is explicitely specified in the Exec Doc, then the values match
+      * IF `eta` and `clf` (Cliff end timestamp) are not specified in the Exec Doc, then `eta` is `0`
+      * IF `clf` is specified, but `clf <= bgn`, then `eta` is `0`
+      * IF `clf` is specified and `clf > bgn`, `eta` is expressed as `clf - bgn` (i.e. `MONTH_DD_YYYY - MONTH_DD_YYYY`)
     * [ ] IF `mgr` (Vest manager address) is specified in the Exec Doc, matches the value, OTHERWISE matches `address(0)`
     * [ ] Ensure that max vesting rate (`cap`) is enough for the new streams
       * The maximum vesting rate (`tot` divided by `tau`) `<=` the maximum vest streaming rate (`cap`)
@@ -252,10 +253,10 @@
       * Calculate new `cap` value equal to 10% greater than the new maximum vesting rate, then round new `cap` up with 2 significant figure precision (i.e. 2446 becomes 2500)
     * IF max vesting rate (`cap`) is changed in the spell
       * [ ] Governance facilitators were notified
-      * [ ] Exec Doc contain explicit instruction
       * [ ] Exec Sheet contain explicit instruction
-    * IF MKR stream ([DssVestTransferrable](https://github.com/makerdao/dss-vest/blob/master/src/DssVest.sol#L463)) is present in the spell 
-      * [ ] Increase vest contract's MKR allowance by the cumulative `total` (the sum of all `tot` values)
+      * [ ] Exec Doc contain explicit instruction
+    * IF MKR stream ([DssVestTransferrable](https://github.com/makerdao/dss-vest/blob/master/src/DssVest.sol#L463)) is present
+      * [ ] Vest contract's MKR allowance increased by the cumulative `total` (the sum of all `tot` values)
       * [ ] Ensure allowance increase follows archive patterns
   * IF `MKR` or `DAI` vest termination (`Yank`) is present
     * [ ] Yanked stream ID matches Exec Doc
@@ -301,7 +302,7 @@
     * [ ] Patch -> Collateral addition or addition/modification (0.0.++)
 * [ ] `addresses_mainnet.sol` matches spell code
 * [ ] Ensure every spell variable is declared as `public`/`internal`
-* [ ] Ensure `immutable` visibility is only used when fetching addresses from the `ChainLog` via `DssExecLib.getChangelogAddress` and `constant` is used instead for static addresses
+* [ ] Ensure `immutable` visibility is only used when fetching addresses from the `ChainLog` via `DssExecLib.getChangelogAddress(key)` and `constant` is used instead for static addresses
   * [ ] Fetch addresses as type `address` and wrap with `Like` suffix interfaces inline (when making calls) unless archive patterns permit otherwise (Such as `MKR`)
   * [ ] Use the [DssExecLib Core Address Helpers](https://github.com/makerdao/dss-exec-lib/blob/master/src/DssExecLib.sol#L166) where possible (e.g. `DssExecLib.vat()`)
   * [ ] Where addresses are fetched from the `ChainLog`, the variable name must match the value of the ChainLog key for that address (e.g. `MCD_VAT` rather than `vat`), except where the archive pattern differs from this pattern (e.g. MKR)
