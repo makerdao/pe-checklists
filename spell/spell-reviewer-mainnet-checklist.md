@@ -37,7 +37,7 @@
   * [ ] Every _Instruction text_ have a _single_ action below it
   * [ ] IF an instruction can not be taken, it should have explanation under the instruction prefixed with `// Note:` (e.g.: `// Note: Payments are skipped on goerli`)
   * [ ] IF action in the spell doesn't have relevant instruction (e.g.: `chainlog` version bump), the necessity of it is explained in the comment above prefixed with `// Note:`
-  * [ ] Every proof url from the Exec Sheet, such as `Reasoning URL` and `Authority URL` is present in the spell code under relevant section or instruction (depending on which row the url is present) 
+  * [ ] Every proof url from the Exec Sheet, such as `Reasoning URL` and `Authority URL` is present in the spell code under relevant section or instruction (depending on which row the url is present)
   * [ ] Every proof url from the Exec Sheet, such as `Reasoning URL` and `Authority URL` have prefix derived from the url itself
       * `// Executive Vote:` if URL starts with `https://vote.makerdao.com/executive/`
       * `// Poll:` if URL starts with `https://vote.makerdao.com/polling/`
@@ -263,51 +263,51 @@
     * [ ] `MCD_VEST_MKR_TREASURY` chainlog address is used for MKR stream `yank`
     * [ ] `MCD_VEST_DAI` chainlog address is used for DAI stream `yank`
   * [ ] Ensure Recipient Addresses match `addresses_wallets.sol`
-* [ ] SubDAO Content
-  * [ ] SubDAO SubProxy spell execution
+* IF SubDAO-related content is present
+  * IF SubDAO provides SubProxy spell address
     * [ ] SubDAO spell address matches Exec Doc
-    * [ ] IF SubDAO spell deployer is a smart contract (e.g. multisig or factory)
-      * [ ] Ensure the deployer address is in `addresses_deployers.sol` as an entry
-    * [ ] Executed using `ProxyLike(SUBDAO_PROXY).exec(SUBDAO_SPELL, abi.encodeWithSignature("execute()"));`
+    * [ ] Executed via `ProxyLike(SUBDAO_PROXY).exec(SUBDAO_SPELL, abi.encodeWithSignature("execute()"));`
     * [ ] Execution is NOT delegate call
-    * [ ] Reviewer Note: Gas cost may be very high as SubDAO spells execute within the main `cast` execution. (Also note that low level call gas estimation is not done by our scripts)
-  * [ ] Maker Core (main spell) SubDAO actions (i.e. operate in Pause Proxy `DelegateCall` context)
-    * [ ] No SubDAO contract being interacted with is authed on a core contract like vat, etc. (Check comprehensively where the risk is high)
+    * [ ] IF SubDAO spell deployer is a smart contract (e.g. multisig or factory), ensure the deployer address is in `addresses_deployers.sol` as an entry
+    * [ ] Ensure that SubDAO spell have enough gas and does not revert with "out of gas" error inside simulation. Note: low level call gas estimation is not done by our scripts
+  * IF SubDAO provides instructions to be executed by the main spell (i.e. that will operate within Pause Proxy `DelegateCall` context)
+    * [ ] No SubDAO contract being interacted with is authed on a core contract like `vat`, etc. (Check comprehensively where the risk is high)
     * [ ] SubDAO contract licensing and optimizations generally do not matter (except where they pose a security risk)
-    * [ ] SubDAO contracts and all libraries / dependencies are verified (Blocking if not true)
-    * [ ] Upgradable SubDAO contracts
-      * [ ] Any upgradable contracts have the `PAUSE_PROXY` as their `admin` (i.e. the party that can upgrade)
-        * [ ] Any upgradable SubDAO contracts with an `admin` that is not `PAUSE_PROXY` are not authed on any core contracts (Blocking)
+    * [ ] SubDAO contracts and all libraries / dependencies have verified source code (Blocking)
+    * Upgradable SubDAO contracts
+      * [ ] Upgradable contracts have the `PAUSE_PROXY` as their `admin` (i.e. the party that can upgrade)
+      * [ ] Any upgradable SubDAO contracts with an `admin` that is not `PAUSE_PROXY` are not authed on any core contracts (Blocking)
     * [ ] All SubDAO content addresses (i.e. provided contract addresses or EOAs) present in the Maker Core spell are present in the Exec Doc and are correct. SubDAO addresses being authed or given any permissions MUST be in the Exec Doc. SubDAO addresses being called must be confirmed by the SubDAO spell team.
-      * [ ] IF addresses not PR'ed in by the SubDAO team (use git blame for example), SubDAO content addresses all have inline comment for provenance or source being OKed by SubDAO
+    * [ ] IF addresses not PR'ed in by the SubDAO team (use git blame for example), SubDAO content addresses all have inline comment for provenance or source being OKed by SubDAO
     * [ ] SubDAO actions match Exec Doc (only where inline with main spell code) and do not affect core contracts
     * [ ] Core contract knock-on actions (such as offboarding or setting DC to 0) are present in the exec and match the code
     * [ ] External calls for SubDAO content are NOT delegate call
     * [ ] Code does not have untoward behavior within the scope of Maker Core Contracts (e.g. up to the SubDAO proxy)
-* [ ] External Contracts Calls (Not SubDAOs, e.g. Starknet)
-  * [ ]  Target Contract don't block spell execution
-  * [ ]  External call is NOT delegate call
-  * [ ]  Target Contract doesn't have permissions on the Vat
-  * [ ]  Target Contract doesn't do anything untoward (e.g. interacting with unsafe contracts)
-  * [ ]  Contracts deployed via `CREATE2` (e.g. if it looks like a vanity address) do not have `selfdestruct` in their code
-  * [ ]  MCD Pause Proxy doesn't give any approvals
-  * [ ]  All possible actions of the Target Contract are documented
-  * [ ]  Target contract is not upgradable
-  * [ ]  Target Contract is included in the ChainLog
-  * [ ]  Test Coverage is comprehensive
-* [ ] ChainLog
-  * [ ] Increment ChainLog version based on update type
-    * [ ] Major -> New Vat (++.0.0)
-    * [ ] Minor -> Core Module (DSS) Update (e.g. Flapper) (0.++.0)
-    * [ ] Patch -> Collateral addition or addition/modification (0.0.++)
-* [ ] `addresses_mainnet.sol` matches spell code
+* IF external contracts calls present (Not SubDAOs, e.g. Starknet)
+  * [ ] Target Contract don't block spell execution
+  * [ ] External call is NOT delegate call
+  * [ ] Target Contract doesn't have permissions on the Vat
+  * [ ] Target Contract doesn't do anything untoward (e.g. interacting with unsafe contracts)
+  * [ ] Contracts deployed via `CREATE2` (e.g. if it looks like a vanity address) do not have `selfdestruct` in their code
+  * [ ] MCD Pause Proxy doesn't give any approvals
+  * [ ] All possible actions of the Target Contract are documented
+  * [ ] Target contract is not upgradable
+  * [ ] Target Contract is included in the ChainLog
+  * [ ] Test Coverage is comprehensive
+* IF spell interacts with ChainLog
+  * [ ] ChainLog version is incremented based on update type
+    * Major -> New Vat (++.0.0)
+    * Minor -> Core Module (DSS) Update (e.g. Flapper) (0.++.0)
+    * Patch -> Collateral addition or addition/modification (0.0.++)
+  * [ ] New addresses are added to the `addresses_mainnet.sol`
+  * [ ] Changes are tested via `testNewOrUpdatedChainlogValues`
 * [ ] Ensure every spell variable is declared as `public`/`internal`
 * [ ] Ensure `immutable` visibility is only used when fetching addresses from the `ChainLog` via `DssExecLib.getChangelogAddress(key)` and `constant` is used instead for static addresses
   * [ ] Fetch addresses as type `address` and wrap with `Like` suffix interfaces inline (when making calls) unless archive patterns permit otherwise (Such as `MKR`)
   * [ ] Use the [DssExecLib Core Address Helpers](https://github.com/makerdao/dss-exec-lib/blob/master/src/DssExecLib.sol#L166) where possible (e.g. `DssExecLib.vat()`)
   * [ ] Where addresses are fetched from the `ChainLog`, the variable name must match the value of the ChainLog key for that address (e.g. `MCD_VAT` rather than `vat`), except where the archive pattern differs from this pattern (e.g. MKR)
 * [ ] Spell actions match the corresponding Exec Doc
-* [ ] Tests
+* Tests
   * [ ] Ensure each spell action has sufficient test coverage
     _List actions for which coverage was checked here_
   * [ ] Ensure every test function is declared as public if enabled or private if disabled
@@ -315,52 +315,55 @@
   * [ ] Check all CI tests are passing as at the latest commit
     _Insert most recent commit hash where CI was passing_
   * [ ] Check all tests are passing locally using `make test`
-    * [ ] Ensure that only `ETH_RPC_URL` is being used from env (i.e. no `match`, `block` or similar are active in your env)
+  * [ ] Ensure that only `ETH_RPC_URL` is being used from env (i.e. no `match`, `block` or similar are active in your env)
 
-```
-_Insert your passing local tests here_
+```bash
+_Insert your local test logs here_
 ```
 
 ## Deployed Stage
 
-* [ ] Deployed Spell is Verified
-  * [ ] Optimization Enabled: No
-  * [ ] Other Settings: default evmVersion, GNU AGPLv3 license
-* [ ] Deployed Spell Code matches GitHub
-  * [ ] diffcheck etherscan source against spell PR (via `make diff-deployed-spell`)
-* [ ] Deployed Spell Etherscan Checks
-  * [ ] automated checks via `make check-deployed-spell`
-    * [ ] verified
-    * [ ] license type matches
-    * [ ] solc version matches
-    * [ ] optimizations are disabled
+* Source code settings
+  * [ ] Deployed spell is verified on etherscan
+  * [ ] Optimization enabled: No
+  * [ ] Default evmVersion
+  * [ ] GNU AGPLv3 license
+* Source code validity
+  * [ ] Deployed spell code matches source on github. (can be checked via `make diff-deployed-spell` or manually)
+  * [ ] No new changes are made after previously given "good to deploy"
+* Deployed Spell Etherscan Checks
+  * Automated checks via `make check-deployed-spell`
+    * [ ] Verified
+    * [ ] Valid license
+    * [ ] Version matches
+    * [ ] Optimizations are disabled
     * [ ] dss-exec-lib library address used (under 'Libraries Used') matches the hardcoded local `DssExecLib.address` file
-      * [ ] Check again that the PR did not modify the `DssExecLib.address` file (e.g. look under the 'Files Changed' PR tab, etc.)
     * [ ] `deployed_spell_created` matches deployment timestamp
     * [ ] `deployed_spell_block` matches deployment block number
-  * [ ] manual checks
-      * [ ] Ensure `make deploy-info tx=<tx>` matches [config](https://github.com/makerdao/spells-mainnet/blob/master/src/test/config.sol)
-        * [ ] `deployed_spell_created` timestamp
-        * [ ] `deployed_spell_block` block number
-      * [ ] Ensure Etherscan `Libraries Used` matches DssExecLib [Latest Release](https://github.com/makerdao/dss-exec-lib/releases/latest)
-       * [ ] (For your tests to be accurate) git submodule hash matches [dss-exec-lib](https://github.com/makerdao/dss-exec-lib/releases/latest) latest release's tag commit and inspect diffs if doesn't match to ensure expected behaviour (Currently Non-Critical pending the next DssExecLib release, double check that the ExecLib used by the contract matches the latest release)
-* [ ] Archive matches `src`
-  * [ ] `make diff-archive-spell` for current date or or `date="YYYY-MM-DD" make diff-archive-spell` (date as per target Exec Doc date)
+  * Manual checks
+    * [ ] Ensure `make deploy-info tx=<tx>` matches [config](https://github.com/makerdao/spells-mainnet/blob/master/src/test/config.sol)
+      * [ ] `deployed_spell_created` timestamp
+      * [ ] `deployed_spell_block` block number
+    * [ ] Check again that the PR did not modify the `DssExecLib.address` file (e.g. look under the 'Files Changed' PR tab, etc.)
+    * [ ] Ensure Etherscan `Libraries Used` matches DssExecLib [Latest Release](https://github.com/makerdao/dss-exec-lib/releases/latest)
+    * [ ] (For your tests to be accurate) git submodule hash matches [dss-exec-lib](https://github.com/makerdao/dss-exec-lib/releases/latest) latest release's tag commit and inspect diffs if doesn't match to ensure expected behaviour (Currently Non-Critical pending the next DssExecLib release, double check that the ExecLib used by the contract matches the latest release)
+* Archive checks
+  * [ ] `make diff-archive-spell` for current date or `make diff-archive-spell date="YYYY-MM-DD"`
   * [ ] Ensure date corresponds to target Exec Doc date
-* [ ] Tests
+* Tests
   * [ ] Ensure that the `DssExecLib.address` file is not being modified by the spell PR
   * [ ] Check all CI tests are passing as at the latest commit
     _Insert most recent commit hash where CI was passing_
   * [ ] Check all tests are passing locally using `make test`
-    * [ ] Ensure that only `ETH_RPC_URL` is being used from env (i.e. no `match`, `block` or similar are active in your env)
+  * [ ] Ensure that only `ETH_RPC_URL` is being used from env (i.e. no `match`, `block` or similar are active in your env)
 
-```
-_Insert your passing local tests here_
+```bash
+_Insert your local test logs here_
 ```
 
 ## Handover and Merge Stage
 
 * [ ] Check that the spell address posted by the crafter in [`new-spells`](https://discord.com/channels/893112320329396265/897483518316265553) is correct
-  * [ ] Confirm the address in [`new-spells`](https://discord.com/channels/893112320329396265/897483518316265553) (via a thumbs up message reaction, )
-* [ ] Ensure that no commits or changes have occurred since the spell was deployed and archived
+* [ ] Confirm the address in the [`new-spells`](https://discord.com/channels/893112320329396265/897483518316265553) channel (via a separate "reply to" message, restating the address to avoid edits)
+* [ ] Ensure that no changes were made to the code since the spell was deployed and archived
 * [ ] Approve spell PR for merge via 'Approve' review option
