@@ -2,9 +2,7 @@
 
 ## Development Stage
 
-* Exec Doc
-  * [ ] Record target date for the executive spell
-    _Insert target date here in the YYYY-MM-DD format_
+* Preparation
   * [ ] Exec Sheet for the specified date is found in the ["Executive Vote Implementation Process" google sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw)
     _Insert URL to the specific sheet here_
   * [ ] Exec Doc for the specified date is found in the [`makerdao/community` GitHub repo](https://github.com/makerdao/community/tree/master/governance/votes)
@@ -336,7 +334,7 @@ _Insert your local test logs here_
 * Source code validity
   * [ ] Deployed spell code matches source on github. (can be checked via `make diff-deployed-spell` or manually)
   * [ ] No new changes are made after previously given "good to deploy"
-* Deployed Spell Etherscan Checks
+* Deployed spell Etherscan checks
   * Automated checks via `make check-deployed-spell`
     * [ ] Verified
     * [ ] Valid license
