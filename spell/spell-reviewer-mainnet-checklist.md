@@ -134,16 +134,16 @@
       * [ ] Collateral debt ceiling is set to `0` via [`DssExecLib.setIlkDebtCeiling(ilk, amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L611)
       * [ ] Global debt ceiling (`vat.Line`) is updated accordingly, UNLESS specifically instructed not to
     * IF `AutoLine` parameters are updated
-      * [ ] Either is used, depending on the instruction:
+      * [ ] EITHER is used, depending on the instruction:
         * [`DssExecLib.setIlkAutoLineDebtCeiling(ilk, amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L658)
         * [`DssExecLib.setIlkAutoLineParameters(ilk, amount, gap, ttl)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L648)
   * IF collateral debt ceiling (`vat.ilk.line`) is updated
     * [ ] Collateral type (`ilk`) have [`AutoLine`](https://github.com/makerdao/dss-auto-line/tree/master) disabled previously or in the spell
-    * [ ] Either is used, depending on the instruction:
+    * [ ] EITHER is used, depending on the instruction:
         * [`DssExecLib.increaseIlkDebtCeiling(ilk, amount, global)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L621C14-L621C36)
         * [`DssExecLib.decreaseIlkDebtCeiling(ilk, amount, global)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L634)
         * [`DssExecLib.setIlkDebtCeiling(ilk, amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L611)
-    * [ ] Global debt ceiling (`vat.Line`) is updated accordingly, UNLESS specifically instructed not to, via either:
+    * [ ] Global debt ceiling (`vat.Line`) is updated accordingly, UNLESS specifically instructed not to, via EITHER:
         * `global` set to `true` in `increaseIlkDebtCeiling`/`decreaseIlkDebtCeiling`
         * [`DssExecLib.setGlobalDebtCeiling(amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L428)
         * [`DssExecLib.increaseGlobalDebtCeiling(amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L436)
@@ -159,7 +159,7 @@
     * [ ] Collateral debt ceiling (`vat.ilk.line`) is set to `0`
     * [ ] Global debt ceiling (`vat.Line`) decreased by the total amount of offboarded ilks
   * 2nd stage collateral offboarding
-    * [ ] All actions from the 1st stage offboarding are previously taken (either in the current or past spells – check the archive)
+    * [ ] All actions from the 1st stage offboarding are previously taken (EITHER in the current or past spells – check the archive)
     * [ ] Collateral liquidation penalty (`chop`) is set to `0` IF requested by governance
     * [ ] Flat keeper incentive (`tip`) is set to `0` IF requested by governance
     * [ ] Relative keeper incentive (`chip`) is set to `0` IF requested by governance
@@ -191,11 +191,11 @@
       * [ ] Parameters are set via [`DssExecLib.setIlkAutoLineParameters(ilk, amount, gap, ttl)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L648) or [`DssExecLib.setIlkAutoLineDebtCeiling(ilk, amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L658)
     * IF regular debt ceiling (`vat.ilk.line`) update is requested by the Exec Doc
       * [ ] Collateral type (`ilk`) have [`AutoLine`](https://github.com/makerdao/dss-auto-line/tree/master) disabled previously or in the spell
-      * [ ] Debt ceiling (`vat.ilk.line`) is updated, via either:
+      * [ ] Debt ceiling (`vat.ilk.line`) is updated, via EITHER:
           * [`DssExecLib.increaseIlkDebtCeiling(ilk, amount, global)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L621C14-L621C36)
           * [`DssExecLib.decreaseIlkDebtCeiling(ilk, amount, global)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L634)
           * [`DssExecLib.setIlkDebtCeiling(ilk, amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L611)
-      * [ ] Global debt ceiling (`vat.Line`) is updated accordingly, UNLESS specifically instructed not to, via either:
+      * [ ] Global debt ceiling (`vat.Line`) is updated accordingly, UNLESS specifically instructed not to, via EITHER:
           * `global` set to `true` in `increaseIlkDebtCeiling`/`decreaseIlkDebtCeiling`
           * [`DssExecLib.setGlobalDebtCeiling(amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L428)
           * [`DssExecLib.increaseGlobalDebtCeiling(amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L436)
@@ -234,7 +234,7 @@
     * [ ] Sum of all DAI transfers tested in `testDAIPayments` matches number in the Exec Doc
   * IF `MKR` or `DAI` streams (`DssVest`) are created
     * [ ] `VestAbstract` interface is imported from `dss-interfaces/dss/VestAbstract.sol`
-    * [ ] `restrict` is used for each stream unless otherwise explicitly stated in the Exec Doc
+    * [ ] `restrict` is used for each stream, UNLESS otherwise explicitly stated in the Exec Doc
     * [ ] `usr` (Vest recipient address) matches Exec Doc
     * [ ] `usr` address in the instruction is in the checksummed format
     * [ ] `usr` address variable name match one found in `addresses_wallets.sol`
@@ -307,7 +307,7 @@
   * [ ] Changes are tested via `testNewOrUpdatedChainlogValues`
 * [ ] Ensure every spell variable is declared as `public`/`internal`
 * [ ] Ensure `immutable` visibility is only used when fetching addresses from the `ChainLog` via `DssExecLib.getChangelogAddress(key)` and `constant` is used instead for static addresses
-  * [ ] Fetch addresses as type `address` and wrap with `Like` suffix interfaces inline (when making calls) UNLESS archive patterns permit otherwise (Such as `MKR`)
+  * [ ] Fetch addresses as type `address` and wrap with `Like` suffix interfaces inline (when making calls), UNLESS archive patterns permit otherwise (Such as `MKR`)
   * [ ] Use the [DssExecLib Core Address Helpers](https://github.com/makerdao/dss-exec-lib/blob/master/src/DssExecLib.sol#L166) where possible (e.g. `DssExecLib.vat()`)
   * [ ] Where addresses are fetched from the `ChainLog`, the variable name must match the value of the ChainLog key for that address (e.g. `MCD_VAT` rather than `vat`), except where the archive pattern differs from this pattern (e.g. MKR)
 * [ ] Spell actions match the corresponding Exec Doc
