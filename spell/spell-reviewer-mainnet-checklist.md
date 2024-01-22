@@ -102,7 +102,7 @@
     * [ ] Ensure `PAUSE_PROXY` address was `relied` (`wards(PAUSE_PROXY)` is `1`)
     * [ ] Ensure that contract deployer address was `denied` (`wards(deployer)` is `0`)
     * [ ] Ensure `MCD_ESM` address is already relied OR being `relied` (`wards(MCD_ESM)` is `1`) in this spell (as approved by Governance Facilitators, in order to allow de-authing the pause proxy during Emergency Shutdown, via `denyProxy`)
-    * [ ] Ensure that there are no other `Rely` events except for `PAUSE_PROXY` and `MCD_ESM` (using a [block explorer](https://etherscan.io) or [evm.storage](https://evm.storage)-like service)
+    * [ ] Ensure that there are no other `Rely` events except for `PAUSE_PROXY` and `MCD_ESM` (using a block explorer like [etherscan](https://etherscan.io))
   * [ ] Source code matches corresponding github source code (e.g. diffcheck via vscode `code --diff etherscan.sol github.sol`)
   * [ ] Deployer address is included into `addresses_deployers.sol`
 * IF core system parameter changes are present in the instructions
