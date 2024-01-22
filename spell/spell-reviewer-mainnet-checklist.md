@@ -27,7 +27,7 @@
   * [ ] Target date in the description matches the Exec Doc target date
   * [ ] Accompanying comment above spell description follows the format `// Hash: cast keccak -- "$(wget 'EXEC_DOC_URL' -q -O - 2>/dev/null)"`
   * [ ] Exec Doc URL in comment matches your Raw Exec Doc URL above
-  * [ ] Exec Doc URL in comment refers to the [`https://github.com/makerdao/community` repo](https://github.com/makerdao/community/tree/master/governance/votes)
+  * [ ] Exec Doc URL in comment refers to the [https://github.com/makerdao/community repo](https://github.com/makerdao/community/tree/master/governance/votes)
 * Comments inside the spell
   * [ ] Every _Section text_ from the Exec Sheet is copied to the spell code as a comment surrounded by the set of dashes (E.g. `// ----- Section text -----`)
   * [ ] Every _Instruction text_ from the Exec Sheet is copied to the spell code as `// Instruction text`
@@ -102,6 +102,7 @@
     * [ ] Ensure `PAUSE_PROXY` address was `relied` (`wards(PAUSE_PROXY)` is `1`)
     * [ ] Ensure that contract deployer address was `denied` (`wards(deployer)` is `0`)
     * [ ] Ensure `MCD_ESM` address is already relied OR being `relied` (`wards(MCD_ESM)` is `1`) in this spell (as approved by Governance Facilitators, in order to allow de-authing the pause proxy during Emergency Shutdown, via `denyProxy`)
+    * [ ] Ensure that there are no other `Rely` events except for `PAUSE_PROXY` and `MCD_ESM` (using a [block explorer](https://etherscan.io) or [evm.storage](https://evm.storage)-like service)
   * [ ] Source code matches corresponding github source code (e.g. diffcheck via vscode `code --diff etherscan.sol github.sol`)
   * [ ] Deployer address is included into `addresses_deployers.sol`
 * IF core system parameter changes are present in the instructions
@@ -148,7 +149,7 @@
         * [`DssExecLib.increaseGlobalDebtCeiling(amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L436)
         * [`DssExecLib.decreaseGlobalDebtCeiling(amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L445C14-L445C39)
 * IF onboarding is present
-  * [ ] Insert and follow relevant checklists here
+  * [ ] Insert and follow the relevant checklists below:
     * [Collateral Onboarding](./collateral-onboarding-checklist.md)
     * [RWA Onboarding](./rwa-onboarding-checklist.md)
     * [Teleport Onboarding](./teleport-onboarding-checklist.md)
@@ -158,13 +159,13 @@
     * [ ] Collateral debt ceiling (`vat.ilk.line`) is set to `0`
     * [ ] Global debt ceiling (`vat.Line`) decreased by the total amount of offboarded ilks
   * 2nd stage collateral offboarding
-    * [ ] All actions from the 1st stage offboarding are previously taken
-    * [ ] Collateral liquidation penalty (`chop`) is set to `0` IF requested by the governance
-    * [ ] Flat keeper incentive (`tip`) is set to `0` IF requested by the governance
-    * [ ] Relative keeper incentive (`chip`) is set to `0` IF requested by the governance
-    * [ ] Max liquidation amount (`hole`) is adjusted via [`DssExecLib.setIlkMaxLiquidationAmount(ilk, amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L699) IF requested by the governance
+    * [ ] All actions from the 1st stage offboarding are previously taken (either in the current or past spells – check the archive)
+    * [ ] Collateral liquidation penalty (`chop`) is set to `0` IF requested by governance
+    * [ ] Flat keeper incentive (`tip`) is set to `0` IF requested by governance
+    * [ ] Relative keeper incentive (`chip`) is set to `0` IF requested by governance
+    * [ ] Max liquidation amount (`hole`) is adjusted via [`DssExecLib.setIlkMaxLiquidationAmount(ilk, amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L699) IF requested by governance
     * [ ] Relevant clipper contract (`MCD_CLIP_`) is active (i.e. [`stopped`](https://github.com/makerdao/dss/blob/fa4f6630afb0624d04a003e920b0d71a00331d98/src/clip.sol#L97) is `0`)
-    * [ ] Liquidations are triggered via (depending on the governance instruction):
+    * [ ] Liquidations are triggered via (depending on governance instruction):
       * EITHER liquidation ratio (`spotter.ilk.mat`) being set very high in the spell (using `DssExecLib.setValue(DssExecLib.spotter(), ilk, "mat", ratio)`)
       * OR via enabling linear interpolation ([`DssExecLib.linearInterpolation(name, target, ilk, what, startTime, start, end, duration)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L1096-L1112))
         * [ ] Ensure `name` format matches "XXX-X Offboarding"
@@ -211,7 +212,7 @@
       * [ ] `val` makes sense in context of the [rate mechanism](https://github.com/makerdao/developerguides/blob/master/mcd/intro-rate-mechanism/intro-rate-mechanism.md)
     * [ ] IF multiple RWA ilks are being combined into one, `val` calculation is done once per ilk and added to make the total, with separate executable formulas provided in comments. The existing `val` value can be retrieved by calling `read()` on `PIP_RWAXX` and converting the result into decimal
     * [ ] Oracle price is updated via `DssExecLib.updateCollateralPrice(ilk)`
-    * IF debt ceiling is set to `0` OR soft liquidation explicitly requested to be triggered (`tell`)
+    * IF soft liquidation explicitly requested to be triggered (via `.tell(ilk)`) AND debt ceiling is `0` (OR is being set to `0` in the current spell)
         * [ ] `RwaLiquidationOracle.tell(ilk)` call is present
         * [ ] IF `RWAXX_A_INPUT_CONDUIT` is an instance of [`TinlakeMgr`](https://github.com/centrifuge/tinlake-maker-lib/blob/master/src/mgr.sol) (it is a Centrifuge integration), additional `TinlakeMgr.tell()` call is present (in order to prevent further `TIN` redemptions in the Centrifuge pool)
 * IF payments are present in the spell
@@ -286,9 +287,9 @@
     * [ ] Core contract knock-on actions (such as offboarding or setting DC to 0) are present in the exec and match the code
     * [ ] External calls for SubDAO content are NOT delegate call
     * [ ] Code does not have untoward behavior within the scope of Maker Core Contracts (e.g. up to the SubDAO proxy)
-* IF external contracts calls present (Not SubDAOs, e.g. Starknet)
-  * [ ] Target Contract don't block spell execution
-  * [ ] External call is NOT delegate call
+* IF external contracts calls are present (Not SubDAOs, e.g. Starknet)
+  * [ ] Target Contract doesn't block spell execution
+  * [ ] External call is NOT `delegatecall`
   * [ ] Target Contract doesn't have permissions on the Vat
   * [ ] Target Contract doesn't do anything untoward (e.g. interacting with unsafe contracts)
   * [ ] Contracts deployed via `CREATE2` (e.g. if it looks like a vanity address) do not have `selfdestruct` in their code
@@ -306,7 +307,7 @@
   * [ ] Changes are tested via `testNewOrUpdatedChainlogValues`
 * [ ] Ensure every spell variable is declared as `public`/`internal`
 * [ ] Ensure `immutable` visibility is only used when fetching addresses from the `ChainLog` via `DssExecLib.getChangelogAddress(key)` and `constant` is used instead for static addresses
-  * [ ] Fetch addresses as type `address` and wrap with `Like` suffix interfaces inline (when making calls) unless archive patterns permit otherwise (Such as `MKR`)
+  * [ ] Fetch addresses as type `address` and wrap with `Like` suffix interfaces inline (when making calls) UNLESS archive patterns permit otherwise (Such as `MKR`)
   * [ ] Use the [DssExecLib Core Address Helpers](https://github.com/makerdao/dss-exec-lib/blob/master/src/DssExecLib.sol#L166) where possible (e.g. `DssExecLib.vat()`)
   * [ ] Where addresses are fetched from the `ChainLog`, the variable name must match the value of the ChainLog key for that address (e.g. `MCD_VAT` rather than `vat`), except where the archive pattern differs from this pattern (e.g. MKR)
 * [ ] Spell actions match the corresponding Exec Doc
@@ -318,7 +319,7 @@
   * [ ] Check all CI tests are passing as at the latest commit
     _Insert most recent commit hash where CI was passing_
   * [ ] Check all tests are passing locally using `make test`
-  * [ ] Ensure that only `ETH_RPC_URL` is being used from env (i.e. no `match`, `block` or similar are active in your env)
+  * [ ] Ensure that `make test` output displays every optional parameter is unset (ie first output line of `make test` is `./scripts/test-dssspell-forge.sh no-match="" match="" block=""`)
 
 ```bash
 _Insert your local test logs here_
@@ -328,7 +329,7 @@ _Insert your local test logs here_
 
 * Source code settings
   * [ ] Deployed spell is verified on etherscan
-  * [ ] Optimization enabled: No
+  * [ ] Optimization enabled: `false` UNLESS the contract size is too big AND all mitigation strategies (i.e.: removing revert strings) have failed
   * [ ] Default evmVersion
   * [ ] GNU AGPLv3 license
 * Source code validity
@@ -358,7 +359,7 @@ _Insert your local test logs here_
   * [ ] Check all CI tests are passing as at the latest commit
     _Insert most recent commit hash where CI was passing_
   * [ ] Check all tests are passing locally using `make test`
-  * [ ] Ensure that only `ETH_RPC_URL` is being used from env (i.e. no `match`, `block` or similar are active in your env)
+  * [ ] Ensure that `make test` output displays every optional parameter is unset (ie first output line of `make test` is `./scripts/test-dssspell-forge.sh no-match="" match="" block=""`)
 
 ```bash
 _Insert your local test logs here_
