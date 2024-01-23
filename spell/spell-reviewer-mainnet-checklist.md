@@ -32,7 +32,6 @@
   * [ ] Every _Section text_ from the Exec Sheet is copied to the spell code as a comment surrounded by the set of dashes (E.g. `// ----- Section text -----`)
   * [ ] Every _Instruction text_ from the Exec Sheet is copied to the spell code as `// Instruction text`
   * [ ] Every _Instruction text_ have newline above it
-  * [ ] Every _Instruction text_ have a _single_ action below it
   * [ ] IF an instruction can not be taken, it should have explanation under the instruction prefixed with `// Note:` (e.g.: `// Note: Payments are skipped on goerli`)
   * [ ] IF action in the spell doesn't have relevant instruction (e.g.: `chainlog` version bump), the necessity of it is explained in the comment above prefixed with `// Note:`
   * [ ] Every proof url from the Exec Sheet, such as `Reasoning URL` and `Authority URL` is present in the spell code under relevant section or instruction (depending on which row the url is present)
