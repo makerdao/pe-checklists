@@ -318,7 +318,7 @@
   * [ ] Check all CI tests are passing as at the latest commit
     _Insert most recent commit hash where CI was passing_
   * [ ] Check all tests are passing locally using `make test`
-  * [ ] Ensure that `make test` output displays every optional parameter is unset (ie first output line of `make test` is `./scripts/test-dssspell-forge.sh no-match="" match="" block=""`)
+  * [ ] Ensure that any other env variable does not affect execution of the tests (for example, by inspecting the output of `printenv | grep "FOUNDRY_\|DAPP_"`)
 
 ```bash
 _Insert your local test logs here_
