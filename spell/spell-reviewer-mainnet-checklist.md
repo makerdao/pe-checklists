@@ -7,9 +7,9 @@
     _Insert URL to the specific sheet here_
   * [ ] Exec Doc for the specified date is found in the [`makerdao/community` GitHub repo](https://github.com/makerdao/community/tree/master/governance/votes)
   * [ ] Exec Doc file name follows the format `Executive vote - Month DD, YYYY.md`
-  * [ ] Extract permanent URL to the raw markdown file and paste it below
+  * [ ] Extract _permanent_ URL to the raw markdown file and paste it below
     _Insert your Raw Exec Doc URL here_
-  * [ ] Using Exec Doc URL from the above and the target date, generate Exec Doc Hash via `make exec-hash date=$date $URL`
+  * [ ] Using Exec Doc URL from the above and the `TARGET_DATE`, generate Exec Doc Hash via `make exec-hash date=$TARGET_DATE $URL`
     _Insert your Exec Doc Hash here_
   * [ ] Using Exec Doc URL from the above, generate Exec Doc Hash via `cast keccak -- "$(curl '$URL' -o - 2>/dev/null)"`
     _Insert your Exec Doc Hash here_
@@ -24,7 +24,7 @@
   * [ ] 30 days spell expiry set in the constructor (`block.timestamp + 30 days`)
 * Spell description
   * [ ] Description follows the format `TARGET_DATE MakerDAO Executive Spell | Hash: EXEC_DOC_HASH`
-  * [ ] Target date in the description matches the Exec Doc target date
+  * [ ] `TARGET_DATE` in the description matches the Exec Doc target date
   * [ ] Accompanying comment above spell description follows the format `// Hash: cast keccak -- "$(wget 'EXEC_DOC_URL' -q -O - 2>/dev/null)"`
   * [ ] Exec Doc URL in comment matches your Raw Exec Doc URL above
   * [ ] Exec Doc URL in comment refers to the [https://github.com/makerdao/community repo](https://github.com/makerdao/community/tree/master/governance/votes)
@@ -67,8 +67,8 @@
       * `RAY = 10 ** 27`
       * `RAD = 10 ** 45`
     * [ ] Precision units match with [Numerical Ranges](https://github.com/makerdao/dss/wiki/Numerical-Ranges#notation)
-    * [ ] Each variable visibility declared as `internal`
-    * [ ] Each variable state mutability declared as `constant`
+    * [ ] Each variable visibility is declared as `internal`
+    * [ ] Each variable state mutability is declared as `constant`
   * IF math units are present
     * [ ] Match their defined values:
       * `HUNDRED  = 10 ** 2`
@@ -76,8 +76,8 @@
       * `MILLION  = 10 ** 6`
       * `BILLION  = 10 ** 9`
     * [ ] Match with [config](https://github.com/makerdao/spells-mainnet/blob/master/src/test/config.sol)
-    * [ ] Each variable visibility declared as `internal`
-    * [ ] Each variable state mutability declared as `constant`
+    * [ ] Each variable visibility is declared as `internal`
+    * [ ] Each variable state mutability is declared as `constant`
   * IF rates are present
     * [ ] Rates match generated locally via `make rates pct=<pct>` (e.g. pct=0.75, for 0.75%)
     * [ ] Rates match [IPFS](https://ipfs.io/ipfs/QmVp4mhhbwWGTfbh2BzwQB9eiBrQBKiqcPRZCaAxNUaar6) document
@@ -90,8 +90,8 @@
     * [ ] Timestamp [converts](https://www.epochconverter.com/) back to the `UTC` timezone
     * [ ] Variable naming matches `MMM_DD_YYYY` (e.g. `JAN_01_2023` for 2023-01-01)
     * [ ] Time of day makes logical sense in the context of timestamp usage (i.e. `23:59:59 UTC` for the final day of something, `00:00:00 UTC` for the first day of something)
-    * [ ] Each variable visibility declared as `internal`
-    * [ ] Each variable state mutability declared as `constant`
+    * [ ] Each variable visibility is declared as `internal`
+    * [ ] Each variable state mutability is declared as `constant`
 * IF new contract is present in the spell (not yet on chainlog or new to chainlog)
   * [ ] Source code is verified on etherscan
   * [ ] Compilation optimizations match deployment settings defined in the source code repo
@@ -218,7 +218,7 @@
   * IF `MKR` transfers are present
     * [ ] Recipient address in the instruction is in the checksummed format
     * [ ] Recipient address matches Exec Doc
-    * [ ] Recipient address variable name match one found in `addresses_wallets.sol`
+    * [ ] Recipient address variable name matches one found in `addresses_wallets.sol`
     * [ ] Transfer amount matches Exec Doc
     * [ ] Transfer amount is specified with (at least) 2 decimals using `ether` keyword
     * [ ] IF `ether` keyword is used, comment is present on the same line `// Note: ether is a keyword helper, only MKR is transferred here`
@@ -227,7 +227,7 @@
   * IF `DAI` surplus buffer transfers are present
     * [ ] Recipient address in the instruction is in the checksummed format
     * [ ] Recipient address matches Exec Doc
-    * [ ] Recipient address variable name match one found in `addresses_wallets.sol`
+    * [ ] Recipient address variable name matches one found in `addresses_wallets.sol`
     * [ ] Transfer amount matches Exec Doc
     * [ ] The transfers are tested via `testDAIPayments` test
     * [ ] Sum of all DAI transfers tested in `testDAIPayments` matches number in the Exec Doc
