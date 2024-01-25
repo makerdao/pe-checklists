@@ -136,3 +136,4 @@ PR'ed
 multisig
 EOA
 redemptions
+checksummed
