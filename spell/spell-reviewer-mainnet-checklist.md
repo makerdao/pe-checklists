@@ -368,5 +368,6 @@ _Insert your local test logs here_
 
 * [ ] Check that the spell address posted by the crafter in [`new-spells`](https://discord.com/channels/893112320329396265/897483518316265553) is correct
 * [ ] Confirm the address in the [`new-spells`](https://discord.com/channels/893112320329396265/897483518316265553) channel (via a separate "reply to" message, restating the address to avoid edits)
+  * [ ] Wait until responsible governance facilitator confirms handover in `new-spells`
 * [ ] Ensure that no changes were made to the code since the spell was deployed and archived
 * [ ] Approve spell PR for merge via 'Approve' review option

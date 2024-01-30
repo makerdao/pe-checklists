@@ -169,7 +169,9 @@ Repo: https://github.com/makerdao/spells-mainnet
 * [ ] Commit & Push for Review
 * [ ] Wait for CI to PASS
 * [ ] Wait for at Least two Approvals to Share for Publishing to Governance Facilitators
-* [ ] Share Deployed Address in `new-spells`
+* [ ] Share Deployed Address in [`new-spells`](https://discord.com/channels/893112320329396265/897483518316265553) discord channel
+  * [ ] Make sure to tag responsible governance facilitator in the message with the address
+  * [ ] Wait until responsible governance facilitator confirms handover in `new-spells`
 * [ ] Fill the rest of the Spell Crafter Related Boxes in the Main Exec Sheet
 * [ ] Pre-Merge Target Branch Pull Attack Checks
   * [ ] Ensure that the latest commit to the spells-mainnet repo was not a maintenance PR
