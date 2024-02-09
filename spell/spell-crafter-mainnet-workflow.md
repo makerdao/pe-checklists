@@ -26,7 +26,7 @@ Repo: https://github.com/makerdao/spells-mainnet
   * [ ] Disable specific tests IF Not Used (e.g. `testCollateralIntegrations`, `testNewChainlogValues`, `testNewIlkRegistryValues`, ...)
     * [ ] Remove spell-specific part
     * [ ] Keep setup
-    * [ ] Disable by setting visibility to `private`
+    * [ ] Skip by setting adding the `skipped` modifier
     * [ ] Add commented notes
       * [ ] e.g. `// Insert new collateral integration tests here`
     * [ ] Keep commented tests (e.g. `testOSMs`, `testMedianizers`)
@@ -117,7 +117,9 @@ Repo: https://github.com/makerdao/spells-mainnet
 * [ ] Add new ChainLog Address in `addresses_mainnet.sol` (e.g. Collateral Onboarding)
 * [ ] Run Tests `make test` or `make test match=<test_name>` to inspect debug traces
   * [ ] Ensure Good Coverage
-  * [ ] Ensure every test function is declared as public if enabled or private if disabled
+  * [ ] Ensure every test function is declared as `public`
+    * [ ] IF the test is enabled, it MUST NOT have the `skipped` modifier
+    * [ ] OTHERWISE, if the test is disabled, it MUST have the `skipped` modifier
   * [ ] Tests PASS via `make test`
 * [ ] Open PR & Add Reviewers
 * [ ] Iterate until polls are ended and exec doc is confirmed
