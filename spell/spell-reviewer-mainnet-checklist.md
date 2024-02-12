@@ -311,16 +311,19 @@
   * [ ] Where addresses are fetched from the `ChainLog`, the variable name must match the value of the ChainLog key for that address (e.g. `MCD_VAT` rather than `vat`), except where the archive pattern differs from this pattern (e.g. MKR)
 * [ ] Spell actions match the corresponding Exec Doc
 * Tests
-  * [ ] Ensure each spell action has sufficient test coverage
-    _List actions for which coverage was checked here_
-  * [ ] Ensure every test function is declared as public if enabled or private if disabled
   * [ ] Ensure that the `DssExecLib.address` file is not being modified by the spell PR
   * [ ] Check all CI tests are passing as at the latest commit
     _Insert most recent commit hash where CI was passing_
+  * [ ] Ensure every test function is declared as `public`
+    * [ ] IF the test is enabled, it MUST NOT have the `skipped` modifier
+    * [ ] OTHERWISE, if the test is disabled, it MUST have the `skipped` modifier
+  * [ ] Ensure each spell action has sufficient test coverage
+    _List actions for which coverage was checked here_
   * [ ] Ensure that any other env variable does not affect execution of the tests (for example, by inspecting the output of `printenv | grep "FOUNDRY_\|DAPP_"`)
   * [ ] Check all tests are passing locally using `make test`
+    * [ ] Ensure every test listed in the _coverage_ item above is present in the logs and with the `[PASS]` prefix.
 
-```bash
+```
 _Insert your local test logs here_
 ```
 
@@ -360,7 +363,7 @@ _Insert your local test logs here_
   * [ ] Ensure that any other env variable does not affect execution of the tests (for example, by inspecting the output of `printenv | grep "FOUNDRY_\|DAPP_"`)
   * [ ] Check all tests are passing locally using `make test`
 
-```bash
+```
 _Insert your local test logs here_
 ```
 
