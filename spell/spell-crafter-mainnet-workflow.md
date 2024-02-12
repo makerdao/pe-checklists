@@ -26,7 +26,7 @@ Repo: https://github.com/makerdao/spells-mainnet
   * [ ] Disable specific tests IF Not Used (e.g. `testCollateralIntegrations`, `testNewChainlogValues`, `testNewIlkRegistryValues`, ...)
     * [ ] Remove spell-specific part
     * [ ] Keep setup
-    * [ ] Skip by setting adding the `skipped` modifier
+    * [ ] Skip by adding the `skipped` modifier
     * [ ] Add commented notes
       * [ ] e.g. `// Insert new collateral integration tests here`
     * [ ] Keep commented tests (e.g. `testOSMs`, `testMedianizers`)
