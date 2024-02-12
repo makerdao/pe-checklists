@@ -111,8 +111,7 @@ PR: https://github.com/makerdao/spells-goerli/pull/<TODO>
 * [ ] Run Tests `make test` or `make test match=<test_name>` to inspect debug traces
   * [ ] Ensure Good Coverage
   * [ ] Ensure every test function is declared as `public`
-    * [ ] IF the test is enabled, it MUST NOT have the `skipped` modifier
-    * [ ] OTHERWISE, if the test is disabled, it MUST have the `skipped` modifier
+  * [ ] IF the test needs to run, it MUST NOT have the `skipped` modifier; OTHERWISE, it MUST have `skipped` modifier
   * [ ] Tests PASS via `make test`
 * [ ] Open PR & Add Reviewers
 * [ ] Iterate until polls are ended and exec doc is confirmed
