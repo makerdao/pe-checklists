@@ -4,11 +4,34 @@
 
 Repo: https://github.com/makerdao/spells-mainnet
 
-### [Governance Cadence Improvement](https://forum.makerdao.com/t/governance-cadence-improvement/14972)
+### Spell coordination schedule
 
-![](https://ipfs.io/ipfs/QmUqCvy7c8Qmzn7yZ6D3353wTqCZ3VDAwQKYB37pJ2BjXb)
+| Responsible | Stage                                             | Deadline                         |
+|:------------|:--------------------------------------------------|:---------------------------------|
+| Governance  | Exec Sheet is created                             | 16:00 UTC Week 1 Tuesday         |
+| All         | Agreement is reached on the content and roles     | 16:00-16:30 UTC Week 1 Tuesday   |
+| Crafter     | Spell is cleaned up (for external contributions)  | 12:00 UTC Week 1 Wednesday       |
+| External    | External code is contributed via PR (if required) | 16:00 UTC Week 1 Thursday        |
+| Governance  | Exec Sheet is finalised (with all confirmations)  | 16:00 UTC Week 1 Thursday        |
+| Governance  | Exec Doc is merged                                | 16:00 UTC Week 1 Friday          |
+| Crafter     | Spell is crafted                                  | 16:30 UTC Week 1 Friday          |
+| Reviewers   | Spell code is reviewed                            | 16:00 UTC Week 2 Monday          |
+| Crafter     | Spell code review is addressed                    | 16:00 UTC Week 2 Tuesday         |
+| Reviewers   | Spell code is approved                            | 12:00 UTC Week 2 Wednesday       |
+| Crafter     | Spell is deployed                                 | 14:00 UTC Week 2 Wednesday       |
+| Reviewers   | Spell deployment is approved                      | 16:00-16:30 UTC Week 2 Wednesday |
+| Crafter     | Handover is published                             | 16:00-16:30 UTC Week 2 Wednesday |
+| Reviewers   | Handover is confirmed                             | 16:00-16:30 UTC Week 2 Wednesday |
+| Governance  | Handover is received                              | 16:00-16:30 UTC Week 2 Wednesday |
+| Reviewers   | Spell PR is approved                              | 16:00-16:30 UTC Week 2 Wednesday |
+| Crafter     | Spell PR is merged                                | 16:00-16:30 UTC Week 2 Wednesday |
+| All         | Spell retro is started (if required)              | 16:00 UTC Week 2 Thursday        |
 
-### Steps:
+Note: a delay in a stage completion shifts the deadline for all subsequent steps to the same amount of hours,
+unless spell team agrees otherwise.
+
+## Development Stage
+
 * [ ] Create a new branch on the `spells-mainnet` repo named `YYYY-MM-DD` using the initial target date of the spell
   * [ ] Ensure the same target date is used as the corresponding `spells-goerli` spell branch
 * [ ] Pull `master` Locally and Checkout Branch (IF Branch is created via GitHub)
@@ -132,7 +155,10 @@ Repo: https://github.com/makerdao/spells-mainnet
     * [ ] Raw GitHub URL is correct
     * [ ] Exec hash is correct (use `cast keccak -- "$(curl '$URL' -o - 2>/dev/null)"` where `wget` doesn't work)
   * [ ] Ensure `description` date in `DssSpell.sol` matches exec copy one
-* [ ] Wait for at Least Two Approvals with local tests to deploy
+
+## Deployment Stage
+
+* [ ] Wait for at least two "good to deploy" comments (containing local tests) from the official reviewers
 * [ ] Pre-Deploy Setup and Checks (currently via `dapptools`)
   * [ ] Set local env (`.sethrc`)
     * [ ] Deployer
@@ -168,7 +194,10 @@ Repo: https://github.com/makerdao/spells-mainnet
 * [ ] Archive Spell via `make archive-spell` for current date or `date="YYYY-MM-DD" make archive-spell` (date as per target exec date)
 * [ ] Commit & Push for Review
 * [ ] Wait for CI to PASS
-* [ ] Wait for at Least two Approvals to Share for Publishing to Governance Facilitators
+
+## Handover and Merge Stage
+
+* [ ] Wait for at least two "good to handover" comments (containing local tests) from the official reviewers
 * [ ] Share Deployed Address in [`new-spells`](https://discord.com/channels/893112320329396265/897483518316265553) discord channel
   * [ ] Make sure to tag responsible governance facilitator in the message with the address
   * [ ] Wait until responsible governance facilitator confirms handover in `new-spells`
