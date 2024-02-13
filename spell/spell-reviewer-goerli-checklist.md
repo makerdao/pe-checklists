@@ -245,8 +245,7 @@ Spell Actions (Per Exec Sheet):
   * [ ] Check all CI tests are passing as at the latest commit
     _Insert most recent commit hash where CI was passing_
   * [ ] Ensure every test function is declared as `public`
-    * [ ] IF the test is enabled, it MUST NOT have the `skipped` modifier
-    * [ ] OTHERWISE, if the test is disabled, it MUST have the `skipped` modifier
+    * [ ] IF the test needs to run, it MUST NOT have the `skipped` modifier; OTHERWISE, it MUST have the `skipped` modifier
   * [ ] Ensure each spell action has sufficient test coverage
     _List actions for which coverage was checked here_
   * [ ] Ensure that any other env variable does not affect execution of the tests (for example, by inspecting the output of `printenv | grep "FOUNDRY_\|DAPP_"`)
