@@ -27,8 +27,9 @@ Repo: https://github.com/makerdao/spells-mainnet
 | Crafter     | Spell PR is merged                                | 16:00-16:30 UTC Week 2 Wednesday |
 | All         | Spell retro is started (if required)              | 16:00 UTC Week 2 Thursday        |
 
-Note: a delay in a stage completion shifts the deadline for all subsequent steps to the same amount of hours,
-unless spell team agrees otherwise.
+- The deadlines are only meant for better coordination and should not be prioritised over security
+- If a delay is expected, responsible party should provide new realistic time estimation
+  - A delay in one stage completion shifts deadlines for all subsequent stages to the same amount of hours, unless spell team agrees otherwise
 
 ## Development Stage
 
