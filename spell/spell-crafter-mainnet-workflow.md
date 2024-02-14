@@ -167,9 +167,14 @@ Repo: https://github.com/makerdao/spells-mainnet
   * [ ] Ensure spell is verified on etherscan
   * [ ] Ensure local tests PASS against deployed spell run via the deploy script
   * [ ] Push auto-generated commit
+* Cast spell on a newly created Tenderly Testnet
+  * [ ] Create testnet and cast deployed spell there using `make cast-on-tenderly spell=0x...` command (or a CI trigger)
+  * [ ] Check that returned `public explorer url` is publicly accessible (e.g. using incognito browser mode)
+  * [ ] If `cast-on-tenderly` command is executed several times for the same spell, delete all testnets of the same name except the last one
 * [ ] Archive Spell via `make archive-spell` for current date or `date="YYYY-MM-DD" make archive-spell` (date as per target exec date)
 * [ ] Commit & Push for Review
 * [ ] Wait for CI to PASS
+* [ ] Post a comment containing links to the deployed spell and Tenderly Testnet
 * [ ] Wait for at Least two Approvals to Share for Publishing to Governance Facilitators
 * [ ] Share Deployed Address in [`new-spells`](https://discord.com/channels/893112320329396265/897483518316265553) discord channel
   * [ ] Make sure to tag responsible governance facilitator in the message with the address

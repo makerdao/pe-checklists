@@ -353,6 +353,13 @@ _Insert your local test logs here_
     * [ ] Check again that the PR did not modify the `DssExecLib.address` file (e.g. look under the 'Files Changed' PR tab, etc.)
     * [ ] Ensure Etherscan `Libraries Used` matches DssExecLib [Latest Release](https://github.com/makerdao/dss-exec-lib/releases/latest)
     * [ ] (For your tests to be accurate) git submodule hash matches [dss-exec-lib](https://github.com/makerdao/dss-exec-lib/releases/latest) latest release's tag commit and inspect diffs if doesn't match to ensure expected behaviour (Currently Non-Critical pending the next DssExecLib release, double check that the ExecLib used by the contract matches the latest release)
+* Tenderly Testnet checks
+  * [ ] A testnet with the name matching spell description is found at [maker dashboard](https://dashboard.tenderly.co/maker/virtual-networks)
+  * [ ] The testnet name is unique (previous testnets does not have the same name)
+  * [ ] Cast transaction is set to the correct "receiver" (matches deployed spell address)
+  * [ ] All actions are executed in the transaction trace
+  * [ ] No reverts are present that block execution
+  * [ ] No out-of-gas errors are present
 * Archive checks
   * [ ] `make diff-archive-spell` for current date or `make diff-archive-spell date="YYYY-MM-DD"`
   * [ ] Ensure date corresponds to target Exec Doc date
