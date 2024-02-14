@@ -19,7 +19,7 @@ Repo: https://github.com/makerdao/spells-mainnet
 | Crafter     | Spell code review is addressed                    | 16:00 UTC Week 2 Tuesday         |
 | Reviewers   | Spell code is approved                            | 12:00 UTC Week 2 Wednesday       |
 | Crafter     | Spell is deployed                                 | 14:00 UTC Week 2 Wednesday       |
-| Reviewers   | Spell deployment is approved                      | 16:00-16:30 UTC Week 2 Wednesday |
+| Reviewers   | Spell deployment is approved                      | 16:00 UTC Week 2 Wednesday       |
 | Crafter     | Handover is published                             | 16:00-16:30 UTC Week 2 Wednesday |
 | Reviewers   | Handover is confirmed                             | 16:00-16:30 UTC Week 2 Wednesday |
 | Governance  | Handover is received                              | 16:00-16:30 UTC Week 2 Wednesday |
