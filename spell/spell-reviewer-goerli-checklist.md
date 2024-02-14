@@ -240,15 +240,17 @@ Spell Actions (Per Exec Sheet):
 * [ ] Ensure every spell variable is declared as `public`/`internal`
 * [ ] Ensure every spell variable is used in the spell (no unused variables)
 * [ ] Spell actions match the corresponding [Exec Sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw)
-* [ ] Tests
-  * [ ] Ensure each spell action has sufficient test coverage
-    _List actions for which coverage was checked here_
-  * [ ] Ensure every test function is declared as public if enabled or private if disabled
+* Tests
   * [ ] Ensure that the `DssExecLib.address` file is not being modified by the spell PR
   * [ ] Check all CI tests are passing as at the latest commit
     _Insert most recent commit hash where CI was passing_
+  * [ ] Ensure every test function is declared as `public`
+    * [ ] IF the test needs to run, it MUST NOT have the `skipped` modifier; OTHERWISE, it MUST have the `skipped` modifier
+  * [ ] Ensure each spell action has sufficient test coverage
+    _List actions for which coverage was checked here_
+  * [ ] Ensure that any other env variable does not affect execution of the tests (for example, by inspecting the output of `printenv | grep "FOUNDRY_\|DAPP_"`)
   * [ ] Check all tests are passing locally using `make test`
-    * [ ] Ensure that only `ETH_RPC_URL` is being used from env (i.e. no `match`, `block` or similar are active in your env)
+    * [ ] Ensure every test listed in the _coverage_ item above is present in the logs with the `[PASS]` prefix.
 
 ```
 _Insert your passing local tests here_
@@ -280,12 +282,12 @@ _Insert your passing local tests here_
 * [ ] Archive matches `src`
   * [ ] `make diff-archive-spell` for current date or or `date="YYYY-MM-DD" make diff-archive-spell` (date as per cast timestamp)
   * [ ] Ensure date corresponds to target Exec Sheet date
-* [ ] Tests
+* Tests
   * [ ] Ensure that the `DssExecLib.address` file is not being modified by the spell PR
   * [ ] Check all CI tests are passing as at the latest commit
     _Insert most recent commit hash where CI was passing_
+  * [ ] Ensure that only `ETH_RPC_URL` is being used from env (i.e. no `match`, `block` or similar are active in your env)
   * [ ] Check all tests are passing locally using `make test`
-    * [ ] Ensure that only `ETH_RPC_URL` is being used from env (i.e. no `match`, `block` or similar are active in your env)
 
 ```
 _Insert your passing local tests here_

@@ -50,7 +50,7 @@ Repo: https://github.com/makerdao/spells-mainnet
   * [ ] Disable specific tests IF Not Used (e.g. `testCollateralIntegrations`, `testNewChainlogValues`, `testNewIlkRegistryValues`, ...)
     * [ ] Remove spell-specific part
     * [ ] Keep setup
-    * [ ] Disable by setting visibility to `private`
+    * [ ] Skip by adding the `skipped` modifier
     * [ ] Add commented notes
       * [ ] e.g. `// Insert new collateral integration tests here`
     * [ ] Keep commented tests (e.g. `testOSMs`, `testMedianizers`)
@@ -141,7 +141,8 @@ Repo: https://github.com/makerdao/spells-mainnet
 * [ ] Add new ChainLog Address in `addresses_mainnet.sol` (e.g. Collateral Onboarding)
 * [ ] Run Tests `make test` or `make test match=<test_name>` to inspect debug traces
   * [ ] Ensure Good Coverage
-  * [ ] Ensure every test function is declared as public if enabled or private if disabled
+  * [ ] Ensure every test function is declared as `public`
+    * [ ] IF the test needs to run, it MUST NOT have the `skipped` modifier; OTHERWISE, it MUST have the `skipped` modifier
   * [ ] Tests PASS via `make test`
 * [ ] Open PR & Add Reviewers
 * [ ] Iterate until polls are ended and exec doc is confirmed
@@ -192,9 +193,14 @@ Repo: https://github.com/makerdao/spells-mainnet
   * [ ] Ensure spell is verified on etherscan
   * [ ] Ensure local tests PASS against deployed spell run via the deploy script
   * [ ] Push auto-generated commit
+* Cast spell on a newly created Tenderly Testnet
+  * [ ] Create testnet and cast deployed spell there using `make cast-on-tenderly spell=0x...` command (or a CI trigger)
+  * [ ] Check that returned `public explorer url` is publicly accessible (e.g. using incognito browser mode)
+  * [ ] If `cast-on-tenderly` command is executed several times for the same spell, delete all testnets of the same name except the last one
 * [ ] Archive Spell via `make archive-spell` for current date or `date="YYYY-MM-DD" make archive-spell` (date as per target exec date)
 * [ ] Commit & Push for Review
 * [ ] Wait for CI to PASS
+* [ ] Post a comment containing links to the deployed spell and Tenderly Testnet
 
 ## Handover and Merge Stage
 
