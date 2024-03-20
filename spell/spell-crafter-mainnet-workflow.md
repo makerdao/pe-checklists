@@ -20,9 +20,9 @@ Repo: https://github.com/makerdao/spells-mainnet
 | Reviewers   | Spell code is reviewed (against the Exec Doc)      | 16:00 UTC Week 2 Tuesday         |
 | Crafter     | Spell is deployed, Testnet is created              | 12:00 UTC Week 2 Wednesday       |
 | Reviewers   | Spell deployment is approved                       | 16:00 UTC Week 2 Wednesday       |
-| Crafter     | Handover is published                              | 16:00-16:30 UTC Week 2 Wednesday |
-| Reviewers   | Handover is confirmed                              | 16:00-16:30 UTC Week 2 Wednesday |
-| Governance  | Handover is received                               | 16:00-16:30 UTC Week 2 Wednesday |
+| Crafter     | Spell address is published                         | 16:00-16:30 UTC Week 2 Wednesday |
+| Reviewers   | Spell address is confirmed                         | 16:00-16:30 UTC Week 2 Wednesday |
+| Governance  | Spell address is received                          | 16:00-16:30 UTC Week 2 Wednesday |
 | Reviewers   | Spell PR is approved                               | 16:00-16:30 UTC Week 2 Wednesday |
 | Crafter     | Spell PR is merged                                 | 16:00-16:30 UTC Week 2 Wednesday |
 | All         | Spell retro is started (if required)               | 16:00 UTC Week 2 Thursday        |
