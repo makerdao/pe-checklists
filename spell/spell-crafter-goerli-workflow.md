@@ -2,13 +2,10 @@
 
 ## Goerli
 
-PR: https://github.com/makerdao/spells-goerli/pull/<TODO>
+Repo: https://github.com/makerdao/spells-goerli
 
-### [Governance Cadence Improvement](https://forum.makerdao.com/t/governance-cadence-improvement/14972)
+## Development Stage
 
-![](https://ipfs.io/ipfs/QmUqCvy7c8Qmzn7yZ6D3353wTqCZ3VDAwQKYB37pJ2BjXb)
-
-### Steps:
 * [ ] Create a new branch on the `spells-goerli` repo named `YYYY-MM-DD` using the initial target date of the spell
   * [ ] Ensure the same target date is used as the corresponding `spells-mainnet` spell branch
 * [ ] Pull `master` Locally and Checkout Branch (IF Branch is created via GitHub)
@@ -116,7 +113,10 @@ PR: https://github.com/makerdao/spells-goerli/pull/<TODO>
 * [ ] Open PR & Add Reviewers
 * [ ] Iterate until polls are ended and exec doc is confirmed
 * [ ] Make sure CI PASS
-* [ ] Wait for at Least Two Approvals with local tests to deploy
+
+## Deployment Stage
+
+* [ ] Wait for at least two "good to deploy" comments (containing local tests) from the official reviewers
 * [ ] Pre-Deploy Setup and Checks (currently via `dapptools`)
   * [ ] Set local env (`.sethrc`)
     * [ ] Deployer
@@ -151,7 +151,10 @@ PR: https://github.com/makerdao/spells-goerli/pull/<TODO>
 * [ ] Archive Spell via `make archive-spell` for current date or `date="YYYY-MM-DD" make archive-spell` (date as per cast timestamp)
 * [ ] Commit & Push for Review
 * [ ] Wait for CI to PASS
-* [ ] Wait for at Least Two Approvals
+
+## Cast and Merge Stage
+
+* [ ] Wait for at least two "good to cast" comments (containing local tests) from the official reviewers
 * [ ] Cast Spell via `make cast-spell` (ONLY ON GOERLI)
 * [ ] Check `cast()` trace (via [EthTx](https://ethtx.info/))
   * [ ] Ensure no reverts are present that block execution
