@@ -325,7 +325,7 @@ _Insert your local test logs here_
     _Insert your Exec Doc Hash here_
   * [ ] Using Exec Doc URL from the above, generate Exec Doc Hash via `cast keccak -- "$(curl '$URL' -o - 2>/dev/null)"`
     _Insert your Exec Doc Hash here_
-  * [ ] Make sure that hash above doesn't match keccak hash of the empty string (`0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470`)
+  * [ ] Make sure that hash above doesn't match `keccak` hash of the empty string (`0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470`)
   * [ ] Using Exec Doc URL from the above, read spell instructions from the Exec Doc and list them below
     _List all instructions announced in the Exec Doc_
   * [ ] Office hours value in the Exec Doc matches the spell
