@@ -76,9 +76,7 @@ Repo: https://github.com/makerdao/spells-mainnet
 * [ ] CI Tests PASS
 * [ ] Open Draft PR on `spells-mainnet` titled `Mainnet spell YYYY-MM-DD` where `YYYY-MM-DD` is the expected target date of the spell
 * [ ] Assign to yourself
-* [ ] If corresponding Exec Doc is ready
-  * [ ] Add Spell Actions as per the corresponding Exec Doc
-* [ ] If corresponding Exec Doc is NOT ready
+* Add content based on the provided Exec Sheet
   * [ ] Add Spell Actions as per [Governance Facilitators Spell Content Sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw) - [Polls](https://vote.makerdao.com/polling?network=mainnet)
   * [ ] Polls starts on Monday and ends on Thursday
     * [ ] Ensure spell actions match polls details and links (forum posts, MIPs portal, ...)
@@ -87,7 +85,6 @@ Repo: https://github.com/makerdao/spells-mainnet
           `// https://vote.makerdao.com/polling/<hash>`
     * [ ] Add a comment for the forum post URL
           `// https://forum.makerdao.com/t/<title>/<number>`
-  * [ ] Check on `new-spells` discord channel when Exec Doc is ready
   * [ ] Pragma
     * [ ] Current solc version `0.8.16`
   * [ ] Interfaces
@@ -137,26 +134,33 @@ Repo: https://github.com/makerdao/spells-mainnet
   * [ ] Add new chainLog value tests
   * [ ] Add new ilk registry value tests
   * [ ] Add specific tests (DAI/MKR Streams/Payments, Lerps, ...)
-    * [ ] The test for payments should check the sum of all payments matches the Exec Doc
+    * [ ] The test for payments should check the sum of all payments matches the Exec Sheet
 * [ ] Add new ChainLog Address in `addresses_mainnet.sol` (e.g. Collateral Onboarding)
 * [ ] Run Tests `make test` or `make test match=<test_name>` to inspect debug traces
   * [ ] Ensure Good Coverage
   * [ ] Ensure every test function is declared as `public`
     * [ ] IF the test needs to run, it MUST NOT have the `skipped` modifier; OTHERWISE, it MUST have the `skipped` modifier
   * [ ] Tests PASS via `make test`
-* [ ] Open PR & Add Reviewers
-* [ ] Iterate until polls are ended and exec doc is confirmed
-* [ ] Confirm Exec Doc Actions
+* [ ] Make sure CI PASS
+* [ ] Mark PR as "ready for review" and add reviewers
+
+## Pre-Deployment Stage
+
+* [ ] Wait till the Exec Doc is merged
+* Exec Doc checks
   * [ ] Check that every action present in the spell code is present in the Exec Doc
   * [ ] Check that every action in the Exec Doc is present in the spell code
-* [ ] Make sure CI PASS
-* [ ] Add Exec Hash
+  * [ ] Office hours value in the Exec Doc matches the spell
+  * [ ] Sum of all payments in the Exec Doc matches the tests
+* Exec Doc Hash
   * [ ] Run `make exec-hash` for current date, or `date=YYYY-MM-DD` and update spell code accordingly
     * [ ] Executive vote file name and date is correct
     * [ ] [community](https://github.com/makerdao/community) repo commit hash corresponds to latest change
     * [ ] Raw GitHub URL is correct
     * [ ] Exec hash is correct (use `cast keccak -- "$(curl '$URL' -o - 2>/dev/null)"` where `wget` doesn't work)
-  * [ ] Ensure `description` date in `DssSpell.sol` matches exec copy one
+  * [ ] Ensure `description` date in `DssSpell.sol` matches target date inside Exec Doc
+* [ ] Make sure all review comments are either addressed or answered
+* [ ] Notify the reviewers
 
 ## Deployment Stage
 
