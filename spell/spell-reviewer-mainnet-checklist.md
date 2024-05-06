@@ -5,29 +5,17 @@
 * Preparation
   * [ ] Exec Sheet for the specified date is found in the ["Executive Vote Implementation Process" google sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw)
     _Insert URL to the specific sheet here_
-  * [ ] Exec Doc for the specified date is found in the [`makerdao/community` GitHub repo](https://github.com/makerdao/community/tree/master/governance/votes)
-  * [ ] Exec Doc file name follows the format `Executive vote - Month DD, YYYY.md`
-  * [ ] Extract _permanent_ URL to the raw markdown file and paste it below
-    _Insert your Raw Exec Doc URL here_
-  * [ ] Using Exec Doc URL from the above and the `TARGET_DATE`, generate Exec Doc Hash via `make exec-hash date=$TARGET_DATE $URL`
-    _Insert your Exec Doc Hash here_
-  * [ ] Using Exec Doc URL from the above, generate Exec Doc Hash via `cast keccak -- "$(curl '$URL' -o - 2>/dev/null)"`
-    _Insert your Exec Doc Hash here_
-  * [ ] Using Exec Doc URL from the above, read spell instructions from the Exec Doc and list them below
-    _List all instructions announced in the Exec Doc_
-  * [ ] Ensure that instructions announced in the Exec Doc match instructions in the Exec Sheet
+  * [ ] Using Exec Sheet URL from the above, read spell instructions from the Exec Sheet and list them below
+    _List all instructions announced in the Exec Sheet_
 * Base checks
   * [ ] Current solc version `0.8.16`
   * [ ] Office hours is `true` IF spell introduces a major change that can affect external parties (e.g.: keepers are affected in case of collateral offboarding) OTHERWISE explicitly set to `false`
   * [ ] Office hours value matches the Exec Sheet
-  * [ ] Office hours value matches the Exec Doc
   * [ ] 30 days spell expiry set in the constructor (`block.timestamp + 30 days`)
 * Spell description
   * [ ] Description follows the format `TARGET_DATE MakerDAO Executive Spell | Hash: EXEC_DOC_HASH`
-  * [ ] `TARGET_DATE` in the description matches the Exec Doc target date
+  * [ ] `TARGET_DATE` in the description matches the target date
   * [ ] Accompanying comment above spell description follows the format `// Hash: cast keccak -- "$(wget 'EXEC_DOC_URL' -q -O - 2>/dev/null)"`
-  * [ ] Exec Doc URL in comment matches your Raw Exec Doc URL above
-  * [ ] Exec Doc URL in comment refers to the [https://github.com/makerdao/community repo](https://github.com/makerdao/community/tree/master/governance/votes)
 * Comments inside the spell
   * [ ] Every _Section text_ from the Exec Sheet is copied to the spell code as a comment surrounded by the set of dashes (E.g. `// ----- Section text -----`)
   * [ ] Every _Instruction text_ from the Exec Sheet is copied to the spell code as `// Instruction text`
@@ -186,9 +174,9 @@
     * [ ] [`_updateDoc` helper](https://github.com/makerdao/spells-mainnet/blob/7400e91c4f211fc24bd4d3a95a86416afc4df9d1/archive/2023-09-27-DssSpell/DssSpell.sol#L76-L87) is copied one-to-one from the archive and defined above `actions`
     * [ ] `_updateDoc(ilk, doc)` is called in the spell
   * IF debt ceiling is updated
-    * IF AutoLine update is requested by the Exec Doc
+    * IF AutoLine update is requested by the Exec Sheet
       * [ ] Parameters are set via [`DssExecLib.setIlkAutoLineParameters(ilk, amount, gap, ttl)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L648) or [`DssExecLib.setIlkAutoLineDebtCeiling(ilk, amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L658)
-    * IF regular debt ceiling (`vat.ilk.line`) update is requested by the Exec Doc
+    * IF regular debt ceiling (`vat.ilk.line`) update is requested by the Exec Sheet
       * [ ] Collateral type (`ilk`) have [`AutoLine`](https://github.com/makerdao/dss-auto-line/tree/master) disabled previously or in the spell
       * [ ] Debt ceiling (`vat.ilk.line`) is updated, via EITHER:
           * [`DssExecLib.increaseIlkDebtCeiling(ilk, amount, global)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L621C14-L621C36)
@@ -205,7 +193,7 @@
         * [ ] The formula matches the example provided above
         * [ ] `debt_ceiling` in the executable formula matches new debt ceiling set in the spell or the maximum possible debt ceiling in case of the enabled AutoLine
         * [ ] `rwa_stability_fee` in the executable formula matches stability fee of the specified RWA found on chain
-        * [ ] `minimum_deal_duration_in_years` in the executable formula matches number found in the Exec Doc of the spell containing relevant RWA onboarding
+        * [ ] `minimum_deal_duration_in_years` in the executable formula matches number found in the Exec Sheet of the spell containing relevant RWA onboarding
         * [ ] `liquidation_ratio` in the executable formula matches liquidation ratio of the specified RWA found on chain
         * [ ] Executing formula locally provides integer number that matches the `val` in the spell
       * [ ] `val` makes sense in context of the [rate mechanism](https://github.com/makerdao/developerguides/blob/master/mcd/intro-rate-mechanism/intro-rate-mechanism.md)
@@ -217,38 +205,38 @@
 * IF payments are present in the spell
   * IF `MKR` transfers are present
     * [ ] Recipient address in the instruction is in the checksummed format
-    * [ ] Recipient address matches Exec Doc
+    * [ ] Recipient address matches Exec Sheet
     * [ ] Recipient address variable name matches one found in `addresses_wallets.sol`
-    * [ ] Transfer amount matches Exec Doc
+    * [ ] Transfer amount matches Exec Sheet
     * [ ] Transfer amount is specified with (at least) 2 decimals using `ether` keyword
     * [ ] IF `ether` keyword is used, comment is present on the same line `// Note: ether is a keyword helper, only MKR is transferred here`
     * [ ] The transfers are tested via `testMKRPayments` test
-    * [ ] Sum of all MKR transfers tested in `testMKRPayments` matches number in the Exec Doc
+    * [ ] Sum of all MKR transfers tested in `testMKRPayments` matches number in the Exec Sheet
   * IF `DAI` surplus buffer transfers are present
     * [ ] Recipient address in the instruction is in the checksummed format
-    * [ ] Recipient address matches Exec Doc
+    * [ ] Recipient address matches Exec Sheet
     * [ ] Recipient address variable name matches one found in `addresses_wallets.sol`
-    * [ ] Transfer amount matches Exec Doc
+    * [ ] Transfer amount matches Exec Sheet
     * [ ] The transfers are tested via `testDAIPayments` test
-    * [ ] Sum of all DAI transfers tested in `testDAIPayments` matches number in the Exec Doc
+    * [ ] Sum of all DAI transfers tested in `testDAIPayments` matches number in the Exec Sheet
   * IF `MKR` or `DAI` streams (`DssVest`) are created
     * [ ] `VestAbstract` interface is imported from `dss-interfaces/dss/VestAbstract.sol`
-    * [ ] `restrict` is used for each stream, UNLESS otherwise explicitly stated in the Exec Doc
-    * [ ] `usr` (Vest recipient address) matches Exec Doc
+    * [ ] `restrict` is used for each stream, UNLESS otherwise explicitly stated in the Exec Sheet
+    * [ ] `usr` (Vest recipient address) matches Exec Sheet
     * [ ] `usr` address in the instruction is in the checksummed format
     * [ ] `usr` address variable name match one found in `addresses_wallets.sol`
-    * [ ] `tot` (Total stream amount) matches Exec Doc
+    * [ ] `tot` (Total stream amount) matches Exec Sheet
     * [ ] IF `ether` keyword is used, comment is present on the same line `// Note: ether is a keyword helper, only MKR is transferred here`
-    * [ ] IF vest amount is expressed in 'per year' or similar in the Exec Doc, account for leap days
-    * [ ] `bgn` (Vest start timestamp) matches Exec Doc
+    * [ ] IF vest amount is expressed in 'per year' or similar in the Exec Sheet, account for leap days
+    * [ ] `bgn` (Vest start timestamp) matches Exec Sheet
     * [ ] `tau` is expressed as `bgn - fin` (i.e. `MONTH_DD_YYYY - MONTH_DD_YYYY`)
-    * [ ] `fin` (Vest end timestamp) matches Exec Doc
+    * [ ] `fin` (Vest end timestamp) matches Exec Sheet
     * [ ] `eta` (Vest cliff duration) matches the following logic
-      * IF `eta` is explicitly specified in the Exec Doc, then the values match
-      * IF `eta` and `clf` (Cliff end timestamp) are not specified in the Exec Doc, then `eta` is `0`
+      * IF `eta` is explicitly specified in the Exec Sheet, then the values match
+      * IF `eta` and `clf` (Cliff end timestamp) are not specified in the Exec Sheet, then `eta` is `0`
       * IF `clf` is specified, but `clf <= bgn`, then `eta` is `0`
       * IF `clf` is specified and `clf > bgn`, `eta` is expressed as `clf - bgn` (i.e. `MONTH_DD_YYYY - MONTH_DD_YYYY`)
-    * [ ] IF `mgr` (Vest manager address) is specified in the Exec Doc, matches the value, OTHERWISE matches `address(0)`
+    * [ ] IF `mgr` (Vest manager address) is specified in the Exec Sheet, matches the value, OTHERWISE matches `address(0)`
     * [ ] Ensure that max vesting rate (`cap`) is enough for the new streams
       * The maximum vesting rate (`tot` divided by `tau`) `<=` the maximum vest streaming rate (`cap`)
       * The maximum vesting rate (`tot` divided by `tau`) `>`  the maximum vest streaming rate (`cap`)
@@ -256,19 +244,19 @@
     * IF max vesting rate (`cap`) is changed in the spell
       * [ ] Governance facilitators were notified
       * [ ] Exec Sheet contain explicit instruction
-      * [ ] Exec Doc contain explicit instruction
+      * [ ] Exec Sheet contain explicit instruction
     * IF MKR stream ([DssVestTransferrable](https://github.com/makerdao/dss-vest/blob/master/src/DssVest.sol#L463)) is present
       * [ ] Vest contract's MKR allowance increased by the cumulative `total` (the sum of all `tot` values)
       * [ ] Ensure allowance increase follows archive patterns
     * [ ] Tested via `testVestDAI` or `testVestMKR`
   * IF `MKR` or `DAI` vest termination (`Yank`) is present
-    * [ ] Yanked stream ID matches Exec Doc
+    * [ ] Yanked stream ID matches Exec Sheet
     * [ ] `MCD_VEST_MKR_TREASURY` chainlog address is used for MKR stream `yank`
     * [ ] `MCD_VEST_DAI` chainlog address is used for DAI stream `yank`
     * [ ] Tested via `testYankDAI` or `testYankMKR`
 * IF SubDAO-related content is present
   * IF SubDAO provides SubProxy spell address
-    * [ ] SubDAO spell address matches Exec Doc
+    * [ ] SubDAO spell address matches Exec Sheet
     * [ ] Executed via `ProxyLike(SUBDAO_PROXY).exec(SUBDAO_SPELL, abi.encodeWithSignature("execute()"));`
     * [ ] Execution is NOT delegate call
     * [ ] IF SubDAO spell deployer is a smart contract (e.g. multisig or factory), ensure the deployer address is in `addresses_deployers.sol` as an entry
@@ -280,9 +268,9 @@
     * Upgradable SubDAO contracts
       * [ ] Upgradable contracts have the `PAUSE_PROXY` as their `admin` (i.e. the party that can upgrade)
       * [ ] Any upgradable SubDAO contracts with an `admin` that is not `PAUSE_PROXY` are not authed on any core contracts (Blocking)
-    * [ ] All SubDAO content addresses (i.e. provided contract addresses or EOAs) present in the Maker Core spell are present in the Exec Doc and are correct. SubDAO addresses being authed or given any permissions MUST be in the Exec Doc. SubDAO addresses being called must be confirmed by the SubDAO spell team.
+    * [ ] All SubDAO content addresses (i.e. provided contract addresses or EOAs) present in the Maker Core spell are present in the Exec Sheet and are correct. SubDAO addresses being authed or given any permissions MUST be in the Exec Sheet. SubDAO addresses being called must be confirmed by the SubDAO spell team.
     * [ ] IF addresses not PR'ed in by the SubDAO team (use git blame for example), SubDAO content addresses all have inline comment for provenance or source being OKed by SubDAO
-    * [ ] SubDAO actions match Exec Doc (only where inline with main spell code) and do not affect core contracts
+    * [ ] SubDAO actions match Exec Sheet (only where inline with main spell code) and do not affect core contracts
     * [ ] Core contract knock-on actions (such as offboarding or setting DC to 0) are present in the exec and match the code
     * [ ] External calls for SubDAO content are NOT delegate call
     * [ ] Code does not have untoward behavior within the scope of Maker Core Contracts (e.g. up to the SubDAO proxy)
@@ -309,7 +297,6 @@
   * [ ] Fetch addresses as type `address` and wrap with `Like` suffix interfaces inline (when making calls), UNLESS archive patterns permit otherwise (Such as `MKR`)
   * [ ] Use the [DssExecLib Core Address Helpers](https://github.com/makerdao/dss-exec-lib/blob/master/src/DssExecLib.sol#L166) where possible (e.g. `DssExecLib.vat()`)
   * [ ] Where addresses are fetched from the `ChainLog`, the variable name must match the value of the ChainLog key for that address (e.g. `MCD_VAT` rather than `vat`), except where the archive pattern differs from this pattern (e.g. MKR)
-* [ ] Spell actions match the corresponding Exec Doc
 * Tests
   * [ ] Ensure that the `DssExecLib.address` file is not being modified by the spell PR
   * [ ] Check all CI tests are passing as at the latest commit
@@ -325,6 +312,34 @@
 ```
 _Insert your local test logs here_
 ```
+
+## Pre-Deployment Stage
+
+* [ ] Wait till the Exec Doc is merged
+* Exec Doc checks
+  * [ ] Exec Doc for the specified date is found in the [`makerdao/community` GitHub repo](https://github.com/makerdao/community/tree/master/governance/votes)
+  * [ ] Exec Doc file name follows the format `Executive vote - Month DD, YYYY.md`
+  * [ ] Extract _permanent_ URL to the raw markdown file and paste it below
+    _Insert your Raw Exec Doc URL here_
+  * [ ] Using Exec Doc URL from the above and the `TARGET_DATE`, generate Exec Doc Hash via `make exec-hash date=$TARGET_DATE $URL`
+    _Insert your Exec Doc Hash here_
+  * [ ] Using Exec Doc URL from the above, generate Exec Doc Hash via `cast keccak -- "$(curl '$URL' -o - 2>/dev/null)"`
+    _Insert your Exec Doc Hash here_
+  * [ ] Make sure that hash above doesn't match `keccak` hash of the empty string (`0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470`)
+  * [ ] Using Exec Doc URL from the above, read spell instructions from the Exec Doc and list them below
+    _List all instructions announced in the Exec Doc_
+  * [ ] Office hours value in the Exec Doc matches the spell
+  * [ ] Sum of all payments in the Exec Doc matches the tests
+  * [ ] Exec Doc URL in the spell comment matches your Raw Exec Doc URL above
+  * [ ] Exec Doc URL in the spell comment refers to the [https://github.com/makerdao/community](https://github.com/makerdao/community/tree/master/governance/votes) repository
+  * [ ] Every action present in the spell code is present in the Exec Doc
+  * [ ] Every action in the Exec Doc is present in the spell code
+* IF new commits are present in the spell
+  * [ ] Copy relevant checklist items from the above and redo them
+  * [ ] Ensure newly added code is covered by tests
+  * [ ] Check if chainlog needs to be updated
+  * [ ] Copy over and redo "Tests" section from the above
+* [ ] IF all checks pass, make sure to include explicit "Good to deploy" comment
 
 ## Deployed Stage
 

@@ -4,11 +4,35 @@
 
 Repo: https://github.com/makerdao/spells-mainnet
 
-### [Governance Cadence Improvement](https://forum.makerdao.com/t/governance-cadence-improvement/14972)
+### Spell coordination schedule
 
-![](https://ipfs.io/ipfs/QmUqCvy7c8Qmzn7yZ6D3353wTqCZ3VDAwQKYB37pJ2BjXb)
+| Responsible | Stage                                              | Deadline                        |
+|:------------|:---------------------------------------------------|:--------------------------------|
+| Governance  | Exec Sheet is created                              | 15:00 UTC Week 1 Tuesday        |
+| All         | Agreement is reached on the content and roles      | 15:00-15:30 UTC Week 1 Tuesday  |
+| Crafter     | Spell is cleaned up (for external contributions)   | 16:00 UTC Week 1 Wednesday      |
+| External    | External code is contributed via PR (if needed)    | 23:59 UTC Week 1 Friday         |
+| Governance  | Exec Sheet is finalised and fully confirmed        | 23:59 UTC Week 1 Friday         |
+| Crafter     | Spell is crafted (without the Exec Hash)           | 16:00 UTC Week 2 Monday         |
+| Reviewers   | Spell code is reviewed (against the Exec Sheet)    | 16:00 UTC Week 2 Tuesday        |
+| Governance  | Exec Doc is merged                                 | 16:00 UTC Week 2 Tuesday        |
+| Crafter     | Spell code review is addressed, Exec Hash is added | 12:00 UTC Week 2 Wednesday      |
+| Reviewers   | Spell code is reviewed (against the Exec Doc)      | 16:00 UTC Week 2 Wednesday      |
+| Crafter     | Spell is deployed, Testnet is created              | 12:00 UTC Week 2 Thursday       |
+| Reviewers   | Spell deployment is approved                       | 16:00 UTC Week 2 Thursday       |
+| Crafter     | Spell address is published                         | 16:00-16:30 UTC Week 2 Thursday |
+| Reviewers   | Spell address is confirmed                         | 16:00-16:30 UTC Week 2 Thursday |
+| Governance  | Spell address is received                          | 16:00-16:30 UTC Week 2 Thursday |
+| Reviewers   | Spell PR is approved                               | 16:00-16:30 UTC Week 2 Thursday |
+| Crafter     | Spell PR is merged                                 | 16:00-16:30 UTC Week 2 Thursday |
+| All         | Spell retro is started (if needed)                 | 12:00 UTC Week 2 Friday         |
 
-### Steps:
+- The deadlines are only meant for better coordination and should not be prioritised over security
+- If a delay is expected, responsible party should provide new realistic time estimation
+  - A delay in one stage completion shifts deadlines for all subsequent stages to the same amount of hours, unless spell team agrees otherwise
+
+## Development Stage
+
 * [ ] Create a new branch on the `spells-mainnet` repo named `YYYY-MM-DD` using the initial target date of the spell
   * [ ] Ensure the same target date is used as the corresponding `spells-goerli` spell branch
 * [ ] Pull `master` Locally and Checkout Branch (IF Branch is created via GitHub)
@@ -52,9 +76,7 @@ Repo: https://github.com/makerdao/spells-mainnet
 * [ ] CI Tests PASS
 * [ ] Open Draft PR on `spells-mainnet` titled `Mainnet spell YYYY-MM-DD` where `YYYY-MM-DD` is the expected target date of the spell
 * [ ] Assign to yourself
-* [ ] If corresponding Exec Doc is ready
-  * [ ] Add Spell Actions as per the corresponding Exec Doc
-* [ ] If corresponding Exec Doc is NOT ready
+* Add content based on the provided Exec Sheet
   * [ ] Add Spell Actions as per [Governance Facilitators Spell Content Sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw) - [Polls](https://vote.makerdao.com/polling?network=mainnet)
   * [ ] Polls starts on Monday and ends on Thursday
     * [ ] Ensure spell actions match polls details and links (forum posts, MIPs portal, ...)
@@ -63,7 +85,6 @@ Repo: https://github.com/makerdao/spells-mainnet
           `// https://vote.makerdao.com/polling/<hash>`
     * [ ] Add a comment for the forum post URL
           `// https://forum.makerdao.com/t/<title>/<number>`
-  * [ ] Check on `new-spells` discord channel when Exec Doc is ready
   * [ ] Pragma
     * [ ] Current solc version `0.8.16`
   * [ ] Interfaces
@@ -113,27 +134,37 @@ Repo: https://github.com/makerdao/spells-mainnet
   * [ ] Add new chainLog value tests
   * [ ] Add new ilk registry value tests
   * [ ] Add specific tests (DAI/MKR Streams/Payments, Lerps, ...)
-    * [ ] The test for payments should check the sum of all payments matches the Exec Doc
+    * [ ] The test for payments should check the sum of all payments matches the Exec Sheet
 * [ ] Add new ChainLog Address in `addresses_mainnet.sol` (e.g. Collateral Onboarding)
 * [ ] Run Tests `make test` or `make test match=<test_name>` to inspect debug traces
   * [ ] Ensure Good Coverage
   * [ ] Ensure every test function is declared as `public`
     * [ ] IF the test needs to run, it MUST NOT have the `skipped` modifier; OTHERWISE, it MUST have the `skipped` modifier
   * [ ] Tests PASS via `make test`
-* [ ] Open PR & Add Reviewers
-* [ ] Iterate until polls are ended and exec doc is confirmed
-* [ ] Confirm Exec Doc Actions
+* [ ] Make sure CI PASS
+* [ ] Mark PR as "ready for review" and add reviewers
+
+## Pre-Deployment Stage
+
+* [ ] Wait till the Exec Doc is merged
+* Exec Doc checks
   * [ ] Check that every action present in the spell code is present in the Exec Doc
   * [ ] Check that every action in the Exec Doc is present in the spell code
-* [ ] Make sure CI PASS
-* [ ] Add Exec Hash
+  * [ ] Office hours value in the Exec Doc matches the spell
+  * [ ] Sum of all payments in the Exec Doc matches the tests
+* Exec Doc Hash
   * [ ] Run `make exec-hash` for current date, or `date=YYYY-MM-DD` and update spell code accordingly
     * [ ] Executive vote file name and date is correct
     * [ ] [community](https://github.com/makerdao/community) repo commit hash corresponds to latest change
     * [ ] Raw GitHub URL is correct
     * [ ] Exec hash is correct (use `cast keccak -- "$(curl '$URL' -o - 2>/dev/null)"` where `wget` doesn't work)
-  * [ ] Ensure `description` date in `DssSpell.sol` matches exec copy one
-* [ ] Wait for at Least Two Approvals with local tests to deploy
+  * [ ] Ensure `description` date in `DssSpell.sol` matches target date inside Exec Doc
+* [ ] Make sure all review comments are either addressed or answered
+* [ ] Notify the reviewers
+
+## Deployment Stage
+
+* [ ] Wait for at least two "good to deploy" comments (containing local tests) from the official reviewers
 * [ ] Pre-Deploy Setup and Checks (currently via `dapptools`)
   * [ ] Set local env (`.sethrc`)
     * [ ] Deployer
@@ -174,7 +205,10 @@ Repo: https://github.com/makerdao/spells-mainnet
 * [ ] Commit & Push for Review
 * [ ] Wait for CI to PASS
 * [ ] Post a comment containing links to the deployed spell and Tenderly Testnet
-* [ ] Wait for at Least two Approvals to Share for Publishing to Governance Facilitators
+
+## Handover and Merge Stage
+
+* [ ] Wait for at least two "good to handover" comments (containing local tests) from the official reviewers
 * [ ] Share Deployed Address in [`new-spells`](https://discord.com/channels/893112320329396265/897483518316265553) discord channel
   * [ ] Make sure to tag responsible governance facilitator in the message with the address
   * [ ] Wait until responsible governance facilitator confirms handover in `new-spells`
