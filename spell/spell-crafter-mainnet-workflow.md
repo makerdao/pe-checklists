@@ -37,7 +37,7 @@ Repo: https://github.com/makerdao/spells-mainnet
   * [ ] Pull `master` branch of the `spells-mainnet` repo locally
   * [ ] Create a new branch named `YYYY-MM-DD` using the _initial_ target date of the spell
 * Cleanup previous spell's actions
-  * [ ] Check previous PRs for the cleanup patterns
+  * [ ] Check previous pull requests for the cleanup patterns
   * [ ] Delete unused dependencies in the `src/dependencies` folder IF applicable
   * Cleanup `src/test/config.sol`
     * [ ] Set `deployed_spell` to `address(0)`
@@ -104,7 +104,7 @@ Repo: https://github.com/makerdao/spells-mainnet
       * [ ] Note: automatically verified on etherscan
     * [ ] Check if oracle deployment is required (e.g. univ3-lp-oracle, new ilk pip, ...) with responsible ecosystem actor
   * IF addresses are used in the spell
-    * [ ] Use `immutable` visibility when declaring addresses using `DssExecLib.getChangelogAddress`, OTHERWISE use `constant` for staticly defined addresses
+    * [ ] Use `immutable` visibility when declaring addresses using `DssExecLib.getChangelogAddress`, OTHERWISE use `constant` for statically defined addresses
     * [ ] Fetch addresses as type `address` and wrap with `Like` suffix interfaces inline (when making calls), EXCEPT `MKR` and vesting contracts
     * [ ] Use the [DssExecLib address helpers](https://github.com/makerdao/dss-exec-lib/blob/master/src/DssExecLib.sol#L166) where possible (e.g. `DssExecLib.vat()`)
     * [ ] Where addresses are fetched from the ChainLog, the variable name must match the value of the ChainLog key for that address (e.g. `MCD_VAT` rather than `vat`), EXCEPT where the archive pattern differs from this pattern (e.g. `MKR`)
@@ -120,8 +120,8 @@ Repo: https://github.com/makerdao/spells-mainnet
   * [ ] Ensure every spell variable is declared as public/internal
 * Add specific tests in `DssSpell.t.sol` to have sufficient test coverage for every spell action
   * [ ] Test new collaterals
-  * [ ] Test new ChainLog values
   * [ ] Test new ilk registry values
+  * [ ] Test new ChainLog values
   * [ ] Test DAI/MKR streams and payments, lerps
   * [ ] Test the sum of all DAI/MKR payments matches the Exec Sheet
 * Run tests via `make test` (or `make test match=<test_name>` to inspect debug traces)
@@ -158,7 +158,7 @@ Repo: https://github.com/makerdao/spells-mainnet
 
 * [ ] Wait for at least two "good to deploy" comments (containing local tests) from the official reviewers
 * Pre-deploy setup and checks (currently via `dapptools`)
-  * Set local envenvironment variables (`.sethrc`)
+  * Set local environment variables (`.sethrc`)
     * Deployer
       * [ ] Avoid using the same deployer for mainnet and testnet (to avoid deploying contracts with the same address but different sources)
       * [ ] `export ETH_PASSWORD=~/.env/password.txt`
@@ -192,7 +192,7 @@ Repo: https://github.com/makerdao/spells-mainnet
   * [ ] Create testnet and cast deployed spell there using `make cast-on-tenderly spell=0x...` command
   * [ ] Check that returned `public explorer url` is publicly accessible (e.g. using incognito browser mode)
   * [ ] IF `cast-on-tenderly` command is executed several times for the same spell, delete all testnets of the same name except the last one
-* [ ] Archive Spell via `make archive-spell` for tcurrent date (or `make archive-spell date="YYYY-MM-DD"`) using Target Date inside the Exec Doc
+* [ ] Archive Spell via `make archive-spell` for the current date (or `make archive-spell date="YYYY-MM-DD"`) using Target Date inside the Exec Doc
 * [ ] Commit & push changes for review
 * [ ] Wait for CI to PASS
 * [ ] Post a comment inside the PR containing links to the deployed spell and Tenderly Testnet
@@ -222,13 +222,13 @@ Repo: https://github.com/makerdao/spells-mainnet
 ## Next Steps
 
 * IF [`MegaPoker`-related](https://github.com/makerdao/megapoker/blob/master/src/MegaPoker.sol) updates are present in the spell (oracles are replaced, collaterals are onboarded or offboarded, etc)
-  * [ ] Inform EA responsible for maintainning `MegaPoker` contract
+  * [ ] Inform EA responsible for maintaining `MegaPoker` contract
   * Ensure `MegaPoker` contract is updated
-    * [ ] Coordinate with EA responsible for maintainning `MegaPoker` and TechOps
+    * [ ] Coordinate with EA responsible for maintaining `MegaPoker` and TechOps
     * [ ] Previous code patterns are followed
     * [ ] MegaPoker changes are reviewed & approved
     * [ ] CI & local tests PASS
-    * [ ] New `MegaPoker` contrac is deployed
+    * [ ] New `MegaPoker` contract is deployed
     * [ ] New deployed `MegaPoker` contract address is handed to TechOps
     * [ ] New deployed `Megapoker` contract address is updated in the README
 * IF new collateral is onboarded
