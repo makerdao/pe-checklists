@@ -43,7 +43,7 @@ Repo: https://github.com/makerdao/spells-mainnet
     * [ ] Set `deployed_spell` to `address(0)`
     * [ ] Set `deployed_spell_created` to `0`
     * [ ] Set `deployed_spell_block` to `0`
-    * [ ] Consider to add `previous_spell` address IF it haven't been executed yet
+    * [ ] IF there are outstanding spells that have not been `cast` yet, add them to `previous_spells`
   * Cleanup `DssSpell.sol`
     * [ ] Remove all definitions except `description`, `officeHours`, `actions`
     * [ ] Remove all actions inside `actions` function
@@ -166,7 +166,7 @@ Repo: https://github.com/makerdao/spells-mainnet
       * [ ] `export ETH_FROM=<address>`
     * EIP1559
       * [ ] Run `make estimate` to estimate gas
-      * [ ] `export ETH_GAS=X` with the output of the command above (e.g. `export ETH_GAS=6_000_000`)
+      * [ ] `export ETH_GAS=X` with the output of the command above + a safety margin (e.g. `export ETH_GAS=6_000_000`)
       * [ ] Check current gas price using `seth gas-price` and set `ETH_GAS_PRICE` accordingly (e.g. `50 gwei`)
       * [ ] Consider adding margin to account for spikes (e.g. current gas price 25 `gwei`, 50 `gwei` could be set)
       * [ ] `export ETH_GAS_PRICE=$(seth --to-wei X gwei)` (e.g. `export ETH_GAS_PRICE=25_000_000_000`)
