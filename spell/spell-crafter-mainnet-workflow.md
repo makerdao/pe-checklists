@@ -25,7 +25,7 @@ Repo: https://github.com/makerdao/spells-mainnet
 | Governance  | Spell address is received                          | 16:00-16:30 UTC Week 2 Thursday |
 | Reviewers   | Spell PR is approved                               | 16:00-16:30 UTC Week 2 Thursday |
 | Crafter     | Spell PR is merged                                 | 16:00-16:30 UTC Week 2 Thursday |
-| All         | Spell retro is started (if needed)                 | 12:00 UTC Week 2 Friday         |
+| Crafter     | Spell retro is started always on every spell cycle | 12:00 UTC Week 2 Friday         |
 
 - The deadlines are only meant for better coordination and should not be prioritised over security
 - If a delay is expected, responsible party should provide new realistic time estimation
