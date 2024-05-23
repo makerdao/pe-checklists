@@ -220,7 +220,7 @@ Repo: https://github.com/makerdao/spells-mainnet
 * [ ] Squash & Merge
 
 ## Next Steps
-* [ ] Initiate spell retrospective (inside existing spell thread in the #govops discord channel)
+* [ ] Initiate spell retrospective (inside existing spell thread in the `#govops` discord channel)
   * Collect any problems noticed during the spell, propose concrete improvements to make it constructive
   * Prefix your message with `Initiating retro:` for clarity
   * IF there is nothing to discuss, post `Initiating retro: nothing to discuss from my side`
