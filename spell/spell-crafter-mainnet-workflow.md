@@ -33,221 +33,205 @@ Repo: https://github.com/makerdao/spells-mainnet
 
 ## Development Stage
 
-* [ ] Create a new branch on the `spells-mainnet` repo named `YYYY-MM-DD` using the initial target date of the spell
-  * [ ] Ensure the same target date is used as the corresponding `spells-goerli` spell branch
-* [ ] Pull `master` Locally and Checkout Branch (IF Branch is created via GitHub)
-* [ ] Pull `master` Locally, Create and Checkout Branch (IF Branch was not created via GitHub)
-* [ ] Cleanup Previous Spell's Actions in `DssSpell.sol` (diffcheck with Goerli)
-  * [ ] Check previous spells in the `archive` folder for cleanup patterns
-  * [ ] Delete unused dependencies in the `src/dependencies` folder where applicable
-* [ ] Cleanup `src/test/config.sol`
-  * [ ] Set `deployed_spell` to `address(0)`
-  * [ ] Set `deployed_spell_created` to `0`
-  * [ ] Set `deployed_spell_block` to `0`
-  * [ ] Consider to add `previous_spell` address if it haven't been executed yet
-* [ ] Cleanup Specific Tests in `DssSpell.t.sol`
-  * [ ] Check previous spells in the `archive` folder for cleanup patterns
-  * [ ] Disable specific tests IF Not Used (e.g. `testCollateralIntegrations`, `testNewChainlogValues`, `testNewIlkRegistryValues`, ...)
-    * [ ] Remove spell-specific part
-    * [ ] Keep setup
+* Create new branch
+  * [ ] Pull `master` branch of the `spells-mainnet` repo locally
+  * [ ] Create a new branch named `YYYY-MM-DD` using the _initial_ target date of the spell
+* Cleanup previous spell's actions
+  * [ ] Check previous pull requests for the cleanup patterns
+  * [ ] Delete unused dependencies in the `src/dependencies` folder IF applicable
+  * Cleanup `src/test/config.sol`
+    * [ ] Set `deployed_spell` to `address(0)`
+    * [ ] Set `deployed_spell_created` to `0`
+    * [ ] Set `deployed_spell_block` to `0`
+    * [ ] IF there are outstanding spells that have not been `cast` yet, add them to `previous_spells`
+  * Cleanup `DssSpell.sol`
+    * [ ] Remove all definitions except `description`, `officeHours`, `actions`
+    * [ ] Remove all actions inside `actions` function
+    * [ ] Remove all interface declarations
+    * [ ] Keep a comment regarding `Rates`
+    * [ ] Replace Exec Doc URL and Exec Hash with `TODO`
+  * Cleanup specific tests in `DssSpell.t.sol` that are expected to be used in the future (e.g. `testCollateralIntegrations`, `testNewIlkRegistryValues`, ...)
+    * [ ] Do not comment out code
     * [ ] Skip by adding the `skipped` modifier
-    * [ ] Add commented notes
-      * [ ] e.g. `// Insert new collateral integration tests here`
-    * [ ] Keep commented tests (e.g. `testOSMs`, `testMedianizers`)
-* [ ] Add comments to the spell:
-  * [ ] Copy every _Section text_ from the Exec Sheet as comment to the spell code (above the code segment that implements the action)
-    * [ ] Surround the comment by the set of dashes (E.g. `// ----- Section text -----`)
-  * [ ] For every _Instruction text_ Exec Sheet:
-    * [ ] copy to the spell code as `// Instruction text`
-    * [ ] add newline above it
-  * [ ] For every `Reasoning URL` and `Authority URL` from the Exec Sheet add comment with it under relevant section or instruction in the spell code (depending on which row the link is present)
-    * [ ] For every `Reasoning URL` and `Authority URL` add prefix derived from the url itself
-      * [ ] `// Executive Vote:` if URL starts with `https://vote.makerdao.com/executive/`
-      * [ ] `// Poll:` if URL starts with `https://vote.makerdao.com/polling/`
-      * [ ] `// Forum:` if URL starts with `https://forum.makerdao.com/t/`
-      * [ ] `// MIP:` if URL starts with `https://mips.makerdao.com/mips/details/`
-  * [ ] If action in the spell doesn't have relevant instruction (e.g.: `chainlog` version bump), add the explanation prefixed with `// Note:`
-  * [ ] If an instruction can not be taken, add a comment under the instruction prefixed with `// Note:` (e.g.: `// Note: Payments are skipped on goerli`)
-* [ ] Run Tests `make test` or `make test match=<test_name>` to inspect debug traces
-  * [ ] Ensure to use latest `foundry` stable version
-    * [ ] Run `foundryup`
-* [ ] Tests PASS via `make test`
-* [ ] Commit & Push `Base spell`
-* [ ] CI Tests PASS
-* [ ] Open Draft PR on `spells-mainnet` titled `Mainnet spell YYYY-MM-DD` where `YYYY-MM-DD` is the expected target date of the spell
-* [ ] Assign to yourself
+    * [ ] Add comments to indicate required action (e.g. `// Insert new collateral address`)
+    * [ ] Keep all tests that are already skipped (e.g. `testOSMs`, `testMedianizers`)
+    * [ ] Remove unused interface declarations
+  * Ensure correctness of the cleanup
+    * [ ] Ensure to use latest `foundry` stable version by running `foundryup`
+    * [ ] Run Tests `make test` (or `make test match=<test_name>` to inspect debug traces)
+* Add comments to the spell based on the relevant [Exec Sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw)
+  * [ ] Copy every _Section text_ from the Exec Sheet as comment to the spell code
+  * [ ] Surround the comment by the set of dashes (e.g. `// ----- Section text -----`)
+  * [ ] Copy every _Instruction text_ from the Exec Sheet (e.g. `// Instruction text`)
+  * [ ] Add newline above every _Instruction text_
+  * [ ] Copy every `Reasoning URL` and `Authority URL` from the Exec Sheet as a comment under relevant section or instruction in the spell code (depending on the row the link is present)
+  * [ ] For every `Reasoning URL` and `Authority URL`, add prefix derived from the url itself:
+    * `// Executive Vote:` IF URL starts with `https://vote.makerdao.com/executive/`
+    * `// Poll:` IF URL starts with `https://vote.makerdao.com/polling/`
+    * `// Forum:` IF URL starts with `https://forum.makerdao.com/t/`
+    * `// MIP:` IF URL starts with `https://mips.makerdao.com/mips/details/`
+  * [ ] IF an action in the spell doesn't have relevant instruction (e.g.: ChainLog version bump), add the explanation below prefixed with `// Note:`
+  * [ ] IF an instruction can not be directly taken, add a comment below prefixed with `// Note:` (e.g.: `// Note: see dao_resolutions variable declared above`)
+* Open draft PR
+  * [ ] Local tests PASS via `make test`
+  * [ ] Commit & push the cleanup (e.g. `git commit -am "Base spell"`)
+  * [ ] CI tests PASS
+  * [ ] Open draft PR on `spells-mainnet` titled `Mainnet spell YYYY-MM-DD` where `YYYY-MM-DD` is the expected target date of the spell
+  * [ ] Assign PR to yourself
 * Add content based on the provided Exec Sheet
-  * [ ] Add Spell Actions as per [Governance Facilitators Spell Content Sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw) - [Polls](https://vote.makerdao.com/polling?network=mainnet)
-  * [ ] Polls starts on Monday and ends on Thursday
-    * [ ] Ensure spell actions match polls details and links (forum posts, MIPs portal, ...)
-    * [ ] Check spell copy is merged in [community](https://github.com/makerdao/community/blob/master/governance/votes) repo
-    * [ ] Add a comment for the polling detail URL
-          `// https://vote.makerdao.com/polling/<hash>`
-    * [ ] Add a comment for the forum post URL
-          `// https://forum.makerdao.com/t/<title>/<number>`
-  * [ ] Pragma
-    * [ ] Current solc version `0.8.16`
-  * [ ] Interfaces
-    * [ ] Consider using `DssExecLib` actions where possible (to avoid introducing interfaces where not required)
-    * [ ] Avoid `dss-interfaces` multi-import layout (see [issue #69](https://github.com/makerdao/dss-interfaces/issues/69))
-    * [ ] Prefer single import layout
-      * [ ] `import { VatAbstract } from "dss-interfaces/dss/VatAbstract.sol";`
-    * [ ] Consider static interfaces
-      * [ ] IF not present in `dss-interfaces`
-      * [ ] IF present in `dss-interfaces` but TOFIX
-      * [ ] IF only a few function interfaces are needed
-  * [ ] Consider Turn Office Hours On
-    * [ ] Check spell actions (e.g. Onboarding, Liquidation Adjustments, New DSS Modules, ...)
-    * [ ] Note: office hours are on by default if the modifier `officeHours` is not overridden
-  * [ ] Deploy New Join, Clip and Calc (Onboarding)
-    * [ ] `Join` (check which one is required)
+  * [ ] Ensure solc version is `0.8.16`
+  * [ ] Office hours is `true` IF spell introduces a major change that can affect external parties (e.g.: keepers are affected in case of collateral offboarding), OTHERWISE explicitly set to `false`
+  * [ ] Office hours value matches the Exec Sheet, OTHERWISE notify Responsible Governance Facilitator
+  * [ ] Add spell actions below every spell instruction according to the Exec Sheet
+  * [ ] Ensure spell actions match linked sources (forum posts, polls, MIPs, etc)
+  * IF some actions require using interfaces
+    * [ ] Prefer using `DssExecLib` actions where possible (to avoid adding interfaces where not required)
+    * [ ] Avoid multi-import layout / importing from `Interfaces.sol` (see [issue #69](https://github.com/makerdao/dss-interfaces/issues/69))
+    * [ ] Prefer single import layout (e.g. `import { VatAbstract } from "dss-interfaces/dss/VatAbstract.sol";`)
+    * [ ] Use static interfaces IF not present in `dss-interfaces` OR present in `dss-interfaces` but outdated OR only a few function interfaces are needed
+  * IF new collateral is onboarded
+    * Deploy `Join` contract (check which one is required)
       * [ ] Use [JoinFab](https://github.com/makerdao/JoinFab) to deploy
-      * [ ] Etherscan Verification
+      * [ ] Ensure Etherscan Verification
         * [ ] Make sure AGPLv3 is specified and used
-        * [ ] IF Flatten, consider removing `HEVM` interface artifacts
-    * [ ] `Clip`
+        * [ ] IF flatten, consider removing `HEVM` interface artifacts
+    * Deploy `Clip` contract
       * [ ] Use [ClipFab](https://github.com/makerdao/dss-deploy) to deploy
-      * [ ] Etherscan Verification
+      * [ ] Ensure Etherscan Verification
         * [ ] Make sure AGPLv3 is specified and used
-    * [ ] `Calc` (check which one is required)
+    * Deploy `Calc` contract (check which one is required)
       * [ ] Use [CalcFab](https://github.com/makerdao/dss-deploy) to deploy
       * [ ] Note: automatically verified on etherscan
-    * [ ] Check with Oracle CU
-      * [ ] Check IF oracle deployment is required (e.g. univ3-lp-oracle, new ilk pip, ...)
-      * [ ] Note: oracle should be deployed on mainnet before Friday (usually Wed-Thu)
+    * [ ] Check if oracle deployment is required (e.g. univ3-lp-oracle, new ilk pip, ...) with responsible ecosystem actor
+  * IF addresses are used in the spell
+    * [ ] Use `immutable` visibility when declaring addresses using `DssExecLib.getChangelogAddress`, OTHERWISE use `constant` for statically defined addresses
+    * [ ] Fetch addresses as type `address` and wrap with `Like` suffix interfaces inline (when making calls), EXCEPT `MKR` and vesting contracts
+    * [ ] Use the [DssExecLib address helpers](https://github.com/makerdao/dss-exec-lib/blob/master/src/DssExecLib.sol#L166) where possible (e.g. `DssExecLib.vat()`)
+    * [ ] Where addresses are fetched from the ChainLog, the variable name must match the value of the ChainLog key for that address (e.g. `MCD_VAT` rather than `vat`), EXCEPT where the archive pattern differs from this pattern (e.g. `MKR`)
+  * IF new addresses need to be added to the ChainLog
+    * [ ] Add new addresses to the ChainLog
+    * [ ] Increment ChainLog version, according to the update type
+      * Major -> New Vat (++.0.0)
+      * Minor -> Core Module (DSS) Update (e.g. Flapper) (0.++.0)
+      * Patch -> Collateral addition or addition/modification (0.0.++)
+    * [ ] New addresses are added to the `addresses_mainnet.sol`
+    * [ ] Changes are tested via `testNewOrUpdatedChainlogValues`
+  * [ ] Adjust system values, collateral values inside `config.sol`
   * [ ] Ensure every spell variable is declared as public/internal
-  * [ ] Consider `immutable` visibility when fetching addresses from the `ChainLog` via `DssExecLib.getChangelogAddress` and use `constant` for static addresses
-    * [ ] Fetch addresses as type `address` and wrap with `Like` suffix interfaces inline (when making calls) unless archive patterns permit otherwise (Such as `MKR`)
-    * [ ] Use the [DssExecLib Core Address Helpers](https://github.com/makerdao/dss-exec-lib/blob/master/src/DssExecLib.sol#L166) where possible (e.g. `DssExecLib.vat()`)
-    * [ ] Where addresses are fetched from the `ChainLog`, the variable name must match the value of the ChainLog key for that address (e.g. `MCD_VAT` rather than `vat`), except where the archive pattern differs from this pattern (e.g. MKR)
-  * [ ] Add New Addresses in the ChainLog
-  * [ ] Bump ChainLog, accordingly with spec (`major`, `minor`, `patch`)
-    * [ ] MAJOR -> New Vat
-    * [ ] MINOR -> Core Module (DSS) Update (e.g. Flapper)
-    * [ ] PATCH -> Collateral addition or addition/modification
-  * [ ] Use DssExecLib Functions
-    * [ ] Ensure `DssExecLib` address used in current spell (`DssExecLib.address`) matches `dss-exec-lib` [Latest Release Tag](https://github.com/makerdao/dss-exec-lib/releases/latest)
-    * [ ] Check previous spells for common patterns
-* [ ] Adjust System Values, Collateral Values in `config.sol` (i.e. diffcheck via vscode `code --diff config1.sol config2.sol`) with `spells-goerli`)
-* [ ] Add Specific Tests in `DssSpell.t.sol` (i.e. diffcheck via vscode `code --diff source1.sol source2.sol`) with `spells-goerli`)
-  * [ ] Add new collateral tests
-  * [ ] Add new chainLog value tests
-  * [ ] Add new ilk registry value tests
-  * [ ] Add specific tests (DAI/MKR Streams/Payments, Lerps, ...)
-    * [ ] The test for payments should check the sum of all payments matches the Exec Sheet
-* [ ] Add new ChainLog Address in `addresses_mainnet.sol` (e.g. Collateral Onboarding)
-* [ ] Run Tests `make test` or `make test match=<test_name>` to inspect debug traces
-  * [ ] Ensure Good Coverage
+* Add specific tests in `DssSpell.t.sol` to have sufficient test coverage for every spell action
+  * [ ] Test new collaterals
+  * [ ] Test new ilk registry values
+  * [ ] Test new ChainLog values
+  * [ ] Test DAI/MKR streams and payments, lerps
+  * [ ] Test the sum of all DAI/MKR payments matches the Exec Sheet
+* Run tests via `make test` (or `make test match=<test_name>` to inspect debug traces)
+  * [ ] Ensure good coverage (every spell action is tested)
   * [ ] Ensure every test function is declared as `public`
-    * [ ] IF the test needs to run, it MUST NOT have the `skipped` modifier; OTHERWISE, it MUST have the `skipped` modifier
+  * [ ] IF the test needs to run, it MUST NOT have the `skipped` modifier; OTHERWISE, it MUST have the `skipped` modifier
   * [ ] Tests PASS via `make test`
+* [ ] Ensure `DssExecLib` address used in current spell (`DssExecLib.address`) matches `dss-exec-lib` [Latest Release Tag](https://github.com/makerdao/dss-exec-lib/releases/latest)
+* [ ] Push committed content to already opened PR
 * [ ] Make sure CI PASS
 * [ ] Mark PR as "ready for review" and add reviewers
+* [ ] Notify reviewers (e.g. "the spell is ready for review")
 
 ## Pre-Deployment Stage
 
 * [ ] Wait till the Exec Doc is merged
 * Exec Doc checks
-  * [ ] Check that every action present in the spell code is present in the Exec Doc
+  * [ ] Check that every action in the spell code is present in the Exec Doc
   * [ ] Check that every action in the Exec Doc is present in the spell code
   * [ ] Office hours value in the Exec Doc matches the spell
   * [ ] Sum of all payments in the Exec Doc matches the tests
 * Exec Doc Hash
-  * [ ] Run `make exec-hash` for current date, or `date=YYYY-MM-DD` and update spell code accordingly
-    * [ ] Executive vote file name and date is correct
-    * [ ] [community](https://github.com/makerdao/community) repo commit hash corresponds to latest change
-    * [ ] Raw GitHub URL is correct
-    * [ ] Exec hash is correct (use `cast keccak -- "$(curl '$URL' -o - 2>/dev/null)"` where `wget` doesn't work)
+  * [ ] Run `make exec-hash` (or `make exec-hash date=YYYY-MM-DD`) and update spell code accordingly
+  * [ ] Ensure that executive vote file name and date is correct
+  * [ ] [community](https://github.com/makerdao/community) repo commit hash corresponds to latest change
+  * [ ] Raw GitHub URL is correct
+  * [ ] Exec hash is correct (use `cast keccak -- "$(curl '$URL' -o - 2>/dev/null)"` where `wget` doesn't work)
   * [ ] Ensure `description` date in `DssSpell.sol` matches target date inside Exec Doc
-* [ ] Make sure all review comments are either addressed or answered
-* [ ] Notify the reviewers
+* [ ] Make sure all review comments are either addressed or explicitly answered
+* [ ] Make sure all items in the Exec Sheet are confirmed, OTHERWISE notify Responsible Governance Facilitator
+* [ ] Notify the reviewers (e.g. "Exec Hash is added, reviews are addressed")
 
 ## Deployment Stage
 
 * [ ] Wait for at least two "good to deploy" comments (containing local tests) from the official reviewers
-* [ ] Pre-Deploy Setup and Checks (currently via `dapptools`)
-  * [ ] Set local env (`.sethrc`)
-    * [ ] Deployer
+* Pre-deploy setup and checks (currently via `dapptools`)
+  * Set local environment variables (`.sethrc`)
+    * Deployer
       * [ ] Avoid using the same deployer for mainnet and testnet (to avoid deploying contracts with the same address but different sources)
       * [ ] `export ETH_PASSWORD=~/.env/password.txt`
       * [ ] `export ETH_KEYSTORE=~/.ethereum/keystore`
       * [ ] `export ETH_FROM=<address>`
-    * [ ] Mainnet EIP1559
-      * [ ] `export ETH_GAS=X`
-        * [ ] Run `make estimate` and adjust `ETH_GAS` accordingly (e.g. 6000000)
-      * [ ] `export ETH_GAS_PRICE=$(seth --to-wei X gwei)`
-        * [ ] Check current gas price using `seth gas-price` and Set `ETH_GAS_PRICE` accordingly (e.g. 50 gwei)
-          * [ ] Consider adding margin to account for spikes (e.g. current gas price 25 `gwei`, 50 `gwei` could be set)
-      * [ ] `export ETH_PRIO_FEE=$(seth --to-wei X gwei)`
-        * [ ] Check [current gas priority fee](https://etherscan.io/gastracker) and set `ETH_PRIO_FEE` accordingly (e.g. 2 gwei)
-    * [ ] Mainnet RPC URL
-      * [ ] `export ETH_RPC_URL=<url>`
-    * [ ] Etherscan API KEY
-      * [ ] `export ETHERSCAN_API_KEY=<key>`
-    * [ ] Ensure to `source` the `.sethrc` file to make env vars available
-  * [ ] Check local env
+    * EIP1559
+      * [ ] Run `make estimate` to estimate gas
+      * [ ] `export ETH_GAS=X` with the output of the command above + a safety margin (e.g. `export ETH_GAS=6_000_000`)
+      * [ ] Check current gas price using `seth gas-price` and set `ETH_GAS_PRICE` accordingly (e.g. `50 gwei`)
+      * [ ] Consider adding margin to account for spikes (e.g. current gas price 25 `gwei`, 50 `gwei` could be set)
+      * [ ] `export ETH_GAS_PRICE=$(seth --to-wei X gwei)` (e.g. `export ETH_GAS_PRICE=25_000_000_000`)
+      * [ ] Check [current gas priority fee](https://etherscan.io/gastracker) and set `ETH_PRIO_FEE` accordingly
+      * [ ] `export ETH_PRIO_FEE=$(seth --to-wei X gwei)` (e.g. `export ETH_PRIO_FEE=2_000_000_000`)
+    * [ ] `export ETH_RPC_URL=<url>` to set mainnet RPC URL
+    * [ ] `export ETHERSCAN_API_KEY=<key>` to set Etherscan API KEY
+    * [ ] `source .sethrc` to make env vars available
+  * Check local env
     * [ ] `seth ls`
     * [ ] `seth chain`
-* [ ] Deploy spell on mainnet via `make deploy`
-  * [ ] Ensure `src/test/config.sol` is edited correctly
+* Deploy spell on mainnet
+  * [ ] `make deploy`
+  * Ensure `src/test/config.sol` is edited correctly
     * [ ] `deployed_spell: address(<deployed_spell_address>)`
     * [ ] `deployed_spell_created: <timestamp>`
     * [ ] `deployed_spell_block: <block number>`
     * [ ] validate the above values via `make deploy-info tx=<tx_hash>`
   * [ ] Ensure spell is verified on etherscan
   * [ ] Ensure local tests PASS against deployed spell run via the deploy script
-  * [ ] Push auto-generated commit
+  * [ ] Push auto-generated `add deployed spell info` commit
 * Cast spell on a newly created Tenderly Testnet
-  * [ ] Create testnet and cast deployed spell there using `make cast-on-tenderly spell=0x...` command (or a CI trigger)
+  * [ ] Create testnet and cast deployed spell there using `make cast-on-tenderly spell=0x...` command
   * [ ] Check that returned `public explorer url` is publicly accessible (e.g. using incognito browser mode)
-  * [ ] If `cast-on-tenderly` command is executed several times for the same spell, delete all testnets of the same name except the last one
-* [ ] Archive Spell via `make archive-spell` for current date or `date="YYYY-MM-DD" make archive-spell` (date as per target exec date)
-* [ ] Commit & Push for Review
+  * [ ] IF `cast-on-tenderly` command is executed several times for the same spell, delete all testnets of the same name except the last one
+* [ ] Archive Spell via `make archive-spell` for the current date (or `make archive-spell date="YYYY-MM-DD"`) using Target Date inside the Exec Doc
+* [ ] Commit & push changes for review
 * [ ] Wait for CI to PASS
-* [ ] Post a comment containing links to the deployed spell and Tenderly Testnet
+* [ ] Post a comment inside the PR containing links to the deployed spell and Tenderly Testnet
+* [ ] Notify the reviewers (e.g. "the spell was deployed")
 
 ## Handover and Merge Stage
 
 * [ ] Wait for at least two "good to handover" comments (containing local tests) from the official reviewers
-* [ ] Share Deployed Address in [`new-spells`](https://discord.com/channels/893112320329396265/897483518316265553) discord channel
-  * [ ] Make sure to tag responsible governance facilitator in the message with the address
-  * [ ] Wait until responsible governance facilitator confirms handover in `new-spells`
-* [ ] Fill the rest of the Spell Crafter Related Boxes in the Main Exec Sheet
-* [ ] Pre-Merge Target Branch Pull Attack Checks
-  * [ ] Ensure that the latest commit to the spells-mainnet repo was not a maintenance PR
-  * [ ] Ensure that there was not a maintenance PR within the last THREE spells (i.e. 6 weeks)
-    * [ ] If maintenance PR is present:
-      * [ ] PR Name / Description?
-      * [ ] PR Actions match description and look safe?
-      * [ ] PR Did not modify files unrelated to name / description?
-      * [ ] PR Did not modify test script (including CI)?
-        * [ ] Run old test script to ensure the test results are the same
-        * [ ] Obtain unanimous approval of the safety of the new deploy script
-      * [ ] PR Did not modify DssExecLib.address?
-        * [ ] If it did, flag with Governance Facilitators
-      * [ ] PR Did not affect deploy script?
-        * [ ] If it did, flag internally with reviewers and investigate prior to merging
-        * [ ] Run old deploy script to ensure the output results are the same
-          * [ ] If different, flag with Governance Facilitators (this may affect external scripts or third party reviews)
-        * [ ] Obtain unanimous approval of the safety of the new deploy script
+* Communicate deployed address to governance
+  * [ ] Write a message with Deployed Address in [`new-spells` discord channel](https://discord.com/channels/893112320329396265/897483518316265553)
+  * [ ] Tag Responsible Governance Facilitator in the message with the address
+  * [ ] Wait until Responsible Governance Facilitator confirms handover in `new-spells`
+* [ ] Fill the rest of the Spell Crafter-related boxes in the Exec Sheet
+* Pre-Merge target branch pull attack checks
+  * IF within last THREE commits (or last 6 weeks) spells-mainnet repo contains a maintenance PR
+    * [ ] Ensure the PR actions match description and look safe
+    * [ ] Ensure the PR did not modify files unrelated to name / description
+    * IF the PR modified test or deploy scripts (including CI)
+      * [ ] Run old test script to ensure results are the same
+      * [ ] IF results different, flag with Governance Facilitators
+      * [ ] Obtain approval of the safety of the new script from both Spell Reviewers
+    * IF the PR modified `DssExecLib.address` file
+      * [ ] Obtain approval of the safety of the new address from Spell Reviewers
+      * [ ] Obtain approval of the safety of the new address from Governance Facilitators
 * [ ] Squash & Merge
 
 ## Next Steps
-* [ ] `MegaPoker` Contract Updates (handed over to Oracle Core Unit (OCU))
-  * [ ] Inform oracle core unit of any change affecting the `MegaPoker`:
-    * [ ] Collateral Onboardings
-      * [ ] Including new ilk types (e.g. `ETH-B`)
-    * [ ] Collateral Offboardings
-    * [ ] Oracle replacements
-    * [ ] ...
-  * [ ] Sanity Checks
-    * [ ] Coordinate with oracle CU and TechOps
+
+* IF [`MegaPoker`-related](https://github.com/makerdao/megapoker/blob/master/src/MegaPoker.sol) updates are present in the spell (oracles are replaced, collaterals are onboarded or offboarded, etc)
+  * [ ] Inform EA responsible for maintaining `MegaPoker` contract
+  * Ensure `MegaPoker` contract is updated
+    * [ ] Coordinate with EA responsible for maintaining `MegaPoker` and TechOps
     * [ ] Previous code patterns are followed
-    * [ ] MegaPoker changes are reviewed & approved by OCU
+    * [ ] MegaPoker changes are reviewed & approved
     * [ ] CI & local tests PASS
-    * [ ] New `MegaPoker` is deployed
+    * [ ] New `MegaPoker` contract is deployed
     * [ ] New deployed `MegaPoker` contract address is handed to TechOps
     * [ ] New deployed `Megapoker` contract address is updated in the README
-* [ ] Keeper Support for New Onboarded Collateral
-* [ ] Keeper Support for New Lerps (to call `tall` daily) via [dss-cron](https://github.com/makerdao/dss-cron)
-  * [ ] IF new offboardings via lerp (in current spell)
+* IF new collateral is onboarded
+  * [ ] Ensure keeper support for new onboarded collateral with TechOps
+* IF new Lerp is added
+  * [ ] Ensure keeper support (to call `tall` daily) via [dss-cron](https://github.com/makerdao/dss-cron)
