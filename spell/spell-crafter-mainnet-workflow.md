@@ -25,7 +25,7 @@ Repo: https://github.com/makerdao/spells-mainnet
 | Governance  | Spell address is received                          | 16:00-16:30 UTC Week 2 Thursday |
 | Reviewers   | Spell PR is approved                               | 16:00-16:30 UTC Week 2 Thursday |
 | Crafter     | Spell PR is merged                                 | 16:00-16:30 UTC Week 2 Thursday |
-| All         | Spell retro is started (if needed)                 | 12:00 UTC Week 2 Friday         |
+| Crafter     | Spell retro is started                             | 16:30 UTC Week 2 Thursday       |
 
 - The deadlines are only meant for better coordination and should not be prioritised over security
 - If a delay is expected, responsible party should provide new realistic time estimation
@@ -220,7 +220,10 @@ Repo: https://github.com/makerdao/spells-mainnet
 * [ ] Squash & Merge
 
 ## Next Steps
-
+* [ ] Initiate spell retrospective (inside existing spell thread in the `#govops` discord channel)
+  * Collect any problems noticed during the spell, propose concrete improvements to make it constructive
+  * Prefix your message with `Initiating retro:` for clarity
+  * IF there is nothing to discuss, post `Initiating retro: nothing to discuss from my side`
 * IF [`MegaPoker`-related](https://github.com/makerdao/megapoker/blob/master/src/MegaPoker.sol) updates are present in the spell (oracles are replaced, collaterals are onboarded or offboarded, etc)
   * [ ] Inform EA responsible for maintaining `MegaPoker` contract
   * Ensure `MegaPoker` contract is updated
