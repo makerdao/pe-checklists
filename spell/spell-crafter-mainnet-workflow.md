@@ -14,6 +14,7 @@ Repo: https://github.com/makerdao/spells-mainnet
 | External    | External code is contributed via PR (if needed)    | 23:59 UTC Week 1 Friday         |
 | Governance  | Exec Sheet is finalised and fully confirmed        | 23:59 UTC Week 1 Friday         |
 | Crafter     | Spell is crafted (without the Exec Hash)           | 16:00 UTC Week 2 Monday         |
+| BA Labs     | Announce final rate changes (if needed)            | 12:00 UTC Week 2 Tuesday        |
 | Reviewers   | Spell code is reviewed (against the Exec Sheet)    | 16:00 UTC Week 2 Tuesday        |
 | Governance  | Exec Doc is merged                                 | 16:00 UTC Week 2 Tuesday        |
 | Crafter     | Spell code review is addressed, Exec Hash is added | 12:00 UTC Week 2 Wednesday      |
