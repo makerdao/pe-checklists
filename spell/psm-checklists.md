@@ -1,0 +1,113 @@
+# PSM Checklists
+
+## PSM Migration Checklist
+
+- [ ] IF contracts are being on-boarded in the current spell, execute the full [LitePSM On-boarding Checklist](#litepsm-on-boarding-checklist)
+- [ ] IF a PSM is deprecated in the migration, execute the full [PSM Off-boarding Checklist](#psm-off-boarding-checklist)
+- [ ] Amount of `gem` being migrated matches the Exec Sheet
+- [ ] Collateral amount that is fetched from the source PSM matches the collateral is added to the destination PSM
+- [ ] No bad debt is left behind
+- Source PSM:
+    - [ ] ilk matches source PSM
+    - [ ] IF present, `tin` matches the value in the Exec Sheet
+    - [ ] IF present, `tout` matches the value in the Exec Sheet
+    - [ ] `AutoLine` is updated according to the Exec Sheet
+- Destination PSM:
+    - [ ] ilk matches destination PSM
+    - [ ] IF present, `tin` matches the value in the Exec Sheet
+    - [ ] IF present, `tout` matches the value in the Exec Sheet
+    - [ ] `AutoLine` is updated according to the Exec Sheet
+    - [ ] `buf` matches the value in the Exec Sheet
+    - [ ] `fill` is called to ensure liquidity is immediately available after spell execution
+
+## LitePSM On-boarding Checklist
+
+- Deployed Contracts
+    - `DssLitePsm`
+        - [ ] Uses the agreed best Solidity compiler version at the time
+        - [ ] Optimizer is **enabled**
+        - [ ] Contract has been reviewed by at least a couple of DAO dev teams
+        - [ ] Contract has been audited by an external party
+            - [ ] Audit reports are public
+            - [ ] All issues found were fixed or acknowledged
+            - [ ] No code changes are done after final Audit report
+        - [ ] Deployed contract matches the code in the [repo](https://github.com/makerdao/dss-lite-psm/)
+        - [ ] Deployer no longer has ward privileged access
+        - [ ] `MCD_PAUSE_PROXY` has been authed (i.e. `require(WardsLike(LITE_PSM).wards(MCD_PAUSE_PROXY) == 1)`)
+        - [ ] `DssLitePsm` has `type(uint256).max` approval to spend `gem` on behalf of `pocket` (i.e. `require(GemLike(GEM).allowance(POCKET, LITE_PSM) == type(uint256.max))`)
+        - Constructor params:
+            - [ ] ilk is named `LITE-PSM-{TOKEN_SYMBOL}-A` (i.e. `LITE-PSM-USDC-A`)
+            - [ ] `gem` matches the expected token address
+            - [ ] `daiJoin` matches `MCD_JOIN_DAI` from the chainlog
+            - [ ] `pocket` matches the pocket address in the Exec Sheet
+    - `DssLitePsmMom`
+        - [ ] Uses the agreed best Solidity compiler version at the time
+        - [ ] Optimizer is **enabled**
+        - [ ] Contract has been reviewed by at least a couple of DAO dev teams
+        - [ ] Contract has been audited by an external party
+            - [ ] Audit reports are public
+            - [ ] All issues found were fixed or acknowledged
+            - [ ] No code changes are done after final Audit report
+        - [ ] Deployed contract matches the code in the [repo](https://github.com/makerdao/dss-lite-psm/)
+        - [ ] Deployer is no longer the `owner`
+        - [ ] `MCD_PAUSE_PROXY` is the `owner` of the contract (i.e. `require(MomLike(MOM).owner() == MCD_PAUSE_PROXY`))
+    - `LitePsmJob`
+        - [ ] Uses the default Solidity version in [`dss-cron`](https://github.com/makerdao/dss-cron)
+        - [ ] Optimizer is **enabled**
+        - [ ] Deployed contract matches the code in the [repo](https://github.com/makerdao/dss-cron)
+        - Constructor params:
+            - [ ] `_sequencer` matches `CRON_SEQUENCER` address from the chainlog
+            - [ ] `_litePsm` matches `DssLitePsm` address
+            - [ ] `_rushThreshold` matches the Exec Sheet (it might be named as "fill threshold")
+            - [ ] `_gushThreshold` matches the Exec Sheet (it might be named as "trim threshold")
+            - [ ] `_cutThreshold` matches the Exec Sheet (it might be named as "chug threshold")
+- Initialization
+    - `DssLitePsm`:
+        - [ ] `vow` is set to `MCD_VOW` from the chainlog
+        - [ ] `MCD_PAUSE_PROXY` is whitelisted to execute swaps with no fees (i.e. `KissLike(LITE_PSM).kiss(MCD_PAUSE_PROXY)`)
+        - [ ] `DssLitePsmMom` is authed (i.e. `RelyLike(LITE_PSM).rely(MOM)`)
+    - `DssLitePsmMom`:
+        - [ ] The chief (`MCD_ADM`) is set as the `authority` (i.e. `MomLike(MOM).setAuthority(MCD_ADM)`)
+    - `LitePsmJob`:
+        - [ ] Job is added to `CRON_SEQUENCER`
+    - `MCD_SPOT`:
+        - [ ] Dai parity (`par`) current value is 1 (`1 * RAY`)
+        - [ ] Collateralization ratio (`mat`) is set to 100% (`1 * WAD`) for the ilk 
+        - IF a new `pip` is being used:
+            - [ ] `pip` is set for the ilk
+            - [ ] `pip` is a `DSValue` instance
+            - [ ] The value on `pip` is set to 1 (`1 * WAD`)
+            - [ ] `pip` deployer is no longer the `owner`
+            - [ ] `MCD_PAUSE_PROXY` is the `owner` on `pip`
+        - OTHERWISE when reusing an existing `pip`:
+            - [ ] `pip` is set for the ilk
+            - [ ] `pip` in the chainlog matches `gem` symbol (i.e. `PIP_USDC` for `USDC`)
+    - `MCD_VAT`:
+        - [ ] New ilk is initialized
+        - [ ] `urns[ilk][LITE_PSM].ink` is set to the max value that will not cause an overflow (`int256(type(uint256).max / RAY)`)
+    - `MCD_JUG`:
+        - [ ] New ilk is initialized
+        - [ ] Stability fee (`duty`) is set to 0% (`1 * RAY`) for the ilk
+    - `CHAINLOG`:
+        - [ ] `DssLitePsm` is added to the chainlog according to the Exec Sheet
+        - [ ] `pocket` is added to the chainlog according to the Exec Sheet
+        - [ ] `DssLitePsmMom` is added to the chainlog according to the Exec Sheet
+        - [ ] `LitePsmJob` is added to the chainlog according to the Exec Sheet
+        - IF a new `pip` is being added
+            - [ ] `pip` is added to the chainlog as `PIP_{TOKEN_SYMBOL}` (i.e. `PIP_USDC`)
+        - [ ] Version is bumped: `{x}.{y}.{z+1}`
+    - `ILK_REGISTRY`:
+        - [ ] New ilk is added to the registry
+            - [ ] The new class for join-less ilks is used (`REG_CLASS = 6`)
+
+## PSM Off-boarding Checklist
+
+- [ ] ilk is removed from `AutoLine`
+- [ ] ilk `line` is set to `0`
+- [ ] `ink` for the PSM is set to 0 on `MCD_VAT` after execution, UNLESS there has been a donation
+- [ ] Global `Line` is adjusted accordingly
+- [ ] ilk is removed from `ILK_REGISTRY`
+- [ ] PSM contracts (`Psm`, `GemJoin` and others, as applicable) are being removed from the chainlog
+- [ ] Chainlog version is bumped: `{x}.{y+1}.0`
+- [ ] PSM contracts (`Psm`, `GemJoin` and others, as applicable) are being scuttled
+    - [ ] `MCD_PAUSE_PROXY` is de-authed from all applicable contracts
