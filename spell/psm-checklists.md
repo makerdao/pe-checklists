@@ -4,9 +4,8 @@
 
 - [ ] IF contracts are being on-boarded in the current spell, execute the full [LitePSM On-boarding Checklist](#litepsm-on-boarding-checklist)
 - [ ] IF a PSM is deprecated in the migration, execute the full [PSM Off-boarding Checklist](#psm-off-boarding-checklist)
-- [ ] Amount of `gem` being migrated matches the Exec Sheet
-- [ ] Collateral amount that is fetched from the source PSM matches the collateral is added to the destination PSM
-- [ ] No bad debt is left behind
+- [ ] IF present, max amount of gems to move (`dstWant`) matches the Exec Sheet
+- [ ] IF present, min amount of gems to keep (`srcKeep`) matches the Exec Sheet
 - Source PSM:
     - [ ] ilk matches source PSM
     - [ ] IF present, `tin` matches the value in the Exec Sheet
@@ -18,21 +17,31 @@
     - [ ] IF present, `tout` matches the value in the Exec Sheet
     - [ ] `AutoLine` is updated according to the Exec Sheet
     - [ ] `buf` matches the value in the Exec Sheet
-    - [ ] `fill` is called to ensure liquidity is immediately available after spell execution
+    - [ ] IF required (`rush() > 0`), `fill` is called to ensure liquidity is immediately available after spell execution
+- Test coverage:
+    - [ ] Collateral amount that is fetched from the source PSM matches the collateral is added to the destination PSM
+        - [ ] `vat.urns(DST_ILK, dstPsm).art` is increased **at least** by the moved amount
+        - [ ] `gem` balance of `dstPocket` is increased **exactly** by the moved amount
+        - [ ] Dai balance of `dstPsm` is equal to `dstBuf`, UNLESS limited by the debt ceiling (`line`)
+        - [ ] `vat.urns(SRC_ILK, srcPsm).art` is decreased **exactly** by the moved amount
+        - [ ] `vat.urns(SRC_ILK, srcPsm).ink` is decreased **exactly** by the moved amount
+        - [ ] `gem` balance of `srcPsm.gemJoin()` is decreased **exactly** by the moved amount
+    - [ ] No bad debt is left behind
+        - [ ] `vat.vice()` is unchanged after the spell execution
+        - [ ] `vat.sin(MCD_PAUSE_PROXY)` is unchanged after the spell execution
 
 ## LitePSM On-boarding Checklist
 
 - Deployed Contracts
     - `DssLitePsm`
-        - [ ] Uses the agreed best Solidity compiler version at the time
         - [ ] Optimizer is **enabled**
-        - [ ] Contract has been reviewed by at least a couple of DAO dev teams
+        - [ ] Contract has been reviewed by minimum 2 specialized [Active Ecosystem Actors](https://mips.makerdao.com/mips/details/MIP101#2-8-2-active-ecosystem-actors)
         - [ ] Contract has been audited by an external party
             - [ ] Audit reports are public
             - [ ] All issues found were fixed or acknowledged
             - [ ] No code changes are done after final Audit report
         - [ ] Deployed contract matches the code in the [repo](https://github.com/makerdao/dss-lite-psm/)
-        - [ ] Deployer no longer has ward privileged access
+        - [ ] Deployer no longer has privileged access (`wards(deployer) == 0`)
         - [ ] `MCD_PAUSE_PROXY` has been authed (i.e. `require(WardsLike(LITE_PSM).wards(MCD_PAUSE_PROXY) == 1)`)
         - [ ] `DssLitePsm` has `type(uint256).max` approval to spend `gem` on behalf of `pocket` (i.e. `require(GemLike(GEM).allowance(POCKET, LITE_PSM) == type(uint256.max))`)
         - Constructor params:
@@ -41,11 +50,10 @@
             - [ ] `daiJoin` matches `MCD_JOIN_DAI` from the chainlog
             - [ ] `pocket` matches the pocket address in the Exec Sheet
     - `DssLitePsmMom`
-        - [ ] Uses the agreed best Solidity compiler version at the time
         - [ ] Optimizer is **enabled**
-        - [ ] Contract has been reviewed by at least a couple of DAO dev teams
+        - [ ] Contract has been reviewed by minimum 2 specialized [Active Ecosystem Actors](https://mips.makerdao.com/mips/details/MIP101#2-8-2-active-ecosystem-actors)
         - [ ] Contract has been audited by an external party
-            - [ ] Audit reports are public
+            - [ ] Audit reports are published in the [repo](https://github.com/makerdao/dss-lite-psm/)
             - [ ] All issues found were fixed or acknowledged
             - [ ] No code changes are done after final Audit report
         - [ ] Deployed contract matches the code in the [repo](https://github.com/makerdao/dss-lite-psm/)
@@ -63,6 +71,7 @@
             - [ ] `_cutThreshold` matches the Exec Sheet (it might be named as "chug threshold")
 - Initialization
     - `DssLitePsm`:
+        - [ ] `buf` is set to the value specified in the Exec Sheet
         - [ ] `vow` is set to `MCD_VOW` from the chainlog
         - [ ] `MCD_PAUSE_PROXY` is whitelisted to execute swaps with no fees (i.e. `KissLike(LITE_PSM).kiss(MCD_PAUSE_PROXY)`)
         - [ ] `DssLitePsmMom` is authed (i.e. `RelyLike(LITE_PSM).rely(MOM)`)
@@ -70,8 +79,10 @@
         - [ ] The chief (`MCD_ADM`) is set as the `authority` (i.e. `MomLike(MOM).setAuthority(MCD_ADM)`)
     - `LitePsmJob`:
         - [ ] Job is added to `CRON_SEQUENCER`
+    - [ ] `MCD_VAT`: new ilk is initialized
+    - [ ] `MCD_JUG`: new ilk is initialized
     - `MCD_SPOT`:
-        - [ ] Dai parity (`par`) current value is 1 (`1 * RAY`)
+        - [ ] Sanity check: Dai parity (`par`) current value is 1 (`1 * RAY`)
         - [ ] Collateralization ratio (`mat`) is set to 100% (`1 * WAD`) for the ilk 
         - IF a new `pip` is being used:
             - [ ] `pip` is set for the ilk
@@ -82,23 +93,38 @@
         - OTHERWISE when reusing an existing `pip`:
             - [ ] `pip` is set for the ilk
             - [ ] `pip` in the chainlog matches `gem` symbol (i.e. `PIP_USDC` for `USDC`)
-    - `MCD_VAT`:
-        - [ ] New ilk is initialized
-        - [ ] `urns[ilk][LITE_PSM].ink` is set to the max value that will not cause an overflow (`int256(type(uint256).max / RAY)`)
-    - `MCD_JUG`:
-        - [ ] New ilk is initialized
-        - [ ] Stability fee (`duty`) is set to 0% (`1 * RAY`) for the ilk
+    - [ ] `ILK_REGISTRY`: new ilk is added to the registry
     - `CHAINLOG`:
-        - [ ] `DssLitePsm` is added to the chainlog according to the Exec Sheet
-        - [ ] `pocket` is added to the chainlog according to the Exec Sheet
-        - [ ] `DssLitePsmMom` is added to the chainlog according to the Exec Sheet
-        - [ ] `LitePsmJob` is added to the chainlog according to the Exec Sheet
-        - IF a new `pip` is being added
-            - [ ] `pip` is added to the chainlog as `PIP_{TOKEN_SYMBOL}` (i.e. `PIP_USDC`)
-        - [ ] Version is bumped: `{x}.{y}.{z+1}`
+        - [ ] `DssLitePsm` is added to the chainlog and `addresses_mainnet.sol` according to the Exec Sheet
+        - [ ] `pocket` is added to the chainlog and `addresses_mainnet.sol` according to the Exec Sheet
+        - [ ] `DssLitePsmMom` is added to the chainlog and `addresses_mainnet.sol` according to the Exec Sheet
+        - [ ] `LitePsmJob` is added to the chainlog and `addresses_mainnet.sol` according to the Exec Sheet
+        - [ ] IF a new `pip` is being added, it is added to the chainlog and `addresses_mainnet.sol` as `PIP_{TOKEN_SYMBOL}` (i.e. `PIP_USDC`)
+> ![NOTE]
+> The following checks would be too error prone if done manually, so they should be in the test coverage.
+- Test coverage:
+    - `DssLitePsm`:
+        - [ ] `vow` is set to `MCD_VOW`
+        - [ ] `buf` matches the Exec Sheet
+        - [ ] `MCD_PAUSE_PROXY` is whitelisted to execute swaps with no fees (i.e. `KissLike(LITE_PSM).bud(MCD_PAUSE_PROXY) == 1`)
+        - [ ] `DssLitePsmMom` is authed (i.e. `WardsLike(LITE_PSM).wards(MOM) == 1`)
+    - [ ] `DssLitePsmMom`: chief (`MCD_ADM`) is set as the `authority` (i.e. `MomLike(MOM).authority() == MCD_ADM`)
+    - [ ] `LitePsmJob`: job is added to `CRON_SEQUENCER` (i.e.: `SequencerLike(CRON_SEQUENCER).hasJob(LITE_PSM_JOB) == true`)
+    - [ ] `MCD_VAT`: `urns[ilk][LITE_PSM].ink` is set to the max value that will not cause an overflow (`int256(type(uint256).max / RAY)`)
+    - [ ] `MCD_JUG`: Stability fee (`duty`) is set to 0% (`1 * RAY`) for the ilk (:information_source: covered in `config.sol`)
+    - `MCD_SPOT`:
+        - [ ] `spotter(DST_ILK).mat` is set to 100% (`1 * RAY`) (:information_source: covered in `config.sol`)
+        - [ ] `spotter(DST_ILK).pip` is set correctly 
+    - [ ] `CHAINLOG`: version is bumped: `{x}.{y}.{z+1}` (:information_source: covered in `config.sol`)
     - `ILK_REGISTRY`:
         - [ ] New ilk is added to the registry
-            - [ ] The new class for join-less ilks is used (`REG_CLASS = 6`)
+        - [ ] `name` matches `gem` name
+        - [ ] `symbol` matches `gem` symbol
+        - [ ] `class` for join-less ilks is used (`REG_CLASS = 6`)
+        - [ ] `gem` matches the configured gem
+        - [ ] `pip` matches the configured pip
+        - [ ] `gemJoin` is set to `address(0)`
+        - [ ] `clip` is set to `address(0)`
 
 ## PSM Off-boarding Checklist
 
