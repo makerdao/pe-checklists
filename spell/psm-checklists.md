@@ -41,14 +41,14 @@
             - [ ] All issues found were fixed or acknowledged
             - [ ] No code changes are done after final Audit report
         - [ ] Deployed contract matches the code in the [repo](https://github.com/makerdao/dss-lite-psm/)
-        - [ ] Deployer no longer has privileged access (`wards(deployer) == 0`)
-        - [ ] `MCD_PAUSE_PROXY` has been authed (i.e. `require(WardsLike(LITE_PSM).wards(MCD_PAUSE_PROXY) == 1)`)
-        - [ ] `DssLitePsm` has `type(uint256).max` approval to spend `gem` on behalf of `pocket` (i.e. `require(GemLike(GEM).allowance(POCKET, LITE_PSM) == type(uint256.max))`)
         - Constructor params:
             - [ ] ilk is named `LITE-PSM-{TOKEN_SYMBOL}-A` (i.e. `LITE-PSM-USDC-A`)
             - [ ] `gem` matches the expected token address
             - [ ] `daiJoin` matches `MCD_JOIN_DAI` from the chainlog
             - [ ] `pocket` matches the pocket address in the Exec Sheet
+        - [ ] Deployer no longer has privileged access (`wards(deployer) == 0`)
+        - [ ] `MCD_PAUSE_PROXY` has been authed (i.e. `require(WardsLike(LITE_PSM).wards(MCD_PAUSE_PROXY) == 1)`)
+        - [ ] Sanity check: `DssLitePsm` has `type(uint256).max` approval to spend `gem` on behalf of `pocket`
     - `DssLitePsmMom`
         - [ ] Optimizer is **enabled**
         - [ ] Contract has been reviewed by minimum 2 specialized [Active Ecosystem Actors](https://mips.makerdao.com/mips/details/MIP101#2-8-2-active-ecosystem-actors)
@@ -100,8 +100,10 @@
         - [ ] `DssLitePsmMom` is added to the chainlog and `addresses_mainnet.sol` according to the Exec Sheet
         - [ ] `LitePsmJob` is added to the chainlog and `addresses_mainnet.sol` according to the Exec Sheet
         - [ ] IF a new `pip` is being added, it is added to the chainlog and `addresses_mainnet.sol` as `PIP_{TOKEN_SYMBOL}` (i.e. `PIP_USDC`)
+
 > ![NOTE]
 > The following checks would be too error prone if done manually, so they should be in the test coverage.
+
 - Test coverage:
     - `DssLitePsm`:
         - [ ] `vow` is set to `MCD_VOW`
