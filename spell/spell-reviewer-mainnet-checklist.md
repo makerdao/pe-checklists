@@ -140,6 +140,9 @@
     * [Collateral Onboarding](./collateral-onboarding-checklist.md)
     * [RWA Onboarding](./rwa-onboarding-checklist.md)
     * [Teleport Onboarding](./teleport-onboarding-checklist.md)
+* IF PSM migration, onboarding or offboarding is present:
+  * [ ] Insert and follow the relevant checklists below:
+    * [PSM Checklists](./psm-checklists.md)
 * IF collateral offboarding is present in the spell
   * 1st stage collateral offboarding
     * [ ] Collateral type (`ilk`) is removed from AutoLine (`MCD_IAM_AUTO_LINE`) IF currently enabled
