@@ -135,9 +135,9 @@
                 - [ ] OTHERWISE IF `gush() > 0`, returns `(true, litePsm.trim.selector)`
                 - [ ] OTHERWISE returns `(false, "")`
             - [ ] `work` has the desired effect:
-                - [ ] IF `rush() > 0`, `fill()` is called
-                - [ ] OTHERWISE IF `cut() > 0`, `chug()` is called
-                - [ ] OTHERWISE IF `gush() > 0`, `trim()` is called
+                - [ ] IF `rush() > 0`, `fill` is called
+                - [ ] OTHERWISE IF `cut() > 0`, `chug` is called
+                - [ ] OTHERWISE IF `gush() > 0`, `trim` is called
                 - [ ] OTHERWISE reverts
     - [ ] `MCD_VAT`: `urns[ilk][LITE_PSM].ink` is set to the max value that will not cause an overflow (`int256(type(uint256).max / RAY)`)
     - [ ] `MCD_JUG`: Stability fee (`duty`) is set to 0% (`1 * RAY`) for the ilk (:information_source: covered in `config.sol`)
