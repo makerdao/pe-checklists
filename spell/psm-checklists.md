@@ -17,7 +17,7 @@
     - [ ] IF present, `tout` matches the value in the Exec Sheet
     - [ ] `AutoLine` is updated according to the Exec Sheet
     - [ ] `buf` matches the value in the Exec Sheet
-    - [ ] IF required (`rush() > 0`), `fill` is called to ensure liquidity is immediately available after spell execution
+    - [ ] `fill` is called conditionally (`if(rush() > 0)`) to ensure liquidity is immediately available after spell execution
 - Test coverage:
     - [ ] Collateral amount that is fetched from the source PSM matches the collateral is added to the destination PSM
         - [ ] `vat.urns(DST_ILK, dstPsm).art` is increased **at least** by the moved amount
@@ -35,11 +35,14 @@
 - Deployed Contracts
     - `DssLitePsm`
         - [ ] Optimizer is **enabled**
+        - [ ] Optimize runs is set to `200`
         - [ ] Contract has been reviewed by minimum 2 specialized [Active Ecosystem Actors](https://mips.makerdao.com/mips/details/MIP101#2-8-2-active-ecosystem-actors)
         - [ ] Contract has been audited by an external party
-            - [ ] Audit reports are public
+            - [ ] Audit report source could be confirmed (i.e. found on auditor's website)
             - [ ] All issues found were fixed or acknowledged
-            - [ ] No code changes are done after final Audit report
+            - [ ] No code changes are done after final audit report, based on the commit hash found in the report + 
+              - [ ] EITHER code diff check for each individual file
+              - [ ] OR bytecode verification tool such as `forge verify-bytecode`
         - [ ] Deployed contract matches the code in the [repo](https://github.com/makerdao/dss-lite-psm/)
         - Constructor params:
             - [ ] ilk is named `LITE-PSM-{TOKEN_SYMBOL}-A` (i.e. `LITE-PSM-USDC-A`)
@@ -51,11 +54,14 @@
         - [ ] Sanity check: `DssLitePsm` has `type(uint256).max` approval to spend `gem` on behalf of `pocket`
     - `DssLitePsmMom`
         - [ ] Optimizer is **enabled**
+        - [ ] Optimize runs is set to `200`
         - [ ] Contract has been reviewed by minimum 2 specialized [Active Ecosystem Actors](https://mips.makerdao.com/mips/details/MIP101#2-8-2-active-ecosystem-actors)
         - [ ] Contract has been audited by an external party
-            - [ ] Audit reports are published in the [repo](https://github.com/makerdao/dss-lite-psm/)
+            - [ ] Audit report source could be confirmed (i.e. found on auditor's website)
             - [ ] All issues found were fixed or acknowledged
-            - [ ] No code changes are done after final Audit report
+            - [ ] No code changes are done after final audit report, based on the commit hash found in the report + 
+              - [ ] EITHER code diff check for each individual file
+              - [ ] OR bytecode verification tool such as `forge verify-bytecode`
         - [ ] Deployed contract matches the code in the [repo](https://github.com/makerdao/dss-lite-psm/)
         - [ ] Deployer is no longer the `owner`
         - [ ] `MCD_PAUSE_PROXY` is the `owner` of the contract (i.e. `require(MomLike(MOM).owner() == MCD_PAUSE_PROXY`))
@@ -106,8 +112,33 @@
         - [ ] `buf` matches the Exec Sheet
         - [ ] `MCD_PAUSE_PROXY` is whitelisted to execute swaps with no fees (i.e. `KissLike(LITE_PSM).bud(MCD_PAUSE_PROXY) == 1`)
         - [ ] `DssLitePsmMom` is authed (i.e. `WardsLike(LITE_PSM).wards(MOM) == 1`)
-    - [ ] `DssLitePsmMom`: chief (`MCD_ADM`) is set as the `authority` (i.e. `MomLike(MOM).authority() == MCD_ADM`)
-    - [ ] `LitePsmJob`: job is added to `CRON_SEQUENCER` (i.e.: `SequencerLike(CRON_SEQUENCER).hasJob(LITE_PSM_JOB) == true`)
+        - E2E tests:
+            - [ ] `buyGem` works as expected
+            - [ ] `sellGem` works as expected
+            - [ ] `buyGemNoFee` works as expected
+            - [ ] `sellGemNoFee` works as expected
+    - `DssLitePsmMom`:
+        - Chief (`MCD_ADM`) is set as the `authority` (i.e. `MomLike(MOM).authority() == MCD_ADM`)
+        - E2E tests:
+            - [ ] `halt` works as expected
+    - `LitePsmJob`: 
+        - [ ] Job is added to `CRON_SEQUENCER` (i.e.: `SequencerLike(CRON_SEQUENCER).hasJob(LITE_PSM_JOB) == true`)
+        - [ ] `_sequencer` matches `CRON_SEQUENCER` address from the chainlog
+        - [ ] `_litePsm` matches `DssLitePsm` address
+        - [ ] `_rushThreshold` matches the Exec Sheet (it might be named as "fill threshold")
+        - [ ] `_gushThreshold` matches the Exec Sheet (it might be named as "trim threshold")
+        - [ ] `_cutThreshold` matches the Exec Sheet (it might be named as "chug threshold")
+        - E2E tests:
+            - [ ] `workable` returns the correct value:
+                - [ ] IF `rush() > 0`, returns `(true, litePsm.fill.selector)`
+                - [ ] OTHERWISE IF `cut() > 0`, returns `(true, litePsm.chug.selector)`
+                - [ ] OTHERWISE IF `gush() > 0`, returns `(true, litePsm.trim.selector)`
+                - [ ] OTHERWISE returns `(false, "")`
+            - [ ] `work` has the desired effect:
+                - [ ] IF `rush() > 0`, `fill()` is called
+                - [ ] OTHERWISE IF `cut() > 0`, `chug()` is called
+                - [ ] OTHERWISE IF `gush() > 0`, `trim()` is called
+                - [ ] OTHERWISE reverts
     - [ ] `MCD_VAT`: `urns[ilk][LITE_PSM].ink` is set to the max value that will not cause an overflow (`int256(type(uint256).max / RAY)`)
     - [ ] `MCD_JUG`: Stability fee (`duty`) is set to 0% (`1 * RAY`) for the ilk (:information_source: covered in `config.sol`)
     - `MCD_SPOT`:
