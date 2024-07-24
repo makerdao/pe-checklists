@@ -89,14 +89,14 @@
     - [ ] `MCD_JUG`: new ilk is initialized
     - `MCD_SPOT`:
         - [ ] Sanity check: Dai parity (`par`) current value is 1 (`1 * RAY`)
-        - [ ] Collateralization ratio (`mat`) is set to 100% (`1 * WAD`) for the ilk 
-        - IF a new `pip` is being used:
+        - [ ] Collateralization ratio (`mat`) is set to 100% (`1 * RAY`) for the ilk 
+        - [ ] IF a new `pip` is being used:
             - [ ] `pip` is set for the ilk
             - [ ] `pip` is a `DSValue` instance
             - [ ] The value on `pip` is set to 1 (`1 * WAD`)
             - [ ] `pip` deployer is no longer the `owner`
             - [ ] `MCD_PAUSE_PROXY` is the `owner` on `pip`
-        - OTHERWISE when reusing an existing `pip`:
+        - [ ] OTHERWISE when reusing an existing `pip`:
             - [ ] `pip` is set for the ilk
             - [ ] `pip` in the chainlog matches `gem` symbol (i.e. `PIP_USDC` for `USDC`)
     - [ ] `ILK_REGISTRY`: new ilk is added to the registry
@@ -118,7 +118,7 @@
             - [ ] `buyGemNoFee` works as expected
             - [ ] `sellGemNoFee` works as expected
     - `DssLitePsmMom`:
-        - Chief (`MCD_ADM`) is set as the `authority` (i.e. `MomLike(MOM).authority() == MCD_ADM`)
+        - [ ] Chief (`MCD_ADM`) is set as the `authority` (i.e. `MomLike(MOM).authority() == MCD_ADM`)
         - E2E tests:
             - [ ] `halt` works as expected
     - `LitePsmJob`: 
