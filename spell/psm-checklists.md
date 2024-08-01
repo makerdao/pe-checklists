@@ -2,9 +2,9 @@
 
 ## PSM Migration Checklist
 
-- [ ] IF LitePSM MOM is being on-boarded in the current spell, execute the full [LitePSM MOM On-boarding Checklist](#litepsm-mom-on-boarding-checklist)
-- [ ] IF LitePSM contracts are being on-boarded in the current spell, execute the full [LitePSM On-boarding Checklist](#litepsm-on-boarding-checklist)
-- [ ] IF a PSM is deprecated in the migration, execute the full [PSM Off-boarding Checklist](#psm-off-boarding-checklist)
+- [ ] IF LitePSM MOM is being on-boarded in the current spell, execute the full [LitePSM MOM Onboarding Checklist](#litepsm-mom-onboarding-checklist)
+- [ ] IF LitePSM contracts are being on-boarded in the current spell, execute the full [LitePSM Onboarding Checklist](#litepsm-onboarding-checklist)
+- [ ] IF a PSM is deprecated in the migration, execute the full [PSM Offboarding Checklist](#psm-offboarding-checklist)
 - [ ] IF present, max amount of gems to move (`dstWant`) matches the Exec Sheet
 - [ ] IF present, min amount of gems to keep (`srcKeep`) matches the Exec Sheet
 - Source PSM:
@@ -31,7 +31,7 @@
         - [ ] `vat.vice()` is unchanged after the spell execution
         - [ ] `vat.sin(MCD_PAUSE_PROXY)` is unchanged after the spell execution
 
-## LitePSM MOM On-boarding Checklist
+## LitePSM MOM Onboarding Checklist
 
 - Deployed Contracts
     - [ ] `DssLitePsmMom`
@@ -54,7 +54,7 @@
     - [ ] `DssLitePsmMom`:
         - [ ] The chief (`MCD_ADM`) is set as the `authority` (i.e. `MomLike(MOM).setAuthority(MCD_ADM)`)
 
-## LitePSM On-boarding Checklist
+## LitePSM Onboarding Checklist
 
 - Deployed Contracts
     - [ ] `DssLitePsm`
@@ -158,7 +158,7 @@
         - [ ] `gemJoin` is set to `address(0)`
         - [ ] `clip` is set to `address(0)`
 
-## PSM Off-boarding Checklist
+## PSM Offboarding Checklist
 
 - [ ] ilk is removed from `AutoLine`
 - [ ] ilk `line` is set to `0`
