@@ -49,6 +49,7 @@ ExecLib
 Filable
 Fileable
 fileables
+FOREACH
 Getter
 github
 goerli
@@ -92,6 +93,7 @@ Onboardings
 OpenZeppelin
 OSM
 params
+permalink
 permissioned
 permissioning
 permittedDrop

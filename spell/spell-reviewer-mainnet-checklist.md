@@ -135,6 +135,11 @@
         * [`DssExecLib.setGlobalDebtCeiling(amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L428)
         * [`DssExecLib.increaseGlobalDebtCeiling(amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L436)
         * [`DssExecLib.decreaseGlobalDebtCeiling(amount)`](https://github.com/makerdao/dss-exec-lib/blob/v0.0.9/src/DssExecLib.sol#L445C14-L445C39)
+* IF additional dependencies (i.e. `./src/dependencies/` directory) are present:
+  * [ ] IF the dependencies contracts/libraries have been audited
+    * [ ] FOREACH contract/library ensure its content matches (i.e. diff check) the latest audited version
+  * [ ] OTHERWISE obtain the permalink to the relevant repository from a trusted party (i.e. Gov Facilitators)
+    * [ ] FOREACH contract/library ensure its content matches (i.e. diff check) the one from the permalink
 * IF onboarding is present
   * [ ] Insert and follow the relevant checklists below:
     * [Collateral Onboarding](./collateral-onboarding-checklist.md)
