@@ -34,7 +34,7 @@
 ## LitePSM MOM Onboarding Checklist
 
 - Deployed Contracts
-    - [ ] `DssLitePsmMom`
+    - `DssLitePsmMom`
         - [ ] Optimizer is **enabled**
         - [ ] Optimize runs is set to `200`
         - [ ] Contract has been reviewed by minimum 2 specialized [Active Ecosystem Actors](https://mips.makerdao.com/mips/details/MIP101#2-8-2-active-ecosystem-actors)
@@ -48,16 +48,16 @@
         - [ ] Deployer is no longer the `owner`
         - [ ] `MCD_PAUSE_PROXY` is the `owner` of the contract (i.e. `require(MomLike(MOM).owner() == MCD_PAUSE_PROXY`))
 - Initialization:
-    - [ ] `DssLitePsmMom`:
+    - `DssLitePsmMom`:
         - [ ] The chief (`MCD_ADM`) is set as the `authority` (i.e. `MomLike(MOM).setAuthority(MCD_ADM)`)
 - Test Coverage:
-    - [ ] `DssLitePsmMom`:
+    - `DssLitePsmMom`:
         - [ ] The chief (`MCD_ADM`) is set as the `authority` (i.e. `MomLike(MOM).setAuthority(MCD_ADM)`)
 
 ## LitePSM Onboarding Checklist
 
 - Deployed Contracts
-    - [ ] `DssLitePsm`
+    - `DssLitePsm`
         - [ ] Optimizer is **enabled**
         - [ ] Optimize runs is set to `200`
         - [ ] Contract has been reviewed by minimum 2 specialized [Active Ecosystem Actors](https://mips.makerdao.com/mips/details/MIP101#2-8-2-active-ecosystem-actors)
@@ -76,7 +76,7 @@
         - [ ] Deployer no longer has privileged access (`wards(deployer) == 0`)
         - [ ] `MCD_PAUSE_PROXY` has been authed (i.e. `require(WardsLike({LITE_PSM}).wards(MCD_PAUSE_PROXY) == 1)`)
         - [ ] Sanity check: `DssLitePsm` has `type(uint256).max` approval to spend `gem` on behalf of `pocket`
-    - [ ] `LitePsmJob`
+    - `LitePsmJob`
         - [ ] Uses the default Solidity version in [`dss-cron`](https://github.com/makerdao/dss-cron)
         - [ ] Optimizer is **enabled**
         - [ ] Deployed contract matches the code in the [repo](https://github.com/makerdao/dss-cron)
@@ -87,16 +87,18 @@
             - [ ] `_gushThreshold` matches the Exec Sheet (it might be named as "trim threshold")
             - [ ] `_cutThreshold` matches the Exec Sheet (it might be named as "chug threshold")
 - Initialization
-    - [ ] `DssLitePsm`:
+    - `DssLitePsm`:
         - [ ] `buf` is set to the value specified in the Exec Sheet
         - [ ] `vow` is set to `MCD_VOW` from the chainlog
         - [ ] `MCD_PAUSE_PROXY` is whitelisted to execute swaps with no fees (i.e. `KissLike({LITE_PSM}).kiss(MCD_PAUSE_PROXY)`)
         - [ ] `DssLitePsmMom` is authed (i.e. `RelyLike({LITE_PSM}).rely(MOM)`)
-    - [ ] `LitePsmJob`:
+    - `LitePsmJob`:
         - [ ] Job is added to `CRON_SEQUENCER`
-    - [ ] `MCD_VAT`: new ilk is initialized
-    - [ ] `MCD_JUG`: new ilk is initialized
-    - [ ] `MCD_SPOT`:
+    - `MCD_VAT`:
+        - [ ] New ilk is initialized
+    - `MCD_JUG`:
+        - [ ] New ilk is initialized
+    - `MCD_SPOT`:
         - [ ] Sanity check: Dai parity (`par`) current value is 1 (`1 * RAY`)
         - [ ] Collateralization ratio (`mat`) is set to 100% (`1 * RAY`) for the ilk 
         - [ ] IF a new `pip` is being used:
@@ -108,47 +110,51 @@
         - [ ] OTHERWISE when reusing an existing `pip`:
             - [ ] `pip` is set for the ilk
             - [ ] `pip` in the chainlog matches `gem` symbol (i.e. `PIP_USDC` for `USDC`)
-    - [ ] `ILK_REGISTRY`: new ilk is added to the registry
-    - [ ] `CHAINLOG`:
+    - `ILK_REGISTRY`:
+        - [ ] New ilk is added to the registry
+    - `CHAINLOG`:
         - [ ] `DssLitePsm` is added to the chainlog and `addresses_mainnet.sol` according to the Exec Sheet
         - [ ] `pocket` is added to the chainlog and `addresses_mainnet.sol` according to the Exec Sheet
         - [ ] `DssLitePsmMom` is added to the chainlog and `addresses_mainnet.sol` according to the Exec Sheet
         - [ ] `LitePsmJob` is added to the chainlog and `addresses_mainnet.sol` according to the Exec Sheet
         - [ ] IF a new `pip` is being added, it is added to the chainlog and `addresses_mainnet.sol` as `PIP_{TOKEN_SYMBOL}` (i.e. `PIP_USDC`)
 - Test coverage:
-    - [ ] `DssLitePsm`:
+    - `DssLitePsm`:
         - [ ] `vow` is set to `MCD_VOW`
         - [ ] `buf` matches the Exec Sheet
         - [ ] `MCD_PAUSE_PROXY` is whitelisted to execute swaps with no fees (i.e. `KissLike({LITE_PSM}).bud(MCD_PAUSE_PROXY) == 1`)
         - [ ] `DssLitePsmMom` is authed (i.e. `WardsLike({LITE_PSM}).wards(MOM) == 1`)
-        - [ ] E2E tests:
+        - E2E tests:
             - [ ] `buyGem` works as expected
             - [ ] `sellGem` works as expected
             - [ ] `buyGemNoFee` works as expected
             - [ ] `sellGemNoFee` works as expected
-    - [ ] `DssLitePsmMom`:
-        - [ ] E2E tests:
+    - `DssLitePsmMom`:
+        - E2E tests:
             - [ ] `halt` prevents new swaps in `{LITE_PSM}`
-    - [ ] `LitePsmJob`: 
+    - `LitePsmJob`: 
         - [ ] Job is added to `CRON_SEQUENCER` (i.e.: `SequencerLike(CRON_SEQUENCER).hasJob(LITE_PSM_JOB) == true`)
         - [ ] `sequencer` matches `CRON_SEQUENCER` address from the chainlog
         - [ ] `litePsm` matches `{LITE_PSM}` address
         - [ ] `rushThreshold` matches the Exec Sheet (it might be named as "fill threshold")
         - [ ] `gushThreshold` matches the Exec Sheet (it might be named as "trim threshold")
         - [ ] `cutThreshold` matches the Exec Sheet (it might be named as "chug threshold")
-        - [ ] E2E tests:
-            - [ ] `work` has the desired effect:
+        - E2E tests:
+            - `work` has the desired effect:
                 - [ ] IF `rush() > _rushThreshold`, `fill` is called
                 - [ ] OTHERWISE IF `cut() > _cutThreshold`, `chug` is called
                 - [ ] OTHERWISE IF `gush() > _gushThreshold`, `trim` is called
                 - [ ] OTHERWISE it reverts
-    - [ ] `MCD_VAT`: `urns[ilk][{LITE_PSM}].ink` is set to the max value that will not cause an overflow (`int256(type(uint256).max / RAY)`)
-    - [ ] `MCD_JUG`: Stability fee (`duty`) is set to 0% (`1 * RAY`) for the ilk (:information_source: covered in `config.sol`)
-    - [ ] `MCD_SPOT`:
+    - `MCD_VAT`:
+        - [ ] `urns[ilk][{LITE_PSM}].ink` is set to the max value that will not cause an overflow (`int256(type(uint256).max / RAY)`)
+    - `MCD_JUG`:
+        - [ ] Stability fee (`duty`) is set to 0% (`1 * RAY`) for the ilk (:information_source: covered in `config.sol`)
+    - `MCD_SPOT`:
         - [ ] `spotter(DST_ILK).mat` is set to 100% (`1 * RAY`) (:information_source: covered in `config.sol`)
         - [ ] `spotter(DST_ILK).pip` is set correctly 
-    - [ ] `CHAINLOG`: version is bumped: `{x}.{y}.{z+1}` (:information_source: covered in `config.sol`)
-    - [ ] `ILK_REGISTRY`:
+    - `CHAINLOG`:
+        - [ ] Version is bumped: `{x}.{y}.{z+1}` (:information_source: covered in `config.sol`)
+    - `ILK_REGISTRY`:
         - [ ] New ilk is added to the registry
         - [ ] `name` matches `gem` name
         - [ ] `symbol` matches `gem` symbol
