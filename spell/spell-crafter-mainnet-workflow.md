@@ -149,6 +149,8 @@ Repo: https://github.com/makerdao/spells-mainnet
   * [ ] Ensure that executive vote file name and date is correct
   * [ ] [community](https://github.com/makerdao/community) repo commit hash corresponds to latest change
   * [ ] Raw GitHub URL is correct
+  * [ ] Raw GitHub URL uses hash of the last commit that introduced a change to Exec Doc
+  * [ ] Commit hash found above matches the result of `git log --pretty=oneline -1 -- 'PATH_TO_EXEC_DOC'` in the [community](https://github.com/makerdao/community) repo
   * [ ] Exec hash is correct (use `cast keccak -- "$(curl '$URL' -o - 2>/dev/null)"` where `wget` doesn't work)
   * [ ] Ensure `description` date in `DssSpell.sol` matches target date inside Exec Doc
 * [ ] Make sure all review comments are either addressed or explicitly answered
