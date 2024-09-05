@@ -329,6 +329,19 @@ _Insert your local test logs here_
   * [ ] Exec Doc file name follows the format `Executive vote - Month DD, YYYY.md`
   * [ ] Extract _permanent_ URL to the raw markdown file and paste it below
     _Insert your Raw Exec Doc URL here_
+  * [ ] Ensure the URL uses commit hash that introduced last change to the Exec Doc, NOT merge commit 
+    * [ ] IF there is no local copy of [`makerdao/community` GitHub repo](https://github.com/makerdao/community)), run:
+      ```
+      git clone https://github.com/makerdao/community
+      ```
+    * [ ] OTHERWISE, ensure it is pointing to the latest commit on master:
+      ```
+      git switch master && git pull origin master
+      ```
+    * [ ] Get the latest commit hash for the exec doc:
+      ```
+      git log --pretty=oneline -1 -- "<LOCAL_PATH_TO_EXEC_DOC>"
+      ```
   * [ ] Using Exec Doc URL from the above and the `TARGET_DATE`, generate Exec Doc Hash via `make exec-hash date=$TARGET_DATE $URL`
     _Insert your Exec Doc Hash here_
   * [ ] Using Exec Doc URL from the above, generate Exec Doc Hash via `cast keccak -- "$(curl '$URL' -o - 2>/dev/null)"`

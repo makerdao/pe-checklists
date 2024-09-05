@@ -149,6 +149,19 @@ Repo: https://github.com/makerdao/spells-mainnet
   * [ ] Ensure that executive vote file name and date is correct
   * [ ] [community](https://github.com/makerdao/community) repo commit hash corresponds to latest change
   * [ ] Raw GitHub URL is correct
+  * [ ] Ensure the URL uses commit hash that introduced last change to the Exec Doc, NOT merge commit 
+    * [ ] IF there is no local copy of [`makerdao/community` GitHub repo](https://github.com/makerdao/community)), run:
+      ```
+      git clone https://github.com/makerdao/community
+      ```
+    * [ ] OTHERWISE, ensure it is pointing to the latest commit on master:
+      ```
+      git switch master && git pull origin master
+      ```
+    * [ ] Get the latest commit hash for the exec doc:
+      ```
+      git log --pretty=oneline -1 -- "<LOCAL_PATH_TO_EXEC_DOC>"
+      ```
   * [ ] Exec hash is correct (use `cast keccak -- "$(curl '$URL' -o - 2>/dev/null)"` where `wget` doesn't work)
   * [ ] Ensure `description` date in `DssSpell.sol` matches target date inside Exec Doc
 * [ ] Make sure all review comments are either addressed or explicitly answered
