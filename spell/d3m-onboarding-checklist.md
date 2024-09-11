@@ -1,0 +1,112 @@
+- IF new D3M is being onboarded
+  - [ ] Ensure `ilk` follows the ilk format `DIRECT-X-TOKEN`
+  - Ensure the following contracts are deployed
+    - `D3MPlan`
+      - [ ] Optimizer is enabled
+      - [ ] Optimize runs is set to `200`
+      - [ ] Deployed contract matches the code in the [repo](https://github.com/makerdao/dss-direct-deposit)
+      - Constructor params:
+        - [ ] IF constructor param exist, it matches passed Liquidity pool token address 
+      - `wards` state variable
+        - [ ] MCD_PAUSE_PROXY is relied 
+        - [ ] deployer is denied
+        - [ ] no other address has been relied
+    - `D3MPool`
+      - [ ] Optimizer is enabled
+      - [ ] Optimize runs is set to `200`
+      - [ ] Deployed contract matches the code in the [repo](https://github.com/makerdao/dss-direct-deposit)
+      - Constructor params:
+        - [ ] `ilk_` matches bytes32 representation of ilk name in Exec Sheet
+        - [ ] `hub_` matches `DIRECT_HUB` from chainlog
+        - [ ] IF Liquidity pool token exist, it matches passed Liquidity pool token address
+        - [ ] IF dai exist, it matches `MCD_DAI` from chainlog
+        - [ ] IF daiJoin exist, it matches `MCD_JOIN_DAI` from chainlog
+        - [ ] IF usdsJoin exist, it matches `MCD_JOIN_USDS` from chainlog
+        - [ ] IF vault exist, it matches the address in Exec Sheet
+      - `wards` state variable
+        - [ ] `MCD_PAUSE_PROXY` is relied 
+        - [ ] deployer is denied
+        - [ ] no other address has been relied
+    - `D3MOracle`
+      - [ ] Optimizer is enabled
+      - [ ] Optimize runs is set to `200`
+      - [ ] Deployed contract matches the code in the [repo](https://github.com/makerdao/dss-direct-deposit)
+      - Constructor params:
+        - [ ] `vat_` matches `MCD_VAT`
+        - [ ] `ilk_` matches bytes32 representation of ilk name in Exec Sheet
+      - `wards` state variable
+        - [ ] `MCD_PAUSE_PROXY` is relied 
+        - [ ] deployer is denied
+        - [ ] no other address has been relied
+  - Ensure the following values are initialized
+    - `D3MPlan`
+      - [ ] rely on `DIRECT_MOM` contract
+      - [ ] `hub` is set to `DIRECT_HUB` from chainlog
+      - [ ] `State Variables` are set to values in Exec sheet
+    - `D3MPool`
+      - [ ] `hub` is set to `DIRECT_HUB` from chainlog
+      - [ ] `ilk` name matches 
+      - [ ] `vat` is set to `DIRECT_HUB` from chainlog
+      - [ ] IF `king` exist, it is set to `MCD_PAUSE_PROXY` from chainlog
+      - [ ] IF `operator` exist, it is set to address in Exec sheet
+      - [ ] `State Variables` are set to values in Exec sheet
+    - `D3MOracle`
+      - [ ] `hub` is set to `DIRECT_HUB` from chainlog
+    - `DIRECT_HUB`
+      - [ ] `ilk` is added correctly
+        - [ ] `plan` is set to `D3MPlan` address for current D3M
+        - [ ] `pool` is set to `D3MPool` address for current D3M
+        - [ ] `tau` is set to value in Exec sheet
+        - [ ] `culled` and `tic` values are not updated
+    - `MCD_VAT`
+      - [ ] `ilk` is initialized using [`vat.init(ilk)`](https://github.com/makerdao/dss/blob/fa4f6630afb0624d04a003e920b0d71a00331d98/src/vat.sol#L100-L103)
+      - [ ] `Line` is updated to `vat.Line() + gap`
+    - `MCD_JUG` 
+      - [ ] `ilk` is initialized using [`jug.init(ilk)`](https://github.com/makerdao/dss/blob/fa4f6630afb0624d04a003e920b0d71a00331d98/src/jug.sol#L101-L106)
+    - `MCD_SPOT`
+      - [ ] `pip` is set to current D3M `D3MOracle` address
+      - [ ] `mat` is set to `RAY (10 ** 27)`
+      - [ ] [`spotter.poke(ilk)`](https://github.com/makerdao/dss/blob/fa4f6630afb0624d04a003e920b0d71a00331d98/src/spot.sol#L98-L103) is called after set values
+    - `MCD_IAM_AUTO_LINE`
+      - [ ] `ilk` is set using [`setIlk`](https://github.com/makerdao/dss-auto-line/blob/bff7e6cc43dbd7d9a054dd359ef18a1b4d06b6f5/src/DssAutoLine.sol#L81-L86)
+        - [ ] `ilk` name
+        - [ ] `maxLine` value in Exec sheet
+        - [ ] `gap` value in Exec sheet
+        - [ ] `ttl` value in Exec sheet
+    - `ILK_REGISTRY`
+      - [ ] ilk is added using [`ilkRegistry.put`](https://github.com/makerdao/ilk-registry/blob/1d65fb6e17c28e9e94ac88f0d8ccad04d8945f3c/src/IlkRegistry.sol#L389-L427) 
+        - [ ] `ilk` name
+        - [ ] `DIRECT_HUB` address from chainlog
+        - [ ] current D3M `D3MPool.redeemable()` address
+        - [ ] current D3M `D3MPool.redeemable()` tokens decimal
+        - [ ] `4` (`ilk registry class for D3Ms`)
+        - [ ] current D3M `D3MOracle` address
+        - [ ] `address(0)`
+        - [ ] current D3M `D3MPool.redeemable()` tokens name
+        - [ ] current D3M `D3MPool.redeemable()` tokens symbol
+    - `CHAINLOG`
+      - [ ] Create ILK prefix using [`ScriptTools.ilkToChainlogFormat`](https://github.com/makerdao/dss-test/blob/36ff4adbcb35760614e0d2df864026991c23d028/src/ScriptTools.sol#L226-L239)
+      - [ ] `D3MPlan` is added to chainlog
+        - [ ] correct address is added
+        - [ ] name follows pattern `ILK_PREFIX_PLAN`
+      - [ ] `D3MPool` is added to chainlog
+        - [ ] correct address is added
+        - [ ] name follows pattern `ILK_PREFIX_POOL`
+      - [ ] `D3MOracle` is added to chainlog
+        - [ ] correct address is added
+        - [ ] name follows pattern `ILK_PREFIX_ORACLE`
+      - [ ] bump `Chainlog` version 
+  - Ensure the following tests are covered
+    - `D3MPlan`
+      - [ ] IF Liquidity pool token exists, it matches the address in Exec sheet
+    - `D3MPool`
+      - [ ] `hub` matches `DIRECT_HUB` from chainlog
+      - [ ] `ilk` matches bytes32 representation of ilk name in Exec Sheet
+      - [ ] `vat` matches `MCD_VAT` from chainlog
+      - [ ] IF `dai` exists, address matches `MCD_DAI` from chainlog
+      - [ ] IF `daiJoin` exists, address matches `MCD_JOIN_DAI` from chainlog
+      - [ ] IF `usds` exists, address matches `USDS` from chainlog
+      - [ ] IF `usdsJoin` exists, address matches `USDS_JOIN` from chainlog
+      - [ ] contract is activated (eg. `require(D3MPool.active())`)
+      - [ ] IF Liquidity pool token exists, it matches the address in Exec sheet
+    
