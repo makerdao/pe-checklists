@@ -1,12 +1,16 @@
+# D3M Checklist
+
+## D3M Onboarding Checklist
+
 - IF new D3M is being onboarded
   - [ ] Ensure `ilk` follows the ilk format `DIRECT-X-TOKEN`
   - Ensure the following contracts are deployed
     - `D3MPlan`
       - [ ] Optimizer is enabled
       - [ ] Optimize runs is set to `200`
-      - [ ] Deployed contract matches the code in the [repo](https://github.com/makerdao/dss-direct-deposit)
+      - [ ] Deployed contract matches the code in the [repo directory](https://github.com/makerdao/dss-direct-deposit/tree/master/src/plans)
       - Constructor params:
-        - [ ] IF constructor param exist, it matches passed Liquidity pool token address 
+        - [ ] IF Liquidity pool token exists, it matches address in Exec sheet (eg. `adai`, `cdai`)
       - `wards` state variable
         - [ ] MCD_PAUSE_PROXY is relied 
         - [ ] deployer is denied
@@ -14,11 +18,11 @@
     - `D3MPool`
       - [ ] Optimizer is enabled
       - [ ] Optimize runs is set to `200`
-      - [ ] Deployed contract matches the code in the [repo](https://github.com/makerdao/dss-direct-deposit)
+      - [ ] Deployed contract matches the code in the [repo directory](https://github.com/makerdao/dss-direct-deposit/tree/master/src/pools)
       - Constructor params:
         - [ ] `ilk_` matches bytes32 representation of ilk name in Exec Sheet
         - [ ] `hub_` matches `DIRECT_HUB` from chainlog
-        - [ ] IF Liquidity pool token exist, it matches passed Liquidity pool token address
+        - [ ] IF Liquidity pool token exists, it matches address in Exec sheet
         - [ ] IF dai exist, it matches `MCD_DAI` from chainlog
         - [ ] IF daiJoin exist, it matches `MCD_JOIN_DAI` from chainlog
         - [ ] IF usdsJoin exist, it matches `MCD_JOIN_USDS` from chainlog
@@ -30,7 +34,7 @@
     - `D3MOracle`
       - [ ] Optimizer is enabled
       - [ ] Optimize runs is set to `200`
-      - [ ] Deployed contract matches the code in the [repo](https://github.com/makerdao/dss-direct-deposit)
+      - [ ] Deployed contract matches the code in the [repo](https://github.com/makerdao/dss-direct-deposit/blob/master/src/D3MOracle.sol)
       - Constructor params:
         - [ ] `vat_` matches `MCD_VAT`
         - [ ] `ilk_` matches bytes32 representation of ilk name in Exec Sheet
@@ -38,6 +42,19 @@
         - [ ] `MCD_PAUSE_PROXY` is relied 
         - [ ] deployer is denied
         - [ ] no other address has been relied
+    - IF `D3M` has Liquidity pool token (naming convention examples: `adai`, `cdai`)
+      - [ ] Ensure it's a token address
+      - [ ] The address is present in the Exec Sheet
+    - IF `D3MPlan` has `operator`
+      - [ ] Ensure it's a known multi-sig contract
+      - [ ] The address is present in the Exec Sheet
+    - IF `D3MPool` has a `vault`
+      - [ ] The address is present in the Exec Sheet
+    - IF `D3MPool` has a `stableDebt`
+      - [ ] The address is present in the Exec Sheet
+    - IF `D3MPool` has a `variableDebt`
+      - [ ] Ensure it's a token address
+      - [ ] The address is present in the Exec Sheet
   - Ensure the following values are initialized
     - `D3MPlan`
       - [ ] rely on `DIRECT_MOM` contract
@@ -69,21 +86,21 @@
       - [ ] [`spotter.poke(ilk)`](https://github.com/makerdao/dss/blob/fa4f6630afb0624d04a003e920b0d71a00331d98/src/spot.sol#L98-L103) is called after set values
     - `MCD_IAM_AUTO_LINE`
       - [ ] `ilk` is set using [`setIlk`](https://github.com/makerdao/dss-auto-line/blob/bff7e6cc43dbd7d9a054dd359ef18a1b4d06b6f5/src/DssAutoLine.sol#L81-L86)
-        - [ ] `ilk` name
-        - [ ] `maxLine` value in Exec sheet
-        - [ ] `gap` value in Exec sheet
-        - [ ] `ttl` value in Exec sheet
+        - [ ] `ilk` matches `ilk` name
+        - [ ] `line` matches `maxLine` value in Exec sheet
+        - [ ] `gap` matches `gap` value in Exec sheet
+        - [ ] `ttl` matches `ttl` value in Exec sheet
     - `ILK_REGISTRY`
       - [ ] ilk is added using [`ilkRegistry.put`](https://github.com/makerdao/ilk-registry/blob/1d65fb6e17c28e9e94ac88f0d8ccad04d8945f3c/src/IlkRegistry.sol#L389-L427) 
-        - [ ] `ilk` name
-        - [ ] `DIRECT_HUB` address from chainlog
-        - [ ] current D3M `D3MPool.redeemable()` address
-        - [ ] current D3M `D3MPool.redeemable()` tokens decimal
-        - [ ] `4` (`ilk registry class for D3Ms`)
-        - [ ] current D3M `D3MOracle` address
-        - [ ] `address(0)`
-        - [ ] current D3M `D3MPool.redeemable()` tokens name
-        - [ ] current D3M `D3MPool.redeemable()` tokens symbol
+        - [ ] `_ilk` matches `ilk` name
+        - [ ] `_join` matches `DIRECT_HUB` address from chainlog
+        - [ ] `_gem` matches current D3M `D3MPool.redeemable()` address
+        - [ ] `_dec` matches current D3M `D3MPool.redeemable()` tokens decimal
+        - [ ] `_class` matches `4` (`ilk registry class for D3Ms`)
+        - [ ] `_pip` matches current D3M `D3MOracle` address
+        - [ ] `_xlip` matches `address(0)`
+        - [ ] `_name` matches current D3M `D3MPool.redeemable()` tokens name
+        - [ ] `_symbol` matches current D3M `D3MPool.redeemable()` tokens symbol
     - `CHAINLOG`
       - [ ] Create ILK prefix using [`ScriptTools.ilkToChainlogFormat`](https://github.com/makerdao/dss-test/blob/36ff4adbcb35760614e0d2df864026991c23d028/src/ScriptTools.sol#L226-L239)
       - [ ] `D3MPlan` is added to chainlog
@@ -96,17 +113,67 @@
         - [ ] correct address is added
         - [ ] name follows pattern `ILK_PREFIX_ORACLE`
       - [ ] bump `Chainlog` version 
-  - Ensure the following tests are covered
+  - Ensure the following functionality is covered with tests
     - `D3MPlan`
       - [ ] IF Liquidity pool token exists, it matches the address in Exec sheet
+      - [ ] IF `operator` exist, it matches the address in Exec sheet
+      - [ ] State variable values match values in Executive sheet
+      - E2E test
+        - [ ] `targetAssets` can be updated (either through setting `targetRate` or `targetAsset` directly)
+        - [ ] `getTargetAssets` returns correct amount
     - `D3MPool`
       - [ ] `hub` matches `DIRECT_HUB` from chainlog
       - [ ] `ilk` matches bytes32 representation of ilk name in Exec Sheet
       - [ ] `vat` matches `MCD_VAT` from chainlog
+      - [ ] contract is activated (eg. `require(D3MPool.active())`)
       - [ ] IF `dai` exists, address matches `MCD_DAI` from chainlog
       - [ ] IF `daiJoin` exists, address matches `MCD_JOIN_DAI` from chainlog
       - [ ] IF `usds` exists, address matches `USDS` from chainlog
       - [ ] IF `usdsJoin` exists, address matches `USDS_JOIN` from chainlog
-      - [ ] contract is activated (eg. `require(D3MPool.active())`)
       - [ ] IF Liquidity pool token exists, it matches the address in Exec sheet
-    
+      - [ ] IF `vault` exists, it matches the address in Exec sheet
+      - [ ] `redeemable` matches Liquidity pool token address or vault address
+      - [ ] State variable values match values in Executive sheet
+      - [ ] `D3MMom` is relied (eg. `plan.wards(address(mom))`)
+    - `D3MHub`
+      - [ ] `ilk.pool` address matches the address in Exec sheet
+      - [ ] `ilk.plan` address matches the address in Exec sheet
+      - [ ] `ilk.tau` value matches the value in Exec sheet
+      - [ ] `ilk.culled` value is 0
+      - [ ] `vow` address matches `MCD_VOW` from chainlog
+      - [ ] `end` address matches `MCD_END` from chainlog
+      - E2E test
+        - [ ] `hub.exec(ilk)` updates debt correctly
+    - `D3MOracle`
+      - [ ] `hub` address matches `DIRECT_MOM` from chainlog
+    - `D3MMom`
+      - [ ] `authority` matches `MCD_ADM` from chainlog
+      - E2E test
+        - [ ] `mom.disable(D3MPlan)` deactivate the plan contract
+        - [ ] Executing `hub.exec(ilk)` after disabling plan, update both `ink`, `art` to smaller than `WAD`
+    - `MCD_SPOT`:
+      - [ ] `spotter(D3M_ILK).mat` is set to 100% (`1 * RAY`) (:information_source: covered in `config.sol`)
+      - [ ] `spotter(D3M_ILK).pip` is set to `D3MOracle` address 
+    - `ILK_REGISTRY`
+      - [ ] New ilk is added to the registry
+      - [ ] `join` matches `DIRECT_HUB` address from chainlog
+      - [ ] `gem` matches current D3M `D3MPool.redeemable()` address
+      - [ ] `dec` matches current D3M `D3MPool.redeemable()` tokens decimal
+      - [ ] `class` matches `4` (`ilk registry class for D3Ms`)
+      - [ ] `pip` matches current D3M `D3MOracle` address
+      - [ ] `xlip` matches `address(0)`
+      - [ ] `name` matches current D3M `D3MPool.redeemable()` tokens name
+      - [ ] `symbol` matches current D3M `D3MPool.redeemable()` tokens symbol
+    - `MCD_VAT`
+      - [ ] `DIRECT_HUB` is relied (eg. `vat.wards(address(hub))`)
+    - `MCD_END`
+      - [ ] `Global Settlement` process is fully tested for `D3M ilk`
+      - [ ] `end.cage(ilk)` updates `end.tag`
+      - [ ] `end.skim(ilk, D3MPool)` updates `urn.art` to 0
+      - [ ] `end.skim(ilk, D3MPool)` updates `urn.ink` to 0 
+      - [ ]  TODO
+
+## D3M Offboarding Checklist
+
+- IF D3M is being offboarded
+
