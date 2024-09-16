@@ -167,13 +167,9 @@
     - `MCD_VAT`
       - [ ] `DIRECT_HUB` is relied (eg. `vat.wards(address(hub))`)
     - `MCD_END`
-      - [ ] `Global Settlement` process is fully tested for `D3M ilk`
-      - [ ] `end.cage(ilk)` updates `end.tag`
-      - [ ] `end.skim(ilk, D3MPool)` updates `urn.art` to 0
-      - [ ] `end.skim(ilk, D3MPool)` updates `urn.ink` to 0 
-      - [ ]  TODO
-
-## D3M Offboarding Checklist
-
-- IF D3M is being offboarded
-
+      - E2E test
+        - [ ] `Global Settlement` process is fully tested for `D3M ilk`
+        - [ ] `end.cage(ilk)` updates `end.tag`
+        - [ ] `end.skim(ilk, D3MPool)` updates `urn.art` to 0
+        - [ ] `end.skim(ilk, D3MPool)` updates `urn.ink` to 0 
+        - [ ] `end.cash(ilk, debtCeiling)` updates gem balance for caller (eg.`vat.gem(ilk, address (this))`)
