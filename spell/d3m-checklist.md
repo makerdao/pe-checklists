@@ -12,7 +12,7 @@
       - Constructor params:
         - [ ] IF params exist, they match value or address in Exec sheet
       - `wards` state variable
-        - [ ] MCD_PAUSE_PROXY is relied 
+        - [ ] `MCD_PAUSE_PROXY` is relied 
         - [ ] deployer is denied
         - [ ] no other address has been relied
     - `D3MPool`
@@ -24,7 +24,7 @@
         - [ ] `hub_` matches `DIRECT_HUB` from chainlog
         - [ ] IF dai exist, it matches `MCD_DAI` from chainlog
         - [ ] IF `daiJoin` exist, it matches `MCD_JOIN_DAI` from chainlog
-        - [ ] IF `usdsJoin` exist, it matches `MCD_JOIN_USDS` from chainlog
+        - [ ] IF `usdsJoin` exist, it matches `USDS_JOIN` from chainlog
         - [ ] IF other params exist, they match value or address in Exec sheet
       - `wards` state variable
         - [ ] `MCD_PAUSE_PROXY` is relied 
@@ -46,18 +46,18 @@
       - [ ] The address is present in the Exec Sheet
     - IF any other contract is required as part of the new D3M module
       - [ ] Verified on etherscan
+      - [ ] The address is present in the Exec Sheet
   - Ensure the following values are initialized
     - `D3MPlan`
       - [ ] rely on `DIRECT_MOM` contract
-      - [ ] `hub` is set to `DIRECT_HUB` from chainlog
-      - [ ] `State variables` are set to values in Exec sheet
+      - [ ] IF `operator` exist, it is set to address in Exec sheet
+      - [ ] IF other `State variables`, they are set to values in Exec sheet
     - `D3MPool`
       - [ ] `hub` is set to `DIRECT_HUB` from chainlog
       - [ ] `ilk` name matches 
       - [ ] `vat` is set to `DIRECT_HUB` from chainlog
       - [ ] IF `king` exist, it is set to `MCD_PAUSE_PROXY` from chainlog
-      - [ ] IF `operator` exist, it is set to address in Exec sheet
-      - [ ] `State variables` are set to values in Exec sheet
+      - [ ] IF other `State variables`, they are set to values in Exec sheet
     - `D3MOracle`
       - [ ] `hub` is set to `DIRECT_HUB` from chainlog
     - `DIRECT_HUB`
