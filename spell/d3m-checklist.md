@@ -51,13 +51,13 @@
     - `D3MPlan`
       - [ ] rely on `DIRECT_MOM` contract
       - [ ] IF `operator` exist, it is set to address in Exec sheet
-      - [ ] IF other `State variables`, they are set to values in Exec sheet
+      - [ ] IF other `State variable` values specified in Exec sheet, they are set correctly
     - `D3MPool`
       - [ ] `hub` is set to `DIRECT_HUB` from chainlog
       - [ ] `ilk` name matches 
-      - [ ] `vat` is set to `DIRECT_HUB` from chainlog
+      - [ ] `vat` is set to `MCD_VAT` from chainlog
       - [ ] IF `king` exist, it is set to `MCD_PAUSE_PROXY` from chainlog
-      - [ ] IF other `State variables`, they are set to values in Exec sheet
+      - [ ] IF other `State variable` values specified in Exec sheet, they are set correctly
     - `D3MOracle`
       - [ ] `hub` is set to `DIRECT_HUB` from chainlog
     - `DIRECT_HUB`
@@ -106,9 +106,8 @@
       - [ ] bump `Chainlog` version 
   - Ensure the following functionality is covered with tests
     - `D3MPlan`
-      - [ ] IF Liquidity pool token exists, it matches the address in Exec sheet
       - [ ] IF `operator` exist, it matches the address in Exec sheet
-      - [ ] State variable values match values in Executive sheet
+      - [ ] IF other `State variable` values specified in Exec sheet, they are set correctly
       - E2E test
         - [ ] `targetAssets` can be updated (either through setting `targetRate` or `targetAsset` directly)
         - [ ] `getTargetAssets` returns correct amount
@@ -118,7 +117,7 @@
       - [ ] `vat` matches `MCD_VAT` from chainlog
       - [ ] contract is activated (i.e. `require(D3MPool.active())`)
       - [ ] `redeemable` matches Liquidity pool token address or vault address
-      - [ ] State variable values match values in Executive sheet
+      - [ ] IF other `State variable` values specified in Exec sheet, they are set correctly
       - [ ] `D3MMom` is relied (i.e. `plan.wards(address(mom))`)
       - [ ] IF `dai` exists, address matches `MCD_DAI` from chainlog
       - [ ] IF `daiJoin` exists, address matches `MCD_JOIN_DAI` from chainlog
