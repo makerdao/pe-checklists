@@ -145,7 +145,8 @@ Repo: https://github.com/makerdao/spells-mainnet
   * [ ] Office hours value in the Exec Doc matches the spell
   * [ ] Sum of all payments in the Exec Doc matches the tests
 * Exec Doc Hash
-  * [ ] Run `make exec-hash` (or `make exec-hash date=YYYY-MM-DD`) and update spell code accordingly
+  * [ ] Run `make exec-hash date=YYYY-MM-DD` and update spell code accordingly
+  * [ ] Make sure generated hash matches with the hash provided from Governance Facilitator, OTHERWISE notify Responsible Governance Facilitator
   * [ ] Ensure that executive vote file name and date is correct
   * [ ] [community](https://github.com/makerdao/community) repo commit hash corresponds to latest change
   * [ ] Raw GitHub URL is correct
