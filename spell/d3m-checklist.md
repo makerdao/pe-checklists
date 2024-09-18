@@ -106,7 +106,7 @@
       - [ ] IF `operator` exist, it matches the address in Exec sheet
       - [ ] IF other `State variable` values specified in Exec sheet, they are set correctly
       - E2E test
-        - [ ] Ensure targetAssets can be updated either by `MCD_PAUSE_PROXY` or by the `operator` (if present in `D3MPlan`) through setting `targetRate` or `targetAsset` directly.
+        - [ ] Ensure `targetAssets` can be updated either by `MCD_PAUSE_PROXY` or by the `operator` (if present in `D3MPlan`) through setting `targetRate` or `targetAsset` directly.
         - [ ] `getTargetAssets` returns correct amount
     - `D3MPool`
       - [ ] `hub` matches `DIRECT_HUB` from chainlog
