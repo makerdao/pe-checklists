@@ -52,8 +52,6 @@
       - [ ] IF other state variable values are specified in the Exec sheet, they are set correctly
     - `D3MPool`
       - [ ] `hub` is set to `DIRECT_HUB` from the chainlog
-      - [ ] `ilk` name matches 
-      - [ ] `vat` is set to `MCD_VAT` from the chainlog
       - [ ] IF `king` exists, it is set to `MCD_PAUSE_PROXY` from the chainlog
       - [ ] IF other state variable values are specified in the Exec sheet, they are set correctly
     - `D3MOracle`
@@ -66,7 +64,6 @@
         - [ ] `culled` and `tic` values are not updated
     - `MCD_VAT`
       - [ ] `ilk` is initialized using [`vat.init(ilk)`](https://github.com/makerdao/dss/blob/fa4f6630afb0624d04a003e920b0d71a00331d98/src/vat.sol#L100-L103)
-      - [ ] `Line` is updated to `vat.Line() + gap`
     - `MCD_JUG` 
       - [ ] `ilk` is initialized using [`jug.init(ilk)`](https://github.com/makerdao/dss/blob/fa4f6630afb0624d04a003e920b0d71a00331d98/src/jug.sol#L101-L106)
     - `MCD_SPOT`
@@ -152,5 +149,3 @@
       - [ ] `xlip` matches `address(0)`
       - [ ] `name` matches the current D3M `D3MPool.redeemable()` tokens name
       - [ ] `symbol` matches the current D3M `D3MPool.redeemable()` tokens symbol
-    - `MCD_VAT`
-      - [ ] `DIRECT_HUB` is relied (i.e. `vat.wards(address(hub))`)
