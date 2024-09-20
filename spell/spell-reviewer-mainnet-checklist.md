@@ -148,6 +148,7 @@
 * IF PSM migration, onboarding or offboarding is present:
   * [ ] Insert and follow the relevant checklists below:
     * [PSM Checklists](./psm-checklists.md)
+* [ ] IF D3M onboarding is present, insert and follow [D3M Checklist](./d3m-checklist.md)
 * IF collateral offboarding is present in the spell
   * 1st stage collateral offboarding
     * [ ] Collateral type (`ilk`) is removed from AutoLine (`MCD_IAM_AUTO_LINE`) IF currently enabled
