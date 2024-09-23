@@ -21,7 +21,6 @@
           * [ ] `gem` matches `RwaToken` deployed contract
         * [ ] check `wards`
           * [ ] `MCD_PAUSE_PROXY` is relied
-          * [ ] `MCD_ESM` is being relied in the spell (as approved by Governance Facilitators)
           * [ ] deployer is denied
         * [ ] no other address has been relied
     * [ ] `RwaUrn`/`RwaUrn2`
@@ -38,7 +37,6 @@
         * [ ] `outputConduit` matches `RwaOutputConduit<2,3>` (Per spell code)
       * [ ] check `wards`
         * [ ] `MCD_PAUSE_PROXY` is relied
-        * [ ] `MCD_ESM` is being relied in the spell (as approved by Governance Facilitators)
         * [ ] deployer is denied
         * [ ] no other address has been relied
     * [ ] `RwaJar`
@@ -63,7 +61,6 @@
         * [ ] `psm`, `gem` (`v3`)
       * [ ] check `wards`
         * [ ] `MCD_PAUSE_PROXY` is relied
-        * [ ] `MCD_ESM` is being relied in the spell (as approved by Governance Facilitators)
         * [ ] deployer is denied
         * [ ] no other address has been relied
     * [ ] `RwaOutputConduit<2>`/`RwaSwapOutputConduit`
@@ -78,7 +75,6 @@
         * [ ] `psm`, `gem` (`v3`)
       * [ ] check `wards`
         * [ ] `MCD_PAUSE_PROXY` is relied
-        * [ ] `MCD_ESM` is being relied in the spell (as approved by Governance Facilitators)
         * [ ] deployer is denied
         * [ ] no other address has been relied
     * [ ] Risk Parameters Match Doc

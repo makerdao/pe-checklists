@@ -41,7 +41,6 @@ env
 EOA
 EOAs
 ERC
-ESM
 Etherscan
 EthTx
 evmVersion
