@@ -23,6 +23,7 @@ configs
 Crafter
 cron
 CUs
+crypto
 DAI
 Daiwanese
 DAO
@@ -109,6 +110,7 @@ repos
 RPC
 RWA
 RWAXXX
+RWAXYZ
 setIlkAutoLineDebtCeiling
 setIlkAutoLineParameters
 setIlkDebtCeiling
