@@ -314,10 +314,10 @@
   * [ ] Ensure each spell action has sufficient test coverage
     _List actions for which coverage was checked here_
   * [ ] Ensure that any other env variable does not affect execution of the tests (for example, by inspecting the output of `printenv | grep "FOUNDRY_\|DAPP_"`)
-  - Testing of modules initialised via the spell
-    - [ ] Sanity checks of the constructor arguments
-    - [ ] Sanity checks of all values added/updated by the spell/init function
-    - [ ] End-to-end "happy path" interaction with the module
+  * Testing of modules initialised via the spell
+    * [ ] Sanity checks of the constructor arguments
+    * [ ] Sanity checks of all values added/updated by the spell/init function
+    * [ ] End-to-end "happy path" interaction with the module
   * [ ] Check all tests are passing locally using `make test`
     * [ ] Ensure every test listed in the _coverage_ item above is present in the logs and with the `[PASS]` prefix.
 
