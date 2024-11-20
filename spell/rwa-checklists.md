@@ -85,12 +85,14 @@
     * [ ] `line`(debt ceiling)
     * [ ] `mat` (liquidation ratio)
     * [ ] `val` (oracle price)
+      * [ ] `val` is computed as `"debt_ceiling * [ (1 + rwa_stability_fee ) ^ (minimum_deal_duration_in_years) ] * liquidation_ratio"`
+      * [ ] `val` matches locally executable formula (e.g. `// bc -l <<< 'scale=18; 50000000 * e(l(1.07) * (3342/365)) * 1.00' | cast --to-wei`)
     * [ ] `tau` (pre-agreed remediation period)
     * [ ] `doc` (IPFS Hash)
   * [ ] Onboarding Actions
     * [ ] `ilk` matches the format `RWAXYZ-A`
     * [ ] Sanity Checks (constructor args, public vars, ... via `require` condition)
-    * [ ] `oracle.init`
+    * [ ] `MIP21_LIQUIDATION_ORACLE.init`
     * [ ] `vat.init.ilk`
     * [ ] `jug.init.ilk` (this will set `duty` to `RAY` (zero pct) by default)
     * [ ] `vat` rely `join`
