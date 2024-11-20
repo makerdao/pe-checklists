@@ -45,7 +45,7 @@
   * [ ] `RwaJar`
     * [ ] contract is verified on etherscan
       * [ ] ensure `0.6.12` solc version is used
-      * [ ] ensure optimization are off
+      * [ ] ensure optimizations are off
       * [ ] ensure license is specified (SPDX in code or otherwise)
       * [ ] ensure source matches [GitHub code](https://github.com/makerdao/rwa-toolkit/blob/8d30ed2cb657641253d45b57c894613e26b4ae1b/src/jars/RwaJar.sol) and it's consistent with previous RWA onboarding
     * [ ] constructor arg matches [`ChainLog`](https://chainlog.makerdao.com/)
@@ -54,7 +54,7 @@
   * [ ] `RwaInputConduit<2>`/`RwaSwapInputConduit<2>`
     * [ ] contract is verified on etherscan
       * [ ] ensure `0.6.12` solc version is used
-      * [ ] ensure optimization are off
+      * [ ] ensure optimizations are off
       * [ ] ensure license is specified (SPDX in code or otherwise)
       * [ ] ensure source matches [GitHub code](https://github.com/makerdao/rwa-toolkit/tree/8d30ed2cb657641253d45b57c894613e26b4ae1b/src/conduits) and it's consistent with previous RWA onboarding
     * [ ] constructor args are correct and match [chainlog](https://chainlog.makerdao.com/)
@@ -69,7 +69,7 @@
   * [ ] `RwaOutputConduit<2>`/`RwaSwapOutputConduit`
     * [ ] contract is verified on etherscan
       * [ ] ensure `0.6.12` solc version is used
-      * [ ] ensure optimization are off
+      * [ ] ensure optimizations are off
       * [ ] ensure license is specified (SPDX in code or otherwise)
       * [ ] ensure source matches [GitHub code](https://github.com/makerdao/rwa-toolkit/tree/8d30ed2cb657641253d45b57c894613e26b4ae1b/src/conduits) and it's consistent with previous RWA onboarding
     * [ ] constructor args are correct and match [chainlog](https://chainlog.makerdao.com/)
@@ -103,7 +103,7 @@
       * [ ] `hope` (operator, pause proxy)
       * [ ] `mate` (operator, pause proxy as fallback if required)
       * [ ] `kiss` (whitelist for `urn` destination address `who`)
-   * [ ] Filable (`RwaSwapOutputConduit` and `RwaSwapInputConduit`)
+   * [ ] Fileable (`RwaSwapOutputConduit` and `RwaSwapInputConduit`)
       * [ ] `quitTo` (`file` the appropriate address for conduits per technical assessment)
    * [ ] New Chainlog Entries
       * [ ] `RWAXYZ`
