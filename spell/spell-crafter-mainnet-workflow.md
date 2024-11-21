@@ -217,7 +217,7 @@ Repo: https://github.com/makerdao/spells-mainnet
 * [ ] Commit & push changes for review
 * [ ] Wait for CI to PASS
 * [ ] Post a comment inside the PR containing:
-  * Foundry installation logs (from above)
+  * Relevant Foundry installation logs (from above or via `foundryup --version`)
   * A link to the deployed spell
   * A link to the created Tenderly Testnet
 * [ ] Notify the reviewers (e.g. "the spell was deployed")
