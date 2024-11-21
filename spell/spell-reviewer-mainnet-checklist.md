@@ -2,12 +2,12 @@
 
 ## Development Stage
 
-* Install stable foundry version
-  * [ ] Find the first [foundry release](https://github.com/foundry-rs/foundry/releases) that is older than 7 days from now
-    * [ ] Insert release URL here:
-  * [ ] Install specified version via `foundryup --version git_tag_name`
+* Install stable Foundry version
+  * [ ] Find the first [Foundry release](https://github.com/foundry-rs/foundry/releases) that is older than 7 days from now
+    * [ ] Insert the release URL here:
+  * [ ] Install the specified version via `foundryup --version git_tag_name`
     ```
-    Document relevant installation logs below
+    Document the relevant installation logs below
     ```
 * Preparation
   * [ ] Exec Sheet for the specified date is found in the ["Executive Vote Implementation Process" google sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw)
@@ -370,11 +370,11 @@ _Insert your local test logs here_
 
 ## Deployed Stage
 
-* Comment in the PR
-  * [ ] Contains relevant foundry installation logs
-  * [ ] Contains URL to the deployed spell
-    * [ ] URL matches spell address declared in the `config.sol`
-  * [ ] Contains URL to the Tenderly Testnet
+* Comment in the PR:
+  * [ ] Contains relevant Foundry installation logs
+  * [ ] Contains a URL to the deployed spell
+    * [ ] URL matches the spell address declared in `config.sol`
+  * [ ] Contains a URL to the Tenderly Testnet
 * Source code settings
   * [ ] Deployed spell is verified on etherscan
   * [ ] Optimization enabled: `false` UNLESS the contract size is too big AND all mitigation strategies (i.e.: removing revert strings) have failed
