@@ -7,7 +7,7 @@
     * [ ] Insert the release URL here:
   * [ ] Install the specified version via `foundryup --version git_tag_name`
     ```
-    Document the relevant installation logs below
+    Document the installation logs containing installed versions below:
     ```
 * Preparation
   * [ ] Exec Sheet for the specified date is found in the ["Executive Vote Implementation Process" google sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw)

@@ -39,7 +39,7 @@ Repo: https://github.com/makerdao/spells-mainnet
     * [ ] Insert the release URL here:
   * [ ] Install the specified version via `foundryup --version git_tag_name`
     ```
-    Document the relevant installation logs below
+    Document the installation logs containing installed versions below:
     ```
 * Create new branch
   * [ ] Pull `master` branch of the `spells-mainnet` repo locally
@@ -217,7 +217,7 @@ Repo: https://github.com/makerdao/spells-mainnet
 * [ ] Commit & push changes for review
 * [ ] Wait for CI to PASS
 * [ ] Post a comment inside the PR containing:
-  * Relevant Foundry installation logs (from above or via `foundryup --version`)
+  * Foundry installation logs containing installed versions (from above)
   * A link to the deployed spell
   * A link to the created Tenderly Testnet
 * [ ] Notify the reviewers (e.g. "the spell was deployed")
