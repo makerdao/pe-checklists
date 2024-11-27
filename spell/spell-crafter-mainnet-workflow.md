@@ -129,7 +129,7 @@ Repo: https://github.com/makerdao/spells-mainnet
   * [ ] Ensure good coverage (every spell action is tested)
   * [ ] Ensure every test function is declared as `public`
   * [ ] IF the test needs to run, it MUST NOT have the `skipped` modifier; OTHERWISE, it MUST have the `skipped` modifier
-  * Testing of modules initialised via the spell
+  * IF a new module is initialized via the spell, the tests must include
     * [ ] Sanity checks of the constructor arguments
     * [ ] Sanity checks of all values added/updated by the spell function
     * [ ] End-to-end "happy path" interaction with the module
