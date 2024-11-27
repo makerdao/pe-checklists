@@ -370,7 +370,7 @@ _Insert your local test logs here_
 
 ## Deployed Stage
 
-* Comment in the PR:
+* Crafter's comment in the PR
   * [ ] Contains relevant Foundry installation logs
   * [ ] Contains a URL to the deployed spell
     * [ ] URL matches the spell address declared in `config.sol`
