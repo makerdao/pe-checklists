@@ -21,6 +21,7 @@ collaterals
 config
 configs
 Crafter
+Crafter's
 cron
 CUs
 DAI

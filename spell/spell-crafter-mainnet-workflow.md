@@ -34,6 +34,13 @@ Repo: https://github.com/makerdao/spells-mainnet
 
 ## Development Stage
 
+* Install stable Foundry version
+  * [ ] Find the first [Foundry release](https://github.com/foundry-rs/foundry/releases) that is older than 7 days from now
+    * [ ] Insert the release URL here:
+  * [ ] Install the specified version via `foundryup --version git_tag_name`
+    ```
+    Document the installation logs containing installed versions below:
+    ```
 * Create new branch
   * [ ] Pull `master` branch of the `spells-mainnet` repo locally
   * [ ] Create a new branch named `YYYY-MM-DD` using the _initial_ target date of the spell
@@ -58,7 +65,6 @@ Repo: https://github.com/makerdao/spells-mainnet
     * [ ] Keep all tests that are already skipped (e.g. `testOSMs`, `testMedianizers`)
     * [ ] Remove unused interface declarations
   * Ensure correctness of the cleanup
-    * [ ] Ensure to use latest `foundry` stable version by running `foundryup`
     * [ ] Run Tests `make test` (or `make test match=<test_name>` to inspect debug traces)
 * Add comments to the spell based on the relevant [Exec Sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw)
   * [ ] Copy every _Section text_ from the Exec Sheet as comment to the spell code
@@ -210,7 +216,10 @@ Repo: https://github.com/makerdao/spells-mainnet
 * [ ] Archive Spell via `make archive-spell` for the current date (or `make archive-spell date="YYYY-MM-DD"`) using Target Date inside the Exec Doc
 * [ ] Commit & push changes for review
 * [ ] Wait for CI to PASS
-* [ ] Post a comment inside the PR containing links to the deployed spell and Tenderly Testnet
+* [ ] Post a comment inside the PR containing:
+  * Foundry installation logs containing installed versions (from above)
+  * A link to the deployed spell
+  * A link to the created Tenderly Testnet
 * [ ] Notify the reviewers (e.g. "the spell was deployed")
 
 ## Handover and Merge Stage
