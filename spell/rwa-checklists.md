@@ -187,4 +187,5 @@
   * [ ] IF `block.timestamp >= toc + tau`, then
     * [ ] IF the stability fee for the ilk is not zero (`jug.ilks(ilk).duty > 1 * RAY`), `jug.drip(ilk)` call is present
     * [ ] `RwaLiquidationOracle.cull(ilk, RWAXYZ_A_URN)` call is present
+    * [ ] IF `RWAXYZ_A_INPUT_CONDUIT` is an instance of [`TinlakeMgr`](https://github.com/centrifuge/tinlake-maker-lib/blob/master/src/mgr.sol) (it is a Centrifuge integration), additional `TinlakeMgr.cull()` call is present
   * [ ] OTHERWISE the write-off can only happen in a future spell
