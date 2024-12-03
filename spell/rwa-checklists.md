@@ -178,14 +178,13 @@
 
 ## RWA Offboarding Checklist
 
+* [ ] The debt ceiling (`vat.ilks(ilk).line`) is `0` OR is currently being set to `0`.
+* IF soft liquidation `.tell(ilk)` has **NOT** been called for the ilk in a previous spell:
+  * [ ] `RwaLiquidationOracle.tell(ilk)` call is present
+  * [ ] IF `RWAXYZ_A_INPUT_CONDUIT` is an instance of [`TinlakeMgr`](https://github.com/centrifuge/tinlake-maker-lib/blob/master/src/mgr.sol) (it is a Centrifuge integration), additional `TinlakeMgr.tell()` call is present (in order to prevent further `TIN` redemptions in the Centrifuge pool)
 * IF there is debt in the RWA Vault (`vat.urns(ilk, RWAXYZ_A_URN).art > 0`), proceed with the write-off (i.e.: vault is in default):
-  * IF soft liquidation `.tell(ilk)` has **NOT** been called for the ilk in a previous spell:
-    * [ ] The value of `RwaLiquidationOracle.ilks(ilk).tau` MUST be zero, OTHERWISE the offboarding can only happen in a future spell.
-    * [ ] The debt ceiling (`vat.ilks(ilk).line`) is `0` OR is currently being set to `0`.
-    * [ ] `RwaLiquidationOracle.tell(ilk)` call is present
-    * [ ] IF `RWAXYZ_A_INPUT_CONDUIT` is an instance of [`TinlakeMgr`](https://github.com/centrifuge/tinlake-maker-lib/blob/master/src/mgr.sol) (it is a Centrifuge integration), additional `TinlakeMgr.tell()` call is present (in order to prevent further `TIN` redemptions in the Centrifuge pool)
-  * [ ] IF the stability fee for the ilk is not zero (`jug.ilks(ilk).duty > 1 * RAY`), `jug.drip(ilk)` call is present
-  * [ ] `RwaLiquidationOracle.cull(ilk, RWAXYZ_A_URN)` call is present
-* OTHERWISE IF there is no more debt remaining in the vault (`vat.urns(ilk, RWAXYZ_A_URN).art == 0`):
-  * [ ] The debt ceiling (`vat.ilks(ilk).line`) is currently being set to `0`.
-
+  * [ ] Obtain `toc` and `tau` from `RwaLiquidationOracle.ilks(ilk)`
+  * [ ] IF `block.timestamp >= toc + tau`, then
+    * [ ] IF the stability fee for the ilk is not zero (`jug.ilks(ilk).duty > 1 * RAY`), `jug.drip(ilk)` call is present
+    * [ ] `RwaLiquidationOracle.cull(ilk, RWAXYZ_A_URN)` call is present
+  * [ ] OTHERWISE the write-off can only happen in a future spell
