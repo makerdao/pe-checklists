@@ -135,6 +135,10 @@ Repo: https://github.com/makerdao/spells-mainnet
   * [ ] Ensure good coverage (every spell action is tested)
   * [ ] Ensure every test function is declared as `public`
   * [ ] IF the test needs to run, it MUST NOT have the `skipped` modifier; OTHERWISE, it MUST have the `skipped` modifier
+  * IF a new module is initialized via the spell, the tests must include
+    * [ ] Sanity checks of the constructor arguments
+    * [ ] Sanity checks of all values added/updated by the spell function
+    * [ ] End-to-end "happy path" interaction with the module
   * [ ] Tests PASS via `make test`
 * [ ] Ensure `DssExecLib` address used in current spell (`DssExecLib.address`) matches `dss-exec-lib` [Latest Release Tag](https://github.com/makerdao/dss-exec-lib/releases/latest)
 * [ ] Push committed content to already opened PR
