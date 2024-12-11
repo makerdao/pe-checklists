@@ -102,6 +102,8 @@
     - `D3MPlan`
       - [ ] IF `operator` exists, it matches the address in the Exec sheet
       - [ ] IF other state variable values are specified in the Exec sheet, they are set correctly
+      - [ ] Plan is active (i.e. `require(D3MPlan.active())`)
+      - [ ] `D3MMom` is relied (i.e. `plan.wards(address(mom)) == 1`)
       - E2E test
         - [ ] Ensure `targetAssets` can be updated either by `MCD_PAUSE_PROXY` or by the `operator` (if present in `D3MPlan`) through setting `targetRate` or `targetAsset` directly.
         - [ ] `getTargetAssets` returns correct amount
@@ -109,10 +111,8 @@
       - [ ] `hub` matches `DIRECT_HUB` from the chainlog
       - [ ] `ilk` matches bytes32 representation of ilk name in the Exec Sheet
       - [ ] `vat` matches `MCD_VAT` from the chainlog
-      - [ ] Contract is activated (i.e. `require(D3MPool.active())`)
       - [ ] `redeemable` matches Liquidity pool token address or vault address
       - [ ] IF other state variable values are specified in the Exec sheet, they are set correctly
-      - [ ] `D3MMom` is relied (i.e. `plan.wards(address(mom))`)
       - [ ] IF `dai` exists, it matches `MCD_DAI` from the chainlog
       - [ ] IF `daiJoin` exists, it matches `MCD_JOIN_DAI` from the chainlog
       - [ ] IF `usds` exists, it matches `USDS` from the chainlog
