@@ -474,9 +474,9 @@ _Insert your local test logs here_
     Commit hash analysis ran against: _Insert commit hash used for analysis_ 
     ```
   * [ ] Ensure no filters are applied to the analysis results
-  * [ ] By inspecting the "Contracts" table in the "On Chain dependencies" tab, ensure every contract has its source and ABI fetched from the correct chain
-    * [ ] IF any contract shows "Source unverified", investigate the address (e.g. the source cannot be verified as the address is an EOA)
-    * [ ] IF any contract shows "Source skipped" or its selected chain does not match the chain it is deployed on, notify spell crafter
+  * [ ] Ensure every contract listed in on-chain dependencies has its source and ABI fetched from the correct chain
+    * [ ] IF any contract has an unverified source, investigate the address (e.g. the source cannot be verified as the address is an EOA)
+    * [ ] IF any contract has its source skipped or its selected chain does not match the chain it is deployed on, notify spell crafter
   * [ ] Thoroughly inspect the analysis settings for signs of manipulation
     * [ ] Project name and repository name are correctly set
     * [ ] Branch name is set to "master"
