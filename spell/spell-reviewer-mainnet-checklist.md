@@ -19,9 +19,13 @@ Repo: https://github.com/sky-ecosystem/spells-mainnet
   * [ ] Office hours is `true` IF spell introduces a major change that can affect external parties (e.g.: keepers are affected in case of collateral offboarding) OTHERWISE explicitly set to `false`
   * [ ] Office hours value matches the Exec Sheet
   * [ ] 30 days spell expiry set in the constructor (`block.timestamp + 30 days`)
-* [ ] Review the approved [SafeHarbor source spreadsheet](https://docs.google.com/spreadsheets/d/1e_KOYOeBGaA5EG3Xqco6lOP_a0zV4Vrm3w5-dqFk00U) as the source of truth for the desired registry state
-  * [ ] Run `make safeharbor-generate` and ensure the generated updates implement the spreadsheet state relative to the current agreement
-  * [ ] IF there is a mismatch or validation warning, run `make safeharbor-inspect` to review the structured updates and warnings, then notify Governance Facilitators
+* SafeHarbor source and proposed updates
+  * [ ] Independently review the approved [SafeHarbor Sheet](https://docs.google.com/spreadsheets/d/1e_KOYOeBGaA5EG3Xqco6lOP_a0zV4Vrm3w5-dqFk00U), including intended accounts, scopes, and recovery addresses
+  * [ ] Use Node.js 24 and set `ETH_RPC_URL` to Ethereum mainnet or the intended pre-cast fork
+  * [ ] Run `make safeharbor-generate`; require successful generation with no validation warnings
+  * [ ] Check that the proposed changes, including removals, implement the approved Sheet relative to the current Agreement and that none are missing from or added to the spell
+  * IF generation fails or proposes unexpected changes
+    * [ ] Use `make safeharbor-inspect` to investigate the source data, proposed changes, and warnings; resolve issues with Governance Facilitators before approving the payload
 * Spell description
   * [ ] Description follows the format `TARGET_DATE MakerDAO Executive Spell | Hash: EXEC_DOC_HASH`
   * [ ] `TARGET_DATE` in the description matches the target date
@@ -307,15 +311,10 @@ Repo: https://github.com/sky-ecosystem/spells-mainnet
   * [ ] Target contract is not upgradable
   * [ ] Target Contract is included in the ChainLog
   * [ ] Test Coverage is comprehensive
-* IF bug bounty registry updates are present
-  * [ ] Review the approved [SafeHarbor source spreadsheet](https://docs.google.com/spreadsheets/d/1e_KOYOeBGaA5EG3Xqco6lOP_a0zV4Vrm3w5-dqFk00U) as the source of truth for the desired registry state
-  * [ ] Run `make safeharbor-generate`
-    * [ ] Verify that the generated code exactly matches the code in the spell
-    * [ ] Verify that the generated payload implements the spreadsheet state relative to the current agreement
-    * [ ] Review all validation warnings
-    * [ ] IF there is a mismatch or validation warning, run `make safeharbor-inspect` to review the structured updates and warnings, then notify Governance Facilitators
-  * [ ] Ensure that agreement address is fetched from the Chainlog
-  * [ ] Ensure that the helper function to perform the call is present and is implemented using the established archive pattern
+* IF SafeHarbor registry updates are present
+  * [ ] Verify the spell matches the generated snippet, except for formatting, including every calldata entry and its order
+  * [ ] Ensure the Agreement address is fetched from the `SAFE_HARBOR_AGREEMENT` Chainlog entry
+  * [ ] Ensure the helper follows the established archive pattern, executing calls in order and reverting on any failed call
 * IF spell interacts with ChainLog
   * [ ] ChainLog version is incremented based on update type
     * Major -> New Vat (++.0.0)
@@ -337,19 +336,20 @@ Repo: https://github.com/sky-ecosystem/spells-mainnet
   * [ ] Ensure each spell action has sufficient test coverage
     _List actions for which coverage was checked here_
     * IF SafeHarbor registry updates are present
-      * [ ] SafeHarbor registry updates are exempt from Solidity-side test coverage
-      * [ ] Review the approved [SafeHarbor source spreadsheet](https://docs.google.com/spreadsheets/d/1e_KOYOeBGaA5EG3Xqco6lOP_a0zV4Vrm3w5-dqFk00U) as the source of truth for the desired registry state
-      * [ ] Ensure `scripts/safeharbor` generator tests are case-complete for valid and invalid state transitions, including executable add/remove ordering
-      * [ ] Ensure the tests cover structured validation warnings and CLI status behavior
-      * [ ] Ensure the tests snapshot both raw calldata and ABI-decoded calldata
-      * [ ] Verify that the generated SafeHarbor payload exactly matches the payload in the spell
+      * Scope updates use generator coverage, payload review, and post-cast reconciliation instead of a separate Solidity traversal test; other Agreement changes still require appropriate tests
+      * [ ] Run `npm test --prefix scripts/safeharbor -- --run` and confirm the SafeHarbor suite passes for the spell revision
+      * [ ] Confirm coverage for the operations used by the spell, including replacement ordering and scope changes where applicable
+  * IF SafeHarbor scripts, Makefile commands, or their CI workflow changed
+    * [ ] Review coverage for chain/account additions, removals, replacements, scope changes, rejected input, warning blocking, and command failures
+    * [ ] Review changed expected operations and raw calldata, ABI-decoded calldata, and Solidity snapshots; do not accept regenerated snapshots without checking their meaning
+    * [ ] Ensure the SafeHarbor CI tests, lint, and formatting checks pass
   * [ ] Ensure that any other env variable does not affect execution of the tests (for example, by inspecting the output of `printenv | grep "FOUNDRY_\|DAPP_"`)
   * IF a new module is initialized via the spell, the tests must include
     * [ ] Sanity checks of the constructor arguments
     * [ ] Sanity checks of all values added/updated by the spell function
     * [ ] End-to-end "happy path" interaction with the module
   * [ ] Check all tests are passing locally using `make test`
-    * [ ] Ensure every test listed in the _coverage_ item above is present in the logs and with the `[PASS]` prefix.
+    * [ ] Ensure every Solidity test listed in the _coverage_ item above is present in the logs and with the `[PASS]` prefix.
 
 ```
 _Insert your local test logs here_
@@ -436,11 +436,13 @@ _Insert your local test logs here_
   * [ ] All actions are executed in the transaction trace
   * [ ] No reverts are present that block execution
   * [ ] No out-of-gas errors are present
-  * [ ] Set `ETH_RPC_URL` to the Tenderly Testnet RPC URL
-  * [ ] Run `make safeharbor-verify` against the Tenderly Testnet after the spell is cast
-  * [ ] Ensure the verification succeeds
+  * [ ] Set `ETH_RPC_URL` to the RPC URL of the Tenderly Testnet where the exact deployed spell was cast
+  * [ ] Confirm the Sheet still matches the approved source reviewed above; repeat source and payload review if it changed
+  * [ ] Independently run `make safeharbor-verify` after the cast, even if the spell contains no SafeHarbor updates; require success with no updates and no validation warnings
+  * [ ] Record the successful verification output with the review evidence
   * IF verification fails
-    * [ ] Run `make safeharbor-inspect` to review the structured updates and validation warnings before escalating the mismatch
+    * [ ] Use `make safeharbor-inspect` to investigate, resolve the failure with Governance Facilitators, and rerun verification before handover
+    * Successful inspection or an empty changes list is not proof of a match; warnings can block change calculation
 * Archive checks
   * [ ] `make diff-archive-spell` for current date or `make diff-archive-spell date="YYYY-MM-DD"`
   * [ ] Ensure date corresponds to target Exec Doc date

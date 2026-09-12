@@ -66,9 +66,13 @@ Repo: https://github.com/sky-ecosystem/spells-mainnet
   * Ensure correctness of the cleanup
     * [ ] Run Tests `make test` (or `make test match=<test_name>` to inspect debug traces)
   * [ ] Commit the cleanup (e.g. `git commit -am "Base spell"`)
-* [ ] Review the approved [SafeHarbor source spreadsheet](https://docs.google.com/spreadsheets/d/1e_KOYOeBGaA5EG3Xqco6lOP_a0zV4Vrm3w5-dqFk00U) as the source of truth for the desired registry state
-  * [ ] Run `make safeharbor-generate` and ensure the generated updates implement the spreadsheet state relative to the current agreement
-  * [ ] IF there is a mismatch or validation warning, run `make safeharbor-inspect` to review the structured updates and warnings, then notify Governance Facilitators
+* SafeHarbor source and proposed updates
+  * [ ] Confirm the [SafeHarbor Sheet](https://docs.google.com/spreadsheets/d/1e_KOYOeBGaA5EG3Xqco6lOP_a0zV4Vrm3w5-dqFk00U) is reviewed and approved for this spell, including intended accounts, scopes, and recovery addresses
+  * [ ] Use Node.js 24 and set `ETH_RPC_URL` to Ethereum mainnet or the intended pre-cast fork
+  * [ ] Run `make safeharbor-generate`; require successful generation with no validation warnings
+  * [ ] Check that the proposed changes, including removals, implement the approved Sheet relative to the current Agreement
+  * IF generation fails or proposes unexpected changes
+    * [ ] Use `make safeharbor-inspect` to investigate the source data, proposed changes, and warnings; resolve issues with Governance Facilitators before using the payload
 * Add comments to the spell based on the relevant [Exec Sheet](https://docs.google.com/spreadsheets/d/1w_z5WpqxzwreCcaveB2Ye1PP5B8QAHDglzyxKHG3CHw)
   * [ ] Copy every _Section text_ from the Exec Sheet as comment to the spell code
   * [ ] Surround the comment by the set of dashes (e.g. `// ----- Section text -----`)
@@ -131,16 +135,10 @@ Repo: https://github.com/sky-ecosystem/spells-mainnet
     * [ ] Removals are tested via `testRemovedChainlogKeys`
   * [ ] Adjust system values, collateral values inside `config.sol`
   * [ ] Ensure every spell variable is declared as public/internal
-  * Bug Bounty Registry Updates
-    * [ ] Review the approved [SafeHarbor source spreadsheet](https://docs.google.com/spreadsheets/d/1e_KOYOeBGaA5EG3Xqco6lOP_a0zV4Vrm3w5-dqFk00U) as the source of truth for the desired registry state
-      * [ ] Run `make safeharbor-generate` and verify that the generated payload implements the spreadsheet state relative to the current agreement
-      * [ ] Review all validation warnings
-      * [ ] IF there is a mismatch or validation warning, run `make safeharbor-inspect` to review the structured updates and warnings, then notify Governance Facilitators
-      * [ ] IF the generated Solidity snippet is required by the spreadsheet state:
-        * [ ] Paste the generated code into the spell as is. The code should not be modified. You may adjust formatting
-        * [ ] Verify that the generated SafeHarbor payload exactly matches the payload in the spell
-        * [ ] Fetch the agreement address from the `ChainLog`
-        * [ ] IF not already present, add the helper function to perform the call, using the established archive pattern
+  * IF SafeHarbor registry updates are present
+    * [ ] Paste the generated snippet into the spell unchanged, except for formatting; verify every calldata entry and its order match the generated payload
+    * [ ] Fetch the Agreement address from the `SAFE_HARBOR_AGREEMENT` Chainlog entry
+    * [ ] Use the established archive helper pattern to execute calls in order and revert on any failed call
   * IF Prime Agent spell is provided
     * [ ] Handover message matches `XXX spell YYYY-MM-DD deployed to 0x… with hash 0x…, direct execution: yes / no` template
     * [ ] IF `direct execution` is `no`
@@ -150,7 +148,7 @@ Repo: https://github.com/sky-ecosystem/spells-mainnet
       * [ ] The Prime Agent spell is executed via `ProxyLike(XXX_PROXY).exec(XXX_SPELL, abi.encodeWithSignature("execute()"));`
   * IF `SUBPROXY_METHODS` transfers are present
     * [ ] Each transfer is executed via `SubProxyLike(XXX_SUBPROXY).exec(SUBPROXY_METHODS, abi.encodeWithSelector(SubProxyMethodsLike.transfer.selector, TOKEN, RECIPIENT, AMOUNT));`
-* Add specific tests in `DssSpell.t.sol` to have sufficient test coverage for every spell action
+* Add specific tests in `DssSpell.t.sol` to have sufficient test coverage for every spell action, except SafeHarbor scope updates covered below
   * [ ] Test new collaterals
   * [ ] Test new ilk registry values
   * [ ] Test new ChainLog values
@@ -165,10 +163,13 @@ Repo: https://github.com/sky-ecosystem/spells-mainnet
     * [ ] Sanity checks of all values added/updated by the spell function
     * [ ] End-to-end "happy path" interaction with the module
   * IF SafeHarbor registry updates are present
-    * [ ] SafeHarbor registry updates are exempt from Solidity-side test coverage
-    * [ ] Ensure `scripts/safeharbor` generator tests are case-complete for valid and invalid state transitions, including executable add/remove ordering
-    * [ ] Ensure the tests cover structured validation warnings and CLI status behavior
-    * [ ] Ensure the tests snapshot both raw calldata and ABI-decoded calldata
+    * Scope updates use generator coverage, payload review, and post-cast reconciliation instead of a separate Solidity traversal test; other Agreement changes still require appropriate tests
+    * [ ] Run `npm test --prefix scripts/safeharbor -- --run` and confirm the SafeHarbor suite passes for the spell revision
+    * [ ] Confirm coverage for the operations used by the spell, including replacement ordering and scope changes where applicable
+  * IF SafeHarbor scripts, Makefile commands, or their CI workflow changed
+    * [ ] Review coverage for chain/account additions, removals, replacements, scope changes, rejected input, warning blocking, and command failures
+    * [ ] Review changed expected operations and raw calldata, ABI-decoded calldata, and Solidity snapshots; do not accept regenerated snapshots without checking their meaning
+    * [ ] Ensure the SafeHarbor CI tests, lint, and formatting checks pass
   * [ ] Tests PASS via `make test`
 * [ ] Ensure `DssExecLib` address used in current spell (`libraries` inside `foundry.toml`) matches `dss-exec-lib` [Latest Release Tag](https://github.com/sky-ecosystem/dss-exec-lib/releases/latest)
 * [ ] Push committed content to already opened PR
@@ -238,11 +239,12 @@ Repo: https://github.com/sky-ecosystem/spells-mainnet
   * [ ] Check that returned `public explorer url` is publicly accessible (e.g. using incognito browser mode)
   * [ ] IF `cast-on-tenderly` command is executed several times for the same spell, delete all testnets of the same name except the last one
 * SafeHarbor registry post-cast reconciliation
-  * [ ] Set `ETH_RPC_URL` to the Tenderly Testnet RPC URL
-  * [ ] Run `make safeharbor-verify` in the Tenderly Testnet environment after the spell is cast
-  * [ ] Ensure the verification succeeds
+  * [ ] Set `ETH_RPC_URL` to the RPC URL of the Tenderly Testnet where the exact deployed spell was cast
+  * [ ] Confirm the Sheet still matches the approved source reviewed above; repeat source and payload review if it changed
+  * [ ] Run `make safeharbor-verify` after the cast, even if the spell contains no SafeHarbor updates; require success with no updates and no validation warnings
   * IF verification fails
-    * [ ] Run `make safeharbor-inspect` to review the structured updates and validation warnings before escalating the mismatch
+    * [ ] Use `make safeharbor-inspect` to investigate, resolve the failure with Governance Facilitators, and rerun verification before handover
+    * Successful inspection or an empty changes list is not proof of a match; warnings can block change calculation
 * [ ] Archive Spell via `make archive-spell` for the current date (or `make archive-spell date="YYYY-MM-DD"`) using Target Date inside the Exec Doc
 * [ ] Commit & push changes for review
 * [ ] Wait for CI to PASS
@@ -250,6 +252,7 @@ Repo: https://github.com/sky-ecosystem/spells-mainnet
   * Foundry installation logs containing installed versions (from above)
   * A link to the deployed spell
   * A link to the created Tenderly Testnet
+  * Successful SafeHarbor post-cast verification output
 * [ ] Notify the reviewers (e.g. "the spell was deployed")
 * [ ] IF everything is on track, the sync call can be cancelled with agreement from the spell team
 
